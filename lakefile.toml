@@ -1,5 +1,5 @@
 name = "RequestProject"
-defaultTargets = ["RequestProject"]
+defaultTargets = ["RequestProject", "Gate04Root", "Gate1A", "Gate1B", "UniversalV8", "Universal"]
 
 [[require]]
 name = "mathlib"
@@ -8,4 +8,24 @@ rev = "v4.28.0"
 
 [[lean_lib]]
 name = "RequestProject"
-globs = ["RequestProject.+", "NANC.+"]
+globs = ["RequestProject.+"]
+
+[[lean_lib]]
+name = "Gate04Root"
+globs = ["Gate04Root.+"]
+
+[[lean_lib]]
+name = "Gate1A"
+globs = ["Gate1A.+"]
+
+[[lean_lib]]
+name = "Gate1B"
+globs = ["Gate1B.+"]
+
+[[lean_lib]]
+name = "UniversalV8"
+globs = ["UniversalV8.+"]
+
+[[lean_lib]]
+name = "Universal"
+globs = ["Universal.+"]
