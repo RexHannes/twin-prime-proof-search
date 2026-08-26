@@ -1878,3 +1878,76 @@ VERDICT: ARISTOTLE_V8_2_GATE1B_CUMULATIVE_SAFE_BANK_PARTIAL
 ```
 
 Full report: `UNIVERSAL_V8_2_GATE1B_CUMULATIVE_SAFE_BANK_REPORT.md`.
+
+---
+
+## GATE 1B v8.3 — HIGH-ORDER REGROUP / CHARACTER SAFE BANK (append-only)
+
+```
+ITEM                              STATUS      LEAN WITNESS
+HIGH-ORDER REGROUP GEOMETRY       PROVED      regroupBExponent_eq_seven (j ≤ 7 ⟹ 7),
+                                              hasTwoModels_of_order_le_seven,
+                                              orderEight_oneModel, orderNine_noModel
+GENERIC SHELL REGROUP             PROVED      shell_regroup_twoModels,
+                                              shell_regroup_order5/6/7
+H6 EXACT REGROUP                  PROVED      h6_shell_regroup, h6_congruence,
+                                              h6_congruence_modEq, h6_ell_unique
+H7 2D REGROUP                     PROVED      h7_qk5_shell, h7_qk5_congruence
+H7 1D RECIPROCAL SHELL            PROVED      h7_rf1d_shell, h7_rf1d_congruence
+H8 1D RECIPROCAL SHELL            PROVED      h8_rf1d_shell, h8_rf1d_congruence
+H9 PURE-DEFECT SHELL              PROVED      h9_shell, h9_shell_congruence,
+                                              h9_qell_coprime(_shell)
+FINITE-FIBRE PUSHFORWARD ENERGY   PROVED      l2_pushforward_le_fiber_card_mul,
+                                              l2_pushforward_product_le
+H6/H7 SOURCE ENERGY COMPILER      CONDITIONAL h6Energy_of_fiberBound (explicit fibre
+                                              bound), h7Energy_exact
+FINITE MUL-CHARACTER SYSTEM       TIER 2      MulCharSystem (supplied),
+                                              character_fourier_inversion,
+                                              character_parseval
+RECIPROCAL PHASE EXPANSION        PROVED      gauss_twist, reciprocal_addChar_fourier,
+                                              reciprocal_phase_character_expand,
+                                              reciprocal_phase_expand_shift_two
+H7/H8 PACKET FACTORISATION        PROVED      h7_characterPacket_factor,
+                                              h8_characterPacket_factor
+H9 NONPRINCIPAL PACKET            PROVED      unit_residue_indicator_character_expand,
+                                              h9_nonprincipal_character_packet,
+                                              h9_packet_of_factorisation
+SAME-q CHARACTER EXPANSION        PROVED      kloostermanCharSum_eq (τ² χ(b) χ(t)),
+                                              sameQ_character_expand
+SAME-q GRAM EXPANSION             PROVED      sameQ_gram_expand, dualCorrelation
+SAME-q ≠ RESIDUE ENERGY           COUNTERMODEL sameQ_gram_eq_gramForm,
+                                              sameQ_not_function_of_residueEnergy,
+                                              sameQ_ne_residueEnergy_counterexample
+NINE-FACTOR GRAM COMPILER         CONDITIONAL SameQNineFactorData,
+                                              sameQ_of_nuclear_factorisation
+                                              (interface, not inhabited)
+BULK-SPIKE FINITE INEQUALITIES    PROVED      bulk_bound, spike_l1_bound,
+                                              spike_weighted_bound,
+                                              spike_card_l1_bound,
+                                              spike_l2_card_bound, bulkSpike_bound
+D12 BULK-SPIKE CAPACITY           CAPACITY    d12_rms_exponent = 1,
+                                              d12_sup_over_rms_exponent = 5/6,
+                                              d12_bulkSpike_loss_exponent = 5/12,
+                                              bulkSpike_balance_exponent
+TIER-3 ZERO RESIDUAL              PROVED      historical_eq_canonical_sub_residual,
+                                              expectedTerm_not_freely_choosable
+HIGH-ORDER ROUTING TABLE          BOOKKEEPING highOrderStatus (no "closed" constructor),
+                                              highOrderStatus_analytic_open
+COUNTERMODELS A-D (v8.3)          PROVED      CountermodelsV83
+V8.3 ANALYTIC INTERFACES          OPEN        V83HighOrderInterfaces (comments only)
+ANALYTIC H7 / H8 / H9:            OPEN
+SAME-q ANALYTIC MOMENT:           OPEN
+D12 MOVING-D MOMENT:              OPEN
+S2 SIEGEL-WALFISZ APPLICATION:    OPEN / EXTERNAL
+R_E SOURCE BOUND:                 OPEN / SOURCE INTERFACE
+GATE1B:                           OPEN / UNCHANGED
+FULL TYPE II:                     NOT DECLARED
+TWIN PRIMES:                      NOT DECLARED
+
+BUILD: PASS (8495 jobs, 0 errors) · SORRY: NONE · USER AXIOMS: NONE
+V8.1 / V8.2 BANKS: PRESERVED (append-only; no existing proof modified)
+
+VERDICT: ARISTOTLE_V8_3_GATE1B_HIGHORDER_CHARACTER_SAFE_BANK_PARTIAL
+```
+
+Full report: `UNIVERSAL_V8_3_GATE1B_HIGHORDER_CHARACTER_SAFE_BANK_REPORT.md`.
