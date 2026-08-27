@@ -1,0 +1,63 @@
+name: Publish Draft 16
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.draft16_upload/**'
+      - '.github/workflows/publish-draft16.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Reconstruct exact Draft 16 source payload
+        shell: bash
+        run: |
+          set -euxo pipefail
+          cat .draft16_upload/payload.* > /tmp/draft16_payload.b64
+          base64 -d /tmp/draft16_payload.b64 > /tmp/draft16_payload.tar.gz
+          tar -xzf /tmp/draft16_payload.tar.gz
+          echo "5777bab95351f40bf64bc9d61d5d65f4328c1b1efb605cccfaae1880aec62a3a  twin_prime_programme_draft16.tex" | sha256sum -c -
+          echo "9f4335c8fbf053557fe8fa9fd61fa1d165095908e1bdd2b7495432e303eb8c58  references_draft16.bib" | sha256sum -c -
+
+      - name: Compile Draft 16
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: twin_prime_programme_draft16.tex
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+
+      - name: Publish stable and versioned artifacts
+        shell: bash
+        run: |
+          set -euxo pipefail
+          test -s twin_prime_programme_draft16.pdf
+          cp twin_prime_programme_draft16.pdf in-progress-twin-prime-proof.pdf
+          cp .draft16_upload/README.next README.md
+          cp .draft16_upload/CURRENT_CHECKPOINT.next CURRENT_CHECKPOINT.md
+          zip -q twin_prime_programme_draft16_overleaf.zip \
+            twin_prime_programme_draft16.tex \
+            references_draft16.bib \
+            README_DRAFT16.md \
+            ARISTOTLE_GATE1B_V16_RANKONE_BEZOUT_REPROOF_REVERIFY.md \
+            SOURCE_AUDIT_DOUBLEGCD_20260827.md \
+            SOURCE_AUDIT_RANKONE_20260827.md
+          rm -rf .draft16_upload
+
+      - name: Commit generated Draft 16 publication
+        shell: bash
+        run: |
+          set -euxo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Publish Draft 16 and update stable research note"
+          git push
