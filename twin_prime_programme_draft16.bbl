@@ -1,0 +1,574 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{anyt/global//global/global/global}
+    \entry{BettinChandee2015}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=4b05f94acd4b43b960d94c8183acd02c}{%
+           family={Bettin},
+           familyi={B\bibinitperiod},
+           given={Sandro},
+           giveni={S\bibinitperiod}}}%
+        {{hash=b641b0ea3ff0827ca1195da552186c32}{%
+           family={Chandee},
+           familyi={C\bibinitperiod},
+           given={Vorrapan},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{f653ca334aa308db49fb837c33413827}
+      \strng{fullhash}{f653ca334aa308db49fb837c33413827}
+      \strng{fullhashraw}{f653ca334aa308db49fb837c33413827}
+      \strng{bibnamehash}{f653ca334aa308db49fb837c33413827}
+      \strng{authorbibnamehash}{f653ca334aa308db49fb837c33413827}
+      \strng{authornamehash}{f653ca334aa308db49fb837c33413827}
+      \strng{authorfullhash}{f653ca334aa308db49fb837c33413827}
+      \strng{authorfullhashraw}{f653ca334aa308db49fb837c33413827}
+      \field{labelalpha}{BC18}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Advances in Mathematics}
+      \field{title}{Trilinear Forms with Kloosterman Fractions}
+      \field{volume}{328}
+      \field{year}{2018}
+      \field{pages}{1234\bibrangedash 1262}
+      \range{pages}{29}
+      \verb{doi}
+      \verb 10.1016/j.aim.2018.01.026
+      \endverb
+    \endentry
+    \entry{BourgainGaraev2012}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=b56223d7226802e12deba4ce1c44304f}{%
+           family={Bourgain},
+           familyi={B\bibinitperiod},
+           given={Jean},
+           giveni={J\bibinitperiod}}}%
+        {{hash=9b6db7e06c73378ac32345255b1e2ff3}{%
+           family={Garaev},
+           familyi={G\bibinitperiod},
+           given={Moubariz\bibnamedelima Z.},
+           giveni={M\bibinitperiod\bibinitdelim Z\bibinitperiod}}}%
+      }
+      \strng{namehash}{bd23a78d3708b770613d02e53e591114}
+      \strng{fullhash}{bd23a78d3708b770613d02e53e591114}
+      \strng{fullhashraw}{bd23a78d3708b770613d02e53e591114}
+      \strng{bibnamehash}{bd23a78d3708b770613d02e53e591114}
+      \strng{authorbibnamehash}{bd23a78d3708b770613d02e53e591114}
+      \strng{authornamehash}{bd23a78d3708b770613d02e53e591114}
+      \strng{authorfullhash}{bd23a78d3708b770613d02e53e591114}
+      \strng{authorfullhashraw}{bd23a78d3708b770613d02e53e591114}
+      \field{labelalpha}{BG12}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.NT}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{arXiv preprint arXiv:1211.4184}
+      \field{title}{Sumsets of Reciprocals in Prime Fields and Multilinear Kloosterman Sums}
+      \field{year}{2012}
+      \verb{eprint}
+      \verb 1211.4184
+      \endverb
+    \endentry
+    \entry{BlomerPascadi2026}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=c81c04c3bd24661bd3fe173800f7a2b4}{%
+           family={Blomer},
+           familyi={B\bibinitperiod},
+           given={Valentin},
+           giveni={V\bibinitperiod}}}%
+        {{hash=f79a61ad21bfa201254511584e1dbff5}{%
+           family={Pascadi},
+           familyi={P\bibinitperiod},
+           given={Alexandru},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{cc8c5c9a5187a0577b580a9997640763}
+      \strng{fullhash}{cc8c5c9a5187a0577b580a9997640763}
+      \strng{fullhashraw}{cc8c5c9a5187a0577b580a9997640763}
+      \strng{bibnamehash}{cc8c5c9a5187a0577b580a9997640763}
+      \strng{authorbibnamehash}{cc8c5c9a5187a0577b580a9997640763}
+      \strng{authornamehash}{cc8c5c9a5187a0577b580a9997640763}
+      \strng{authorfullhash}{cc8c5c9a5187a0577b580a9997640763}
+      \strng{authorfullhashraw}{cc8c5c9a5187a0577b580a9997640763}
+      \field{labelalpha}{BP26}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.NT}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{arXiv preprint arXiv:2607.24311}
+      \field{title}{Bilinear Forms with Kloosterman Sums via Quadratic Characters}
+      \field{year}{2026}
+      \verb{eprint}
+      \verb 2607.24311
+      \endverb
+    \endentry
+    \entry{FordMaynard2024}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=bb758f27d76cefc7bd5244190e91843b}{%
+           family={Ford},
+           familyi={F\bibinitperiod},
+           given={Kevin},
+           giveni={K\bibinitperiod}}}%
+        {{hash=b967eaf4af2f09de4dacfd8bb88d2688}{%
+           family={Maynard},
+           familyi={M\bibinitperiod},
+           given={James},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{bcab1ace665bcdd5daed054828ff7ba3}
+      \strng{fullhash}{bcab1ace665bcdd5daed054828ff7ba3}
+      \strng{fullhashraw}{bcab1ace665bcdd5daed054828ff7ba3}
+      \strng{bibnamehash}{bcab1ace665bcdd5daed054828ff7ba3}
+      \strng{authorbibnamehash}{bcab1ace665bcdd5daed054828ff7ba3}
+      \strng{authornamehash}{bcab1ace665bcdd5daed054828ff7ba3}
+      \strng{authorfullhash}{bcab1ace665bcdd5daed054828ff7ba3}
+      \strng{authorfullhashraw}{bcab1ace665bcdd5daed054828ff7ba3}
+      \field{labelalpha}{FM24}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.NT}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{arXiv preprint arXiv:2407.14368}
+      \field{title}{On the Theory of Prime Producing Sieves}
+      \field{year}{2024}
+      \verb{eprint}
+      \verb 2407.14368
+      \endverb
+    \endentry
+    \entry{FouvryKowalskiMichelSawin2025}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=2a0a79e4a06af7664898b2f2c9fc9b51}{%
+           family={Fouvry},
+           familyi={F\bibinitperiod},
+           given={{'E}tienne},
+           giveni={'\bibinitperiod}}}%
+        {{hash=263aefd39b632bae3020dafd7f2597bd}{%
+           family={Kowalski},
+           familyi={K\bibinitperiod},
+           given={Emmanuel},
+           giveni={E\bibinitperiod}}}%
+        {{hash=f542b20d6582c9722948ae61e1a0f95e}{%
+           family={Michel},
+           familyi={M\bibinitperiod},
+           given={Philippe},
+           giveni={P\bibinitperiod}}}%
+        {{hash=946aa2dd05975de502a0e1b9bec14d6a}{%
+           family={Sawin},
+           familyi={S\bibinitperiod},
+           given={Will},
+           giveni={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{1225534d1e5b833f223500eb06dbf8a0}
+      \strng{fullhash}{1225534d1e5b833f223500eb06dbf8a0}
+      \strng{fullhashraw}{1225534d1e5b833f223500eb06dbf8a0}
+      \strng{bibnamehash}{1225534d1e5b833f223500eb06dbf8a0}
+      \strng{authorbibnamehash}{1225534d1e5b833f223500eb06dbf8a0}
+      \strng{authornamehash}{1225534d1e5b833f223500eb06dbf8a0}
+      \strng{authorfullhash}{1225534d1e5b833f223500eb06dbf8a0}
+      \strng{authorfullhashraw}{1225534d1e5b833f223500eb06dbf8a0}
+      \field{labelalpha}{Fou+25}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.NT}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{arXiv preprint arXiv:2511.09459}
+      \field{title}{Bilinear Forms with Trace Functions}
+      \field{year}{2025}
+      \verb{eprint}
+      \verb 2511.09459
+      \endverb
+    \endentry
+    \entry{FouvryShparlinski2022}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=2a0a79e4a06af7664898b2f2c9fc9b51}{%
+           family={Fouvry},
+           familyi={F\bibinitperiod},
+           given={{'E}tienne},
+           giveni={'\bibinitperiod}}}%
+        {{hash=ddfcfca1de3ef3b8cea5f3368ee055f7}{%
+           family={Shparlinski},
+           familyi={S\bibinitperiod},
+           given={Igor\bibnamedelima E.},
+           giveni={I\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{d63fb113d4b49f15b8ad5f6321bf4fb4}
+      \strng{fullhash}{d63fb113d4b49f15b8ad5f6321bf4fb4}
+      \strng{fullhashraw}{d63fb113d4b49f15b8ad5f6321bf4fb4}
+      \strng{bibnamehash}{d63fb113d4b49f15b8ad5f6321bf4fb4}
+      \strng{authorbibnamehash}{d63fb113d4b49f15b8ad5f6321bf4fb4}
+      \strng{authornamehash}{d63fb113d4b49f15b8ad5f6321bf4fb4}
+      \strng{authorfullhash}{d63fb113d4b49f15b8ad5f6321bf4fb4}
+      \strng{authorfullhashraw}{d63fb113d4b49f15b8ad5f6321bf4fb4}
+      \field{labelalpha}{FS22}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.NT}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{arXiv preprint arXiv:2210.15761}
+      \field{title}{On Character Sums with Determinants}
+      \field{year}{2022}
+      \verb{eprint}
+      \verb 2210.15761
+      \endverb
+    \endentry
+    \entry{Guo2026}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=e5d713ed948ceee7e37f49640d8d0b42}{%
+           family={Guo},
+           familyi={G\bibinitperiod},
+           given={Jizhou},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{e5d713ed948ceee7e37f49640d8d0b42}
+      \strng{fullhash}{e5d713ed948ceee7e37f49640d8d0b42}
+      \strng{fullhashraw}{e5d713ed948ceee7e37f49640d8d0b42}
+      \strng{bibnamehash}{e5d713ed948ceee7e37f49640d8d0b42}
+      \strng{authorbibnamehash}{e5d713ed948ceee7e37f49640d8d0b42}
+      \strng{authornamehash}{e5d713ed948ceee7e37f49640d8d0b42}
+      \strng{authorfullhash}{e5d713ed948ceee7e37f49640d8d0b42}
+      \strng{authorfullhashraw}{e5d713ed948ceee7e37f49640d8d0b42}
+      \field{labelalpha}{Guo26}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.NT}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{arXiv preprint arXiv:2608.23500}
+      \field{title}{Quantitative Logarithmic Chowla Correlations Uniformly over Growing Shifts}
+      \field{year}{2026}
+      \verb{eprint}
+      \verb 2608.23500
+      \endverb
+    \endentry
+    \entry{Huxley1972}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=c44de14abb201433c35f94235ea83d90}{%
+           family={Huxley},
+           familyi={H\bibinitperiod},
+           given={M.\bibnamedelimi N.},
+           giveni={M\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+      }
+      \strng{namehash}{c44de14abb201433c35f94235ea83d90}
+      \strng{fullhash}{c44de14abb201433c35f94235ea83d90}
+      \strng{fullhashraw}{c44de14abb201433c35f94235ea83d90}
+      \strng{bibnamehash}{c44de14abb201433c35f94235ea83d90}
+      \strng{authorbibnamehash}{c44de14abb201433c35f94235ea83d90}
+      \strng{authornamehash}{c44de14abb201433c35f94235ea83d90}
+      \strng{authorfullhash}{c44de14abb201433c35f94235ea83d90}
+      \strng{authorfullhashraw}{c44de14abb201433c35f94235ea83d90}
+      \field{labelalpha}{Hux72}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Inventiones Mathematicae}
+      \field{title}{On the Difference between Consecutive Primes}
+      \field{volume}{15}
+      \field{year}{1971/72}
+      \field{pages}{164\bibrangedash 170}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1007/BF01418933
+      \endverb
+    \endentry
+    \entry{KlurmanMangerelTeravainen2019}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=3a103b34668f918df546548892a9475f}{%
+           family={Klurman},
+           familyi={K\bibinitperiod},
+           given={Oleksiy},
+           giveni={O\bibinitperiod}}}%
+        {{hash=158b535aec090f238d20ad20b276a111}{%
+           family={Mangerel},
+           familyi={M\bibinitperiod},
+           given={Alexander\bibnamedelima P.},
+           giveni={A\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=ccbbeff9f7ab48204559f7fdbb5fcfc4}{%
+           family={Teräväinen},
+           familyi={T\bibinitperiod},
+           given={Joni},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{ac332ffa775dc049c8dc54fa98d4c625}
+      \strng{fullhash}{ac332ffa775dc049c8dc54fa98d4c625}
+      \strng{fullhashraw}{ac332ffa775dc049c8dc54fa98d4c625}
+      \strng{bibnamehash}{ac332ffa775dc049c8dc54fa98d4c625}
+      \strng{authorbibnamehash}{ac332ffa775dc049c8dc54fa98d4c625}
+      \strng{authornamehash}{ac332ffa775dc049c8dc54fa98d4c625}
+      \strng{authorfullhash}{ac332ffa775dc049c8dc54fa98d4c625}
+      \strng{authorfullhashraw}{ac332ffa775dc049c8dc54fa98d4c625}
+      \field{labelalpha}{KMT19}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.NT}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{arXiv preprint arXiv:1909.12280}
+      \field{title}{Multiplicative Functions in Short Arithmetic Progressions}
+      \field{year}{2019}
+      \verb{eprint}
+      \verb 1909.12280
+      \endverb
+    \endentry
+    \entry{MatomakiRadziwillTao2015}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=9935138b2fa3d4ae1cd606f66fd8819b}{%
+           family={Matomäki},
+           familyi={M\bibinitperiod},
+           given={Kaisa},
+           giveni={K\bibinitperiod}}}%
+        {{hash=cbebca535e0c1c925f64abc53ce0bc8a}{%
+           family={Radziwi{ł}{ł}},
+           familyi={R\bibinitperiod},
+           given={Maksym},
+           giveni={M\bibinitperiod}}}%
+        {{hash=4cea0d7ce90ed017dfa21b4cee6c72e9}{%
+           family={Tao},
+           familyi={T\bibinitperiod},
+           given={Terence},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{122eda8a589d6f7099011d4288c88f3b}
+      \strng{fullhash}{122eda8a589d6f7099011d4288c88f3b}
+      \strng{fullhashraw}{122eda8a589d6f7099011d4288c88f3b}
+      \strng{bibnamehash}{122eda8a589d6f7099011d4288c88f3b}
+      \strng{authorbibnamehash}{122eda8a589d6f7099011d4288c88f3b}
+      \strng{authornamehash}{122eda8a589d6f7099011d4288c88f3b}
+      \strng{authorfullhash}{122eda8a589d6f7099011d4288c88f3b}
+      \strng{authorfullhashraw}{122eda8a589d6f7099011d4288c88f3b}
+      \field{labelalpha}{MRT15}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.NT}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{arXiv preprint arXiv:1503.05121}
+      \field{title}{An Averaged Form of Chowla's Conjecture}
+      \field{year}{2015}
+      \verb{eprint}
+      \verb 1503.05121
+      \endverb
+    \endentry
+    \entry{Pascadi2025}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=f79a61ad21bfa201254511584e1dbff5}{%
+           family={Pascadi},
+           familyi={P\bibinitperiod},
+           given={Alexandru},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{f79a61ad21bfa201254511584e1dbff5}
+      \strng{fullhash}{f79a61ad21bfa201254511584e1dbff5}
+      \strng{fullhashraw}{f79a61ad21bfa201254511584e1dbff5}
+      \strng{bibnamehash}{f79a61ad21bfa201254511584e1dbff5}
+      \strng{authorbibnamehash}{f79a61ad21bfa201254511584e1dbff5}
+      \strng{authornamehash}{f79a61ad21bfa201254511584e1dbff5}
+      \strng{authorfullhash}{f79a61ad21bfa201254511584e1dbff5}
+      \strng{authorfullhashraw}{f79a61ad21bfa201254511584e1dbff5}
+      \field{extraname}{1}
+      \field{labelalpha}{Pas25}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extraalpha}{1}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.NT}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{arXiv preprint arXiv:2511.08445}
+      \field{title}{Non-Abelian Amplification and Bilinear Forms with Kloosterman Sums}
+      \field{year}{2025}
+      \verb{eprint}
+      \verb 2511.08445
+      \endverb
+    \endentry
+    \entry{PascadiDistribution2025}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=f79a61ad21bfa201254511584e1dbff5}{%
+           family={Pascadi},
+           familyi={P\bibinitperiod},
+           given={Alexandru},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{f79a61ad21bfa201254511584e1dbff5}
+      \strng{fullhash}{f79a61ad21bfa201254511584e1dbff5}
+      \strng{fullhashraw}{f79a61ad21bfa201254511584e1dbff5}
+      \strng{bibnamehash}{f79a61ad21bfa201254511584e1dbff5}
+      \strng{authorbibnamehash}{f79a61ad21bfa201254511584e1dbff5}
+      \strng{authornamehash}{f79a61ad21bfa201254511584e1dbff5}
+      \strng{authorfullhash}{f79a61ad21bfa201254511584e1dbff5}
+      \strng{authorfullhashraw}{f79a61ad21bfa201254511584e1dbff5}
+      \field{extraname}{2}
+      \field{labelalpha}{Pas25}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extraalpha}{2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.NT}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{arXiv preprint arXiv:2505.00653}
+      \field{title}{On the Exponents of Distribution of Primes and Smooth Numbers}
+      \field{year}{2025}
+      \verb{eprint}
+      \verb 2505.00653
+      \endverb
+    \endentry
+    \entry{Shparlinski2013}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=ddfcfca1de3ef3b8cea5f3368ee055f7}{%
+           family={Shparlinski},
+           familyi={S\bibinitperiod},
+           given={Igor\bibnamedelima E.},
+           giveni={I\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{ddfcfca1de3ef3b8cea5f3368ee055f7}
+      \strng{fullhash}{ddfcfca1de3ef3b8cea5f3368ee055f7}
+      \strng{fullhashraw}{ddfcfca1de3ef3b8cea5f3368ee055f7}
+      \strng{bibnamehash}{ddfcfca1de3ef3b8cea5f3368ee055f7}
+      \strng{authorbibnamehash}{ddfcfca1de3ef3b8cea5f3368ee055f7}
+      \strng{authornamehash}{ddfcfca1de3ef3b8cea5f3368ee055f7}
+      \strng{authorfullhash}{ddfcfca1de3ef3b8cea5f3368ee055f7}
+      \strng{authorfullhashraw}{ddfcfca1de3ef3b8cea5f3368ee055f7}
+      \field{labelalpha}{Shp13}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.NT}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{arXiv preprint arXiv:1309.0324}
+      \field{title}{Multiple Exponential and Character Sums with Monomials}
+      \field{year}{2013}
+      \verb{eprint}
+      \verb 1309.0324
+      \endverb
+    \endentry
+    \entry{TaoTeravainen2017}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=4cea0d7ce90ed017dfa21b4cee6c72e9}{%
+           family={Tao},
+           familyi={T\bibinitperiod},
+           given={Terence},
+           giveni={T\bibinitperiod}}}%
+        {{hash=ccbbeff9f7ab48204559f7fdbb5fcfc4}{%
+           family={Teräväinen},
+           familyi={T\bibinitperiod},
+           given={Joni},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{f160beff5c55918a36852b46a5724db0}
+      \strng{fullhash}{f160beff5c55918a36852b46a5724db0}
+      \strng{fullhashraw}{f160beff5c55918a36852b46a5724db0}
+      \strng{bibnamehash}{f160beff5c55918a36852b46a5724db0}
+      \strng{authorbibnamehash}{f160beff5c55918a36852b46a5724db0}
+      \strng{authornamehash}{f160beff5c55918a36852b46a5724db0}
+      \strng{authorfullhash}{f160beff5c55918a36852b46a5724db0}
+      \strng{authorfullhashraw}{f160beff5c55918a36852b46a5724db0}
+      \field{labelalpha}{TT17}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.NT}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{arXiv preprint arXiv:1708.02610}
+      \field{title}{The Structure of Logarithmically Averaged Correlations of Multiplicative Functions, with Applications to the Chowla and Elliott Conjectures}
+      \field{year}{2017}
+      \verb{eprint}
+      \verb 1708.02610
+      \endverb
+    \endentry
+    \entry{Wright2026}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=6554f4c82688d2a4018d3f07cdb7740f}{%
+           family={Wright},
+           familyi={W\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{6554f4c82688d2a4018d3f07cdb7740f}
+      \strng{fullhash}{6554f4c82688d2a4018d3f07cdb7740f}
+      \strng{fullhashraw}{6554f4c82688d2a4018d3f07cdb7740f}
+      \strng{bibnamehash}{6554f4c82688d2a4018d3f07cdb7740f}
+      \strng{authorbibnamehash}{6554f4c82688d2a4018d3f07cdb7740f}
+      \strng{authornamehash}{6554f4c82688d2a4018d3f07cdb7740f}
+      \strng{authorfullhash}{6554f4c82688d2a4018d3f07cdb7740f}
+      \strng{authorfullhashraw}{6554f4c82688d2a4018d3f07cdb7740f}
+      \field{labelalpha}{Wri26}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.NT}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{arXiv preprint arXiv:2604.25177}
+      \field{title}{Trilinear Kloosterman Fractions I: Partially Fixed Moduli and Unbalanced Convolutions}
+      \field{year}{2026}
+      \verb{eprint}
+      \verb 2604.25177
+      \endverb
+    \endentry
+    \entry{Zygmund2002}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=84bab7e6c163680d0e37c9fa644b38c5}{%
+           family={Zygmund},
+           familyi={Z\bibinitperiod},
+           given={Antoni},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{84bab7e6c163680d0e37c9fa644b38c5}
+      \strng{fullhash}{84bab7e6c163680d0e37c9fa644b38c5}
+      \strng{fullhashraw}{84bab7e6c163680d0e37c9fa644b38c5}
+      \strng{bibnamehash}{84bab7e6c163680d0e37c9fa644b38c5}
+      \strng{authorbibnamehash}{84bab7e6c163680d0e37c9fa644b38c5}
+      \strng{authornamehash}{84bab7e6c163680d0e37c9fa644b38c5}
+      \strng{authorfullhash}{84bab7e6c163680d0e37c9fa644b38c5}
+      \strng{authorfullhashraw}{84bab7e6c163680d0e37c9fa644b38c5}
+      \field{labelalpha}{Zyg02}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3}
+      \field{title}{Trigonometric Series}
+      \field{year}{2002}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

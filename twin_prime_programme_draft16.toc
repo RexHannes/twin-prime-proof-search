@@ -1,0 +1,141 @@
+\contentsline {section}{\numberline {1}Introduction}{5}{section.1}%
+\contentsline {subsection}{\numberline {1.1}External analytic input}{6}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Scope}{6}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Parameters and notation}{6}{section.2}%
+\contentsline {section}{\numberline {3}The canonical physical source}{7}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Rows and affine forms}{7}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Common physical smoothing}{7}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Source provenance and derived row dependence}{8}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Fourier normalization and determinant shell}{8}{section.4}%
+\contentsline {section}{\numberline {5}Source-preserving Poisson--Bruhat transport}{9}{section.5}%
+\contentsline {section}{\numberline {6}Band-limited prime participation}{10}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Projective versus non-projective Gram pairs}{11}{subsection.6.1}%
+\contentsline {section}{\numberline {7}The unique outer square root}{11}{section.7}%
+\contentsline {section}{\numberline {8}Projective reassembly: ratio classes}{12}{section.8}%
+\contentsline {section}{\numberline {9}Recombination error}{12}{section.9}%
+\contentsline {section}{\numberline {10}Conditional main theorem}{12}{section.10}%
+\contentsline {section}{\numberline {11}Scope separation: Gate 1A versus source routing}{13}{section.11}%
+\contentsline {section}{\numberline {12}Formal verification and provenance}{13}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Machine-checked finite/source skeleton}{13}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}What Lean does not prove}{14}{subsection.12.2}%
+\contentsline {subsection}{\numberline {12.3}Research status versus formal status}{14}{subsection.12.3}%
+\contentsline {subsection}{\numberline {12.4}Gate-1B v8.5 H7 short-short bank}{15}{subsection.12.4}%
+\contentsline {subsection}{\numberline {12.5}Gate-1B V10 zero/source/reassembly bank}{15}{subsection.12.5}%
+\contentsline {section}{\numberline {13}Relation to Kloosterman-fraction technology}{15}{section.13}%
+\contentsline {section}{\numberline {14}What remains outside this theorem}{15}{section.14}%
+\contentsline {section}{\numberline {15}Conclusion}{16}{section.15}%
+\contentsline {section}{\numberline {A}Formal theorem map and scope ledger}{18}{appendix.A}%
+\contentsline {section}{\numberline {B}Canonical source versus arbitrary edge dependence}{19}{appendix.B}%
+\contentsline {section}{\numberline {C}Complementary programme boundary: Gate 1B}{19}{appendix.C}%
+\contentsline {subsection}{\numberline {C.1}Low/medium conductor and the high-conductor threshold}{19}{subsection.C.1}%
+\contentsline {subsection}{\numberline {C.2}Exact source split and induced-Gauss cancellation}{19}{subsection.C.2}%
+\contentsline {subsection}{\numberline {C.3}Prime-character collapse}{20}{subsection.C.3}%
+\contentsline {subsection}{\numberline {C.4}Hybrid Poisson formula and primitive projector}{20}{subsection.C.4}%
+\contentsline {subsection}{\numberline {C.5}Dual determinant and the fixed-power repair}{21}{subsection.C.5}%
+\contentsline {subsection}{\numberline {C.6}Historical H7 natural-scale status and the later promotion}{22}{subsection.C.6}%
+\contentsline {subsection}{\numberline {C.7}The full $4/9$ complement and the square-root transition}{22}{subsection.C.7}%
+\contentsline {subsection}{\numberline {C.8}The Full-Nine shifted-quotient parent}{22}{subsection.C.8}%
+\contentsline {subsection}{\numberline {C.9}The QK56 full-covariance parent}{23}{subsection.C.9}%
+\contentsline {subsection}{\numberline {C.10}Pair-modulus capacity and the moving source-multiplier frontier}{23}{subsection.C.10}%
+\contentsline {subsection}{\numberline {C.11}Updated Gate-1B ledger}{23}{subsection.C.11}%
+\contentsline {section}{\numberline {D}Gate 0, Gate 2, and the Ford--Maynard endgame}{24}{appendix.D}%
+\contentsline {subsection}{\numberline {D.1}Gate 0: deterministic Type-I compiler and research status}{24}{subsection.D.1}%
+\contentsline {subsection}{\numberline {D.2}The operating Ford--Maynard parameters}{25}{subsection.D.2}%
+\contentsline {subsection}{\numberline {D.3}A finite roughness consequence}{25}{subsection.D.3}%
+\contentsline {subsection}{\numberline {D.4}The rough-weight input and the $N_2$ cell sum}{26}{subsection.D.4}%
+\contentsline {subsection}{\numberline {D.5}Gate 2 as a conditional endgame: published and proof-specific routes}{26}{subsection.D.5}%
+\contentsline {subsection}{\numberline {D.6}Where Gate 1A and Gate 1B land in the downstream Type-II input}{27}{subsection.D.6}%
+\contentsline {subsection}{\numberline {D.7}Publication-facing Gate-0/2 status}{28}{subsection.D.7}%
+\contentsline {section}{\numberline {E}Late update: refined Gate-1B frontier and Ford--Maynard landing strip}{28}{appendix.E}%
+\contentsline {subsection}{\numberline {E.1}Refined Gate-1B source split}{29}{subsection.E.1}%
+\contentsline {subsection}{\numberline {E.2}Published Ford--Maynard five-collar geometry}{30}{subsection.E.2}%
+\contentsline {subsection}{\numberline {E.3}A source-specific repair of the rough $N_2$ sector}{30}{subsection.E.3}%
+\contentsline {subsection}{\numberline {E.4}The proof-specific Ford--Maynard landing point}{31}{subsection.E.4}%
+\contentsline {subsection}{\numberline {E.5}The remaining Gate-output/Ford-source adapter}{31}{subsection.E.5}%
+\contentsline {subsection}{\numberline {E.6}Revised downstream ledger}{32}{subsection.E.6}%
+\contentsline {section}{\numberline {F}Late update II (historical): QK56 promotion, shifted source-linked child, and source-exact Ford adapter}{33}{appendix.F}%
+\contentsline {subsection}{\numberline {F.1}QK56 full covariance: internal promotion}{33}{subsection.F.1}%
+\contentsline {subsection}{\numberline {F.2}The shifted child: source action before analysis}{33}{subsection.F.2}%
+\contentsline {subsection}{\numberline {F.3}Technology cards for the shifted source-linked child}{34}{subsection.F.3}%
+\contentsline {subsection}{\numberline {F.4}Minimal current Gate-1B ledger}{34}{subsection.F.4}%
+\contentsline {subsection}{\numberline {F.5}Ford-generated one-variable archaeology and the Gate-output source dictionary}{35}{subsection.F.5}%
+\contentsline {subsection}{\numberline {F.6}Ford--Maynard scope}{35}{subsection.F.6}%
+\contentsline {section}{\numberline {G}Late update III (partial child analysis): native first-$TT^\ast $ Gate-1B reduction}{35}{appendix.G}%
+\contentsline {subsection}{\numberline {G.1}Scope and current status}{36}{subsection.G.1}%
+\contentsline {subsection}{\numberline {G.2}Native order-five source and two-slot completion}{36}{subsection.G.2}%
+\contentsline {subsection}{\numberline {G.3}The first $TT^\ast $ sector law}{37}{subsection.G.3}%
+\contentsline {subsubsection}{\numberline {G.3.1}Same modulus}{37}{subsubsection.G.3.1}%
+\contentsline {subsubsection}{\numberline {G.3.2}Coprime cross-modulus}{37}{subsubsection.G.3.2}%
+\contentsline {subsubsection}{\numberline {G.3.3}Shared divisor}{37}{subsubsection.G.3.3}%
+\contentsline {subsection}{\numberline {G.4}Same-$q$ cross-character discrepancy}{38}{subsection.G.4}%
+\contentsline {subsubsection}{\numberline {G.4.1}Prime modulus}{38}{subsubsection.G.4.1}%
+\contentsline {subsubsection}{\numberline {G.4.2}Composite modulus}{38}{subsubsection.G.4.2}%
+\contentsline {subsubsection}{\numberline {G.4.3}Fixed-power margin}{39}{subsubsection.G.4.3}%
+\contentsline {subsection}{\numberline {G.5}Cross-$q$ no-wrap moving-multiplier theorem}{39}{subsection.G.5}%
+\contentsline {subsection}{\numberline {G.6}A route that can be retired}{40}{subsection.G.6}%
+\contentsline {subsection}{\numberline {G.7}The exact remaining closure system}{40}{subsection.G.7}%
+\contentsline {subsubsection}{\numberline {G.7.1}Same-$q$ character diagonal}{40}{subsubsection.G.7.1}%
+\contentsline {subsubsection}{\numberline {G.7.2}Cross-$q$ physical source spread}{41}{subsubsection.G.7.2}%
+\contentsline {subsubsection}{\numberline {G.7.3}Source-exhaustive Full-Nine/Ford reassembly}{41}{subsubsection.G.7.3}%
+\contentsline {subsection}{\numberline {G.8}Minimal honest dependency graph}{41}{subsection.G.8}%
+\contentsline {subsection}{\numberline {G.9}Literature positioning}{41}{subsection.G.9}%
+\contentsline {subsection}{\numberline {G.10}Status before the high-conductor signed-parent correction}{42}{subsection.G.10}%
+\contentsline {section}{\numberline {H}Late update IV: high-conductor complement sign recovery and common-conductor covariance}{42}{appendix.H}%
+\contentsline {subsection}{\numberline {H.1}Banked low/mid-conductor material}{42}{subsection.H.1}%
+\contentsline {subsection}{\numberline {H.2}Primitive conductor complement and exact sign factorisation}{42}{subsection.H.2}%
+\contentsline {subsection}{\numberline {H.3}Induced Gauss square and survival of the complement sign}{43}{subsection.H.3}%
+\contentsline {subsection}{\numberline {H.4}Exact signed parent before the sign-killing Cauchy step}{43}{subsection.H.4}%
+\contentsline {subsection}{\numberline {H.5}Why the old SHORT-RJ pre-Cauchy geometry is false}{44}{subsection.H.5}%
+\contentsline {subsection}{\numberline {H.6}High conductor must recombine same-$q$ and common-conductor cross-$q$}{44}{subsection.H.6}%
+\contentsline {subsection}{\numberline {H.7}Square-complement collision and the no-wrap threshold}{44}{subsection.H.7}%
+\contentsline {subsection}{\numberline {H.8}Source-stage firewall against a direct MAM45/HFMV identification}{45}{subsection.H.8}%
+\contentsline {subsection}{\numberline {H.9}The exact atomic high-conductor covariance}{45}{subsection.H.9}%
+\contentsline {subsection}{\numberline {H.10}Square-complement adapter: candidate only}{46}{subsection.H.10}%
+\contentsline {subsection}{\numberline {H.11}Controlling Gate--1B ledger after the correction}{46}{subsection.H.11}%
+\contentsline {section}{\numberline {I}Late update V: square-complement death certificate and the near-primitive first open}{46}{appendix.I}%
+\contentsline {subsection}{\numberline {I.1}Exact short-complement square norm}{47}{subsection.I.1}%
+\contentsline {subsection}{\numberline {I.2}The genuinely short quantity and the physical aggregate variable}{47}{subsection.I.2}%
+\contentsline {subsection}{\numberline {I.3}Primitive-Kloosterman inversion}{47}{subsection.I.3}%
+\contentsline {subsection}{\numberline {I.4}Why the naive Pascadi-3.8 square-complement dictionary is false}{48}{subsection.I.4}%
+\contentsline {subsection}{\numberline {I.5}The deeper sign loss inside the common-conductor covariance}{49}{subsection.I.5}%
+\contentsline {subsection}{\numberline {I.6}Representation-loop interpretation}{49}{subsection.I.6}%
+\contentsline {subsection}{\numberline {I.7}The unavoidable near-primitive signed child}{49}{subsection.I.7}%
+\contentsline {subsection}{\numberline {I.8}Revised Gate--1B high-conductor DAG}{50}{subsection.I.8}%
+\contentsline {subsection}{\numberline {I.9}Controlling ledger after the square-complement audit}{50}{subsection.I.9}%
+\contentsline {section}{\numberline {J}Late update VI: source-minimal native $4$M$\mid 5$D MAM45 reduction}{50}{appendix.J}%
+\contentsline {subsection}{\numberline {J.1}Literal order-five source and the global sign}{50}{subsection.J.1}%
+\contentsline {subsection}{\numberline {J.2}Exact scalarisation into the native $4$M$\mid 5$D parent}{51}{subsection.J.2}%
+\contentsline {subsection}{\numberline {J.3}Why the full primitive packet is not the native top term}{52}{subsection.J.3}%
+\contentsline {subsection}{\numberline {J.4}Centred-source normalisation remains a finite/source pin}{52}{subsection.J.4}%
+\contentsline {subsection}{\numberline {J.5}HFMV is a deterministic sufficient theorem, not a banked analytic input}{52}{subsection.J.5}%
+\contentsline {subsection}{\numberline {J.6}A direct one-defect Siegel--Walfisz escape is impossible}{53}{subsection.J.6}%
+\contentsline {subsection}{\numberline {J.7}Exact determinant-line spectral reduction}{53}{subsection.J.7}%
+\contentsline {subsection}{\numberline {J.8}Why the presently banked separate uniformities are power-nonclosing}{53}{subsection.J.8}%
+\contentsline {subsection}{\numberline {J.9}Post-Cauchy projector and remaining viable routes}{54}{subsection.J.9}%
+\contentsline {subsection}{\numberline {J.10}Controlling Gate--1B ledger and DAG}{54}{subsection.J.10}%
+\contentsline {section}{\numberline {K}Late update VII: pure-five-defect coherent projector and entropy-gap router}{55}{appendix.K}%
+\contentsline {subsection}{\numberline {K.1}Literal pure-five-defect packet}{55}{subsection.K.1}%
+\contentsline {subsection}{\numberline {K.2}Determinant-line entropy trichotomy}{56}{subsection.K.2}%
+\contentsline {subsection}{\numberline {K.3}Joint line spectrum and inverse certificate}{57}{subsection.K.3}%
+\contentsline {subsection}{\numberline {K.4}The coherent B-projector}{57}{subsection.K.4}%
+\contentsline {subsection}{\numberline {K.5}Equal-factor router and the fully-crossed central band}{58}{subsection.K.5}%
+\contentsline {subsection}{\numberline {K.6}New elementary prime-divisor rigidity}{58}{subsection.K.6}%
+\contentsline {subsection}{\numberline {K.7}Next analytic attack and the two wings}{59}{subsection.K.7}%
+\contentsline {subsection}{\numberline {K.8}Major arcs, Poisson tail, and stopping-rule ledger}{59}{subsection.K.8}%
+\contentsline {section}{\numberline {L}Late update VIII: double-GCD B\'ezout line and rank-one inverse frontier}{60}{appendix.L}%
+\contentsline {subsection}{\numberline {L.1}From fully-crossed incidence to the double-GCD B\'ezout line}{60}{subsection.L.1}%
+\contentsline {subsection}{\numberline {L.2}Source-preserving MRK5--MOYK5 reverse audit}{61}{subsection.L.2}%
+\contentsline {subsection}{\numberline {L.3}The semiprime coefficient is literally M\"obius times a large-prime selector}{62}{subsection.L.3}%
+\contentsline {subsection}{\numberline {L.4}Canonical primitive rank-one form}{62}{subsection.L.4}%
+\contentsline {subsection}{\numberline {L.5}Rank-one shift geometry and the failure of a direct all-shift Chowla splice}{63}{subsection.L.5}%
+\contentsline {subsection}{\numberline {L.6}Fresh fixed-denominator audition and death certificate}{63}{subsection.L.6}%
+\contentsline {subsection}{\numberline {L.7}Low pretentious profiles are eliminated}{64}{subsection.L.7}%
+\contentsline {subsection}{\numberline {L.8}The actual first unproved implication}{64}{subsection.L.8}%
+\contentsline {subsection}{\numberline {L.9}Controlling ledger and updated Gate--1B DAG}{65}{subsection.L.9}%
+\contentsline {section}{\numberline {M}Working missing-literature and source-definition bank}{66}{appendix.M}%
+\contentsline {subsection}{\numberline {M.1}ML/SOURCE-1: Gate-1B physical-source definition gap}{66}{subsection.M.1}%
+\contentsline {paragraph}{Recovered finite/source algebra.}{66}{section*.2}%
+\contentsline {paragraph}{Missing source definition 1: actual switched $R9$ cell.}{67}{section*.3}%
+\contentsline {paragraph}{Missing source definition 2: shifted $TT^*$ physical source.}{67}{section*.4}%
+\contentsline {paragraph}{Why literature search cannot by itself close this item.}{68}{section*.5}%
+\contentsline {paragraph}{Current status and later final-audit checklist.}{68}{section*.6}%
