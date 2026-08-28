@@ -1,3 +1,4 @@
+import RequestProject.TwinPrimeDefinitions
 import RequestProject.LocalDensity
 
 open scoped BigOperators

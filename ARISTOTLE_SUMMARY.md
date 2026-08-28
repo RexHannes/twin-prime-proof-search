@@ -1,3 +1,244 @@
+# Summary of changes for run 73334372-9cb9-4741-99b0-029d68cc6329
+Completed the Gate 1B "centered 2×2 mixed source / Lichtman socket" safe bank as an append-only continuation of the existing repository. No pre-existing file (including `ARISTOTLE_SUMMARY.md`) was modified.
+
+**New modules** (all under `RequestProject/CurrentProgramme/`, namespace `TwinPrimeProject.CurrentProgramme`):
+- `EndpointCentering.lean` — finite centered residue kernel Δ_ell(u1,u2) = 1_{u1≡u2 (ell)} − 1_{(u1u2,ell)=1}/φ(ell), with row/zero-mean identities and the exact "centering is free against a zero-mean discrepancy" lemma, plus a counterguard showing the zero-mean hypothesis is load-bearing.
+- `EndpointTwoByTwoSplit.lean` — exact four-factor convolution split `a4 = α ⋆ γ`, with full multiplicity and no injectivity assumption.
+- `EndpointCenteredRewriting.lean` — exact finite rewriting of the centered form R_cent into the (m,r,m',s) 2|2 shape, for an abstract line coefficient Z(u,ell,k).
+- `EndpointMixedAddMult.lean` — ν := m's − mr; the nonzero-congruence ⟺ unique nonzero j with ν = j·ell equivalence (with explicit ℕ/ℤ subtraction firewall), the mixed coefficient bMix, and the exact regrouping of the nonzero centered congruence contribution.
+- `EndpointCollisionL2.lean` — gcd parametrisation ρ = gcd(r,s) with both directions of the t-shift collision characterisation, an abstract finite L² collision inequality with the actual collision multiplicity (no invented `1+ρ`), a fibre-cardinality bound for the interval model, and `MixedGcdMomentInput` exposed as an uninhabited arithmetic/source interface.
+- `LichtmanT18Socket.lean` — the Lichtman Theorem 1.8 dictionary as a concrete data structure (slot names rL,sL,nL,cL,dL; parameter a, q0, residues, coprimality, smooth g, phase identity, coefficients, support/range), the physical pin, and the b / tilde-b norm obligation record. No `Prop` placeholders; nothing instantiated.
+- `LichtmanT18Capacity.lean` — the rational signal 66/107 − 8/13 = 2/1391 > 0 proved exactly; `LichtmanT18Params`, `JTerm1/JTerm2/JLedger` algebraic metadata; the conditional capacity compiler; and the small-k finite-cost lemma with attainment (so no free Hilbert lift is banked).
+- `EndpointMixedCompiler.lean` — the source-explicit conditional endpoint compiler, with the external analytic theorem as an explicit uninhabited antecedent; a non-vacuity witness (the contribution equals 2 in an explicit finite model), a zero-budget failure guard, and a lemma recording that the comparison pin stays independent.
+- `CurrentStatusMixed.lean` — the updated status graph, machine-checked: no closed rows, `Gate1B: OPEN`, the historical off-diagonal row preserved and marked superseded-not-false, and the current frontier recorded.
+- `AxiomAuditMixed.lean` — 53 `#print axioms` checks over the principal new declarations.
+
+**Frontier reset recorded:** RANKONE-ENDPOINT-U-OFFDIAG45 = superseded as controlling frontier / reduced, not false; ENDPOINT-CENTERED-BETA-RANK2-TWOFREQ45 = reduced, not closed; ENDPOINT-MIXED-2x2-LICHTMAN-T18-DICTIONARY45 = current first analytic/source frontier. Historical endpoint objects retained.
+
+**Source firewall:** the literal physical endpoint source β_{D,P} = μ_D ⋆ Λ_P was searched for again and is still absent from the repository. It was not invented; ENDPOINT-BETA-PHYSICAL-DICTIONARY45 stays SOURCE_BLOCKED / UNINHABITED, and PURE5-COMPARISON-MAINTERM-PIN stays SOURCE_OPEN.
+
+**Build / trust:** baseline `lake build` before edits = 8612 jobs, PASS; final `lake build` = 8622 jobs, 0 errors. Every `#print axioms` result is `[propext]` or `[propext, Classical.choice, Quot.sound]`; no `sorryAx`, no `ofReduceBool`. A token scan of the new modules found no `sorry`, `admit`, `axiom`, `opaque`, `unsafe`, `native_decide` or `@[implemented_by]` (only documentation mentions in the audit module). No source or analytic interface is inhabited.
+
+**Report:** `CURRENT_GATE1B_MIXED_LICHTMAN_SAFE_BANK_REPORT.md` with sections A–R, including first source blocker (physical β dictionary), first analytic blocker (ENDPOINT-MIXED-2x2-LICHTMAN-T18-DICTIONARY45), next unique action, and the final ledger.
+
+**Final status: GATE1B: OPEN.** The deliverable is a machine-visible exact reduction to the Lichtman source/capacity socket; no analytic closure is claimed. All work is committed and pushed.
+
+# Summary of changes for run dbfe64b5-46d1-47c4-969f-b4559a87b38b
+## What was done
+
+Continued the existing repository append-only. All new Lean material lives in `RequestProject/CurrentProgramme/` (namespace `TwinPrimeProject.CurrentProgramme`) — **18 modules, 3171 lines, 209 declarations**. No pre-existing file was deleted, renamed, weakened, or restated.
+
+### Build and trust audit
+- Full `lake build`: **PASSED, 8612 jobs, 0 errors**.
+- No `sorry`, `admit`, user `axiom`, `opaque`, `unsafe`, `native_decide`, or `@[implemented_by]` in any new module (the only textual matches are the two documentation lines describing this scan).
+- **122** `#print axioms` checks; every result is `propext` / `Classical.choice` / `Quot.sound` or fewer. No `sorryAx`, no `Lean.ofReduceBool`.
+- No analytic interface has a `Classical.choice`-based inhabitant: every interface is a bare structure with no constructor application anywhere in the project.
+
+### Priority-order work completed
+1. **Frontier reset.** `SHIFT-SOURCE-LINKED-CHAR45` recorded as `supersededAsControllingFrontier` (not false); `TWO_OUTER_VARIABLE_F3_KERNEL` left as `notCurrentlyRequired`, not reopened.
+2. **Gate1B endpoint exact algebra (kernel-checked over ℤ):** `lineDet2_propagates`, `offdiag_basepoint_shift`, and the load-bearing `offdiag_line_difference` : `z₂ − z₁ = u·Δt + j·v_{t₂}`.
+3. **Endpoint diagonal/off-diagonal finite decomposition:** exact `residueEnergy_split`, `diagEnergy_eq_sum_sq`, the `offdiagEnergy` source object, and the `33/4` / `X^(−1/12)` exponent bank (CAPACITY_ONLY only).
+4. **β source dictionary:** searched first, found absent → reported `SOURCE BLOCKED` and left as an uninhabited interface rather than improvised. What *was* bankable source-neutrally is now proved: exhaustive disjoint stratification of the off-diagonal energy, and the `p₁ = p₂` vs `p₁ ≠ p₂` split for an arbitrary prime label.
+5. **Comparison local-density pin:** absent → `SOURCE_OPEN`; the zero-principal-mode claim was explicitly *not* banked.
+6. **Gate1B conditional compiler** with all five real antecedents exposed, plus proved non-circularity, non-automaticity, and that it does not yield the existing `Gate1BClosed`.
+7. **Ford packet census:** Ford's literal objects are absent, so the census is genuinely empty and `GATE1A_REQUIRED` is a derived (underivable) predicate — Gate1A was not forced.
+8. **R9:** the false death certificate is refuted and the direction corrected (outside `C(R(P))` = leakage); the `ν = 1/6, ε ≤ 1/600, η < 1/90` separations and the `H(n) = 70` cutoff arithmetic are proved, reusing the existing `k0EqualFactorR9Value70` bank. `G(d;n)` absent → source promotion stopped.
+9. **Erdős #287 factorial Euler:** the polarization identity `7⁷[z₁…z₇]F_z(n) = Σ_{p₁…p₇=n} Πωᵢ(pᵢ)` including repeated primes, the refutation of the spurious extra `Π 1/e_p!`, coefficient-extraction linearity (with `M_fac = M_phys` *not* concluded), and the Pascadi parameter no-go. Newly added this session: the local Euler algebra, where `Λ_F(p) = a·log p` / `Λ_F(p^e) = 0 (e ≥ 2)` is **derived** from the logarithmic-derivative recursion plus a uniqueness theorem, not stipulated.
+10. **Master status graph** with the canonical Gate architecture, proved `spine_present`, `providers_are_parallel`, `gate0_is_a_source`, and `no_cross_implication` (no path either way between #287 and twin primes).
+
+Also newly banked this session: the `|J| = 5,4,3,2,1` defect-order census with a `no_blanket_monotonicity` counterguard, and the well-founded proper-divisor recursion measure (a precondition for, not a statement of, recursive closure).
+
+### Deliverables written
+- `CURRENT_PROGRAMME_MASTER_CONTINUATION_REPORT.md` — all 25 sections A–Y, ending with the literal status table over the prescribed label list.
+- `CURRENT_GATE_ARCHITECTURE_AND_STATUS.md` — the drafter-facing architecture file, kept in sync.
+- `RequestProject/CurrentProgramme/CurrentStatus.lean` — the machine-readable ledger, with `no_closed_rows`, `ledger_is_honest`, and `end_of_run_nonclaims` kernel-proved.
+
+### Blockers and non-claims
+- **First formal blocker:** none — the new layer builds clean.
+- **First source blocker:** the physical `β = μ_D * Λ_P` endpoint dictionary.
+- **First analytic blocker:** `RANKONE-ENDPOINT-U-OFFDIAG45`.
+- No row of the ledger is `CLOSED`, and that is proved in Lean rather than merely asserted.
+
+```
+GATE1B:                OPEN
+FULL FM TYPE II:       OPEN
+ERDOS287:              OPEN
+TWIN PRIME CONJECTURE: OPEN
+```
+
+Verdict: **BANKED_LEDGER_CREATED.**
+
+# Summary of changes for run 97a6d1a4-23cf-4a17-970d-1f92dcd610a6
+## GATE 1B v11 — Ford/Perron generated grammar, S2 generated-twist interface, pair-modulus source multiplier, leaf compiler
+
+Completed as an **append-only** safe bank. No pre-existing file was modified (the diff is 2940 insertions, 0 deletions); `ARISTOTLE_SUMMARY.md` and all V8.x/V9.x/V10 modules are untouched.
+
+### What was built
+
+18 new modules under `RequestProject/NANC/Gate1B/`, all in namespace `TwinPrimeProject.Gate1BV11`:
+
+`V11FMPerronGrammar`, `V11GeneratedExpression`, `V11FMSieveGenTypeII`, `V11FMPerronGrammarCompiler`, `V11FMProvenance`, `V11S2GeneratedTwist`, `V11PrimeExtremaTwistFirewall`, `V11PairModSourceMultiplier`, `V11MultiplierCounterguards`, `V11SourceMultiplierStructure`, `V11PairModCapacity`, `V11FMPerronPairModInterface`, `V11PairModParentCompiler`, `V11PairModToV10Leaves`, `V11GeneratedTypeIIReassembly`, `V11V10Compatibility`, `V11Counterguards`, `V11Status`.
+
+Design points worth recording:
+- `P⁻`/`P⁺` are **absent from the repository** (verified by search). Prime-extrema atoms therefore live in a separate abstract type with an **uninhabited** realisation interface; the realisable grammar is environment-free, so no theorem is vacuous.
+- The smooth-weight atom is a finitely parameterised linear ramp, not an arbitrary function — this is exactly what makes counterguard A provable.
+- `ShiftedQuotientParentBound` / `QK56FullCovarianceBound` did not exist; they are new, clearly labelled project-local v11 predicates.
+- Existing bank was reused rather than duplicated: the finite additive-character/Kloosterman module, the D₁₂ residue-factor and product-energy identities, the finite Abel/dual-norm lemma, and V10's `gate1B_closed_of_exact_inputs` (applied, never re-proved).
+- The V10 leaf field types are plain real bounds, so the four-leaf bridge is **type-correct** — no type mismatch.
+
+### Verification
+- Baseline regression build on the untouched checkout: **PASS** (8545 jobs).
+- Full build after all edits: **PASS** (8563 jobs, 0 errors, 0 warnings).
+- `V11Status.lean` runs `#print axioms` on **99** principal declarations: 99× `propext`/`Classical.choice`/`Quot.sound`, **zero** `sorryAx`.
+- Text search confirms no `sorry`, `admit`, `axiom`, `opaque`, `unsafe`, `native_decide`, `@[implemented_by]` in any v11 module (only documentation mentions).
+
+### Deliverables written
+- `UNIVERSAL_V11_GATE1B_FM_PERRON_PAIRMOD_SAFE_BANK_REPORT.md` — sections A–T plus the required classification and verdict blocks.
+- `LEDGER.md` — a new v11 block appended; no prior block altered.
+- Principal v11 declarations registered in the Properties table.
+
+### Required final classification
+
+```
+FM SIEVEGEN PROJECT PREDICATE:      DEFINED
+FM PERRON GENERATED GRAMMAR:        DEFINED + FINITE COST THEOREMS PROVED
+REAL FORD GRAMMAR CERTIFICATE:      UNINHABITED / REPO DATA ABSENT
+FMPERRON GENERATED TYPE-II PRED:    DEFINED
+SIEVEGEN -> GENERATED:              PROVED
+GENERATED -> SIEVEGEN:              NOT CLAIMED
+S2 PURE MELLIN:                     INTERFACE / PROVED FINITE COMPILER
+S2 Pminus/Pplus:                    OPEN ANALYTIC INTERFACE
+PAIRMOD SOURCE VALUE:               DEFINED
+FIXED-vs-MOVING MULTIPLIER FIREWALL: PROVED
+SOURCE MULTIPLIER RANK-ONE ALGEBRA: PROVED (l1 / l2 factorisation)
+SHIFTED CAPACITY:                   1/32 CAPACITY ONLY
+QK CAPACITY:                        1/108 CAPACITY ONLY
+WORST MARGIN:                       1/108
+PAIRMOD ANALYTIC INPUT:             UNINHABITED
+PAIRMOD -> SHIFTED PARENT:          CONDITIONAL COMPILER
+PAIRMOD -> QK56 PARENT:             CONDITIONAL COMPILER
+PAIRMOD -> V10 FOUR LEAVES:         PROVED
+GENERATED TYPE-II REASSEMBLY:       CONDITIONAL COMPILER
+GATE1B:                             OPEN
+```
+
+### Final verdict
+
+```
+V11_FM_PERRON_PAIRMOD_SAFE_BANK_PARTIAL
+
+REGRESSION: PASS
+BUILD: PASS
+SORRY: NONE
+USER AXIOMS: NONE
+V10: PRESERVED
+
+NEW LEAN-PROVED FINITE/ALGEBRA: generated-grammar cost calculus (product /
+  finite-sum / convolution divisor bound / template reassembly), grammar
+  closure lemmas, SieveGen -> Generated, finite defect-transform and
+  summation-by-parts identities, P± firewall, fixed-vs-moving multiplier
+  firewall, rank-one l1/l2 factorisation, 1/32 & 1/108 capacity arithmetic,
+  counterguards A-F.
+
+NEW CONDITIONAL COMPILERS: generated packet-family compiler, pairMod ->
+  shifted-quotient parent, pairMod -> QK5/6 parent, pairMod -> V10 four
+  analytic leaves, generated Type-II reassembly, V10 compatibility bridge.
+
+EXTERNAL ANALYTIC INTERFACES (all uninhabited): PrimeExtremaRealisation,
+  S2PerronGeneratedCancellation (pure-Mellin and prime-extrema subinterfaces
+  kept separate), FMPerronGrammarCertificate for the real Ford data,
+  FMPerronPairModSourceMultiplierInput.
+
+FIRST FORMAL BLOCKER:
+  TwinPrimeProject.Gate1BV11.PrimeExtremaRealisation (no P⁻/P⁺ in repository)
+
+FIRST RESEARCH ANALYTIC BLOCKER:
+  FM-PERRON-PAIRMOD-SOURCE-MULT45
+
+GATE1B: OPEN / UNCHANGED
+```
+
+Nothing in this run proves Siegel–Walfisz, Perron truncation, the Dirichlet mean-value theorem, S2 analytic cancellation, Blomer–Pascadi, Pascadi 7.1, moving-Θ cancellation, pair-modulus analytic closure, Gate 1B closure, Ford–Maynard, or twin primes; every one of those remains an uninhabited interface or is simply not stated.
+
+
+# Summary of changes for run 001ebf12-6be2-45fc-82fe-076152b897fd
+## GATE 1B ZERO / SOURCE / REASSEMBLY COMPILER — done in Lean, append-only
+
+**A. FILES CREATED** (six new modules + one report; all sorry-free)
+```
+RequestProject/NANC/Gate1B/V10CanonicalZeroMode.lean
+RequestProject/NANC/Gate1B/V10HistoricalResidual.lean
+RequestProject/NANC/Gate1B/V10PacketReassembly.lean
+RequestProject/NANC/Gate1B/V10Counterguards.lean
+RequestProject/NANC/Gate1B/V10FullTypeIICompiler.lean
+RequestProject/NANC/Gate1B/V10Status.lean
+UNIVERSAL_V10_GATE1B_ZERO_SOURCE_REASSEMBLY_REPORT.md
+```
+
+**B. OLD FILES MODIFIED — NONE.** The diff against the pre-run commit is 1377 insertions, 0 deletions (`LEDGER.md` received a new appended block only; the summary file was not touched). No `sorry`, `admit`, `axiom`, `opaque`, `unsafe`, `native_decide` or `@[implemented_by]` occurs in any new module.
+
+**C. WHAT WAS PROVED** (namespace `TwinPrimeProject.Gate1BV10`)
+- *Canonical zero mode, reproved not assumed*: `sum_echar` derives additive orthogonality mod q from Mathlib's standard additive character; `stdCharSystem` therefore **inhabits** the project's previously hypothesis-carrying character interface, making `unit_indicator_baseline_std` (the Ramanujan/unit baseline `1_unit/φ(q) = 1/q + (1/(qφ(q)))Σ_{a≠0} c_q(-a)e_q(an)`) unconditional. `fourier_inversion`, `canonical_discrepancy_has_zero_additive_mean` (the a = 0 coefficient vanishes) and `canonical_discrepancy_eq_nonzero_frequencies` (purely nonzero frequencies) follow, with a test theorem showing an arbitrary expected term breaks the conclusion.
+- *Historical/canonical residual*, stated for the project's **own** switched objects: `discr_hist_eq_can_add_gap`, `switchedOperator_hist_eq_can_sub_residual` (`S_hist = S_can − R_E`, existing sign convention). No inference that E = M.
+- *E-indeterminacy counterguards*: `weightedResidual_perturbation` (`R_E(E′) − R_E(E) = T·λ(q₀)`), `switchedOperator_perturbation` (`−T·λ₃(U,V;q₀)`), `historical_residual_not_determined_by_nonzero_packet`, plus an unconditional finite instance.
+- *Packet census*: the census faces actually present in the bank are proved to be literal partitions (higher-prime-power / repeated / generic; zero / nonzero frequency; unit / nonunit) and the Full-Nine expansion is reused; no q-pair face was invented.
+- *Reassembly compiler*: `norm_rawSource_le_of_packet_budget` with arbitrary supplied packet values, budgets and global budget.
+- *Conditional compilers*: `gate1B_closed_of_exact_inputs` (input package with the four open leaves HIGHPRIME/SAMEQ/CROSSMOD/H9 and the canonical/residual fork ⟶ the project's existing `Gate1BClosed`) and `fullTypeIIBound_of_reassemblyCertificate`.
+
+**D. AXIOM AUDIT** — `V10Status.lean` runs `#print axioms` on all **52** new declarations; every one reports exactly `[propext, Classical.choice, Quot.sound]`. No user axiom.
+
+**E. LEFT UNINHABITED** — `Gate1BClosureInputs` (incl. `highPrimeLeaf`, `sameQLeaf`, `crossModLeaf`, `H9Leaf`, `zeroFork`, `S1NormalizationPin`, `S2DeltaScalarPin`), `CanonicalComparisonRealisation`, `FMReassemblyCertificate` for the real programme, and the banked `Gate1BClosed` / `FullTypeIIBound` / `TwinPrimes`.
+
+**F. FIRST FORMAL BLOCKER** — `def FullFMTypeII_OneSixth` is **absent from the whole repository** (as are `FMTypeIIExactAtScale`, `Gate1AOutput`, `Gate1BOutput`, `Gate1ABReassemblyCertificate`). Nothing was invented in its place: the conditional Type-II compiler targets the project's existing `FullTypeIIBound (typeIISum X delta) := |typeIISum| ≤ X^(1−delta)` and is explicitly documented as *not* the Ford–Maynard one-sixth statement. Gate-1A was not forced in as a premise since it is not logically necessary.
+
+**G. BUILD** — baseline `lake build`: **PASS** (8539 jobs, before any edit). Final `lake build`: **PASS** (8545 jobs, 0 errors).
+
+**H. HOSTILE TESTS** — all six requested tests are kernel-checked (E-change moves `R_E`; zero-mode fails for an arbitrary comparison; no target without leaf bounds; no Type II without the certificate; empty packet family certifies nothing; the compiler unfolds to the actual existing predicate). Non-circularity is shown by printing the structure fields (none is the target proposition) and by a finite toy inhabitant of the certificate data type, which demonstrates nothing about the real analytic certificate.
+
+**FINAL VERDICT: `V10_PARTIAL_KERNEL_CHECK_FIRST_INTERFACE_OPEN`** — Gate 1B remains open, Full Type II is not proved, and twin primes are not declared anywhere.
+
+# Summary of changes for run 94eb2346-140f-4caf-bab9-155174981e21
+**ARISTOTLE_V8_5_GATE1B_H7_SHORTSHORT_SAFE_BANK_PARTIAL**
+
+REGRESSION: **PASS** — `lake build` was run on the untouched checkout before any edit (8523 jobs, 0 errors). All v8.5 work is strictly **append-only**: the diff against the pre-run commit is 19 files, **1882 insertions, 0 deletions** (new modules, the new report, and an appended LEDGER block only). No v8.1–v8.4 module, report or prior LEDGER block was modified; `ARISTOTLE_SUMMARY.md` untouched.
+
+BUILD: **PASS** — full repository build, 8539 jobs, 0 errors. **SORRY: NONE. USER AXIOMS: NONE** (`sorry`, `admit`, `axiom`, `opaque`, `native_decide`, `@[implemented_by]` occur in no new module; `Gate1B/SafeExtensions/V85Status.lean` runs `#print axioms` on all 46 principal declarations — every one reports exactly `propext, Classical.choice, Quot.sound`).
+
+### New modules
+`Gate1B/SafeAlgebra/`: `H7ShortShortScope` (scope structure `u<α, u<β, α,β<4/9, 13/18≤ω=α+β<8/9`; `β<4/9 ⟹ P<Y⁴` in exponent form; `β>5/18`; inhabited by `sample`), `H7ScopeFirewall` (`P ≥ Y^(9/2) ⟺ β ≥ 1/2`, disjoint from `β<4/9`, gap 1/18; finite two-node record `H7Region`), `H7JointPrimePacket` (finite data + packet `T(P)=∑_p logW(p)/(p−1)∑_{χ≠χ₀}conj(χ(2))D_p(χ)B_p(χ)`, exact identities, weight bookkeeping `1/(p−1) ≤ 2/p`; **no bound asserted**), `CommonSequenceCompiler` (exact expansion + `‖T‖ ≤ wTotal·nuclearCost + wTotal·errNorm`, pure finite linear algebra), `H7JointPrimeCapacity` (capacity exponent `= 17/2` uniformly, target `9`, margin `−1/2` in Y `= −1/18` in X), `H7ScopeCountermodels` (A–D).
+
+`Gate1B/SafeExtensions/`: `H7ComplementStatus` (comments only), `H7CommonSequenceInterface` (uninhabited source structure + rank-one countermodel showing commonisation is load-bearing), `MultiplicativeLargeSieveInterface` (external, uninhabited, with `largeSieve_not_self_generated`), `H7JointPrimeLargeSieveCompiler` (finite Cauchy–Schwarz: `‖T‖ ≤ (logW/P)·√((P²+Y)E_D)·√((P²+Y⁸)E_B)`), `H7SourceEnergy` (substitution `E_D ≤ Y·L1`, `E_B ≤ Y⁸·L2` ⟹ output `≤ 2·Y⁸·√(Y·L1·L2)`), `H7ShortShortConditionalClosure` (`h7_shortShort_closed_of_inputs`, label `H7_PHARD_SHORTSHORT_CONDITIONAL_COMPILER`, every analytic/source input in the argument list; no `H7_CLOSED` is exported), `H7DeltaScalarPin`, `V85HighOrderStatus`, `H8FromH7Interface` (uninhabited checklist), `V85Status`.
+
+`Universal/SafeAlgebra/PowerBeatsFixedLog` — the log-target comparison `X^(−ε)(log X)^K ≤ (log X)^(−A)` eventually, **proved** from existing asymptotics rather than axiomatised.
+
+### Final classification
+H7 SHORT-SHORT SCOPE: PROVED_ALGEBRAIC / CAPACITY_ONLY · β<4/9: PROVED_ALGEBRAIC · P<Y⁴: CAPACITY_ONLY (proved) · P≥Y^(9/2) DISJOINT: PROVED_ALGEBRAIC · JOINT PRIME PACKET: PROVED_FINITE (definition, no bound) · COMMON-SEQUENCE FINITE COMPILER: PROVED_FINITE · ACTUAL SOURCE COMMON-SEQUENCE: SOURCE INTERFACE OPEN · MULTIPLICATIVE LARGE SIEVE: EXTERNAL / UNINHABITED · SOURCE DEFECT / LONG ENERGY: CONDITIONAL_FINITE · CAPACITY OUTPUT: Y^(17/2) · TARGET SCALE: Y⁹ · MARGIN: Y^(−1/2) = X^(−1/18) · H7 SHORT-SHORT: CONDITIONAL ANALYTIC CLOSURE COMPILER · H7 HIGH-PRIME COMPLEMENT: OPEN / SEPARATE · H8: OPEN ROBUSTNESS TEST · H9, SAME-q, D12 MOVING-D: OPEN · R_E: SOURCE INTERFACE OPEN · **GATE1B: OPEN / UNCHANGED**. Full Gate 1B closure, Full Type II and twin primes are not declared anywhere; the ≥4/9 complement is not treated as closed.
+
+NEW REPORT: `UNIVERSAL_V8_5_GATE1B_H7_SHORTSHORT_SAFE_BANK_REPORT.md` (sections A–S, required classification block, final verdict). LEDGER: APPENDED (new v8.5 block only). All work is committed and pushed.
+
+# Summary of changes for run 789f8d47-3bb9-47ae-981e-a653aeda70e5
+## ARISTOTLE_V8_4_GATE1B_PRIMECONDUCTOR_DUALDET_SAFE_BANK_PARTIAL
+
+**REGRESSION: PASS** — `lake build` was run on the untouched checkout before any edit (8495 jobs, 0 errors). All v8.4 work is **append-only**: new files only; no v8.1 / v8.2 / v8.3 module was edited, no old proof modified, no import repaired.
+
+**BUILD: PASS** — full repository build, 8522 jobs, 0 errors. **SORRY: NONE. USER AXIOMS: NONE** (`sorry`, `admit`, `axiom`, `opaque`, `native_decide`, `@[implemented_by]` occur in no new module; the audit file prints axioms for every principal declaration, all reporting only `propext`, `Classical.choice`, `Quot.sound`).
+
+### New modules (all sorry-free)
+
+`Gate1B/SafeAlgebra/`: `RF1DConductorStateCount` (C·C·(Q/C) = Q·C + exponent form + firewall Q/C ≠ Q·C), `RF1DHighConductorCapacity` (transition C₀ = Q^{1/2}Y², below-transition margin Y^{−2η}; CAPACITY_ONLY), `LaneEEmpty` (V-exponent in Y lies in (2, 5/2] for 0 ≤ η < 1/9; e ≤ Y² < V < p ⟹ p ∤ e), `BetaCEPrimeSplit` (p ∣ c, d = c₀e, μ(d) = μ(c₀)μ(e), β(ce) = μ(e)ρ(c,e) with the physical range explicit), `InducedGaussFactor` (unit-shift lemma + τ_{ce}(ind χ*) = μ(e)χ*(e)τ_c(χ*), Tier 2: CRT split and Ramanujan value as hypotheses, twist derived), `InducedMuCancellation` (β·τ_{ce} = ρ·χ*(e)·τ_c; μ(e) spent), `PrimeConductorCRT` (character CRT via Mathlib's `ZMod.chineseRemainder`; Gauss factorisation with both cross factors derived), `PrimeCharacterCollapse` (Tier 1, concrete: ∑_χ τ_p(χ)χ(A) = (p−1)e_p(A⁻¹), τ_p(χ₀) = −1, nonprincipal = (p−1)e_p(A⁻¹)+1), `PrimeCharacterCollapseNormalized` (1/√p correction kept as an exact separate term), `HybridHPoissonResidue` (finite residue transform; residue factor p·1_{m ≡ a c₀ (p)} × c₀ Gauss factor), `DualResidueUniqueness` (**repair**: only the truncated-window uniqueness is proved, not single-frequency infinite duality), `H7DualCongruence`, `H7DualDeterminant` (pd ∣ nN−2; shell nN − pdℓ' = 2), `H7SelfDuality` (d = c₀ reconstructs the H7 determinant shape — anti-loop certificate), `PrimitiveCharacterProjector` (Möbius inversion proved; primitive decomposition an explicit hypothesis), `PrimitiveProjectorMu` (μ(c₀)μ(c₀/d) = μ(d)), `MuSpentByProjector` (generic sector = 1/c₀), `H7DualDetCapacity` (deficit Q/Y⁴ = X^{ω−4/9}, 5/18 at ω = 13/18, → 4/9 at ω → 8/9; natural scale 1+8 = 9 ⟹ exponent 0), `CountermodelsV84` (A–D).
+
+`Gate1B/SafeExtensions/`: `HybridHPoisson` (CONDITIONAL_FINITE compiler — the Poisson identity is a hypothesis, never an axiom), `H7LogClosureFirewall` (a natural-scale bound never implies a strictly smaller target), `H7DualDetInterface` (comments only, zero declarations, label H7-DUALDET-ONEDEFECT45), `V84ResourceLedger` (comments only), `V84PrimeConductorInterfaces` (comments only), `V84Status` (imports all v8.4 modules, `#print axioms` on all principal declarations).
+
+`Universal/SafeAlgebra/`: `LargePrimeDivisorCount`, `DyadicHarmonic`.
+
+### Final classification
+
+RF1D STATE COUNT: PROVED_ALGEBRAIC · RF1D THRESHOLD: CAPACITY_ONLY · LANE E: PROVED · LANE C: PROVED_ALGEBRAIC · INDUCED GAUSS: PROVED_ALGEBRAIC (Tier 2) · MU(e) CANCELLATION: PROVED (spent) · PRIME CRT CHARACTERS: PROVED_ALGEBRAIC · PRIME CHARACTER COLLAPSE: PROVED (Tier 1) · PRIME CORRECTION: exact separate term, no estimate · HYBRID h-POISSON: residue PROVED / compiler CONDITIONAL_FINITE · DUAL WINDOW UNIQUENESS: PROVED_FINITE (truncated window only; tail ANALYTIC_INTERFACE_ONLY) · PRIMITIVE c₀ PROJECTOR: CONDITIONAL_FINITE · MU(c₀) PROJECTOR: PROVED_ALGEBRAIC · DUAL DETERMINANT: PROVED_FINITE · H7 SELF-DUALITY: PROVED_FINITE · LARGE PRIME DIVISOR CAPACITY: PROVED_FINITE + CAPACITY_ONLY · POWER RECOVERY: CAPACITY_ONLY (exponent 0) · ARBITRARY LOG H7: OPEN / UNINHABITED · H8, H9, SAME-q, D12: OPEN · R_E: SOURCE INTERFACE OPEN · **GATE1B: OPEN / UNCHANGED**.
+
+POWER DEFICIT: recovered to natural scale (exponent 0) — explicitly **not** a log saving; ARBITRARY LOG SAVING: not formalised; ANALYTIC INTERFACES: uninhabited; V8.1 / V8.2 / V8.3: PRESERVED.
+
+New report `UNIVERSAL_V8_4_GATE1B_PRIMECONDUCTOR_DUALDET_SAFE_BANK_REPORT.md` (sections A–S, final classification, verdict); `LEDGER.md` appended with a new v8.4 block only (prior blocks untouched); `ARISTOTLE_SUMMARY.md` not edited. All work is committed and pushed.
+
 # Summary of changes for run ac4d01d2-b319-4ae6-bef6-d93240f179ed
 **ARISTOTLE_V8_3_GATE1B_HIGHORDER_CHARACTER_SAFE_BANK_PARTIAL**
 

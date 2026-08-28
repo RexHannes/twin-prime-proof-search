@@ -1951,3 +1951,288 @@ VERDICT: ARISTOTLE_V8_3_GATE1B_HIGHORDER_CHARACTER_SAFE_BANK_PARTIAL
 ```
 
 Full report: `UNIVERSAL_V8_3_GATE1B_HIGHORDER_CHARACTER_SAFE_BANK_REPORT.md`.
+
+---
+
+## UNIVERSAL / GATE 1B v8.4 — PRIME-CONDUCTOR CHARACTER COLLAPSE / HYBRID h-POISSON / PRIMITIVE PROJECTOR / DUAL DETERMINANT / H7 SELF-DUALITY FIREWALL
+
+Append-only bank. No v8.1 / v8.2 / v8.3 module edited; new files only.
+
+```
+ITEM                              STATUS                MODULE (Gate1B/… or Universal/…)
+RF1D STATE COUNT REPAIR           PROVED_ALGEBRAIC      SafeAlgebra/RF1DConductorStateCount
+  C·C·(Q/C) = Q·C, exponent form γ+γ+(ω−γ)=ω+γ, firewall Q/C ≠ Q·C
+RF1D THRESHOLD CAPACITY           CAPACITY_ONLY         SafeAlgebra/RF1DHighConductorCapacity
+  C₀ = Q^{1/2}Y², transition exponent 0, below-transition margin Y^{−2η}
+LANE E EMPTY                      PROVED_ALGEBRAIC +    SafeAlgebra/LaneEEmpty
+                                  PROVED_FINITE
+  V-exponent in Y ∈ (2, 5/2] for 0 ≤ η < 1/9; e ≤ Y² < V < p ⟹ p ∤ e
+LANE C β FACTORISATION            PROVED_ALGEBRAIC      SafeAlgebra/BetaCEPrimeSplit
+  p ∣ c, d = c₀e, μ(d) = μ(c₀)μ(e), β(ce) = μ(e)·ρ(c,e) (physical range explicit)
+INDUCED GAUSS FACTOR              PROVED_ALGEBRAIC (T2) SafeAlgebra/InducedGaussFactor
+  τ_{ce}(ind χ*) = μ(e) χ*(e) τ_c(χ*); twist derived from gaussShift_unit
+MU(e) CANCELLATION                PROVED_ALGEBRAIC      SafeAlgebra/InducedMuCancellation
+  β(ce)·τ_{ce} = ρ(c,e)·χ*(e)·τ_c — μ(e) SPENT
+PRIME CRT CHARACTERS              PROVED_ALGEBRAIC      SafeAlgebra/PrimeConductorCRT
+  τ_c = χ_p(c₀) χ_{c₀}(p) τ_p τ_{c₀}, cross factors derived
+PRIME CHARACTER COLLAPSE          PROVED_ALGEBRAIC (T1) SafeAlgebra/PrimeCharacterCollapse
+  ∑_χ τ_p(χ)χ(A) = (p−1)e_p(A⁻¹); τ_p(χ₀) = −1; nonprincipal = (p−1)e_p(A⁻¹)+1
+NORMALISED COLLAPSE               PROVED_ALGEBRAIC      SafeAlgebra/PrimeCharacterCollapseNormalized
+  correction 1/√p kept as an exact separate term
+HYBRID h-POISSON RESIDUE          PROVED_ALGEBRAIC      SafeAlgebra/HybridHPoissonResidue
+  residue factor p·1_{m ≡ a c₀ (p)} × c₀-Gauss factor
+HYBRID h-POISSON COMPILER         CONDITIONAL_FINITE    SafeExtensions/HybridHPoisson
+  Poisson identity carried as an explicit hypothesis; never axiomatised
+DUAL WINDOW UNIQUENESS            PROVED_FINITE         SafeAlgebra/DualResidueUniqueness
+  diameter < p ⟹ ≤ 1 point per class; |m| ≤ M, 2M < p ⟹ unique
+  (infinite-tail truncation: ANALYTIC_INTERFACE_ONLY)
+H7 DUAL CONGRUENCE                PROVED_FINITE         SafeAlgebra/H7DualCongruence
+  m ≡ a c₀ (p) and a c₀ e N ≡ 2 (p) ⟹ m e N ≡ 2 (p)
+DUAL DETERMINANT SHELL            PROVED_FINITE         SafeAlgebra/H7DualDeterminant
+  coprime p, d ⟹ pd ∣ nN − 2; ∃ ℓ', nN − pdℓ' = 2
+H7 SELF-DUALITY                   PROVED_FINITE         SafeAlgebra/H7SelfDuality
+  d = c₀ ⟹ nN − cℓ' = 2; N = C₇x ⟹ C₇xn − cℓ' = 2 (anti-loop certificate)
+PRIMITIVE c₀ PROJECTOR            CONDITIONAL_FINITE    SafeAlgebra/PrimitiveCharacterProjector
+  Möbius inversion proved; primitive decomposition is an explicit hypothesis
+MU(c₀) PROJECTOR                  PROVED_ALGEBRAIC      SafeAlgebra/PrimitiveProjectorMu
+  μ(c₀)μ(c₀/d) = μ(d); weighted projector = (1/c₀)∑_{d|c₀,d|A−1} μ(d)φ(d)
+GENERIC SECTOR MU SPENDING        PROVED_ALGEBRAIC      SafeAlgebra/MuSpentByProjector
+  gcd(c₀,A−1)=1 ⟹ (μ(c₀)/c₀)∑_{χ prim} χ(A) = 1/c₀ — μ(c₀) SPENT
+LARGE PRIME DIVISOR CAPACITY      PROVED_FINITE +       Universal/SafeAlgebra/LargePrimeDivisorCount
+                                  CAPACITY_ONLY
+DYADIC HARMONIC FIBRE             PROVED_FINITE         Universal/SafeAlgebra/DyadicHarmonic
+POWER RECOVERY                    CAPACITY_ONLY         SafeAlgebra/H7DualDetCapacity
+  deficit Q/Y⁴ = X^{ω−4/9} (5/18 at ω = 13/18, → 4/9 at ω → 8/9);
+  natural scale 1 + 8 = 9 ⟹ exponent 0.  NOT a log saving.
+NO-LOG PROMOTION FIREWALL         PROVED_FINITE         SafeExtensions/H7LogClosureFirewall
+H7 DUALDET INTERFACE              ANALYTIC_INTERFACE_ONLY SafeExtensions/H7DualDetInterface
+  (comments only, zero declarations; label H7-DUALDET-ONEDEFECT45)
+RESOURCE LEDGER                   BOOKKEEPING           SafeExtensions/V84ResourceLedger
+V8.4 INTERFACE STATUS             OPEN / UNINHABITED    SafeExtensions/V84PrimeConductorInterfaces
+COUNTERMODELS A–D (v8.4)          PROVED_FINITE         SafeAlgebra/CountermodelsV84
+AXIOM AUDIT                       propext/Choice/Quot   SafeExtensions/V84Status
+
+RF1D LOW/MEDIUM ANALYTIC:         OPEN
+ARBITRARY LOG H7:                 OPEN / UNINHABITED
+H8:                               OPEN
+H9:                               OPEN
+SAME-q:                           OPEN
+D12:                              OPEN
+R_E:                              OPEN / SOURCE INTERFACE
+GATE1B:                           OPEN / UNCHANGED
+FULL TYPE II:                     NOT DECLARED
+TWIN PRIMES:                      NOT DECLARED
+```
+
+BUILD: PASS (8522 jobs, 0 errors) · SORRY: NONE · USER AXIOMS: NONE
+V8.1 / V8.2 / V8.3 BANKS: PRESERVED (append-only; no existing proof modified)
+
+VERDICT: ARISTOTLE_V8_4_GATE1B_PRIMECONDUCTOR_DUALDET_SAFE_BANK_PARTIAL
+
+Full report: `UNIVERSAL_V8_4_GATE1B_PRIMECONDUCTOR_DUALDET_SAFE_BANK_REPORT.md`.
+
+---
+
+## v8.5 — GATE 1B H7 SHORT-SHORT SCOPE LOCK / JOINT PRIME LARGE-SIEVE COMPILER
+
+```
+DECLARATION / NODE                STATUS                MODULE
+H7 SHORT-SHORT SCOPE              PROVED_ALGEBRAIC /    SafeAlgebra/H7ShortShortScope
+                                  CAPACITY_ONLY
+  u < alpha, u < beta, alpha,beta < 4/9, 13/18 ≤ omega = alpha+beta < 8/9
+  beta < 4/9 ⟹ P < Y⁴ (exponent form); beta > 5/18; inhabited by `sample`
+HIGH-PRIME SCOPE FIREWALL         PROVED_ALGEBRAIC      SafeAlgebra/H7ScopeFirewall
+  P ≥ Y^(9/2) ⟺ beta ≥ 1/2; disjoint from beta < 4/9; gap 1/18
+  finite record H7Region: H7ShortShort vs HighPrimeComplement (separate nodes)
+JOINT PRIME PACKET                PROVED_FINITE         SafeAlgebra/H7JointPrimePacket
+  T(P) = ∑_p logW(p)/(p−1) ∑_{χ≠χ0} conj(χ(2)) D_p(χ) B_p(χ) — NO BOUND ASSERTED
+  weight bookkeeping 1/(p−1) ≤ 2/p
+COMMON-SEQUENCE COMPILER          PROVED_FINITE         SafeAlgebra/CommonSequenceCompiler
+  exact expansion + ‖T‖ ≤ wTotal·nuclearCost + wTotal·errNorm (no Mellin)
+SOURCE COMMON-SEQUENCE INPUT      SOURCE_INTERFACE      SafeExtensions/H7CommonSequenceInterface
+  structure NOT inhabited; rank-one countermodel proves commonisation load-bearing
+MULTIPLICATIVE LARGE SIEVE        EXTERNAL_ANALYTIC_    SafeExtensions/MultiplicativeLargeSieveInterface
+                                  INTERFACE (uninhabited)
+  no axiom, no instance; largeSieve_not_self_generated
+JOINT LARGE-SIEVE COMPILER        PROVED_FINITE         SafeExtensions/H7JointPrimeLargeSieveCompiler
+  ‖T‖ ≤ (logW/P)·sqrt((P²+Y)E_D)·sqrt((P²+Y⁸)E_B) by finite Cauchy–Schwarz
+SOURCE ENERGY SUBSTITUTION        CONDITIONAL_FINITE    SafeExtensions/H7SourceEnergy
+  E_D ≤ Y·L1, E_B ≤ Y⁸·L2 ⟹ output ≤ 2·Y⁸·sqrt(Y L1 L2)
+H7 CAPACITY                       CAPACITY_ONLY         SafeAlgebra/H7JointPrimeCapacity
+  capacity exponent = 17/2 (uniform); target 9; margin −1/2 in Y = X^(−1/18)
+H7 CONDITIONAL CLOSURE            CONDITIONAL_FINITE    SafeExtensions/H7ShortShortConditionalClosure
+  label H7_PHARD_SHORTSHORT_CONDITIONAL_COMPILER; all inputs explicit
+LOG-TARGET COMPILER               PROVED                Universal/SafeAlgebra/PowerBeatsFixedLog
+  X^(−eps)(log X)^K ≤ (log X)^(−A) eventually (from mathlib; not axiomatised)
+DELTA SCALAR PIN                  SOURCE_INTERFACE +    SafeExtensions/H7DeltaScalarPin
+                                  PROVED_FINITE guard
+COUNTERMODELS A–D (v8.5)          PROVED_FINITE         SafeAlgebra/H7ScopeCountermodels
+ROUTING STATUS v8.5               PROVED_FINITE         SafeExtensions/V85HighOrderStatus
+H8 FROM H7 CHECKLIST              OPEN / UNINHABITED    SafeExtensions/H8FromH7Interface
+H7 COMPLEMENT STATUS              OPEN SOURCE/ROUTING   SafeExtensions/H7ComplementStatus
+                                  (comments only)
+AXIOM AUDIT                       propext/Choice/Quot   SafeExtensions/V85Status
+
+H7 SHORT-SHORT:                   CONDITIONAL ANALYTIC CLOSURE COMPILER
+H7 HIGH-PRIME COMPLEMENT:         OPEN / SEPARATE
+H8:                               OPEN ROBUSTNESS TEST
+H9:                               OPEN
+SAME-q:                           OPEN
+D12 MOVING-D:                     OPEN
+R_E:                              OPEN / SOURCE INTERFACE
+GATE1B:                           OPEN / UNCHANGED
+FULL TYPE II:                     NOT DECLARED
+TWIN PRIMES:                      NOT DECLARED
+```
+
+REGRESSION: PASS (8523 jobs before edits) · BUILD: PASS (8539 jobs, 0 errors)
+SORRY: NONE · USER AXIOMS: NONE
+V8.1 / V8.2 / V8.3 / V8.4 BANKS: PRESERVED (append-only; no existing file modified)
+
+VERDICT: ARISTOTLE_V8_5_GATE1B_H7_SHORTSHORT_SAFE_BANK_PARTIAL
+
+Full report: `UNIVERSAL_V8_5_GATE1B_H7_SHORTSHORT_SAFE_BANK_REPORT.md`.
+
+---
+
+## V10 — GATE 1B ZERO / SOURCE / REASSEMBLY COMPILER (append-only)
+
+```
+CANONICAL ZERO MODE:              LEAN_PROVED_FINITE_ALGEBRA (orthogonality derived from Mathlib)
+UNIT / RAMANUJAN BASELINE:        LEAN_PROVED_FINITE_ALGEBRA (now unconditional)
+HISTORICAL = CANONICAL − R_E:     LEAN_PROVED_FINITE_ALGEBRA (project switched operator, λ₃)
+E-PERTURBATION COUNTERGUARD:      LEAN_PROVED_FINITE_ALGEBRA (R_E(E')−R_E(E) = T·λ(q₀))
+PACKET CENSUS PARTITIONS:         LEAN_PROVED_FINITE_ALGEBRA (HPP/REP/GEN, zero/nonzero, unit/nonunit, Full-Nine)
+PACKET NORM REASSEMBLY:           LEAN_PROVED_FINITE_ALGEBRA
+GATE-1B CLOSURE COMPILER:         LEAN_PROVED_CONDITIONAL_COMPILER (inputs uninhabited)
+TYPE-II REASSEMBLY COMPILER:      LEAN_PROVED_CONDITIONAL_COMPILER (against existing FullTypeIIBound)
+CANONICAL COMPARISON REALISATION: OPEN_SOURCE_INTERFACE / UNINHABITED
+HIGHPRIME · SAMEQ · CROSSMOD · H9: OPEN_SOURCE_INTERFACE / UNINHABITED
+FullFMTypeII_OneSixth:            ABSENT FROM PROJECT — FIRST FORMAL BLOCKER
+GATE1B:                           OPEN / UNCHANGED
+FULL TYPE II:                     NOT PROVED
+TWIN PRIMES:                      NOT DECLARED
+```
+
+REGRESSION: PASS (8539 jobs before edits) · BUILD: PASS (8545 jobs, 0 errors)
+SORRY: NONE · USER AXIOMS: NONE (52 `#print axioms` checks, all standard)
+V8.x / V9.x BANKS: PRESERVED (append-only; no existing file modified)
+
+VERDICT: V10_PARTIAL_KERNEL_CHECK_FIRST_INTERFACE_OPEN
+
+Full report: `UNIVERSAL_V10_GATE1B_ZERO_SOURCE_REASSEMBLY_REPORT.md`.
+
+---
+
+## V11 — GATE 1B FORD/PERRON GENERATED GRAMMAR / PAIR-MODULUS SOURCE MULTIPLIER (append-only)
+
+```
+FM SIEVEGEN PROJECT PREDICATE:    DEFINED (project-local v11)
+FM PERRON GENERATED GRAMMAR:      DEFINED + LEAN_PROVED_FINITE_COST_THEOREMS
+REAL FORD GRAMMAR CERTIFICATE:    UNINHABITED / REPO DATA ABSENT
+FMPERRON GENERATED TYPE-II PRED:  DEFINED (project-local v11)
+SIEVEGEN -> GENERATED:            PROVED
+GENERATED -> SIEVEGEN:            NOT CLAIMED
+S2 PURE MELLIN:                   INTERFACE + PROVED FINITE COMPILER
+S2 Pminus/Pplus:                  OPEN ANALYTIC INTERFACE
+PAIRMOD SOURCE VALUE:             DEFINED
+FIXED-vs-MOVING MULT FIREWALL:    PROVED
+SOURCE MULTIPLIER RANK-ONE ALG:   LEAN_PROVED_FINITE_ALGEBRA (l1/l2 factorisation)
+SHIFTED CAPACITY:                 1/32 CAPACITY ONLY
+QK CAPACITY:                      1/108 CAPACITY ONLY
+WORST MARGIN:                     1/108
+PAIRMOD ANALYTIC INPUT:           UNINHABITED
+PAIRMOD -> SHIFTED PARENT:        CONDITIONAL COMPILER
+PAIRMOD -> QK56 PARENT:           CONDITIONAL COMPILER
+PAIRMOD -> V10 FOUR LEAVES:       PROVED (type-correct, no mismatch)
+GENERATED TYPE-II REASSEMBLY:     CONDITIONAL COMPILER
+GATE1B:                           OPEN / UNCHANGED
+FULL TYPE II:                     NOT PROVED
+TWIN PRIMES:                      NOT DECLARED
+```
+
+REGRESSION: PASS (8545 jobs before edits) · BUILD: PASS (8563 jobs, 0 errors)
+SORRY: NONE · USER AXIOMS: NONE (99 `#print axioms` checks, all standard)
+V8.x / V9.x / V10 BANKS: PRESERVED (append-only; no existing file modified)
+
+FIRST FORMAL BLOCKER: `TwinPrimeProject.Gate1BV11.PrimeExtremaRealisation` (no P⁻/P⁺ in repository)
+FIRST RESEARCH ANALYTIC BLOCKER: FM-PERRON-PAIRMOD-SOURCE-MULT45
+
+VERDICT: V11_FM_PERRON_PAIRMOD_SAFE_BANK_PARTIAL
+
+Full report: `UNIVERSAL_V11_GATE1B_FM_PERRON_PAIRMOD_SAFE_BANK_REPORT.md`.
+
+---
+
+## V12 — GATE 1B MOVING-MULTIPLIER EXACT ALGEBRA / FAMILY-LIFT COUNTERGUARD / FOUR-CYCLE DISCRIMINANT (append-only)
+
+```
+PRIME CHARACTER EXPANSION:        PROVED (exact, repository convention)
+MOVING-a SECOND MOMENT (all a):   PROVED  p²E − p|∑α|²|∑β|²
+MOVING-a SECOND MOMENT (units):   PROVED  p²E − (p+1)|∑α|²|∑β|²
+NO-WRAP PRODUCT ENERGY:           PROVED FINITE FIBRE BOUND
+L2 FAMILY-LIFT COUNTERGUARD:      PROVED (IsGreatest, saturation attained)
+THETA ADDITIVE FOURIER:           PROVED EXACT — COORDINATE TRANSFORM ONLY
+THETA PLANCHEREL:                 PROVED
+CRT SOURCE FOURIER FACTOR:        PROVED CONDITIONAL (exact CRT hypotheses)
+MUL SOURCE-CHARACTER FACTOR:      PROVED CONDITIONAL + PARSEVAL (φ(q))
+FOUR-CYCLE TRACE:                 PROVED
+FOUR-CYCLE DETERMINANT:           PROVED
+FOUR-CYCLE DISCRIMINANT:          PROVED (+ fixed-point quadratic identity)
+FIXED-a SPECIALISATION:           PROVED (regression PASS)
+FOUR-MULTIPLIER FIREWALL:         PROVED (8/16 vs 2/2)
+CHARACTER-ALIGNMENT COUNTERGUARD: PROVED (generic countermodel only)
+WEIGHTED MULTIPLICATIVE ENERGY:   UNINHABITED
+QK ANALYTIC COVARIANCE:           UNINHABITED
+SHIFT MULT4 ANALYTIC MOMENT:      UNINHABITED
+PRIOR-LEDGER RECONCILIATION:      DATA-ONLY RECORD (all fields false)
+V10 ANALYTIC LEAF BRIDGE:         PROVED (type-correct, no mismatch)
+GATE1B:                           OPEN / UNCHANGED
+TWIN PRIMES:                      NOT DECLARED
+```
+
+REGRESSION: PASS · BUILD: PASS · SORRY: NONE · USER AXIOMS: NONE (44 `#print axioms` checks, all standard)
+V8.x / V9.x / V10 / V11 BANKS: PRESERVED (append-only; no existing file modified)
+
+FIRST FORMAL BLOCKER: `Gate1B.SafeExtensions.QKSourceCharacterCovarianceBound` (uninhabited)
+FIRST RESEARCH ANALYTIC BLOCKER: any proved bound on `ProductResidueEnergy` (weighted multiplicative energy)
+
+VERDICT: ARISTOTLE_VNEXT_GATE1B_MOVING_MULTIPLIER_EXACT_BANK_PARTIAL
+
+Full report: `UNIVERSAL_VNEXT_GATE1B_MOVING_MULTIPLIER_EXACT_BANK_REPORT.md`.
+
+---
+
+## V13 — GATE 1B QK5/6 CHARACTER-GRAM REPAIR / SHIFTED TT* SOURCE INTERFACE / SOURCE-EXACT HIGH-P3 PACKET DICTIONARY / FM→GATE FINITE COMPILER (append-only)
+
+```
+SAME-q GRAM SPLIT / DIAGONAL:      PROVED (exact identities)
+PRODUCT-RESIDUE KERNEL SPECTRUM:   PROVED (centred Fourier eigenvalues)
+SAME-q DIAGONAL ROUTER:            UNINHABITED INPUT + PROVED IMPLICATION
+MODULAR-HYPERBOLA DISCREPANCY:     UNINHABITED (no numerical value inserted)
+SAME-q CAPACITY MARGIN:            PROVED ARITHMETIC (X^(-5/36)), CAPACITY ONLY
+CROSS-q THETA FIBRE:               PROVED FINITE (L/q + 1)
+CROSS-q SPREAD CRITERION:          PROVED; SOURCE CERTIFICATE UNINHABITED
+QK56 PARENT:                       PROVED CONDITIONAL COMPILER
+V10 ANALYTIC LEAF BRIDGE:          PROVED (no type mismatch)
+SHIFT TT* LITERAL SOURCE CERT:     UNINHABITED (non-circular)
+SHIFT-SOURCE-LINKED MOMENT:        EXACT IDENTITY PROVED; BOUND UNINHABITED
+SHAPE METADATA:                    PROVED + NON-TRANSPORT COUNTERGUARD
+HIGH-P3 PACKET DICTIONARY:         TYPE ONLY, NO REAL INHABITANT
+WEIGHT DEPENDENCE COMPILER:        PROVED (3 cases + counterguard)
+FM→GATE COORDINATE CENSUS:         SOURCE-BLOCKED
+COUNTERGUARDS A–H:                 ALL KERNEL-CHECKED
+GATE1B:                            OPEN / UNCHANGED
+TWIN PRIMES:                       NOT DECLARED
+```
+
+REGRESSION: PASS · BUILD: PASS · SORRY: NONE · USER AXIOMS: NONE (52 `#print axioms` checks, all standard)
+V8.x / V9.x / V10 / V11 / V12 BANKS: PRESERVED (append-only; no existing file modified)
+
+FIRST FORMAL BLOCKER: `Gate1B.SafeExtensions.ModularHyperbolaDiscrepancyInput` (uninhabited)
+FIRST GATE1B ANALYTIC OPEN: SHIFT-SOURCE-LINKED-CHAR45
+FIRST DOWNSTREAM SOURCE OPEN: SOURCE-EXACT-WEIGHTED-HIGHP3-PACKET-DICTIONARY45
+
+VERDICT: ARISTOTLE_VNEXT_QK56_SHIFT_SOURCE_SAFE_BANK_PARTIAL
+
+Full report: `UNIVERSAL_VNEXT_GATE1B_QK56_SHIFT_SOURCE_DICTIONARY_SAFE_BANK_REPORT.md`.

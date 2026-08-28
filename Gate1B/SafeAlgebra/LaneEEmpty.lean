@@ -30,10 +30,14 @@ theorem laneEVExponent_consistent (eta : ℚ) :
     9 * (5 / 18 - eta / 2) = laneEVExponentY eta := by
   unfold laneEVExponentY; ring
 
+/-- **Exponent of `V` lies in `(2, 5/2]`** for `0 ≤ η < 1/9`. -/
+theorem VExponent_mem_Ioc {eta : ℚ} (h0 : 0 ≤ eta) (h1 : eta < 1 / 9) :
+    2 < laneEVExponentY eta ∧ laneEVExponentY eta ≤ 5 / 2 := by
+  unfold laneEVExponentY; constructor <;> linarith
+
 /-- **Exponent of `V` exceeds `2`** for `0 ≤ η < 1/9`. -/
 theorem VExponent_gt_two {eta : ℚ} (h0 : 0 ≤ eta) (h1 : eta < 1 / 9) :
-    2 < laneEVExponentY eta := by
-  unfold laneEVExponentY; linarith
+    2 < laneEVExponentY eta := (VExponent_mem_Ioc h0 h1).1
 
 /-- Consequently `V > Y ^ 2` in the asymptotic regime: for `Y > 1`, a quantity
 of size `Y ^ (laneEVExponentY η)` strictly exceeds `Y ^ 2`. -/

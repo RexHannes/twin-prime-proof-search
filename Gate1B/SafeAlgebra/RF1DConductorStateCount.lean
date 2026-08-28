@@ -30,7 +30,7 @@ namespace Gate1B.SafeAlgebra
 /-- **Repaired RF1D state count.**  With `C` conductor moduli, `C` primitive
 characters per modulus and `Q / C` inducing cofactors, the total number of
 `(c, χ, e)` states is `Q * C`. -/
-theorem conductorStateCount_capacity {C Q : ℕ} (hC : 0 < C) (hdvd : C ∣ Q) :
+theorem conductorStateCount_capacity {C Q : ℕ} (hdvd : C ∣ Q) :
     C * C * (Q / C) = Q * C := by
   have h : C * (Q / C) = Q := Nat.mul_div_cancel' hdvd
   calc C * C * (Q / C) = C * (C * (Q / C)) := by ring
@@ -40,9 +40,9 @@ theorem conductorStateCount_capacity {C Q : ℕ} (hC : 0 < C) (hdvd : C ∣ Q) :
 /-- The same count with the three factors named. -/
 theorem conductorStateCount_factors {C Q modCount charCount cofCount : ℕ}
     (hmod : modCount = C) (hchar : charCount = C) (hcof : cofCount = Q / C)
-    (hC : 0 < C) (hdvd : C ∣ Q) :
+    (hdvd : C ∣ Q) :
     modCount * charCount * cofCount = Q * C := by
-  subst hmod; subst hchar; subst hcof; exact conductorStateCount_capacity hC hdvd
+  subst hmod; subst hchar; subst hcof; exact conductorStateCount_capacity hdvd
 
 /-! ## Exponent form
 
