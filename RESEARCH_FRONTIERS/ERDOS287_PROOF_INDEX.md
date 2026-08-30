@@ -305,3 +305,190 @@ For every new node append:
 - `NEXT ATTACK:`
 
 Never erase retractions, nonclosing routes, or superseded frontiers.
+
+---
+
+# APPEND 2026-08-30 — SHORT-LIFT RETRACTION AFTER LATER HOSTILE AUDIT
+
+### `DET1-SHORTLIFT-EULER-COLLAPSE45` — RETRACTION UPDATE
+
+**STATUS:** previous analytic `NANC-verified research PASS` entry above is **SUPERSEDED / RETRACTED as an analytic closure claim**.
+
+**Reason:** the later hostile audit found that the uniform shifted-contour control used in the promoted statement was not valid on the full polynomial physical range. The repaired contour estimate is too weak to produce arbitrary fixed logarithmic saving on physical `D <= X^(1/6+eta0)` cells.
+
+**What survives:** exact `d`-summation/profile compression, exact Euler-product algebra, primitive-`t` Ramanujan algebra, representation-loop diagnosis, fixed-`D` multiplicity, and Farey combinatorics.
+
+**Correct analytic status:**
+
+`SHORTLIFT-EULER-UNIFORM-SAVING45: OPEN / REPAIR`.
+
+**Firewall:** do not use the historical `D_sharp = exp(C(log log X)^2)` PASS entry as a current owner. This append-only correction governs the current ledger.
+
+---
+
+# APPEND 2026-08-30 — PRIMITIVE-FRACTION CASE-B NARROWING
+
+### `DET1-ONELEVEL-PRIMITIVEFRACTION-SPACING45`
+
+**STATUS:** `RESEARCH PASS CANDIDATE / ARISTOTLE PROMOTION AUDIT PENDING`.
+
+For fixed `d`, `M=G/d`, primitive reduced fractions satisfy
+
+\[
+\Delta_d\ge \frac{1}{4dM^2}=\frac{d}{4G^2}.
+\]
+
+This supplies the separated additive large-sieve constant
+
+\[
+A+\frac{G^2}{d}.
+\]
+
+### `DET1-ONELEVEL-dRESTRICTED-LS45`
+
+**STATUS:** `RESEARCH PASS CANDIDATE / ARISTOTLE PROMOTION AUDIT PENDING`.
+
+The source weight is reported as
+
+\[
+\rho(a)=\mathbf 1_{P^+(a)\le Y_\rho}|V(a/A)|,
+\qquad 0\le\rho(a)\ll1,
+\]
+
+so the weighted reduction has `L^0` cost.
+
+### `DET1-ONELEVEL-COEFFENERGY45`
+
+**STATUS:** `RESEARCH PASS CANDIDATE / ARISTOTLE PROMOTION AUDIT PENDING`.
+
+From
+
+\[
+E_g\ll(gB+B^2)L^{C_E}
+\]
+
+one obtains
+
+\[
+\sum_{m\asymp G/d}\frac{E_{dm}}{m^2}
+\ll dB\left(1+\frac BG\right)L^{C_E}.
+\]
+
+### `DET1-ONELEVEL-PROJECTOR-S1S2-45`
+
+**STATUS:** `RESEARCH PASS CANDIDATE / SOURCE PIN PENDING`.
+
+Using `lambda_H=mu*Omega_H` and the reported smooth dyadic projector normalisation,
+
+\[
+S_1:=\sum_{d\le CG}\frac{|\lambda_H(d)|}{d}\ll L,
+\qquad
+S_2:=\sum_{d\le CG}\frac{|\lambda_H(d)|}{d^2}\ll H^{-1}.
+\]
+
+The Aristotle audit must verify the literal `Omega_H` support and harmonic norms before formal promotion.
+
+### `DET1-ONELEVEL-PRIMITIVEFRACTION-GLOBAL45`
+
+**STATUS:** `RESEARCH PASS CANDIDATE / ARISTOTLE PROMOTION AUDIT PENDING`.
+
+**PARENT:** `287-K0-SP2-DET1-SHAREDGCD-ONELEVEL-MOBIUS-GRAM45`.
+
+**FIRST DERIVED IN:** 2026-08-30 interrupted/continued primitive-fraction large-sieve checkpoint run.
+
+**HOSTILE AUDIT:** pending dedicated Aristotle/source audit.
+
+**FORMAL LEAN MODULE / DECLARATIONS:** none claimed here; analytic theorem remains uninhabited until formal/source reconciliation.
+
+**KEY EQUATIONS:**
+
+\[
+|Q_H|
+\ll
+B\left(1+\frac BG\right)L^{C_E}
+\left[
+A\log\left(\frac{2G}{H}\right)+\frac{G^2}{H}
+\right],
+\]
+
+hence with `AB \asymp X`,
+
+\[
+\frac{|Q_H|}{AB^2}
+\ll
+L^{C_E+1}\left(\frac1B+\frac1G\right)
++
+L^{C_E}\left(
+\frac{G^2}{HX}+\frac{G}{HA}
+\right).
+\]
+
+**SOURCE RANGE REPORTED:** surviving fixed-margin cells have polynomial `A,B`, and
+
+\[
+G>X^{1/2-\eta_0}.
+\]
+
+Thus `1/B` and `1/G` are research-closed at fixed-power strength, subject to source pin verification.
+
+---
+
+## New current research child
+
+### `287-K0-SP2-DET1-SHAREDGCD-ONELEVEL-PRIMITIVEFRACTION-CRITICAL45`
+
+**STATUS:** analytic OPEN; **current first research main-line residual**, replacing the broader one-level Möbius Gram node in the current-state snapshot.
+
+**PARENT:** `287-K0-SP2-DET1-SHAREDGCD-ONELEVEL-MOBIUS-GRAM45`.
+
+**CHILDREN:** to be determined by projector-unfold / `k-m` fusion.
+
+**FIRST DERIVED IN:** 2026-08-30 Case-B checkpoint completion.
+
+**HOSTILE AUDIT:** generic reduction promotion audit pending; the child itself is OPEN.
+
+**FORMAL LEAN MODULE / DECLARATIONS:** none claimed; keep analytic inputs uninhabited.
+
+**SUPERSEDES:** broader coefficient-blind treatment of all shared-gcd one-level cells. It does not erase the parent node or earlier retractions.
+
+**KEY CRITICAL RANGE:**
+
+\[
+H\lesssim
+L^{C_E+K_*}
+\max\left(\frac{G^2}{X},\frac GA\right),
+\qquad
+K_*=6+2\eta+C_{\rm route}.
+\]
+
+Equivalently,
+
+\[
+\kappa\le\max\{0,2\theta-1,\theta-\alpha\}+o(1).
+\]
+
+**RETAINED STRUCTURE:** `mu(m)`, primitive `t mod dm`, reciprocal `b`, friable `a`, and the exact signed `lambda_H(d)/d^2` projector.
+
+**FIXED CHOWLA FIREWALL:** not a fixed-Chowla problem at this stage; substantial outer/source averaging remains.
+
+**SOLE MISSING MECHANISM:** exploit the exact signed shared-gcd projector inside the small-`H` strip strongly enough to beat the two surviving terms `G^2/(HX)` and `G/(HA)`.
+
+**NEXT ATTACK:** expand
+
+\[
+\lambda_H(d)=\sum_{e\mid d}\mu(d/e)\Omega_H(e),\qquad d=ek,
+\]
+
+then set `n=km`. Since `dm=en`, test whether the `k`-dependence collapses to an exact Möbius pair-projector on `(n1,n2)`, giving gcd rigidity, determinant divisibility, and possible diagonal annihilation in the small-`H` region. Only if a genuine off-diagonal core survives should the run open the reciprocal-`b` source and test fused determinant/CRT dispersion.
+
+**CURRENT BOUND:** generic coefficient-blind contribution closed outside the displayed critical range.
+
+**REQUIRED BOUND:**
+
+\[
+AB^2L^{-6-2\eta-C_{\rm route}}.
+\]
+
+**ERDOS287:** OPEN.
+
+Detailed snapshot: `RESEARCH_FRONTIERS/ERDOS287_PRIMITIVEFRACTION_CASEB_2026-08-30.md`.
