@@ -169,39 +169,148 @@ Before a broader construction run, hostile-audit the D-census promotion: fixed `
 
 **Status:** `ERDOS287 OPEN`.
 
-**Uniform `k=0`:** open.  **FCL:** not reached.
+**Uniform `k=0`:** open. **FCL:** not reached.
 
-**Current first main-line residual:**
+**Current first main-line residual (research-exact Case-B child; promotion audit pending):**
+
+`287-K0-SP2-DET1-SHAREDGCD-ONELEVEL-PRIMITIVEFRACTION-CRITICAL45`.
+
+**Parent strictly reduced:**
 
 `287-K0-SP2-DET1-SHAREDGCD-ONELEVEL-MOBIUS-GRAM45`.
 
-**Exact operator shape:**
+### Latest primitive-fraction reduction
+
+For fixed `d`, with `M=G/d`, the primitive frequencies
 
 \[
-\sum_d\frac{\lambda_H(d)}{d^2}
-\sum_{a\sim A}\rho(a)
-\left|\sum_{m\asymp G/d}\frac{\mu(m)}mV_{dm}(a)\right|^2.
+\frac{t}{dm},\qquad m\asymp M,\quad (m,d)=1,\quad (t,dm)=1
 \]
 
-**Current generic bound:**
+have spacing
 
 \[
-\frac{(A+G)(GB+B^2)}H(\log X)^{o(1)}.
+\Delta_d\ge \frac1{4dM^2}=\frac{d}{4G^2}.
 \]
 
-**Required:**
+Thus the fixed-`d` separated additive large sieve has candidate constant
 
 \[
-AB^2(\log X)^{-6-2\eta-C_{\rm route}}.
+A+\frac{G^2}{d}.
 \]
 
-Latest structural pivot: the shared-gcd Gram-as-square identity replaces the apparent two-level `G^2/H` pair bookkeeping by harmonic divisor mass plus a one-level signed Möbius `m`-operator. Product-modulus compression also gives `mu(g1)mu(g2)=mu(n)` with `(D,n)=1`, but the fixed-`n` two-state kernel is not ordinarily multiplicative in `n`, so a naive `1/zeta` route is unavailable.
+The latest run also reports:
 
-**Retractions:** old `LARGESHAREDG0:CLOSED` and `PRIMITIVE-NEARFREQ:CLOSED` are retracted; the hard-denominator core was not promoted. Complete primitive-`t` Ramanujan reassembly is nonclosing because it neutralises the remaining Möbius sign.
+\[
+\rho(a)=\mathbf 1_{P^+(a)\le Y_\rho}|V(a/A)|,
+\qquad 0\le\rho(a)\ll1,
+\]
 
-**Provisional audit item:** `DET1-SHAREDGCD-ONELEVEL-ENERGY45` strict-subpolytope closure remains promotion-audit pending.
+so the weighted reduction costs no logarithm, and from
 
-**Next attack:** split the one-level Ramanujan completion into the `r=1` local-main/pole component and the `r>1`, `r | 2ab+s` divisor-defect, preserving the Möbius resource before complete primitive-`t` reassembly.
+\[
+E_g\ll(gB+B^2)L^{C_E}
+\]
+
+one gets
+
+\[
+\sum_{m\asymp G/d}\frac{E_{dm}}{m^2}
+\ll dB\left(1+\frac BG\right)L^{C_E}.
+\]
+
+Using `lambda_H=mu*Omega_H`, with the reported smooth dyadic projector normalisation,
+
+\[
+S_1:=\sum_{d\le CG}\frac{|\lambda_H(d)|}{d}\ll L,
+\qquad
+S_2:=\sum_{d\le CG}\frac{|\lambda_H(d)|}{d^2}\ll H^{-1}.
+\]
+
+Hence the research candidate global estimate is
+
+\[
+|Q_H|
+\ll
+B\left(1+\frac BG\right)L^{C_E}
+\left[
+A\log\left(\frac{2G}{H}\right)+\frac{G^2}{H}
+\right].
+\]
+
+With `AB\asymp X`, the sharp normalised ratio is
+
+\[
+\frac{|Q_H|}{AB^2}
+\ll
+L^{C_E+1}\left(\frac1B+\frac1G\right)
++
+L^{C_E}
+\left(
+\frac{G^2}{HX}+\frac{G}{HA}
+\right).
+\]
+
+### Case-B narrowing
+
+The latest run reports fixed-power lower bounds on the surviving `A,B` source cells and
+
+\[
+G>X^{1/2-\eta_0}.
+\]
+
+Consequently the `1/B` and `1/G` terms close at fixed-power strength. The only surviving coefficient-blind obstruction is the small-shared-gcd strip
+
+\[
+\boxed{
+H\lesssim
+L^{C_E+K_*}
+\max\left(\frac{G^2}{X},\frac GA\right)
+},
+\qquad K_*=6+2\eta+C_{\rm route}.
+\]
+
+Equivalently, up to fixed logarithmic cushions,
+
+\[
+\kappa\le\max\{0,2\theta-1,\theta-\alpha\}+o(1).
+\]
+
+This is `CASE B — H-CRITICAL CORE REMAINS`.
+
+**Promotion firewall:** spacing, weighted large sieve, `S1/S2`, the `A,B` fixed-margin source pin, and the global Case-B bound are currently `RESEARCH PASS CANDIDATE / ARISTOTLE PROMOTION AUDIT PENDING`. Do not yet label the analytic child publication-banked.
+
+### Retained structure in the critical child
+
+- `mu(m)` remains unspent;
+- `t mod dm` remains primitive;
+- reciprocal-`b` source remains;
+- friable `a` remains;
+- exact signed `lambda_H(d)/d^2` projector remains.
+
+Therefore this is **not** a fixed-Chowla obstruction at present.
+
+### Short-lift correction
+
+The earlier analytic promotion `DET1-SHORTLIFT-EULER-COLLAPSE45` is **retracted by later hostile audit**. The exact profile/Euler algebra survives, but `SHORTLIFT-EULER-UNIFORM-SAVING45` remains open/repair: the repaired contour bound does not close physical polynomial lift cells. Historical provenance is preserved in the proof index.
+
+### Next attack
+
+First exploit the exact projector before generic dual dispersion:
+
+\[
+\lambda_H(d)=\sum_{e\mid d}\mu(d/e)\Omega_H(e),\qquad d=ek,
+\]
+
+then test
+
+\[
+n=km.
+\]
+
+Since `dm=en`, the modulus becomes independent of `k`; on contributing coprime squarefree terms `mu(n)=mu(k)mu(m)`. The next constructive run should test whether the signed `k`-sum collapses to an exact Möbius pair-projector on `(n_1,n_2)`, yielding a rigid gcd normal form and possible diagonal annihilation in the genuinely small-`H` region. Only if an off-diagonal core survives should it open the reciprocal-`b` source and test fused determinant/CRT dispersion.
+
+Detailed research snapshot: `ERDOS287_PRIMITIVEFRACTION_CASEB_2026-08-30.md`.
 
 ---
 
