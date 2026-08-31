@@ -1,3 +1,381 @@
+# Summary of changes for run 2e772a53-50c1-4a88-b01c-02acd1008fa0
+Appended the requested Gate 1B canonical full-nine / h=0 / HNE effective-conductor formal bank. Strictly append-only: no existing file was deleted, renamed, weakened, relocated or edited, except `Main.lean`, where the new imports were appended at the end (nothing removed or reordered).
+
+FILES ADDED
+- `Gate1B/CanonicalR9Comparison.lean` (§4–7, §20)
+- `Gate1B/FullNineCanonicalOwner.lean` (§8–11)
+- `Gate1B/CanonicalSwitchedAggregate.lean` (§12–16)
+- `Gate1B/Gate1BComparisonStability.lean` (§21)
+- `Gate1B/R9GlobalComparisonAdapter.lean` (§17–19, §22–23)
+- `Gate1B/CanonicalHZeroCompiler.lean` (§24–25)
+- `Gate1B/HNEEffectiveConductor.lean` (§26–28)
+- `Gate1B/HNESawtoothSmallR.lean` (§29–33)
+- `Gate1B/HNEAPIndexCongruence.lean` (§34–37, §41)
+- `Gate1B/HNEProductResidueInterface.lean` (§38–40)
+- `Gate1B/CurrentStatusGate1BCanonicalHNE.lean` (§42–44, new status layer; the old status file is imported unchanged)
+- `Gate1B/AxiomAuditGate1BCanonicalHNE.lean` (§47)
+- `GATE1B_CANONICAL_HZERO_HNE_SAFE_BANK_REPORT.md` (§50, with the §51 hostile-audit checklist and the mandated STRICT FINAL OUTPUT block)
+
+FILES MODIFIED: `Main.lean` (imports appended only). FILES DELETED: none. Previous punctured / product-Fourier bank: PRESERVED and reused (`eM`, `eM_add`, `full_char_sum`).
+
+NEW KERNEL-PROVED ALGEBRA (all sorry-free, axiom-clean)
+- `coordinate_eq_canonical_add_remainder`: π_i = m_i^can + ρ_i − e_i^pp, exact.
+- `b9CellCan` / `b9Can` with explicit factorial normalisation; `canonical_totalMass_multinomial` (exact 1/9! multinomial identity) plus the exact subfamily polynomial; zero-frequency ρ-mass and the mass relation derived from an explicit projector interface.
+- `fullNine_canonical_firstRemainder_telescope` (BOXED §8), `firstRemainder_owner_unique`, `owner_fibres_disjoint`, `firstRemainder_ownership_partition`, `occupancySum_preserves_firstRemainder_identity`, `fullNine_owner_split` (prime-power term counted once).
+- `canonicalSwitchedResidual_eq_zero` (RCan = 0), documented as tautological by construction, with a nonzero-residual countermodel for a different expected coefficient; `SwitchedModulus` vs `MajorArcDenominator` type firewall; λ₃ restated name-disjointly (the flat legacy file is outside every library glob, so it is not importable).
+- `gate1B_comparison_stability` plus the exact perturbation identities and an abstract compiler seminorm.
+- `r9_twoComparison_adapter_identity`; `ninefoldConvolution_prime_eq_zero_of_coordinate_support` (prime-mass obstruction).
+- `hne_effectiveConductor_phase_reduction` (conductor ℓ/gcd(C,ℓ), never full ℓ), `hne_effectiveConductor_fourier_bound`, `sawtooth_r_ne_zero`, `sawtooth_frequency_offset`, `hne_smallR_reciprocal_normalForm` (the moving index k is eliminated), `C_r`/`g_r`/`q_r`, **`hne_apIndex_congruence`** (g ∣ C_r ↔ d·h ≡ r·s mod g), `productResidue_pairing`, `productResidue_cauchy`, `productCongruence_additiveFourier`.
+
+EXPLICIT OPEN INTERFACES (never proved, never promoted): prime-power X^(−1/18) bound, effective-conductor threshold, sawtooth coefficient decay and arbitrary-log tail, AP-index source-energy (with a saturation countermodel showing it cannot come from cardinality), product-residue energies, R9-canonical-to-global adapter bound, historical E (source pin only, not identified with b9Can), and every analytic premise of the canonical h=0 compiler, which is conditional.
+
+STATUS: C2 CLOSED; C3 STRICTLY REDUCED; C4, C5 OPEN; HNE strictly reduced but OPEN; LOWER-D OPEN; GATE1B OPEN. b9Can is packet-local signed comparison only and is recorded as FAIL as a global Ford–Maynard comparison.
+
+BUILDS AND AUDIT: all 12 new modules build individually — 12/12 PASS, zero errors, zero warnings, no `sorry`. The axiom audit runs `#print axioms` on 160 declarations; only `propext`, `Classical.choice`, `Quot.sound` appear (no `sorryAx`, no custom axiom, no `native_decide`, no `implemented_by`). Default `lake build` still fails, literally: `error: no such file or directory … RequestProject/FixedCertificateAlgebra.lean` — a PRE-EXISTING legacy import failure; nothing was relocated to hide it, and no new Gate1B module appears in any failure list.
+
+FINAL FORMAL VERDICT: SAFE APPEND-ONLY BANK UPDATED.
+
+All work is committed and pushed.
+
+# Summary of changes for run 6ce746c7-6b2e-4f76-bd4d-0259126e5f7a
+GATE 1B — ROW-LOCAL DICTIONARY SAFE BANK: append-only consolidation completed, built and pushed. Full details are in `GATE1B_ROWLOCAL_DICTIONARY_SAFE_BANK_REPORT.md`.
+
+FILES ADDED
+- `Gate1B/Gate1BLeaf4FormalLocalTree.lean`
+- `Gate1B/Gate1BLeaf4RowLocalStatus.lean`
+- `Gate1B/Gate1BPhysicalRowLocalDictionaryInterface.lean`
+- `Gate1B/CurrentStatusGate1BRowLocalDictionary.lean`
+- `Gate1B/AxiomAuditGate1BRowLocalDictionary.lean`
+- `GATE1B_ROWLOCAL_DICTIONARY_SAFE_BANK_REPORT.md`
+
+FILES MODIFIED: `Main.lean` only (five appended imports plus a comment; nothing reordered or deleted). No existing theorem file was edited, renamed, relocated or weakened.
+
+NEW UNCONDITIONAL KERNEL THEOREMS
+- `bezoutRow_det_invariant`, `scaledBezoutRow_det_invariant` (f·b_h − c·a_h = N; scaled form = d·N).
+- `gate1B_leaf4_productDifference` and `gate1B_leaf4_productDifference_shift` (c·u₁v₁ − f·u₂v₂ = −d·N, literal −d·ℓ·r form) — the arithmetic kernel of HZERO-J4-ALPHA4-PRODUCTDIFF45.
+- `dirichlet_ne_additive_conv` — Dirichlet and additive convolution are in separate namespaces and are provably different (countermodel); no inequality between them is claimed.
+- Ordered `MajorTreeInterface` (slots M1, M2, M3, M5), `Leaf4FormalLocalTree`, and `majorTree_comp_not_commutative` forbidding replacement of ordered composition by a scalar product; the Fourier-product identity is not formalised.
+- `gamma4_split` (γ₄ = γ₄Loc + γ₄Rem with ρ₅ = δ₅ − λ₅), `c44Loc_eq_alpha4_dmul_gamma4Loc`, `c45_eq_alpha4_dmul`, `c44Loc_ne_c45` (owner firewall) and the strictly conditional `c44Loc_eq_c45_of_lambda4_eq_lambda5`.
+- Status/dictionary/ledger firewalls, all `decide`-checked.
+
+REUSED KERNEL BANK: punctured Fourier frame, product-Fourier algebra, primitive determinant arithmetic, Möbius/gcd identities, zero-mode firewall and the conditional net compiler are imported unchanged; the existing `Status`/`LedgerEntry` taxonomy is reused. The older two-constructor research-status type is untouched; a new, larger `RowLocalStatus` (kernelProved / analyticBanked / conditional / sourcePin / open / superseded / retracted) is appended beside it as metadata only, with kernel-checked firewalls that no status is a proof and none is closed.
+
+OLD STATUS LAYER: PRESERVED (`previous_layer_preserved`, `historical_research_rows_preserved`). SUPERSEDED labels recorded in the new layer only: C4SHIFT-SAWTOOTH-APRECIPROCAL-MISMATCH45 as current residual, and the two historical `candidateResearchClosed` annotations. RETRACTED mechanisms: "product-Fourier closes h=0" and "joint frame gives M^(−1/2)", while the corresponding algebra stays banked (`algebra_banked_while_mechanism_retracted`).
+
+PHYSICAL ROW-LOCAL DICTIONARY: created as an interface. E(q), Z_E(q), kappa_4 are data fields, never assigned values (`dictionary_data_not_pinned`, `kappa4_not_pinned`); the six named obligations plus `kappa4NormalizationHypothesis` are Prop fields; `PhysicalRowLocalDictionaryValid` is not proved and is refutable for an explicit non-physical placeholder. q=1 and q=2 normalisations are recorded as source pins only.
+
+CONDITIONAL COMPILERS: `leaf4_closed_of_physical_dictionary` and `hZeroHighHigh_closed_of_local_dictionary` — every analytic/source antecedent is an explicit argument, none is supplied, and firewalls show the packages are not unconditional and do not imply Gate 1B closure.
+
+AXIOM AUDIT: `#print axioms` on all 79 principal new declarations — each depends on a subset of {propext, Classical.choice, Quot.sound}; zero `sorryAx`; no new axiom, no `unsafe`, `opaque`, `implemented_by` or `native_decide`; a token grep over all five modules is clean.
+
+BUILD: NEW MODULE BUILD PASS (all five modules, 0 errors, 0 warnings). DEFAULT repository build: PRE-EXISTING FAILURE (missing `RequestProject/FixedCertificateAlgebra.lean`); untouched here, unrelated to this delta, and no new module imports it.
+
+RESEARCH LEDGER (recorded, not proved): current first source residual ORIGINAL-E(q)-/Z_E(q)-PHYSICAL-ROWLOCAL-DICTIONARY45; LEAF 4 analytically closed modulo local source identification with exact remaining analytic saving NONE; LEAVES 1–3 OPEN / NOT PROMOTED; LEAF 5 pure local model and not the Leaf-4 owner; h=0 HIGH-HIGH analytically closed modulo physical local tree match; HNE NOT RUN; LOWER-D OPEN; GATE1B OPEN.
+
+FINAL FORMAL VERDICT: SAFE APPEND-ONLY BANK UPDATED.
+
+# Summary of changes for run fe0eda46-e98c-42f0-9502-7099ced533ef
+Appended a SAFE, append-only Gate 1B formal bank for the `h = 0` arithmetic / finite-linear-algebra backbone. No existing mathematical module was edited or deleted; only imports were appended to `Main.lean`. No `sorry`, no custom axiom, no `unsafe`/`native_decide`/`opaque`/`implemented_by`.
+
+FILES ADDED
+- `Gate1B/PuncturedFourierFrame.lean` — punctured finite Fourier frame, dilated frame, product-Fourier operator.
+- `Gate1B/PrimitiveDeterminantProductPhase.lean` — primitive determinant arithmetic, product phase factorisation, gcd Möbius identities, prime divisor router, original-zero/cyclic-zero firewall, conditional compiler.
+- `Gate1B/CurrentStatusGate1BPuncturedProductFourier.lean` — new append-only status layer.
+- `Gate1B/AxiomAuditGate1BPuncturedProductFourier.lean` — `#print axioms` for all 72 principal new declarations.
+- `GATE1B_PUNCTURED_PRODUCTFOURIER_SAFE_BANK_REPORT.md` — the full report with all mandated sections.
+
+FILES MODIFIED: `Main.lean` (four appended imports plus a comment) only.
+
+KERNEL-CHECKED FINITE LINEAR ALGEBRA
+- `puncturedFourier_gram`: Σ_{k≠0} e_M(kr)·conj e_M(kr') = M·1_{r=r'} − 1; matrix form `V Vᴴ = M·1 − J`.
+- `puncturedFourier_posDef`: (M − #I)‖y‖² ≤ Σ_{k≠0}|c(k)|²; source form (M/2)‖y‖² under 2#I < M; strict positivity.
+- `puncturedFourier_minNorm_coeff_bound` / `_div`: for #I < M every F on I equals V*c with c supported on nonzero frequencies and ‖c‖₂² ≤ ‖F‖₂²/(M − #I) — proved as an exact finite identity (energy = ‖F‖²/M + |ΣF|²/(M(M−#I))) plus Cauchy–Schwarz, no axiom and no Hilbert-space abstraction.
+- `puncturedFourier_surjective`, `puncturedFourier_fullRowRank` (rank V = #I).
+- Dilated frame: identical Gram for a unit ℓ, plus surjectivity and `puncturedFourier_unitDilate_rank`.
+- Product-Fourier: `productFourier_orthogonality`, `productFourier_gram` (T_λᴴT_λ = M·1), `productFourier_norm_sq` (exact Plancherel). The `‖T_λ‖ = √M` statement is recorded in the report as an analytic consequence only, not as a Lean theorem.
+
+KERNEL-CHECKED ARITHMETIC
+- `doubleGcd_dvd_shift` (de ∣ r), `primitiveDeterminant_factor` (bf − ac = ℓr₀), `primitiveDeterminant_nonzero_of_shift_nonzero`, and the same-X / same-Z semi-diagonal exclusions with the physical bounds kept as explicit hypotheses.
+- `determinant_phase_factorization` (and its integer-input form).
+- `coprime_indicator_mobius`, `double_coprime_indicator_mobius` (finite divisor identities only).
+- `prime_dvd_mul_router` and its `≥ M` consequence.
+- Firewall: `originalZero_preserved` is the only implication proved; `cyclicZero_not_identified` gives an explicit countermodel (M = 5) and `cyclicZero_ne_originalZero` proves the two notions are not equivalent; the punctured frame provably avoids the zero frequency.
+
+CONDITIONAL COMPILER: `conditional_net_compiler` (support/product-gain/scale hypotheses ⇒ B ≤ C·√T) — purely logical; its analytic antecedents are hypotheses and are supplied nowhere.
+
+RESEARCH-ONLY STATUS: recorded through a separate `ResearchStatus` datatype with kernel-proved firewalls that it is never kernel-proved and never closed. HZeroPrimitiveDetNonzeroFull and HZeroHighHighAnalytic are candidateResearchClosed (externally, under the frozen source bank); HNeSawtoothAPReciprocalMismatch, TopBandBroadMajorTreeMatch and Gate1B are OPEN. No row of the new layer is `closed`.
+
+NOT FORMALISED (recorded as open rows, exposed only as named hypotheses where used): E-cell T/√E support estimate, fixed-depth α/γ divisor moments, net analytic M^(−1/2) compiler, h ≠ 0 reciprocal closure, local broad-major tree match, Gate 1B closure.
+
+AUDIT / BUILD
+- Axioms across all 72 new declarations: 7 depend on none, 65 on a subset of {propext, Classical.choice, Quot.sound}; zero `sorryAx`; no new custom axiom.
+- All four new modules build with 0 errors and 0 warnings.
+- The default target `lake build` still FAILS, for pre-existing reasons untouched by this delta: the repository as supplied is missing modules that legacy files import (e.g. `RequestProject.FixedCertificateAlgebra`, `RequestProject.Options`, `Gate1A.Exponents`, `Gate1B.AdditiveCoordinate`, `UniversalV8.BlockGram`, several `Universal.SafeAlgebra.*` and `RequestProject.NANC.*`); their sources exist only as flat top-level files. Every build failure is a `bad import`/`no such file` of one of those historical modules; no new module imports any of them or appears in any error, and repairing that tree would mean relocating old modules, which this append-only delta does not do.
+
+CURRENT FIRST ANALYTIC RESEARCH RESIDUAL: C4SHIFT-SAWTOOTH-APRECIPROCAL-MISMATCH45.
+PARALLEL LOCAL RESIDUAL: TOPBAND-BROAD-MAJOR-TREE-MATCH45.
+GATE1B: OPEN.
+
+All work is committed and pushed.
+
+# Summary of changes for run 024fc74f-e8de-4eb4-bf66-5b662da65c9e
+The append-only Gate 1B delta is banked, built and pushed. Nothing existing was edited: `git status` before the commit showed only untracked new files, so `Gate1B/C4ShiftLeafwiseOneMinor.lean`, `Gate1B/CurrentStatusGate1BC4ShiftLeafwise.lean` and `Gate1B/AxiomAuditGate1BC4ShiftLeafwise.lean` are byte-identical, and both of their analytic sockets remain uninhabited.
+
+## New modules
+
+**`Gate1B/C4ShiftCenteredAPKernel.lean`** — exact algebra / finite Fourier only:
+
+- **§1 exact one-minor AP phase identity** (`centered_ap_phase_identity`): in `ZMod ℓ`, with `h = k₁−k₂`, `K = k₁+k₂`, `v` an inverse of `2`, `w = (us)⁻¹` and `A₀ = −2w`, `vK(A₁−A₂) + vh(A₁+A₂+4w) = k₁(A₁−A₀) − k₂(A₂−A₀)`. Plus `centered_A0_spec` (`us·A₀ = −2`) and `centered_target_of_unit`.
+- **§2 full `h,K` orthogonality** (`Rfull_eq_indicator`): `R_full = 1_{A₁≡A₀} · 1_{A₂≡A₀}`, and `Rfull_eq_one_of_unit` under `us·A_i ≡ −2 (mod ℓ)` with `us` a unit. No analytic assumption.
+- **§3 sampled double-major operators** `M±_{ℓ,ξ}`, with `RMM_factor` (`R_MM = M⁺_{ℓ,ξ₁}(A₁−A₀)·M⁻_{ℓ,ξ₂}(A₂−A₀)`) and the centering identity `R1m_centered` (`R_1m = R_full − R_MM`).
+- **§4 owner decomposition** (`R1m_owner_decomposition`, `R1m_owners`): with `m± = APδ± − M±`, `R_1m = m⁺M⁻ + M⁺m⁻ + m⁺m⁻`, owners recorded as `ownerMm`, `ownermM`, `ownermm`. No analytic bound attached.
+- **§5 major-projector aliasing** (`Mplus_aliasing`, `Mminus_aliasing`): the exact finite analogue `M⁺_{ℓ,ξ}(n) = Σ_{r≡n (mod ℓ)} M̂₄(r) e(rξ/ℓ)` for the finite Fourier model of `M₄`. No decay, no total major-arc measure.
+- **§6 state-count firewall** (`ell_state_count_no_saving`): `ℓ⁻²·#{(k₁,k₂) mod ℓ} = 1`.
+- **§7 physical 2+2 shift** (`Physical2Plus2Shift`): `A_i = X_iZ_i`, `X₂Z₂ − X₁Z₁ = ℓr`, `r ≠ 0` kept as a tuple-level restriction, `g = s·r + h₂ − h₁`. `|g| > L^{B₁}` is not formalised.
+- **§8 Bézout normal form** (`bezout_2plus2_normalform`): `d₀ ∣ r`, `r = d₀r₀`, `bZ₂ − aZ₁ = ℓ₀r₀`.
+- **§9 Bézout solution line**: forward and converse parametrisation `Z₁ = Z₁⁰+bt`, `Z₂ = Z₂⁰+at` (converse needs `a ≠ 0`), plus an exact box-count bound `(#T−1)·b ≤ hi−lo`. No square-root cancellation along `t` is claimed.
+- **§10 nonzero-shift firewall**: `true_diagonal_excluded` (`r ≠ 0`, `ℓ ≠ 0` ⇒ `A₁ ≠ A₂`) kept explicitly distinct from `congruence_mod_ell` (`ℓ ∣ A₂−A₁`, always true), with `congruence_not_equality` as an explicit witness.
+- **§12 new analytic socket** `C4ShiftOffdiagCenteredAP58GramInput` — **uninhabited**, retaining the centered kernel, the three owners, `X₂Z₂ − X₁Z₁ = ℓr` with `r ≠ 0`, the Bézout parametrisation, the actual `α_j/γ_j` coefficients, a linked top-band predicate and the pushed `L¹_θ ℓ²_v` target; only a trivial conditional consumer exists.
+
+The 5/8 scaling (`Y⁴`, `ℓ ~ Y^{5/2}`, `T = Y⁴/ℓ ~ Y^{3/2}`, required `T^{1/2}L^C` vs current `T·L^{C₀}`) is carried as research metadata only.
+
+**`Gate1B/CurrentStatusGate1BC4ShiftCenteredAP58.lean`** — new append-only status layer with the mandated rows and kernel-proved honesty invariants: no closed row, no closed analytic row, `GATE1B` open, the old first residual recorded as strictly reduced / superseded (not false) with the previous layer's `analyticOpen` row preserved, the new first residual and its alias recorded, `NO AUTOMATIC 1/ℓ² SAVING` recorded explicitly.
+
+**`Gate1B/AxiomAuditGate1BC4ShiftCenteredAP58.lean`** — `#print axioms` for all 52 new principal declarations.
+
+**`GATE1B_C4SHIFT_CENTERED_AP58_SAFE_BANK_REPORT.md`** — all mandated sections.
+
+## Verification
+
+Targeted builds all pass (`Gate1B.C4ShiftCenteredAPKernel`, `Gate1B.CurrentStatusGate1BC4ShiftCenteredAP58`, `Gate1B.AxiomAuditGate1BC4ShiftCenteredAP58`), zero errors. The global build remains blocked only by the pre-existing unrelated missing `RequestProject/FixedCertificateAlgebra.lean`, which I did not touch and which no new module imports. The union of reported axioms across all new declarations is exactly `{propext, Classical.choice, Quot.sound}`; a token grep confirms no `sorry`, `admit`, `axiom`, `opaque`, `unsafe`, `native_decide` or `implemented_by`. One commit, pushed; working tree clean and `origin` matches `HEAD`.
+
+```
+GATE1B OPEN.
+
+FIRST EXACT ANALYTIC RESIDUAL:
+C4SHIFT-OFFDIAG-CENTERED-AP5/8-GRAM45.
+
+PARALLEL LOCAL RESIDUAL:
+TOPBAND-BROAD-MAJOR-TREE-MATCH45.
+```
+
+# Summary of changes for run 3d74e64a-9269-498a-b7a1-f4cb38edfe0d
+## What I did
+
+I completed the append-only "leafwise major / one-minor" banking delta that was in progress, following the same safety policy as the earlier layers: only exact finite algebra, modular arithmetic and finite Fourier statements are proved in Lean; every analytic estimate stays an **uninhabited source interface**; no historical module was edited or deleted; no `sorry`, `admit`, `axiom`, `opaque`, `unsafe`, `native_decide` or `implemented_by` anywhere.
+
+### New modules (all build clean, targeted)
+
+**`Gate1B/C4ShiftLeafwiseOneMinor.lean`** — formally proved:
+
+- **Deterministic major-arc ownership.** `farey_separation` (two distinct fractions with denominators `q₁,q₂` are `≥ 1/(q₁q₂)` apart) and `major_arc_ownership_unique` (a point within `1/(2Q₀²)` of two fractions of denominator `≤ Q₀` determines the fraction). Ownership is a function of the point, not a choice. No asymptotic arc-width claim.
+- **Character diagonalisation.** `gaussSumChar`, `conj_char_apply` (`conj χ(x) = χ(x⁻¹)` on units) and `major_char_diagonal`: `e_q(−a·XZ) = (1/φ(q)) Σ_χ G_{q,a}(χ) χ(X) χ(Z)`, with no primitivity assumption and audited conjugations.
+- **Unit / non-unit reduction.** `nonunit_reduction` (exact descent to the reduced modulus) and `gcd_partition` (complete residue sum fibred exactly over `gcd(x,q)`). The claim that non-unit cells cost only `log^{O(1)}` is left as research metadata.
+- **Multiplicative four-fold factorisation.** `char_fourfold_factor` and `fourProduct_2plus2'`. The previously refuted *additive* Fourier factorisation is not revived.
+- **Leafwise source classification** with a deterministic first defect index `i₀ = j+1` (`firstDefectIndex`, `leaf_five_pure`, `leaf_first_defect`).
+- **One-minor projector and exact split.** `P1m = 1 − M₄(ω₁)M₄(ω₂)`, its `= 1` / `= 0` characterisations, and `gammaSharp_one_minor_split` : `Γ♯ = Γ^{1m,♯} + Γ^{2M,♯}`, with the projector inserted at *tuple* level (never as an indicator on a post-summed `Γ`).
+- **`(h,K)` AP-index normal form** on the odd clean sector: `hK_inversion`, `apindex_phase_normalform`, `full_sum_support`, `full_hK_sums_force_A`. Stated for the *unrestricted* complete sums only; no collapse of the restricted one-minor sums is claimed.
+- **`ℓ`-normalisation firewall** restated (`ell_normalisation_no_saving'`).
+- Two **uninhabited** analytic sockets: `C4ShiftOneMinorPushedEnergyInput` and `C4ShiftOneMinorAPIndexRestrictionInput`.
+
+**`Gate1B/CurrentStatusGate1BC4ShiftLeafwise.lean`** — append-only status layer importing (not editing) the previous layers, with kernel-proved honesty invariants: no row is `closed`, every row is honest, `GATE1B` is `OPEN`, the parent frontier stays analytic-open, the first analytic residual is recorded, and the previous layer's retraction is preserved.
+
+**`Gate1B/AxiomAuditGate1BC4ShiftLeafwise.lean`** — `#print axioms` for all 33 principal new declarations.
+
+**`GATE1B_C4SHIFT_LEAFWISE_ONE_MINOR_SAFE_BANK_REPORT.md`** — the mandated report sections (formally proved / source-conditional / research-only / superseded-but-not-false / first residual / build results / axiom audit / commits / push status).
+
+### Audit results
+
+- Every new declaration depends on nothing or only on `propext`, `Classical.choice`, `Quot.sound`. Zero `sorryAx`.
+- Token grep over the new algebra module: no banned tokens.
+- Targeted builds all succeed. The **global** build still fails, and fails only because of the pre-existing unrelated missing module `RequestProject/FixedCertificateAlgebra.lean`, which I left untouched as instructed.
+
+### Ledger
+
+The Properties table has been reconciled: the earlier proved entries are now marked proved, and the new leafwise deliverables plus the uninhabited one-minor energy socket are registered.
+
+```
+GATE1B OPEN.
+
+FIRST EXACT ANALYTIC RESIDUAL:
+C4SHIFT-ONE-MINOR-PUSHED-ENERGY45.
+
+PARALLEL LOCAL RESIDUAL:
+TOPBAND-BROAD-MAJOR-TREE-MATCH45.
+```
+
+Two commits (`ec112d6`, `ad21093`) were made and pushed; the working tree is clean and `origin` matches `HEAD`.
+
+# Summary of changes for run 08dd4f8b-5e0f-41f4-81af-93956e89b701
+SOURCE COPRIMALITY:
+SEALED, CONDITIONAL ON AN UNINHABITED SOURCE INTERFACE. `AddMinCleanCoprimalityInput` (M prime, M ∤ uA, gcd(uA, ℓ)=1) yields kernel-proved `cleanSector_coprime_N_ell`, `cleanSector_coprime_N_M`, `cleanSector_coprime_N_qell` (N = uA, q_ℓ = ℓM). The false "N < M" justification is refuted in Lean by `size_alone_does_not_give_coprimality` (N = M = 5) and `source_product_can_exceed_M` (u = A = M = 7).
+
+COPRIMALITY RESIDUAL IF ANY:
+`M ∤ uA` and `gcd(uA, ℓ) = 1`. Neither is derivable from anything in the repository (the physical source boxes are not defined there), so they are printed hypotheses, not fabricated.
+
+ACTUAL DEFECT SOURCE:
+SOURCE OPEN / ADAPTER UNINHABITED. A repository-wide search found no literal `delta_j`, `lambda_j`, `rho_j`, `Pi_ell`; they exist only as abstract fields of the additive-minor data. `AddMinActualDefectSourceInput` records exactly the two source equations δ = (Λ−1)W(s/Y)/log s and ρ̂ = (1−Π)δ̂ and is never constructed; the compiler `defectSource_adapter_muLog` is kernel-proved. No synthetic replacement was created.
+
+MU*LOG:
+provedAlgebraic. `Λ(n) = Σ_{ab=n} μ(a) log b` reused from Mathlib and unfolded to the literal divisor-antidiagonal sum, plus the one-sided source expansion. No analytic estimate.
+
+RAMANUJAN DIVISOR SUM:
+provedAlgebraic. `c_rRam(B)` defined as the character sum over units; Hölder form proved; `Σ_{rRam | N} c_rRam(B) = N·1_{N|B}` with explicit `_of_dvd` / `_of_not_dvd` branches, plus the reassembly corollary `(1/N)Σ = 1_{N|B}`.
+
+INVERSE QUOTIENT:
+provedAlgebraic. Bézout existence, `ZMod` cancellation `N⁻¹(N t) = t`, integer form `q ∣ invN(Nt) − t`, and the character transport `e_q(m invN (N t)) = e_q(m t)`.
+
+RAMANUJAN RECIPROCITY:
+provedAlgebraic. `addMin_ramanujan_reciprocity`: 1_{N|B} e_q(m B/N) = (1/N) e_q(m N⁻¹ B) Σ_{rRam|N} c_rRam(B), by the two cases; no ambiguous integer division remains.
+
+qell→M INVERSE REDUCTION:
+provedAlgebraic. `inv_reduction_qell_to_M` plus `inv_unique_mod_M`: the reduction of invN mod q_ℓ genuinely equals invN mod M — it is proved, not assumed.
+
+RECIPROCAL NORMAL FORM:
+provedAlgebraic. `phase_split_qell`, `phase_split_rRam`, `reciprocal_phase_normalForm` (constant −2 phase times Θ-phase with Θ = m invN_M/M + x ℓ/rRam), the literal `roughTransform` keeping μ(d), log p, κ(h), u, and the compiler `addMin_companion_ramanujan_normalForm` over tuples, moving divisors rRam | uA and units x mod rRam. The fixed shift 2 is carried explicitly; nothing is averaged over shifts.
+
+QUOTIENT COUPLING:
+REMOVED from the rough coefficient (`old_representation_depends_on_quotient` shows the old phase really varied with N; the new summand takes no quotient argument).
+
+NEW SOURCE COUPLING:
+moving divisor rRam | uA + reciprocal (uA)⁻¹ phase (reduced mod M) + roughTransform at the same Θ. Recorded explicitly; not claimed absent.
+
+OLD FRONTIER:
+DETLINE-NEARPRIM-ADDITIVE-MINOR-CROSSPAIR45 — SUPERSEDED AS CONTROLLING FRONTIER / STRICTLY REDUCED; NOT FALSE (its original analyticOpen row is preserved in the earlier layer, which was found already present and imported unchanged).
+
+CURRENT FRONTIER:
+DETLINE-ADDMIN-RAMANUJAN-RECIPROCAL-CROSSPAIR45 (analyticOpen).
+
+ANALYTIC SOCKET:
+UNINHABITED — `DetLineAddMinRamanujanReciprocalCrosspairInput` over a configuration retaining e, c, ℓ = ce, q_ℓ = ℓM, m, ρ̂(m), u, A, rRam | uA, x mod rRam unit, inverses mod q_ℓ and mod M, Θ, μ(d), log p, κ(h), roughTransform. No L² abstraction substituted.
+
+TOPBAND: OPEN.   PURE5: OPEN.   GATE1B: OPEN.
+
+TARGETED BUILDS:
+PASS. Five new modules (`AddMinSourceCoprimalityMuLog`, `AddMinRamanujanReciprocity`, `DetLineAddMinRamanujanReciprocalSocket`, `CurrentStatusGate1BRamanujanReciprocal`, `AxiomAuditGate1BRamanujanReciprocal`), 8070 jobs, 0 errors, no sorry/admit/axiom/opaque/unsafe/native_decide/@[implemented_by].
+
+GLOBAL BUILD:
+Still blocked by the pre-existing, unrelated legacy failure (missing module `RequestProject.FixedCertificateAlgebra`, imported by legacy files). Not repaired; no new module imports it.
+
+AXIOM AUDIT:
+48 principal declarations printed; the union of reported axioms is exactly {propext, Classical.choice, Quot.sound}. No sorryAx, no ofReduceBool.
+
+COMMITS: four (Phase A source/coprimality/μ·log; Phase B Ramanujan/reciprocity/normal form; Phase C socket/status/audit/report; cleanup).
+PUSH: all pushed. Report at `GATE1B_RAMANUJAN_RECIPROCAL_DELTA_SAFE_BANK_REPORT.md`. Historical status layers untouched (append-only).
+
+FINAL LINE:
+
+    GATE1B OPEN — FIRST EXACT RESEARCH RESIDUAL:
+    DETLINE-ADDMIN-RAMANUJAN-RECIPROCAL-CROSSPAIR45.
+
+# Summary of changes for run 788fa1ac-0221-412e-a48f-816308529b50
+PREVIOUS FINITE-LIFT BANK:
+PRESERVED. `CurrentStatusGate1BFiniteLift.lean` and every earlier status/operator layer were left byte-for-byte unchanged; the delta is append-only.
+
+LOCAL-TWIST ALGEBRA:
+KERNEL-PROVED (`RequestProject/CurrentProgramme/FiniteLiftLocalTwistCompression.lean`): `1_{e ∣ uAs+2} = (1/e) Σ_{ν mod e} e_e(ν(uAs+2))`, the Möbius coprimality identity `1_{gcd(s,e)=1} = Σ_{a ∣ gcd(s,e)} μ(a)`, the combined cell expansion indexed by `(a ∣ e, ν mod e)`, and the bookkeeping `#cells = e·τ(e)`, `(1/e)·e·τ(e) = τ(e)`. The analytic divisor summation is an uninhabited input.
+
+PRIMITIVE PROJECTOR:
+`RequestProject/CurrentProgramme/NearPrimitivePhysicalProjector.lean`. The arithmetic right-hand side `Σ_{r∣c, r∣s₁−s₂} φ(r)μ(c/r)` is defined and its algebra kernel-proved; the character-side identity is an uninhabited interface.
+
+LARGE PROJECTOR DIAGONAL:
+KERNEL-PROVED. Pure order lemma (`r > 2S`, `r ∣ s₁−s₂`, `|sᵢ| ≤ S ⇒ s₁ = s₂`); the large part is `Ω_c(S)` on the diagonal and `0` off it; exact physicalisation split `packet = weighted physical diagonal + small-projector routed terms`.
+
+SMALL PROJECTOR ROUTING:
+Exact induced lift `e' = e·(c/r) = ℓ/r` kernel-proved; routing to a closed child is a conditional compiler over the uninhabited large-lift closure input.
+
+WEIGHTED PHYSICALISATION:
+Weight `w_{c,e} = Ω_c(S)/φ(ce)` defined; error bound `|Ω_c(S) − φ*(c)| ≤ 2S·τ(c)` proved; the weighted conclusion is conditional on the uninhabited granular analytic input.
+
+BROAD-MINOR FOURIER LAW:
+KERNEL-PROVED (`RequestProject/CurrentProgramme/BroadMinorAdditiveFourier.lean`): exact Parseval pairing, `ρ̂ = (1−Π)δ̂`, and `⟨ρ, P_Π F⟩ = (1/q) Σ_m Π(1−Π) δ̂ conj(F̂)`.
+
+SMOOTH-PROJECTOR FIREWALL:
+IDEMPOTENCE NOT ASSUMED. Orthogonality is proved only under `Π² = Π`; an explicit countermodel shows a smooth `[0,1]` multiplier is not automatically an orthogonal projection. Plateau contribution proved exactly zero; plateau/transition/minor proved disjoint and covering.
+
+TRANSITION SOCKET:
+UNINHABITED input with density, Fourier, companion and budget fields, plus a conditional compiler to `TransitionPairingNegligible`.
+
+COMPANION ADDITIVE FOURIER:
+KERNEL-PROVED (`RequestProject/CurrentProgramme/DetLineCompanionAdditiveFourier.lean`): `ℓ(dp−uh) − uAs = 2 ↔ uA ∣ N ∧ s = N/(uA)` with `uA ≠ 0` printed, and the DFT normal form with `1_{uA ∣ N}` and the genuine quotient phase.
+
+DIVISIBILITY COMPLETION:
+KERNEL-PROVED: `1_{k ∣ N} = (1/k) Σ_{b mod k} e_k(bN)`, and the completed form `(1/k) Σ_b e_{qk}((bq+m)N) = 1_{k∣N}·e_q(mN/k)`, assembled into the completed companion identity.
+
+ADDITIVE-MINOR SOCKET:
+`RequestProject/CurrentProgramme/DetLineAdditiveMinorCrosspairSocket.lean`. The exact expression `additiveMinorCrossPair` retains lift `e`, conductor `c`, `ℓ = ce`, `w_{c,e}`, `q_ℓ`, the minor frequency `m`, the actual `(1−Π)δ̂` form, the quotient phase with its divisibility condition, the variables `u,A,d,p,h`, and the literal `μ(d)·log p·κ(h)·physical` coefficient shape. Natural-scale Cauchy lemma and the TT\* determinant-shell reconstruction are banked as nonclosing/representation-loop facts, not as refutations.
+
+OLD FINITE-LIFT FRONTIER:
+SUPERSEDED AS CONTROLLING FRONTIER / STRICTLY REDUCED — NOT FALSE (recorded as externally audited supersession, with a machine-checked row asserting the status is not `falseRoute`).
+
+CURRENT RESEARCH FRONTIER:
+DETLINE-NEARPRIM-ADDITIVE-MINOR-CROSSPAIR45
+
+ANALYTIC SOCKET:
+UNINHABITED (as are all six other new interfaces).
+
+TOPBAND:
+OPEN
+
+PURE5:
+OPEN
+
+GATE1B:
+OPEN
+
+TARGETED BUILDS:
+PASS. All seven new modules build together, 8069 jobs, 0 errors. No `sorry`, `admit`, `axiom`, `opaque`, `unsafe`, `native_decide` or `@[implemented_by]` in the new files.
+
+GLOBAL BUILD:
+FAILS AT THE PRE-EXISTING, UNRELATED BLOCKER (`RequestProject.FixedCertificateAlgebra` missing, imported by root-level `K0K1Status.lean` and `R9LeakageArithmetic.lean`). Recorded, not repaired, and it does not affect the targeted-build evidence.
+
+AXIOM AUDIT:
+`RequestProject/CurrentProgramme/AxiomAuditGate1BAdditiveMinor.lean`: 53 new principal declarations printed; only `propext`, `Classical.choice`, `Quot.sound` appear. No `sorryAx`, no `Lean.ofReduceBool`.
+
+COMMITS:
+Three phase commits (Phase A local-twist + projector; Phase B broad-minor + companion; Phase C socket + status layer + audit + report).
+
+PUSH:
+All commits pushed to origin. Report written to `GATE1B_ADDITIVE_MINOR_DELTA_SAFE_BANK_REPORT.md`.
+
+FINAL LINE:
+
+    GATE1B OPEN — FIRST EXACT RESEARCH RESIDUAL:
+    DETLINE-NEARPRIM-ADDITIVE-MINOR-CROSSPAIR45.
+
+# Summary of changes for run 5ed51df2-b590-48a8-b41f-25f5b3979b7c
+GATE 1B FINITE-LIFT RECOVERY — BANKING RUN COMPLETE
+
+PREVIOUS BANK PRESENT:
+YES. All expected modules were found in place under `RequestProject/CurrentProgramme/` (EndpointShiftedDeterminant, EndpointCharacterTransfer, EndpointHighKBandKernel, EndpointShiftedMAM, EndpointCharacterPairing, EndpointShiftedMAMOperatorSocket, EndpointAllKCompilerV2, CurrentStatusHighKShift, CurrentStatusShiftedMAMOperator, AxiomAuditHighKShift, AxiomAuditShiftedMAMOperator). Nothing was recreated, rewritten or strengthened.
+
+TARGETED BUILDS:
+PASS for all nine previously banked modules listed in the request, and PASS for both new modules (8061 jobs, 0 errors). Existing statuses were re-read and confirmed unchanged (DETERMINANT-CHARACTER-TRANSFER45 Lean-proved; DETERMINANT-CHARACTER-TO-SHIFTED-MAM45, SOURCE-MINIMAL-CHARACTER-PAIRING45, PHYSICAL-SHIFT-KERNEL-CLASS45 proved finite; FINITE-SHIFT-STABILITY45, SHIFTED-MAM-DIVISOR-SWITCH45 proved algebraic; ENDPOINT-CHAR-TWISTED-FACTORMOD-SQUARE45 superseded-not-false; FIVE-DEFECT-RESIDUE-ADAPTER45, NATIVE-PURE5-MAM-ADAPTER45, PURE5-COMPARISON-MAINTERM-PIN source-open; POLYLOG-SHIFT-STABILITY45 and SHIFTED-MAM-FIVEFOLD-OPERATOR45 analytic-open; RANKONE-ENDPOINT-ALLK45 conditional compiler; GATE1B open).
+
+NEW STATUS FILE:
+`RequestProject/CurrentProgramme/CurrentStatusGate1BFiniteLift.lean` — one append-only layer importing CurrentStatusShiftedMAMOperator, with rows for DETLINE-CONDUCTOR-LE-Y45, DETLINE-CONDUCTOR-LOCAL-G-ENERGY45, DETLINE-LARGE-LIFT-DISPERSION45, DETLINE-FINITELIFT-NEARPRIM-REDUCTION45, DETLINE-HIGHCOND-DENSE-SATURATION-EXCLUSION45, DETLINE-HIGHCOND-BETA-RHO-CROSSPAIR45, TOPBAND-BETA-BROADMINOR-DETLINE45, DETLINE-NEARPRIM-FINITELIFT-DENSE-SATURATION45 and GATE1B. No `researchClosed`/`partial` constructor was invented and no misleading `closed` was used: the nearest honest existing statuses carry the finer meaning in their notes. Machine-checked: `no_closed_rows`, `ledger_is_honest`, `gate1B_open`, `current_research_frontier`, `formal_socket_distinct_from_research_frontier`, `previous_operator_row_preserved`, `detline_rows_are_not_kernel_proved`. One tiny finite/order theorem was added, `finiteLift_tail_budget`: from an assumed per-lift bound |T(e)| ≤ X·e^(−3/2)·L and an assumed tail-sum input, the tail budget 2·X·E^(−1/2)·L follows. No analytic asymptotic was formalised and no socket was inhabited.
+
+FORMAL OPERATOR FRONTIER: SHIFTED-MAM-FIVEFOLD-OPERATOR45 (analytic-open, uninhabited).
+LATEST RESEARCH FRONTIER: DETLINE-NEARPRIM-FINITELIFT-DENSE-SATURATION45.
+LARGE-LIFT RESEARCH STATUS: CLOSED (research/paper level, metadata only).
+FINITE-LIFT STATUS: OPEN.
+
+REPORTS COMPLETED:
+`GATE1B_HIGHK_SHORTSHIFT_SAFE_BANK_REPORT.md`, `GATE1B_SHIFTED_MAM_OPERATOR_SAFE_BANK_REPORT.md`, `GATE1B_FINITE_LIFT_FRONTIER_DELTA_2026-08-29.md`. The character-bundle safe-bank report was already present in the repository (`CURRENT_GATE1B_CHARACTER_BUNDLE_SAFE_BANK_REPORT.md`) and was left untouched rather than duplicated.
+
+AXIOM AUDIT:
+`RequestProject/CurrentProgramme/AxiomAuditGate1BFiniteLift.lean` — every new declaration depends only on propext / Classical.choice / Quot.sound, or fewer. No sorryAx, no ofReduceBool. Token scan of the two new files finds no sorry, admit, axiom, opaque, unsafe, native_decide or @[implemented_by] outside documentation text.
+
+GLOBAL BUILD:
+BLOCKED BY PRE-EXISTING LEGACY FAILURE. `RequestProject/CurrentProgramme/R9LeakageArithmetic.lean` (and root-level `K0K1Status.lean`) import `RequestProject.FixedCertificateAlgebra`, which is absent from this workspace: `RequestProject/` contains only `CurrentProgramme/` and `NANC/`, and the root-level `FixedCertificateAlgebra.lean` lies outside the `RequestProject.+` library glob in `lakefile.toml`. This is unrelated to the recovery work and was not repaired; the exact file and missing import are recorded in the delta report, together with the passing targeted builds. None of the modules touched this run imports it.
+
+COMMITS: three — "Bank Gate 1B finite-lift research frontier", "Complete Gate 1B Aristotle recovery reports and audit", "Record pre-existing legacy global-build blocker in finite-lift delta report".
+PUSH: SUCCESS.
+
+GATE1B: OPEN.
+
+GATE1B OPEN — FIRST EXACT RESEARCH RESIDUAL: DETLINE-NEARPRIM-FINITELIFT-DENSE-SATURATION45.
+
 # Summary of changes for run 73334372-9cb9-4741-99b0-029d68cc6329
 Completed the Gate 1B "centered 2×2 mixed source / Lichtman socket" safe bank as an append-only continuation of the existing repository. No pre-existing file (including `ARISTOTLE_SUMMARY.md`) was modified.
 
