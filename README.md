@@ -7,7 +7,7 @@ This repository is an exploratory research/proof-search archive. It does **not**
 
 The PDF manuscript may lag the newest internal/repository research ledger. Historical reports are preserved as records of their own runs and should not be read as superseding the latest status overlay.
 
-## Current manuscript
+## Current manuscript and status
 
 - [Stable in-progress PDF](in-progress-twin-prime-proof.pdf)
 - [Versioned Draft 16 PDF](twin_prime_programme_draft16.pdf)
@@ -15,7 +15,9 @@ The PDF manuscript may lag the newest internal/repository research ledger. Histo
 - [Draft 16 bibliography](references_draft16.bib)
 - [Draft 16 change/status ledger](README_DRAFT16.md)
 - [31 Aug Gate 1A / Gate 1B status reconciliation](GATE1A_GATE1B_STATUS_RECONCILIATION_2026-08-31.md)
-- [Current gate architecture/status](CURRENT_GATE_ARCHITECTURE_AND_STATUS.md)
+- [31 Aug current gate architecture/status](CURRENT_GATE_ARCHITECTURE_AND_STATUS_2026-08-31.md)
+- [31 Aug dependency graph](DEPENDENCY_GRAPH_2026-08-31.md)
+- [Current checkpoint](CURRENT_CHECKPOINT.md)
 
 ## Controlling status — 31 August 2026
 
