@@ -1,0 +1,57 @@
+name: Twin Prime project-scope CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    paths:
+      - 'RequestProject/CurrentProgramme/CurrentStatus.lean'
+      - 'RequestProject/CurrentProgramme/DependencyGraph.lean'
+      - 'RESEARCH_FRONTIERS/CURRENT_FRONTIERS.md'
+      - 'CURRENT_GATE_ARCHITECTURE_AND_STATUS.md'
+      - 'CURRENT_PROGRAMME_MASTER_CONTINUATION_REPORT.md'
+      - 'ARISTOTLE_SUMMARY.md'
+      - 'PROJECT_SCOPE.md'
+      - '.github/workflows/project-scope-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  status-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Lean and Mathlib cache
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-mathlib-cache: true
+          build: false
+          test: false
+          lint: false
+
+      - name: Build living status ledger
+        run: ~/.elan/bin/lake build RequestProject.CurrentProgramme.CurrentStatus
+
+      - name: Build project-local dependency graph
+        run: ~/.elan/bin/lake build RequestProject.CurrentProgramme.DependencyGraph
+
+      - name: Check current graph for cross-project active labels
+        shell: bash
+        run: |
+          set -euo pipefail
+          files=(
+            RequestProject/CurrentProgramme/CurrentStatus.lean
+            RequestProject/CurrentProgramme/DependencyGraph.lean
+            RESEARCH_FRONTIERS/CURRENT_FRONTIERS.md
+            ARISTOTLE_SUMMARY.md
+          )
+          if grep -niE 'ERDOS287|AFFINE287|WINDOWPAIRSUPPLY|finiteCompiler287|erdos287' "${files[@]}"; then
+            echo 'Cross-project active label found in a living Twin-Prime status/graph file.' >&2
+            exit 1
+          fi
+          echo 'Twin-Prime living graph scope scan: PASS'
