@@ -1,0 +1,260 @@
+and define the blocks
+\begin{equation}\label{eq:blocks}
+ \mathsf M=\sum_{i=0}^{4}x_i,
+ \qquad
+ \mathsf N=\sum_{i=5}^{8}x_i,
+ \qquad
+ \mathsf L=x_9+x_{10}.
+\end{equation}
+
+\classification{\newderivation}{Kernel checked in \path{Gate1B/R11/Polytope611.lean}.}
+\begin{proposition}[Ordered-polytope geometry]\label{prop:611}
+One has
+\begin{equation}\label{eq:611-ledger}
+ \mathsf M+\mathsf N+\mathsf L=1,
+ \qquad \mathsf M\le\frac5{11},
+ \qquad 1-\mathsf M\ge\frac6{11},
+ \qquad \mathsf L\ge\frac2{11}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The block identity is the partition of the eleven coordinates.  Since every
+one of the first five coordinates is at most every one of the remaining six,
+summing the thirty pairwise inequalities gives
+\[
+            6\mathsf M\le5(1-\mathsf M),
+\]
+whence $11\mathsf M\le5$.  The complementary bound follows immediately.
+Likewise, each of the first nine coordinates is at most each of the final two;
+summing the eighteen inequalities gives
+\[
+            2(1-\mathsf L)\le9\mathsf L,
+\]
+so $\mathsf L\ge2/11$.
+\end{proof}
+
+The CARD5 chamber at parameter $\gamma$ consists of the two inequalities
+\begin{equation}\label{eq:card5-chamber}
+ x_6+x_7+x_8+x_9+x_{10}\le\gamma,
+ \qquad
+ x_0+x_7+x_8+x_9+x_{10}\le\gamma.
+\end{equation}
+
+\classification{\newderivation}{Kernel checked; the counterexamples are also kernel checked.}
+\begin{proposition}[Pinned and unpinned chamber bounds]\label{prop:chamber}
+Under \cref{eq:card5-chamber},
+\begin{equation}\label{eq:chamber-unpinned}
+ \mathsf L\le\gamma,
+ \qquad
+ \mathsf M\ge1-\frac65\gamma,
+ \qquad
+ \mathsf N\ge\frac23(1-\gamma).
+\end{equation}
+If in addition $\gamma\le\frac12-\eps$, then
+\begin{equation}\label{eq:chamber-pinned}
+ \mathsf M\ge\frac25+\frac65\eps,
+ \qquad
+ \mathsf N\ge\frac13+\frac23\eps.
+\end{equation}
+The two lower bounds in \cref{eq:chamber-pinned} do not follow from the chamber
+conditions with a free $\gamma$.
+\end{proposition}
+
+\begin{proof}
+The first chamber inequality gives $\mathsf L\le\gamma$.  Monotonicity gives
+$5x_5\le x_6+\cdots+x_{10}\le\gamma$; hence
+\[
+ 1-\mathsf M=x_5+\cdots+x_{10}\le x_5+\gamma
+          \le\frac65\gamma.
+\]
+For the $\mathsf N$ bound, the first chamber inequality and total mass give
+\[
+       1-\gamma\le x_0+x_1+\cdots+x_5\le6x_5.
+\]
+Thus $x_5\ge(1-\gamma)/6$.  Since
+$x_5\le x_6\le x_7\le x_8$, all four coordinates in $\mathsf N$ are at least
+$x_5$, and hence
+\[
+       \mathsf N=x_5+x_6+x_7+x_8
+          \ge4x_5\ge\frac23(1-\gamma).
+\]
+Substituting $\gamma\le1/2-\eps$ gives \cref{eq:chamber-pinned}.
+
+For nonimplication, the formal bank provides two explicit ordered vectors.  In
+the first, five coordinates equal $1/100$ and six equal $95/600$, so the chamber
+holds at $\gamma=1$ but $\mathsf M=1/20<2/5$.  In the second, nine coordinates
+equal $1/100$ and two equal $91/200$, so the chamber again holds at $\gamma=1$
+but $\mathsf N=1/25<1/3$.
+\end{proof}
+
+\begin{remark}[Pascadi exponent dictionary]
+The formal statement at $\theta=7/32$ is only finite rational arithmetic.  In
+particular,
+\[
+                 2\theta=\frac7{16}<\frac6{11}\le1-\mathsf M.
+\]
+No analytic theorem of Pascadi is encoded or deduced from this inequality.  Any
+later invocation of a Kloosterman theorem requires a separate coefficient,
+modulus, and range dictionary \cite{Pascadi2025}.
+\end{remark}
+
+\section{Vaughan and long-M\"obius chart equivalence}\label{sec:vaughan}
+
+Write $\zeta$ for the constant-one arithmetic function, and for an arithmetic
+function $f$ let $f_{\le U}$ and $f_{>U}$ denote the exact complementary
+truncations.  Vaughan's identity is used only as an algebraic decomposition;
+its classical provenance may be found in \cite{Vaughan1997}.
+
+\classification{\newreduction}{Kernel checked in \path{Gate1B/R11/VaughanCharts.lean}.}
+\begin{theorem}[Exact four-lane identity and $V=2$ chart equivalence]\label{thm:vaughan}
+In the convolution ring of real-valued arithmetic functions,
+\begin{equation}\label{eq:vaughan}
+ \Lambda
+ =\Lambda_{\le V}+\mu_{\le U}*\log
+  -\mu_{\le U}*\Lambda_{\le V}*\zeta
+  +\mu_{>U}*\Lambda_{>V}*\zeta.
+\end{equation}
+For odd $N$ and $V=2$, the first and third lanes vanish, the second lane is the
+low M\"obius--log block, and the fourth lane is the long M\"obius--log block.
+Consequently,
+\begin{equation}\label{eq:chart-equivalence}
+       \operatorname{FourLaneValue}(U,2;N)
+       =\operatorname{LongMobiusValue}(U;N)
+       =\Lambda(N),
+\end{equation}
+with literal equality and no discarded mass.
+\end{theorem}
+
+\begin{proof}
+Use $\mu*\zeta=\mathbf1$ and $\Lambda*\zeta=\log$.  Splitting
+$\mu=\mu_{\le U}+\mu_{>U}$ and
+$\Lambda=\Lambda_{\le V}+\Lambda_{>V}$ gives
+\[
+ \Lambda=(\mu_{\le U}+\mu_{>U})*\log.
+\]
+Insert $\log=\Lambda*\zeta$ in the high part and add and subtract
+$\mu_{\le U}*\Lambda_{\le V}*\zeta$ to obtain \cref{eq:vaughan}.  When $N$ is
+odd, every divisor of $N$ is odd.  The only odd integer at most $2$ is $1$, and
+$\Lambda(1)=0$; hence $\Lambda_{\le2}$ vanishes on every divisor appearing in
+the first and third lanes.  Moreover
+$(\Lambda_{>2}*\zeta)(N)=\log N$ for odd $N$.  This identifies the remaining
+two lanes with the low and long M\"obius--log sums.  The formal proof also
+shows independently that both chart values equal $\Lambda(N)$.
+\end{proof}
+
+\classification{\newreduction}{Kernel checked in \path{Gate1B/R11/LongMobius.lean}.}
+\begin{proposition}[Long-M\"obius divisor involution]\label{prop:long-reindex}
+For $N\ne0$,
+\begin{equation}\label{eq:long-reindex}
+ \sum_{\substack{d\mid N\\d>U}}\mu(d)\log(N/d)
+ =\sum_{\substack{k\mid N\\N/k>U}}\mu(N/k)\log k.
+\end{equation}
+The term $k=1$ vanishes exactly.  The same identity holds after multiplication
+by an arbitrary finitely supported outer weight and summation over $N=n+2$.
+\end{proposition}
+
+\begin{proof}
+The map $d\mapsto N/d$ is an involutive bijection between the two displayed
+sets of divisors.  Substitution gives \cref{eq:long-reindex}; the $k=1$ term is
+zero because $\log1=0$.
+\end{proof}
+
+\begin{warning}[What chart equivalence does not prove]
+Neither \cref{thm:vaughan} nor \cref{prop:long-reindex} is an analytic
+cancellation estimate.  They guarantee that changing charts loses no mass; the
+long-M\"obius residual still requires a separate analytic argument.
+\end{warning}
+
+\section{The affine determinant line, reciprocity, and Bruhat structure}\label{sec:affine}
+
+The matched source equation is
+\begin{equation}\label{eq:matched}
+                    AB+2=kd,
+ \qquad\text{equivalently}\qquad AB-kd=-2.
+\end{equation}
+For odd $A$ and $B$, every cross-gcd is one:
+\begin{equation}\label{eq:four-gcds}
+ (A,k)=(A,d)=(B,k)=(B,d)=1.
+\end{equation}
+Indeed, any common divisor of a cross-pair divides $2$ and also an odd member
+of the pair.
+
+\classification{\newreduction}{Kernel checked in \texttt{Determinant.lean} and \texttt{AffineParametrization.lean}.}
+\begin{theorem}[Unique affine parametrisation]\label{thm:affine}
+Let $k\ne0$, $(A,k)=1$, and let $(B_0,d_0)$ be one integer solution of
+$AB+2=kd$.  Then
+\begin{equation}\label{eq:affine-biconditional}
+ AB+2=kd
+ \quad\Longleftrightarrow\quad
+ \exists!\,t\in\Z:
+ \begin{cases}
+ B=B_0+kt,\\
+ d=d_0+At.
+ \end{cases}
+\end{equation}
+For two points separated by $h$ on this line,
+\begin{equation}\label{eq:det2h}
+             d_tB_{t+h}-d_{t+h}B_t=2h.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Subtract the base equation from $AB+2=kd$ to obtain
+\[
+            A(B-B_0)=k(d-d_0).
+\]
+Since $(A,k)=1$, divisibility gives $k\mid B-B_0$, say $B-B_0=kt$.
+Cancelling $k\ne0$ then gives $d-d_0=At$.  Uniqueness follows from
+$k(t-s)=0$.  Conversely, substitution proves that every $t$ gives a solution.
+Finally,
+\begin{align*}
+ d_tB_{t+h}-d_{t+h}B_t
+ &=d_t(B_t+kh)-(d_t+Ah)B_t\\
+ &=h(kd_t-AB_t)=2h,
+\end{align*}
+by \cref{eq:matched}.
+\end{proof}
+
+The scale relations \cref{eq:conservation-laws} are exact at exponent level.
+The formal bank also proves the useful hybrid inequality: if $KT=\BB$ and
+$a,b>0$, then
+\begin{equation}\label{eq:hybrid-min}
+             \min(T^{-a},K^{-b})\le\BB^{-ab/(a+b)}.
+\end{equation}
+It follows by separating the cases $T\ge\BB^{b/(a+b)}$ and its complement.
+
+\classification{\newreduction}{Kernel checked in \path{Gate1B/R11/Reciprocity.lean}.}
+\begin{proposition}[Exact reciprocity at shift two]\label{prop:reciprocity}
+Let $(A,k)=1$, and choose $A',k'$ with
+$AA'\equiv1\pmod{k}$ and $kk'\equiv1\pmod A$.  Then there is an integer
+$n$ such that
+\begin{equation}\label{eq:reciprocity-real}
+       \frac{A'}k+\frac{k'}A=\frac1{Ak}+n,
+\end{equation}
+and for every integer $h$,
+\begin{equation}\label{eq:reciprocity-exp}
+       \eord{k}{-2hA'}
+       =\eord{A}{2hk'}\eord{Ak}{-2h}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The congruences imply that both $k$ and $A$ divide
+$AA'+kk'-1$.  Coprimality therefore gives
+$Ak\mid AA'+kk'-1$, yielding \cref{eq:reciprocity-real}.  Multiply by
+$-2h$ and exponentiate modulo one to obtain \cref{eq:reciprocity-exp}.
+\end{proof}
+
+\classification{\newreduction}{Kernel checked in \path{Gate1B/R11/Bruhat.lean}.}
+\begin{proposition}[Exact $\mathrm{SL}_2$ Bruhat factorisation]\label{prop:bruhat}
+Let
+\[
+ M=\begin{pmatrix}A&k\\d&B\end{pmatrix},\qquad AB-kd=-2,
+\]
+choose $\lambda$ with $\lambda(-2)=1$, and suppose $d^{-1}$ is supplied in the
+coefficient ring.  Then
+\begin{equation}\label{eq:bruhat}
+ \begin{pmatrix}\lambda A&\lambda k\\d&B\end{pmatrix}
+ =U(\lambda A d^{-1})D(d^{-1})S U(Bd^{-1}),
+\end{equation}
