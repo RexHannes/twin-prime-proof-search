@@ -1,0 +1,260 @@
+source cutoff.
+
+
+\section{Corrected audit constants and the closed-sector ledger}\label{sec:auditconstants}
+
+The independent hostile audit accepted the rough-modulus proof and its physical
+transference, but identified three corrections that must be incorporated into
+any authoritative manuscript.  A fourth endpoint split was requested for full
+reviewability.  None changes an exponent or reopens a closure node.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}p{0.20\textwidth}X X@{}}
+\toprule
+Issue & Correct statement & Consequence \\
+\midrule
+Principal coprimality removal
+& Use full inclusion--exclusion:
+  $O_j(2^j(D/P+1))$, not the literal coefficient $j(D/P+1)$.
+& For the physical value $j=5$, only the absolute constant changes. \\
+\addlinespace
+Odd-M\"obius recursion
+& The dyadic identity \cref{eq:odd-recursion} is charged one additional
+  factor $O(\log D)$ in the conservative global ledger.
+& Replace $\LL^{113+3b/2}$ by $\LL^{114+3b/2}$. \\
+\addlinespace
+Cellwise frequency legality
+& Define the cutoff with
+  $Q_C^{\min}=\min_{(A,k)\in C}Q_{A,k,C}$ and impose
+  $2H_C<Q_C^{\min}$.
+& Every retained frequency is legal on every line in the cell. \\
+\addlinespace
+Complementary-modulus endpoint
+& Split $fe\le R$, $R<fe<2R$, and $fe\ge2R$ before using
+  $\#\{r:e\mid r,\,R\le fr<2R\}\le2R/(fe)$.
+& Makes \cref{eq:r-count} explicit; no extra term or logarithm appears. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The kernel-checked outer CARD5 coefficient and the crude source bounds give the
+fixed coefficient
+\begin{equation}\label{eq:fixed-coeff}
+                  252\cdot5!\cdot6!=21{,}772{,}800.
+\end{equation}
+The inherited source compiler contributes $\LL^{111}$; one dyadic partition in
+$k$, the explicit $\log k$, and the conservative odd-M\"obius recursion each
+cost at most one further logarithm.  If $H\le\LL^b$, the frequency summation
+costs $\LL^{3b/2}$.  A sufficient global envelope for the newly closed region
+is therefore
+\begin{equation}\label{eq:corrected-ledger}
+ \begin{split}
+ C\,21{,}772{,}800\,X\LL^{114+3b/2}
+ \bigl(&X^{-\delta+o(1)}+\LL^{-J}\\
+       &+P_*^{-1}+D^{-1}\bigr).
+ \end{split}
+\end{equation}
+For a requested output $X\LL^{-B}$, choose, for example,
+\begin{equation}\label{eq:J-choice}
+                    J>B+115+\frac{3b}{2}.
+\end{equation}
+The strict extra unit is a harmless safety margin.  All terms other than
+$\LL^{-J}$ are fixed-power small on the closed region and absorb the complete
+finite logarithmic ledger.
+
+\classification{\newapplication}{Independent audit correction; conditional on the inherited $\LL^{111}$ source ledger.}
+\begin{proposition}[Corrected arbitrary-log closure ledger]\label{prop:corrected-ledger}
+Under \cref{hyp:frozen}, \cref{eq:corrected-ledger} is a sufficient uniform
+envelope for every fixed-polylogarithmic band closed by
+\cref{thm:transference-main}.  In particular, the three audit corrections do
+not invalidate the closure of the former Sector~A.
+\end{proposition}
+
+\begin{proof}
+Insert \cref{eq:delta} into \cref{eq:transference-main}, multiply by the
+fixed coefficient \cref{eq:fixed-coeff} and by the four declared logarithmic
+sources, and use $H^{3/2}\le\LL^{3b/2}$.  The choice
+\cref{eq:J-choice} leaves at least $\LL^{-B-1}$ after the conservative ledger;
+the fixed-power terms dominate every fixed power of $\LL$ for sufficiently
+large $X$.
+\end{proof}
+
+\section{Adaptive conductor cutoff}\label{sec:adaptive}
+
+The old constants $\eta=\rho=1/10000$ were useful for an initial partition but
+are not intrinsic to the physical source.  The variance theorem supplies the
+cellwise squared nonprincipal deficit
+\begin{equation}\label{eq:LambdaC}
+ \Lambda_C=
+ \left(1+\frac{K_C}{R_C}\right)
+ \left(\frac{R_C^2}{X}+\frac{R_C}{K_CP_C}\right).
+\end{equation}
+For $K_C\le R_C$, the leading multiplicity factor is bounded by $2$; retaining
+it uniformly avoids a second definition at $K_C=R_C$.
+
+\classification{\newreduction}{Independently audited source-specific definition; the minimum-conductor correction is authoritative.}
+\begin{definition}[Cellwise legal cutoff]\label{def:HC}
+Fix a requested output exponent $S>0$, a fixed logarithmic reserve $c_0>0$,
+and a fixed cap $b>0$.  Put
+\begin{equation}\label{eq:Qmin}
+            Q_C^{\min}=\min_{(A,k)\in C}Q_{A,k,C}.
+\end{equation}
+If there is a positive integer $H$ satisfying
+\begin{equation}\label{eq:HC-conditions}
+ H\le\LL^b,
+ \qquad 2H<Q_C^{\min},
+ \qquad
+ (1+H)^{3/2}\sqrt{\Lambda_C}\le\LL^{-(S+c_0)},
+\end{equation}
+let $H_C$ be the largest such $H$.  If there is no such positive integer, set
+$H_C=0$.
+\end{definition}
+
+The definition is admissible rather than globally optimal.  It adapts to the
+actual conductor deficit and never asks a line to support a Fourier frequency
+outside its cyclic Nyquist range.  The reserve $c_0$ is chosen to dominate the
+finite coefficient and logarithmic compiler costs; it is not a new analytic
+parameter.
+
+If $R_C^2/X$ is already fixed-power small and $K_C\le R_C$, the full cap
+$H_C=\lfloor\LL^b\rfloor$ is admitted by the sufficient inequality
+\begin{equation}\label{eq:full-cap-condition}
+          \frac{K_C}{R_C}
+          \gg P_C^{-1}\LL^{2(S+c_0)+3b}.
+\end{equation}
+Thus the controlled low-frequency region can extend to an inverse physical
+prime factor in $K_C/R_C$, rather than stopping at an arbitrary inverse
+logarithm.
+
+\classification{\newapplication}{Independent analytic audit; conditional on the finite compiler ledger.}
+\begin{proposition}[Low-pass estimate at the adaptive cutoff]\label{prop:adaptive-low}
+For $H_C$ as in \cref{def:HC}, the complete physical first-moment contribution
+of the frequencies $0<|\xi|\le H_C$, summed over all cells, is
+\begin{equation}\label{eq:adaptive-low-bound}
+                        O_S(X\LL^{-S}).
+\end{equation}
+The principal term is included.
+\end{proposition}
+
+\begin{proof}
+Apply \cref{thm:transference-main} cell by cell.  The nonprincipal term is at
+most $\LL^{-(S+c_0)}$ times the natural cell mass by
+\cref{eq:HC-conditions}.  Choose $c_0$ larger than the declared finite
+compiler cost and sum the finitely many dyadic/Mellin cells.  For the principal
+term, choose $J$ as in \cref{eq:J-choice}; the $P_C^{-1}$ and $D_C^{-1}$ terms
+are fixed-power small in the physical range.  If $H_C=0$, the low-pass
+contribution is empty.
+\end{proof}
+
+\section{Exact high-pass reassembly}\label{sec:reassembly}
+
+For each line, let $P_C^{\mathrm{lo}}$ denote the finite Fourier projection
+\begin{equation}\label{eq:Plo}
+  [P_C^{\mathrm{lo}}b^\perp](t)
+   =\sum_{0<|\xi|_Q\le H_C}c_{A,k,C}(\xi)\eord{Q}{\xi t},
+\end{equation}
+where $|\xi|_Q$ is the least absolute representative.  The zero mode is absent
+because $b^\perp$ is centred.  The high-pass target is
+$(I-P_C^{\mathrm{lo}})b^\perp$.
+
+The finite coefficient $c_{C,A,k}$ below retains the five-prime source weight,
+all signs, the smoothing and Mellin labels, and every local source restriction.
+It is not a generic bounded coefficient.
+
+\classification{\newreduction}{Exact linear decomposition; independently audited physical transference; conditional on the frozen full-source compiler.}
+\begin{theorem}[Source-exact high-pass reassembly]\label{thm:reassembly}
+Define
+\begin{equation}\label{eq:Rhi}
+ \boxed{
+ \Rhi(X)=252\sum_{C,A,k}c_{C,A,k}\log k
+   \sum_{t\in\cI_{A,k,C}}\mu(d_t)
+      [(I-P_C^{\mathrm{lo}})b^\perp_{A,k,C}](t).
+ }
+\end{equation}
+Then, for every fixed requested $S$,
+\begin{equation}\label{eq:R11-Rhi}
+ \boxed{
+          \Roneone(X)=\Rhi(X)+O_S(X\LL^{-S})
+ }
+\end{equation}
+under \cref{hyp:frozen}.
+\end{theorem}
+
+\begin{proof}
+On every line,
+\[
+ b^\perp=P_C^{\mathrm{lo}}b^\perp
+            +(I-P_C^{\mathrm{lo}})b^\perp
+\]
+is a literal finite Fourier identity.  Substitute it into the frozen
+first-moment $R_{11}$ row before taking any absolute value or square.  The sum
+of the low-pass terms is $O_S(X\LL^{-S})$ by
+\cref{prop:adaptive-low}; all previously owned source pieces are already
+included in the same error by \cref{hyp:frozen}.  What remains is exactly
+\cref{eq:Rhi}.  No coefficient, ordering state, or local label is removed.
+\end{proof}
+
+\begin{warning}[Mixed-frequency firewall]\label{fire:mixed}
+If a two-copy argument is applied after the split, then
+\[
+ |L^{\mathrm{lo}}+L^{\mathrm{hi}}|^2
+ =|L^{\mathrm{lo}}|^2+|L^{\mathrm{hi}}|^2
+ +2\Re(L^{\mathrm{lo}}\overline{L^{\mathrm{hi}}}).
+\]
+The proof of \cref{thm:reassembly} does not claim that the cross term vanishes.
+It avoids the issue by proving the complete low contribution small at
+first-moment level and replacing the original row by the exact high-pass row.
+A future MHHC estimate must start from that high-pass row.
+\end{warning}
+
+The old three-sector formulation
+\[
+ \cO_{\mathrm{bal,low}}^{\mathrm{upgrade}}
+ +\cO_{\mathrm{bal,high}}+\cO_{\mathrm{unbal}}
+\]
+is therefore superseded.  It was a useful diagnostic split, but the controlling
+frontier is now the single signed functional \cref{eq:Rhi}.
+
+\section{The remaining $\Rhi$ problem and quantified nonclosures}\label{sec:Rhi}
+
+The exact open estimate is
+\begin{equation}\label{eq:Rhi-target}
+             \boxed{\Rhi(X)\ll_S X\LL^{-S}}
+\end{equation}
+for one sufficiently large fixed $S$ required by the downstream finite ledger.
+In balanced cells, $\Rhi$ contains only frequencies above the chosen fixed
+polylogarithmic cap.  In strongly unbalanced cells, \cref{def:HC} may give
+$H_C=0$, in which case every nonzero frequency remains.
+
+The following calculations explain why several natural architectures do not
+yet prove \cref{eq:Rhi-target}.  They are capacity statements about particular
+proofs, not lower bounds for $\Rhi$ and not impossibility theorems.
+
+\subsection{Common-frequency cardinal interpolation}
+
+For one line define the exact band-limited interpolation
+\begin{equation}\label{eq:cardinal-g}
+ g_i(x)=\sum_{t\in\cI_i}b_i^\perp(t)
+  \operatorname{sinc}\left(\frac{Dx-a_i}{q}-t\right),
+ \qquad \operatorname{sinc}(u)=\frac{\sin\pi u}{\pi u}.
+\end{equation}
+At $x=(a_i+qt)/D$, this equals $b_i^\perp(t)$.  Its Fourier transform is
+\begin{equation}\label{eq:cardinal-G}
+ G_i(\tau)=\frac qD\ee{-a_i\tau/D}
+   \1_{|\tau|\le D/(2q)}
+   \sum_tb_i^\perp(t)\ee{-q\tau t/D},
+\end{equation}
+and Plancherel gives
+\begin{equation}\label{eq:cardinal-energy}
+      \int_{\R}|G_i(\tau)|^2\,d\tau
+       =\frac qD\sum_t|b_i^\perp(t)|^2\ll B_0^2.
+\end{equation}
+For each common $\tau$, \cref{thm:roughvariance} applies to
+$a_n=\mu(n)\ee{\tau n/D}$ without a derivative loss.  On $|\tau|\le H$ this
+yields
+\begin{equation}\label{eq:cardinal-bound}
+ \sum_i\left|\int_{|\tau|\le H}G_i(\tau)E_i(\tau)\,d\tau\right|
+ \ll_jB_0\sqrt{RK}\sqrt{H\left(DR+D^2/P\right)}.
+\end{equation}
+At the full bandwidth $H\asymp T=D/R$, normalisation by $DK$ gives
