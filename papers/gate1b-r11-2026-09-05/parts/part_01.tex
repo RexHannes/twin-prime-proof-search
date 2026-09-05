@@ -1,0 +1,260 @@
+only the declared finite logarithmic ledger.  Finally, the supplied physical
+source is taken to be the full $R_{11}$ source for the analytic reduction.
+\end{hypothesis}
+
+\begin{warning}[Coverage is not a Lean theorem]\label{fire:coverage}
+The last sentence of \cref{hyp:frozen} is an inherited analytic-source
+hypothesis.  The formal development defines but does not inhabit the proposition
+\emph{CanonicalCoversFullR11}.  Thus every theorem in this manuscript that
+concludes something about the full historical $R_{11}$ node is conditional on
+\cref{hyp:frozen}.
+\end{warning}
+
+\classification{\newreduction}{Lean for the exact algebra; independent audit for the rough-conductor step; conditional on \cref{hyp:frozen}.}
+\begin{theorem}[Audited current frontier]\label{thm:frontier}
+Assume \cref{hyp:frozen}.  Then the following statements hold.
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.7em]
+\item The exact source geometry, Vaughan/long-M\"obius chart equivalence,
+      CARD5 coefficient, affine determinant line, reciprocity identities, and
+      finite abstract Hilbert--HMRD theorem are as recorded in
+      \cref{sec:geometry,sec:vaughan,sec:affine,sec:hmrd}.
+\item For every fixed $B,b>0$, all physical first-moment target frequencies
+      $0<|\xi|\le \LL^b$ in the range
+      \[
+             K_C\ge R_C/\sqrt{P_C},\qquad K_C\le R_C,
+      \]
+      contribute $O_{B,b}(X\LL^{-B})$ after the finite compiler ledger is paid.
+      In particular, the former balanced-low Sector~A is closed at arbitrary
+      logarithmic precision.
+\item For a cellwise cutoff $H_C$ defined in \cref{def:HC}, there is an exact
+      first-moment reassembly
+      \[
+            \Roneone(X)=\Rhi(X)+O_S(X\LL^{-S}),
+      \]
+      for every fixed requested $S$, where $\Rhi$ is given in
+      \cref{eq:Rhi}.
+\item No estimate of the required strength has been proved for $\Rhi$ on the
+      full remaining range.  Hence $R_{11}$ remains open.  No downstream node
+      is closed by this theorem.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Part~(i) is the collection of kernel-checked statements proved in
+\cref{sec:geometry,sec:vaughan,sec:affine,sec:hmrd}.  Part~(ii) is
+\cref{cor:sectorA}, which follows from the audited rough-modulus variance
+estimate and physical transference.  Part~(iii) is \cref{thm:reassembly}.
+Part~(iv) is a status assertion: the source bank contains no theorem bounding
+\cref{eq:Rhi-target}, and the independently audited report explicitly retains
+it as the first open physical functional.
+\end{proof}
+
+\classification{\newderivation}{Independent analytic audit; not formalised in Lean.}
+\begin{theorem}[Rough squarefree-modulus variance]\label{thm:roughvariance-main}
+Let $R\ge2$, $D\ge1$, $P\ge2$, and let $j$ be fixed.  Let $\cA$ be any set of
+squarefree integers $q\in[R,2R)$ satisfying
+\[
+       \omega(q)\le j,\qquad P^-(q)\ge P.
+\]
+Let $(a_n)$ be a \emph{single common} sequence with $|a_n|\le1$, supported on
+$D<n\le2D$.  For $D\le y\le2D$ and $(a,q)=1$, put
+\[
+ E_q(a;y)=
+ \sum_{\substack{D<n\le y\\n\equiv a\pmod q}}a_n
+ -\frac1{\phi(q)}\sum_{\substack{D<n\le y\\(n,q)=1}}a_n.
+\]
+Then, uniformly in $y$ and in $(a_n)$,
+\begin{equation}\label{eq:roughvariance-main}
+ \sum_{q\in\cA}\sum_{a\bmod q}^{*}|E_q(a;y)|^2
+       \ll_j DR+\frac{D^2}{P}.
+\end{equation}
+Under the standard primitive-large-sieve normalisation used in
+\cref{sec:roughproof}, the conservative coefficient $2^{2j+8}$ is admissible
+up to endpoint rounding.
+\end{theorem}
+
+\classification{\newapplication}{Independent analytic audit; conditional only on the literal physical dictionary, not on KMT.}
+\begin{theorem}[Band-limited physical transference]\label{thm:transference-main}
+In one physical cell, let $B_0$ bound the centred six-prime line target, let
+$1\le H<\frac12\min_iQ_i$, and first suppose $K\le R$.  Then
+\begin{equation}\label{eq:transference-main}
+ \sum_{A,k}|L_{A,k}^{\le H}|
+ \ll_j B_0DK(1+H)^{3/2}
+ \left(
+   \sqrt{\frac{R^2}{DK}+\frac{R}{KP}}
+   +\LL^{-J}+P^{-1}+D^{-1}
+ \right).
+\end{equation}
+For general $K$, the expression under the first square root is multiplied by
+$1+K/R$.  If the M\"obius sequence is restricted to odd integers, one extra
+factor $O(\log D)$ is reserved in the global ledger.
+\end{theorem}
+
+\classification{\newapplication}{Independent analytic audit; conditional on the frozen physical source/compiler bank.}
+\begin{corollary}[Closure of the former Sector A]\label{cor:sectorA}
+Assume \cref{hyp:frozen}.  For every fixed $B,b>0$, the total physical
+contribution of frequencies $0<|\xi|\le\LL^b$ from cells satisfying
+\[
+        K_C\ge R_C/\sqrt{P_C},\qquad K_C\le R_C,
+\]
+is $O_{B,b}(X\LL^{-B})$.  The former Sector~A, defined by
+$K_C\ge R_C\LL^{-1/10000}$ and $0<|\xi|\le\LL^{1/10000}$, is contained in
+this region for sufficiently large $X$ and is therefore closed at arbitrary
+logarithmic precision.
+\end{corollary}
+
+\classification{\newreduction}{Independent analytic audit; exact at first-moment level and conditional on \cref{hyp:frozen}.}
+\begin{theorem}[Adaptive cutoff and high-pass reassembly]\label{thm:reassembly-main}
+Let $H_C$ be the cellwise cutoff of \cref{def:HC}.  Then
+\begin{equation}\label{eq:reassembly-main}
+          \Roneone(X)=\Rhi(X)+O_S(X\LL^{-S}),
+\end{equation}
+where $\Rhi$ is the source-exact high-pass functional in \cref{eq:Rhi}.
+The identity is linear.  It does not discard a mixed term arising from a
+quadratic low/high expansion.
+\end{theorem}
+
+\classification{\candidatenew}{\openstatus; no Lean proof and no successful analytic proof in the current bank.}
+\begin{conjecture}[Source-weighted high-pass $R_{11}$ estimate]\label{conj:Rhi}
+For one sufficiently large fixed exponent $S$ required by the downstream
+finite ledger,
+\begin{equation}\label{eq:Rhi-target-main}
+              \Rhi(X)\ll_S X\LL^{-S}.
+\end{equation}
+The coefficient and frequency range are those of \cref{eq:Rhi}; in particular,
+this is not an arbitrary-coefficient Type~II statement.
+\end{conjecture}
+
+\begin{remark}
+The exact minimum admissible value of $S$ has not been extracted from the
+retrieved downstream bank.  The closed sectors are stronger than necessary in
+that they give every fixed logarithmic power.  The open target should not be
+artificially strengthened to ``for all $S$'' unless a later compiler requires
+it.
+\end{remark}
+
+\section{Notation and the physical source}\label{sec:physical}
+
+Throughout, $X$ is large and
+\[
+                 \LL=\log X.
+\]
+The letters $A$ and $B_t$ denote integers on the matched determinant line;
+$R,K,D,\BB,T$ denote their dyadic scales.  Thus
+\begin{equation}\label{eq:scale-ledger}
+ A\asymp R,\qquad k\asymp K,\qquad d_t\asymp D,
+ \qquad B_t\asymp\BB,
+\end{equation}
+and the physical conservation laws are
+\begin{equation}\label{eq:conservation-laws}
+          RT\asymp D,
+ \qquad KT\asymp\BB,
+ \qquad DK\asymp X,
+ \qquad R\BB\asymp X.
+\end{equation}
+At exponent level, if $R=X^\alpha$ and $D=X^u$, then
+\[
+        T=X^{u-\alpha},\qquad K=X^{1-u},
+        \qquad \BB=X^{1-\alpha}.
+\]
+The worst endpoint cell has
+\[
+ R,K\asymp X^{5/11},\qquad D,\BB\asymp X^{6/11},
+ \qquad T\asymp X^{1/11}.
+\]
+The low-divisor source compiler is inherited in the form
+\begin{equation}\label{eq:lowd-cutoff}
+             d>X^{6/11-\epssafe},
+\end{equation}
+with a fixed safe $\epssafe>0$ in the range required by its original proof.
+
+\subsection{The literal six-prime target}
+
+For a physical exponent cell $C$, let
+\[
+ \cP_{j,C}=\{p\ \text{prime}:p\asymp P_{j,C}\},
+       \qquad 5\le j\le10.
+\]
+The target coefficient is
+\begin{equation}\label{eq:beta6}
+ \beta_{6,C}(B)=
+ \sum_{\substack{p_5\cdots p_{10}=B\\
+                   p_j\in\cP_{j,C}\\
+                   \text{physical ordering and local labels}}}
+ \prod_{j=5}^{10}V_{j,C}(p_j/P_{j,C})p_j^{i\tau_{j,C}}.
+\end{equation}
+All ordering, smoothing, Mellin, and local source labels are retained.  After
+normalising the smooth envelopes, the crude but sufficient pointwise bound is
+\begin{equation}\label{eq:beta6-bound}
+                     |\beta_{6,C}(B)|\le 6!.
+\end{equation}
+For fixed $A,k$ choose a base solution $(B_0,d_0)$ of the determinant equation
+and put
+\begin{equation}\label{eq:affine-def-early}
+             B_t=B_0+kt,\qquad d_t=d_0+At.
+\end{equation}
+On the physical interval $\cI_{A,k,C}$ define
+\begin{equation}\label{eq:b-line}
+ b_{A,k,C}(t)=W_{A,k,C}(t)\beta_{6,C}(B_t),
+ \qquad
+ \bar b_{A,k,C}=\frac1{|\cI_{A,k,C}|}
+       \sum_{t\in\cI_{A,k,C}}b_{A,k,C}(t),
+\end{equation}
+and
+\begin{equation}\label{eq:bperp}
+ b^\perp_{A,k,C}(t)=\1_{\cI_{A,k,C}}(t)
+       \bigl(b_{A,k,C}(t)-\bar b_{A,k,C}\bigr).
+\end{equation}
+Then
+\begin{equation}\label{eq:mean-zero}
+                    \sum_t b^\perp_{A,k,C}(t)=0
+\end{equation}
+exactly.  The sequence $b^\perp$ is not replaced anywhere by an arbitrary
+bounded mean-zero sequence.
+
+\subsection{Exact combinatorial normalisation}
+
+\classification{\newreduction}{Kernel checked in \path{Gate1B/R11/Card5.lean} and \texttt{Factor542.lean}.}
+\begin{proposition}[CARD5 and $4\mid4\mid2$ ledger]\label{prop:normalisation}
+The CARD5 selector chooses five of ten large coordinates and has cardinality
+\[
+                  \binom{10}{5}=252.
+\]
+Together with the distinguished prime, every selected divisor has six distinct
+prime factors and therefore M\"obius sign $(-1)^6=+1$.  The ordered
+$4\mid4\mid2$ allocations have cardinality
+\[
+  \binom{10}{4}\binom{6}{4}=3150
+   =\frac{10!}{4!\,4!\,2!}.
+\]
+The factors $1/4!$, $1/4!$, $1/2!$, and $1/3150$ consume the complete internal
+multiplicity.  Consequently, the outer CARD5 coefficient is $252$, not
+$252\cdot3150$, and
+\[
+                    \frac{252}{3150}=\frac2{25}.
+\]
+\end{proposition}
+
+\begin{proof}
+The cardinalities are the displayed binomial coefficients.  For a
+representation-blind atom weight, the three grouped products in any
+$4\mid4\mid2$ allocation recombine to the full ten-atom product.  Summing over
+all $3150$ allocations therefore gives $3150$ identical copies, which are
+cancelled by the averaging factor.  The remaining factor is the CARD5 count.
+The formal proof additionally checks distinctness, squarefreeness, the
+M\"obius sign, and the factorial identity in the kernel.
+\end{proof}
+
+\begin{warning}[Representation-blindness]
+The equal-$n$ CARD5 collapse is formalised only for a weight whose type excludes
+dependence on the selected five-subset.  A state-dependent label cannot be
+silently collapsed to $252$ copies.
+\end{warning}
+
+\section{Source geometry and the uniform $6/11$ cutoff}\label{sec:geometry}
+
+Let
+\[
+        0<x_0\le x_1\le\cdots\le x_{10},
+        \qquad \sum_{i=0}^{10}x_i=1,
+\]

@@ -1,0 +1,260 @@
+\begin{equation}\label{eq:cardinal-capacity}
+             \left(\frac RK+\frac{D}{KP}\right)^{1/2}.
+\end{equation}
+For $K\le R$, the first term is at least one.  Parseval alone therefore does not
+close the full spectrum; additional covariance between $G_i$ and $E_i$ is
+required.
+
+\subsection{Moving-shift Chowla}
+
+The physical M\"obius shift is $s=Ah$.  Since $RT=D$ and
+$\#\{(A,h):Ah=s\}\le\tau(s)=X^{o(1)}$, a cell contains at least
+$DX^{-o(1)}$ distinct shifts.  Shift scarcity is not the obstruction.  The
+available averaged Hardy--Littlewood--Chowla framework
+\cite{LichtmanTeravainen2022} does not directly provide the simultaneous local
+moments for
+\[
+        \mu(d_0+At)
+        \quad\text{and}\quad
+        \beta_{6,C}(B_0+kt)
+\]
+averaged over $A,k$, with the determinant and paired high-pass target retained.
+A source-compatible progression/target mixed-moment theorem remains unproved.
+
+\subsection{Factoring the five-prime modulus}
+
+Write $A=pa$ with $(p,a)=1$.  Solve first
+$kd\equiv2\pmod a$ by $d=d_*+au$.  The missing prime imposes
+\[
+       u\equiv u_p:=(2-kd_*)\overline{ka}\pmod p,
+\]
+so exactly
+\begin{equation}\label{eq:factorA}
+ \1_{kd\equiv2\, (A)}
+  =\1_{kd\equiv2\, (a)}\frac1p
+    \sum_{j\bmod p}\eord{p}{j(u-u_p)}.
+\end{equation}
+Keeping only $j=0$ changes the source.  Estimating every $j$ independently does
+not automatically recover the gain expected from the shorter modulus $a$.
+The source also admits a distinct one-prime chart, but a high target frequency
+in the present chart is not automatically low in that chart; an exact
+cross-chart projector comparison is missing.
+
+\subsection{Automorphic completion and the constant spectrum}
+
+The matrix identity \cref{eq:matrix-hecke} places the source in one Hecke cell.
+Under the standard normalisation for the trivial-character Hecke operator
+\cite{Iwaniec2002},
+\begin{equation}\label{eq:hecke-constant}
+                    T_h\mathbf1=\frac{\sigma_1(h)}{\sqrt h}\mathbf1.
+\end{equation}
+Suppose a source-preserving completion produces
+\[
+             F=\sum_t\mu(d_t)r_t\ph_t
+\]
+on a finite-volume quotient with $\int\ph_t=1$.  Its constant-spectrum
+contribution to the complete Hecke quadratic form is
+\begin{equation}\label{eq:constant-mass}
+ \boxed{
+ \frac{\sigma_1(h)}{\sqrt h\,\operatorname{vol}}
+      \left|\sum_t\mu(d_t)r_t\right|^2.
+ }
+\end{equation}
+Although $\sum_tr_t=0$ for a centred target, this does not imply
+$\sum_t\mu(d_t)r_t=0$.  Thus target mean zero does not justify deleting the
+automorphic constant.  The automorphic-kernel estimates presently inspected
+\cite{GrimmeltMerikoski2025} control completed source functionals by positive
+autocorrelation norms; they do not supply the missing bound for
+\cref{eq:constant-mass} in this physical tensor.
+
+\subsection{Gcd descent and Kloosterman fractions}
+
+Let
+\[
+ g=(d_t,d_{t+h})=(d_t,h),
+ \qquad d_t=gd',\quad d_{t+h}=gd'',\quad h=gh'.
+\]
+Then $(d',d'')=1$ and
+\begin{equation}\label{eq:gcd-desc-det}
+                  d'B_{t+h}-d''B_t=2h'.
+\end{equation}
+Consequently,
+\begin{equation}\label{eq:kloosterman-congruences}
+ B_{t+h}\equiv2h'\overline{d'}\pmod{d''},
+ \qquad
+ B_t\equiv-2h'\overline{d''}\pmod{d'}.
+\end{equation}
+These are genuine Kloosterman-fraction phases.  However, after the high-$g$
+strata are removed, the source still contains two M\"obius coefficients and
+two paired six-prime weights.  The separate-vector trilinear architecture of
+Bettin--Chandee \cite{BettinChandee2018} and the bilinear non-abelian
+architecture of Pascadi \cite{Pascadi2025} do not, without a further legal
+compression, accept this complete physical tensor.
+
+Opening one labelled prime from each target gives
+\begin{equation}\label{eq:prime-open}
+ B_t=pm,\qquad B_{t+h}=p'm',
+\end{equation}
+and the exact identities
+\begin{equation}\label{eq:prime-open-identities}
+        p'm'-pm=kh,
+ \qquad d_tp'm'-d_{t+h}pm=2h.
+\end{equation}
+The finite labelled-choice cost is $6^2=36$, but the remaining coefficient
+system still has two M\"obius variables, two exposed primes, two five-prime
+coefficients, and the $A,k,h$ determinant average.  No current cited theorem has
+been verified to accept all of those data literally.
+
+\classification{\openstatus}{The following status is a negative capacity ledger, not a theorem that $\Rhi$ is large.}
+\begin{status}[Capacity of tested high-frequency routes]\label{status:capacity}
+The current bank establishes the exact cardinal transform, the exact
+factor-$A$ congruence, the exact single-Hecke-cell completion, the exact
+constant-spectrum term, and the exact Kloosterman congruences.  None of the
+associated estimates proves \cref{eq:Rhi-target}.  The deficit is a
+source-weighted high-frequency covariance or spectral estimate, not a missing
+scalar large-sieve inequality.
+\end{status}
+
+
+\section{Formal verification and independent-audit status}\label{sec:formal}
+
+\subsection{Authoritative source order}
+
+The synthesis follows the requested precedence order.
+\begin{enumerate}[label=\textup{(\arabic*)},leftmargin=2.7em]
+\item the latest Aristotle formal/status bank;
+\item the latest independent Opus hostile audit;
+\item the latest GPT research report;
+\item the explicitly frozen upstream physical/source bank.
+\end{enumerate}
+This order is not merely bibliographic.  It resolves the following material
+discrepancies.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}p{0.23\textwidth}p{0.31\textwidth}X@{}}
+\toprule
+Discrepancy & Earlier formulation & Authoritative formulation used here \\
+\midrule
+Canonical versus full source
+& The physical analytic report works with the supplied full-$R_{11}$ source.
+& Lean proves the canonical internal bank but not
+  \emph{CanonicalCoversFullR11}; full-source identification is stated as
+  \cref{hyp:frozen}, not as a formal theorem. \\
+\addlinespace
+Physical Hilbert caller
+& Earlier architecture sought a delta-plus-single-Poisson HMRD caller.
+& The abstract HMRD theorem is valid, but its physical caller is uninhabited and
+  the architecture is retired/nonclosing. \\
+\addlinespace
+Frequency frontier
+& The earlier FSHC split retained balanced-low, balanced-high, and unbalanced
+  sectors separately.
+& The rough-conductor closure removes the complete legal low pass and replaces
+  that split by the single signed residual $\Rhi$. \\
+\addlinespace
+Principal roughness cost
+& $j(D/P+1)$.
+& $O_j(2^j(D/P+1))$ by exact inclusion--exclusion. \\
+\addlinespace
+Logarithmic ledger
+& $\LL^{113+3b/2}$.
+& $\LL^{114+3b/2}$ after charging the odd-M\"obius dyadic recursion. \\
+\addlinespace
+Cyclic frequency cap
+& A representative cell conductor $Q_C$.
+& The minimum $Q_C^{\min}$ across every line in the cell. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Kernel-checked modules}
+
+The formal delta consists of the following files.
+
+\begin{center}
+\footnotesize
+\begin{tabularx}{\textwidth}{@{}P{0.49\textwidth}>{\raggedright\arraybackslash}X@{}}
+\toprule
+Module & Kernel-checked content \\
+\midrule
+\path{Gate1B/R11/CanonicalSource.lean}
+& labels, prime distinctness, squarefreeness, collision decomposition, rational metadata \\
+\path{Gate1B/R11/Card5.lean}
+& $\binom{10}{5}=252$, selected six-prime divisor, M\"obius sign $+1$, equal-$n$ collapse \\
+\path{Gate1B/R11/Factor542.lean}
+& $4\mid4\mid2$ allocation count $3150$, recombination, factorial normalisation, outer coefficient $252$ \\
+\path{Gate1B/R11/ComparisonTyping.lean}
+& exact typing of the full and local comparison weights \\
+\path{Gate1B/R11/MobiusLogSplit.lean}
+& $\Lambda=\mu*\log$, cutoff split, $V=2$ support observation \\
+\path{Gate1B/R11/LongMobius.lean}
+& divisor involution and weighted long-M\"obius reindexing \\
+\path{Gate1B/R11/VaughanCharts.lean}
+& four-lane Vaughan identity, odd $V=2$ lane ledger, literal chart equivalence \\
+\path{Gate1B/R11/Polytope611.lean}
+& ordered eleven-coordinate polytope, $5/11$ and $6/11$, chamber bounds, counterexamples, rational Pascadi dictionary \\
+\path{Gate1B/R11/CutoffConservation.lean}
+& $AT=D$, $KT=\BB$, $DK=X$, $A\BB=X$, and the hybrid minimum lemma \\
+\path{Gate1B/R11/Determinant.lean}
+& $AB-kd=-2$, four cross-gcds, B\'ezout parametrisation \\
+\path{Gate1B/R11/AffineParametrization.lean}
+& exact biconditional and uniqueness of the affine line parameter \\
+\path{Gate1B/R11/Reciprocity.lean}
+& reciprocity in $\R/\Z$ and exponential reciprocity at fixed shift $2$ \\
+\path{Gate1B/R11/Bruhat.lean}
+& determinant-one rescaling and exact Bruhat factorisation, including odd-modulus instance \\
+\path{Gate1B/HilbertHMRD/Fourier.lean}
+& additive-character orthogonality, inversion, Parseval, and Fourier $\ell^1$ cost $\sqrt{\phi(s)}$ \\
+\path{Gate1B/HilbertHMRD/OperatorStability.lean}
+& both directions of scalar/Hilbert tensor operator stability \\
+\path{Gate1B/HilbertHMRD/Core.lean}
+& finite packet, small branch, energy branch, interval corollary, minimum theorem \\
+\path{Gate1B/R11/StatusBank.lean}
+& status ledger and uninhabited physical-caller, vector-M\"obius, and global-mode obligations \\
+\path{Gate1B/R11/AxiomAudit*.lean}
+& printed axiom dependencies for the principal theorems \\
+\bottomrule
+\end{tabularx}
+\end{center}
+\normalsize
+
+The formal report records no \texttt{sorry}, \texttt{admit}, custom
+\texttt{axiom}, \texttt{native\_decide}, or
+\texttt{@[implemented\_by]} in the new layer.  The principal theorems use only
+subsets of \texttt{propext}, \texttt{Classical.choice}, and
+\texttt{Quot.sound}; several finite arithmetic results use no axioms at all.
+Each new module builds individually.  A repository-wide build still stops at
+pre-existing missing imports outside this delta, so no claim of a clean global
+build is made.
+
+\subsection{What Lean does not support}
+
+The formal bank does not prove any of the following:
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.7em]
+\item canonical-source coverage of the full historical $R_{11}$ row;
+\item the external low-divisor/Pascadi analytic owner;
+\item long-M\"obius cancellation;
+\item the physical Hilbert packet factorisation;
+\item the rough-modulus variance theorem;
+\item the physical transference theorem or Sector~A closure;
+\item the high-pass reassembly as a theorem about the historical full source;
+\item the estimate \cref{eq:Rhi-target}.
+\end{enumerate}
+The first three appear, where needed, only as hypotheses or interfaces.
+
+\section{Theorem dependency table}\label{sec:dependencies}
+
+\small
+\begin{longtable}{@{}P{0.06\textwidth}P{0.23\textwidth}P{0.16\textwidth}P{0.18\textwidth}P{0.27\textwidth}@{}}
+\toprule
+ID & Result or interface & Classification & Status/evidence & Direct dependencies and role \\
+\midrule
+\endfirsthead
+\toprule
+ID & Result or interface & Classification & Status/evidence & Direct dependencies and role \\
+\midrule
+\endhead
+G0 & CARD5/$4\mid4\mid2$ normalisation & New exact reduction & Proved; Lean & Prime-label admissibility.  Fixes the coefficient $252$ and prevents a spurious factor $3150$. \\
+G1 & Ordered-polytope $5/11$--$6/11$ geometry & New derivation & Proved; Lean & Positivity, ordering, total mass one.  Supplies $R\ll X^{5/11}$ and the complementary cutoff. \\
+G2 & Pinned chamber bounds and countermodels & New derivation & Proved; Lean & G1 plus explicit chamber parameter.  Prevents use of stronger bounds without $\gamma\le1/2-\eps$. \\
