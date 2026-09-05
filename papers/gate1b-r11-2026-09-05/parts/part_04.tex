@@ -1,0 +1,260 @@
+                  \sum_\xi|c(\xi)|^2\le B_0^2.
+\end{equation}
+
+\classification{\standardresult}{Finite Fourier inversion and Parseval; the source-specific centring is exact.}
+\begin{proposition}[Meaning of zero line mean]\label{prop:mean-zero}
+The identity \cref{eq:mean-zero} removes exactly the Fourier coefficient
+$\xi=0$.  It supplies no pointwise decay for $c(\xi)$ when $\xi\ne0$ and does
+not remove the diagonal frequencies $\xi=\eta\ne0$ in the two-copy expansion.
+\end{proposition}
+
+\begin{proof}
+The first statement is the definition of $c(0)$.  A single character
+$b^\perp(t)=\eord{Q}{\xi_0t}$ with $\xi_0\ne0$ is mean zero but has all of its
+Fourier mass at $\xi_0$.  Moreover,
+\begin{equation}\label{eq:two-copy-fourier}
+ b(t)\overline{b(t+h)}
+  =\sum_{\xi,\eta}c(\xi)\overline{c(\eta)}
+       \eord{Q}{(\xi-\eta)t-\eta h}.
+\end{equation}
+The terms $\xi=\eta\ne0$ remain after $c(0)$ is deleted.
+\end{proof}
+
+Smoothness of the prime-box envelopes $V_{j,C}$ does not imply smoothness of
+the sampled integer sequence $\beta_{6,C}(B_0+kt)$: changing $t$ changes the
+factorisation condition.  No high-frequency Fourier decay may therefore be
+inferred from the outer smooth weights alone.
+
+\section{Closed local sectors before the rough-conductor pivot}\label{sec:closed-local}
+
+The statements in this section belong to the frozen upstream analytic bank.
+They are reproduced because they determine the exact residual, but the newest
+independent audit did not re-prove each of them.  This provenance qualification
+is part of the theorem statement rather than a footnote.
+
+\classification{\newapplication}{Frozen upstream analytic bank; not Lean and not independently replayed in the newest rough-conductor audit.}
+\begin{proposition}[Previously removed MHHC sectors]\label{prop:old-closed}
+Subject to the original source hypotheses, the following sectors have been
+removed from the MHHC source.
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.7em]
+\item The $h=0$ diagonal satisfies
+      \begin{equation}\label{eq:diag-bound}
+               \cO_{\mathrm{diag}}\ll X^{21/22+o(1)}.
+      \end{equation}
+\item The explicit KMT character modes satisfy
+      \begin{equation}\label{eq:char-bound}
+       \cO_{\mathrm{char}}
+       \ll_B X\LL^{-B}+\LL^{O(1)}
+          \left(K\sqrt{DA}+\frac{KD}{\sqrt{P_*}}\right)
+       \ll X^{1-\delta_{\mathrm{char}}+o(1)},
+      \end{equation}
+      where
+      \[
+             \delta_{\mathrm{char}}
+              =\min\left(\frac1{22},\epsstar\right).
+      \]
+\item The KMT-exceptional physical moduli contribute $O_B(X\LL^{-B})$.
+\item For every fixed $B$, the near-diagonal range
+      $0<|h|\le T\LL^{-B}$ contributes an arbitrarily large logarithmic
+      saving after increasing the input exponent.
+\item For every fixed $B$, the strata
+      \[
+       \max\{(d_t,h),(B_t,h)\}>\LL^B
+      \]
+      contribute an arbitrarily large logarithmic saving, together with a
+      power-small endpoint error.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}[Proof record and available calculations]
+The diagonal estimate \cref{eq:diag-bound} is retained from the frozen bank;
+its complete original source proof was not among the newest audit inputs and is
+therefore not reconstructed here.
+
+For the character modes, a nonprincipal character modulo the squarefree
+five-prime $A$ has primitive conductor $f\mid A$ containing at least one
+physical prime, so $f\ge P_*$.  The conductor-stratified multiplicative large
+sieve gives the recorded bound
+\[
+ \sum_{\substack{A\asymp R\\\operatorname{cond}\chi_A\asymp F}}
+ \frac1{\phi(A)}
+ \left|\sum_{d\asymp D}\mu(d)\overline{\chi_A(d)}W_D(d/D)\right|
+ \ll \LL^{O(1)}\sqrt{\frac{D(D+F^2)}F}.
+\]
+After the $k$-sum and dyadic summation in $F$, this yields the first inequality
+in \cref{eq:char-bound}.  Since
+$\log_X A\le5/11$, $\log_XK\le5/11$, and $D=X/K$,
+\[
+ \log_X\!\left(K\sqrt{DA}\right)
+   =\frac{1+\log_XK+\log_XA}{2}\le\frac{21}{22},
+\]
+while $KD/\sqrt{P_*}\ll X^{1-\epsstar}$.
+
+For exceptional $A$, the inherited application of
+\cite{KMT2023} supplies
+$\#\cE\ll AD^{-\eps^{200}}$.  With
+\[
+ \eps=\left(\frac{(B+C_0)\log\log X}{\log D}\right)^{1/200},
+\]
+one has $D^{-\eps^{200}}\le\LL^{-B-C_0}$.  The trivial mass per modulus is
+$\ll KT\LL^{C_0}$ and $AKT\asymp X$, giving $O_B(X\LL^{-B})$.
+
+For $H_0=T\LL^{-B}$, direct counting gives
+\[
+ \sum_{A,k}\sum_{0<|h|\le H_0}\sum_t|\cdots|
+   \ll AKH_0T\LL^{O(1)}
+   =AKT^2\LL^{-B+O(1)},
+\]
+which closes the near-diagonal after the finite ledger is included.
+
+Finally,
+\[
+ (d_t,d_{t+h})=(d_t,h),\qquad
+ (B_t,B_{t+h})=(B_t,h),
+\]
+because $(A,d_t)=(k,B_t)=1$.  For fixed $g\mid h$, the condition
+$d_0+At\equiv0\pmod g$ places $t$ in at most one residue class modulo $g$.
+Divisor switching then gives
+\begin{equation}\label{eq:gcd-count}
+ \#\{(h,t):|h|\le T,\ (d_t,h)>G\}
+       \ll\frac{T^2}{G}+T\log T,
+\end{equation}
+and the same bound on the $B$ side.  Taking $G=\LL^B$ makes the first term
+logarithmically small; since $T\ge X^{1/11-o(1)}$, the second is power-small
+relative to the natural $T^2$ mass.
+\end{proof}
+
+\begin{remark}[Supersession of the old balanced-low estimate]
+The previous KMT/endpoint-mesh argument gave only a relative gain
+$\LL^{-1/500+o(1)}$ when
+$K\ge R\LL^{-1/10000}$ and
+$0<|\xi|\le\LL^{1/10000}$.  That estimate is no longer the controlling input.
+The rough-modulus theorem proves arbitrary-logarithmic control there and in a
+larger range.
+\end{remark}
+
+
+\section{The rough-modulus variance theorem}\label{sec:roughstatement}
+
+The new arithmetic estimate is a consequence of the primitive multiplicative
+large sieve, but the consequence is not obtained by simply replacing an
+imprimitive character by its primitive inducer.  The entire coprimality
+correction must be retained.  We restate the theorem in the notation used in
+the proof.
+
+Let $a_n\in\C$, $|a_n|\le1$, with $a_n=0$ outside $(D,2D]$.  For
+$D\le y\le2D$, set
+\[
+ S_q(\chi;y)=\sum_{D<n\le y}a_n\chi(n).
+\]
+For $(a,q)=1$, define $E_q(a;y)$ as in
+\cref{thm:roughvariance-main}.
+
+\classification{\newderivation}{Derived from the standard primitive multiplicative large sieve; independently audited line by line; no claim of literature priority.}
+\begin{theorem}[Rough-modulus variance, detailed form]\label{thm:roughvariance}
+Under the hypotheses of \cref{thm:roughvariance-main},
+\begin{equation}\label{eq:roughvariance}
+ V(y):=\sum_{q\in\cA}\sum_{a\bmod q}^{*}|E_q(a;y)|^2
+       \ll_j DR+\frac{D^2}{P}
+\end{equation}
+uniformly for $D\le y\le2D$.  The sequence $(a_n)$ must be common to all
+$q$; modulus-dependent target information may not be absorbed into $a_n$.
+\end{theorem}
+
+The common-sequence restriction is exactly compatible with the physical
+application: one takes $a_n=\mu(n)$, or $a_n=\mu(n)\1_{2\nmid n}$, while the
+five-prime modulus, residue selected by $k$, and six-prime target remain outside
+the source sequence.
+
+\section{Complete proof of the rough-modulus variance theorem}\label{sec:roughproof}
+
+\subsection{Character orthogonality}
+
+For $(a,q)=1$, orthogonality of Dirichlet characters gives
+\[
+ \sum_{\substack{D<n\le y\\n\equiv a\pmod q}}a_n
+ =\frac1{\phi(q)}\sum_{\chi\bmod q}\overline{\chi(a)}S_q(\chi;y).
+\]
+The principal-character term is precisely
+$\phi(q)^{-1}\sum_{D<n\le y,(n,q)=1}a_n$.  Consequently,
+\begin{equation}\label{eq:E-character}
+ E_q(a;y)=\frac1{\phi(q)}
+     \sum_{\substack{\chi\bmod q\\\chi\ne\chi_0}}
+        \overline{\chi(a)}S_q(\chi;y),
+\end{equation}
+and a second application of orthogonality over reduced residues yields the
+exact identity
+\begin{equation}\label{eq:V-character}
+ V(y)=\sum_{q\in\cA}\frac1{\phi(q)}
+       \sum_{\substack{\chi\bmod q\\\chi\ne\chi_0}}
+         |S_q(\chi;y)|^2.
+\end{equation}
+There is no contribution from non-coprime $n$ on either side.
+
+\subsection{Exact imprimitive descent}
+
+Fix a nonprincipal character $\chi\bmod q$, and let $\chi^*$ be the unique
+primitive character inducing it, of conductor $f>1$.  Write $q=fr$.  Because
+$q$ is squarefree, $(f,r)=1$, and every prime dividing $f$ is at least $P$;
+therefore
+\begin{equation}\label{eq:f-lower}
+                         f\ge P.
+\end{equation}
+For every integer $n$,
+\[
+              \chi(n)=\chi^*(n)\1_{(n,r)=1}.
+\]
+M\"obius inversion of the coprimality indicator gives
+\begin{align}
+ S_q(\chi;y)
+ &=\sum_{D<n\le y}a_n\chi^*(n)
+          \sum_{e\mid(n,r)}\mu(e)\notag\\
+ &=\sum_{e\mid r}\mu(e)\chi^*(e)
+       \sum_{D/e<m\le y/e}a_{em}\chi^*(m).
+       \label{eq:imprimitive-exact}
+\end{align}
+The factor is $\chi^*(e)$, not its conjugate.  Since $e\mid r$ and
+$(f,r)=1$, one has $(e,f)=1$ automatically.
+
+As $r$ has at most $j$ prime factors,
+$\tau(r)\le2^j$.  Cauchy--Schwarz in \cref{eq:imprimitive-exact} gives
+\begin{equation}\label{eq:imprimitive-cauchy}
+ |S_q(\chi;y)|^2
+ \le2^j\sum_{e\mid r}
+       \left|\sum_{D/e<m\le y/e}a_{em}\chi^*(m)\right|^2.
+\end{equation}
+Moreover,
+\begin{equation}\label{eq:phi-lower}
+        \phi(q)=q\prod_{p\mid q}(1-p^{-1})\ge q2^{-j}\ge R2^{-j},
+\end{equation}
+so substitution into \cref{eq:V-character} yields
+\begin{equation}\label{eq:V-preblock}
+ V(y)\le\frac{4^j}{R}
+ \sum_{f>1}\sum_{\chi^*\, (\mathrm{mod}\ f)}^{\mathrm{prim}}
+ \sum_{\substack{r:\,fr\in\cA}}
+ \sum_{e\mid r}
+ \left|\sum_{D/e<m\le y/e}a_{em}\chi^*(m)\right|^2.
+\end{equation}
+All omitted restrictions in later steps are removed only from nonnegative sums.
+
+\subsection{The conductor block and the $fe>R$ edge}
+
+Restrict $f$ to a dyadic interval $F\le f<2F$.  For fixed $f$ and $e$, the
+number of integers $r$ satisfying $e\mid r$ and $R\le fr<2R$ is at most
+\begin{equation}\label{eq:r-count}
+                         \frac{2R}{fe}.
+\end{equation}
+Here is the endpoint check that was implicit in the first draft.  Write
+$r=em$.  If $fe\le R$, the interval for $m$ has length $R/(fe)$, so the count
+is at most $R/(fe)+1\le2R/(fe)$.  If $R<fe<2R$, at most the single integer
+$m=1$ can occur, and $1\le2R/(fe)$.  If $fe\ge2R$, there is no permissible
+$m$.  Thus \cref{eq:r-count} is uniform and no stray ``$+1$'' survives.
+
+Using $f\ge F$, extending the $e$-sum, and relaxing $f<2F$ to $f\le2F$ gives
+\begin{equation}\label{eq:VF}
+ V_F(y)\ll 4^j\sum_{e\ge1}\frac1{Fe}
+ \sum_{f\le2F}\sum_{\chi^*\, (\mathrm{mod}\ f)}^{\mathrm{prim}}
+ \left|\sum_{D/e<m\le y/e}a_{em}\chi^*(m)\right|^2.
+\end{equation}
+This is the point at which the factor $1/R$ from \cref{eq:V-preblock} is
+cancelled by the number of possible complementary moduli $r$.
