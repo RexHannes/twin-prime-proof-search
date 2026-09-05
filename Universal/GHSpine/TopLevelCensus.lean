@@ -141,10 +141,13 @@ theorem census_union (rows : Finset CensusRow) :
   constructor
   · rintro ((⟨hr, -⟩ | ⟨hr, -⟩) | ⟨hr, -⟩) <;> exact hr
   · intro hr
-    cases hc : classify r with
-    | P00_R9 => exact Or.inl (Or.inl ⟨hr, hc⟩)
-    | P00_nonR9 => exact Or.inl (Or.inr ⟨hr, hc⟩)
-    | P_ge1 => exact Or.inr ⟨hr, hc⟩
+    have htri : classify r = TopClass.P00_R9 ∨ classify r = TopClass.P00_nonR9 ∨
+        classify r = TopClass.P_ge1 := by
+      cases classify r <;> simp
+    rcases htri with hc | hc | hc
+    · exact Or.inl (Or.inl ⟨hr, hc⟩)
+    · exact Or.inl (Or.inr ⟨hr, hc⟩)
+    · exact Or.inr ⟨hr, hc⟩
 
 /-- **The census is a partition, in counting form.** -/
 theorem census_card_split (rows : Finset CensusRow) :
@@ -159,7 +162,7 @@ theorem census_card_split (rows : Finset CensusRow) :
         (part TopClass.P_ge1 rows) := by
     rw [Finset.disjoint_union_left]
     exact ⟨census_filters_disjoint (by decide) rows, census_filters_disjoint (by decide) rows⟩
-  rw [h1, Finset.card_union_of_disjoint hdisj, census_union]
+  rw [h1, ← Finset.card_union_of_disjoint hdisj, census_union]
 
 /-! ## §4 Why the old triple is superseded -/
 
