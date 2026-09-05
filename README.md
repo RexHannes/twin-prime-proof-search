@@ -1,63 +1,89 @@
-# Twin Prime Proof Search — Public Research Archive
+# Twin Prime Proof Search
 
-**Current public manuscript:** Draft 16 (27 August 2026)  
-**Latest repository status/scope overlay:** 1 September 2026
+**Status: OPEN. No proof of the Twin Prime Conjecture is claimed.**
 
-This repository is an exploratory fixed-shift / Ford–Maynard / Twin-Prime research archive. It does **not** claim a proof of the Twin Prime Conjecture.
-
-Historical reports remain available as records of their own runs. The living current status and dependency graph are project-local; older mixed-project material in Git history is noncontrolling.
+This repository is a public research and formal-verification programme around the Ford–Maynard / fixed-shift Twin-Prime route. The public surface is organised by **evidence and current relevance**, not by the historical order in which intermediate gates were invented.
 
 ## Start here
 
-- [Stable in-progress PDF](in-progress-twin-prime-proof.pdf)
-- [Versioned Draft 16 PDF](twin_prime_programme_draft16.pdf)
-- [Draft 16 LaTeX source](twin_prime_programme_draft16.tex)
-- [Draft 16 bibliography](references_draft16.bib)
-- [Current Gate architecture/status](CURRENT_GATE_ARCHITECTURE_AND_STATUS.md)
-- [Current research frontier](RESEARCH_FRONTIERS/CURRENT_FRONTIERS.md)
-- [Current programme report](CURRENT_PROGRAMME_MASTER_CONTINUATION_REPORT.md)
-- [Current Aristotle summary](ARISTOTLE_SUMMARY.md)
-- [Project-scope firewall](PROJECT_SCOPE.md)
+- **[Proof map](PROOF_MAP.md)** — the full current dependency DAG.
+- **[Current status](CURRENT_STATUS.md)** — the shortest audited + live-candidate status page.
+- **[Claims ledger](CLAIMS_LEDGER.md)** — claim-by-claim evidence and status.
+- **[Banked work](banked/)** — material trusted at its stated evidence level.
+- **[Current frontier](frontier/)** — what is actually worth attacking now.
+- **[Graveyard](graveyard/)** — false, retired and superseded routes.
+- **[Corrections and retractions](CORRECTIONS_AND_RETRACTIONS.md)** — public status firewall.
+- **[Archive](archive/)** — historical manuscripts, safe-bank reports and source archaeology.
 
-## Controlling status
+## Current picture
+
+### Audited baseline — 5 September 2026 R11 release
 
 ```text
-GATE0: OPEN
-GATE1A: OPEN
-GATE1B: OPEN
-GATE2: CONDITIONAL COMPILER
-FULL_FM_TYPEII: OPEN
-TWIN_PRIME_CONJECTURE: OPEN
+CARD5 / source geometry / Vaughan V=2 / affine determinant   BANKED [Lean]
+abstract finite Hilbert-HMRD                                BANKED [Lean]
+rough-modulus variance                                      BANKED [analytic + audit]
+former Sector A                                             CLOSED at stated conditional scope
+physical Hilbert-HMRD caller                                RETIRED / NONCLOSING
+old FSHC three-sector architecture                          SUPERSEDED
+R_hi                                                        OPEN in audited R11
+R11                                                         OPEN
+Global Gate1B                                               OPEN
+HSTAR                                                       OPEN
+Twin Prime                                                  OPEN
 ```
 
-Substantial kernel-checked finite/algebraic and conditional compiler banks are present. Source pins and analytic inputs remain separate from kernel-proved statements.
+Read the audited R11 paper at [`banked/manuscripts/gate1b-r11-2026-09-05/`](banked/manuscripts/gate1b-r11-2026-09-05/).
 
-## Current Gate 1B
+### Live post-R11 research frontier
 
-The living frontier is maintained in `RESEARCH_FRONTIERS/CURRENT_FRONTIERS.md`. The current source/analytic sequence retains the upper-`D` bank and has the lower-`D` same-`u` direct source diagonal / H0 / HNE obligations explicit.
+The latest candidate recompiler reduces the physical signed square to three pieces:
 
-No local or canonical closure is promoted to global Gate 1B without the exact source/global comparison compiler.
+```text
+shared-prime rows          candidate power-small
+near m=n strip             candidate log-small
+coprime far-separated      OPEN
+```
 
-## Downstream publication firewall
+with current target
 
-The following remain open / not proved:
+```text
+Q_cp,far << X^2 L^{-2 S0}.
+```
 
-- global/full Gate 1A;
-- global/full Gate 1B;
-- Full Ford–Maynard Type II for the actual global source;
-- twin-prime infinitude.
+Candidate reductions do **not** supersede the audited R11 ledger until independently reviewed.
 
-No Hardy–Littlewood asymptotic is claimed. Local generated Type-II closure is not silently identified with Full Twin-Prime Type II.
+## Gate 1A
 
-## Formal bank
+Gate1A / BP-VLF4 is currently **DORMANT / NONCONTROLLING / NOT CLOSED**. It disappeared from the live dependency path because the Ford endgame was recompiled, not because Gate1A was proved.
 
-The living machine-readable status is:
+## Repository layout
 
-- `RequestProject/CurrentProgramme/CurrentStatus.lean`
-- `RequestProject/CurrentProgramme/DependencyGraph.lean`
+```text
+banked/       trusted formal / audited analytic / manuscript material
+frontier/     current wall / candidate reductions / downstream / dormant nodes
+graveyard/    false / retired / superseded routes
+archive/      historical reports, old manuscripts and research archaeology
 
-The current dependency graph is Twin-Prime-programme-only. Generic finite/algebraic lemmas may be shared as generic mathematics, but separate-problem source/status/compiler objects are not active dependencies.
+RequestProject/
+Gate1A/
+Gate1B/
+Universal/
+UniversalV8/
+Gate04Root/   stable formal/source trees retained for imports and reproducibility
+```
 
-## Aristotle
+The stable source directories remain at their existing paths deliberately; cosmetic relocation must not break Lean imports or historical reproducibility.
 
-This project has used Aristotle for formal reproof/reverification work. Prompts and ledgers are audit aids; unresolved analytic or source bounds must remain explicit interfaces rather than introduced as axioms.
+## Scope firewall
+
+Do not infer any of the following from local or banked progress:
+
+```text
+local closure => R11
+R11 => Global Gate1B without source census/reassembly
+Global Gate1B => HSTAR without the required reconciliation
+any of the above => Twin Prime
+```
+
+The Twin Prime Conjecture remains open in this repository.
