@@ -1,0 +1,260 @@
+\documentclass[11pt,reqno]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{newtxtext,newtxmath}
+\usepackage[a4paper,margin=30mm]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{bm,mathrsfs}
+\usepackage{booktabs,longtable,tabularx,array}
+\usepackage{enumitem}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,capitalize,noabbrev]{cleveref}
+\usepackage[backend=biber,style=alphabetic,maxbibnames=99,giveninits=true]{biblatex}
+\addbibresource{twin_gate1b_r11_audited_20260905.bib}
+
+\allowdisplaybreaks
+\setlength{\emergencystretch}{3em}
+\setcounter{tocdepth}{2}
+\numberwithin{equation}{section}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Candidate theorem}
+\newtheorem{problem}[theorem]{Open problem}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{hypothesis}[theorem]{Frozen-bank hypothesis}
+\newtheorem{status}[theorem]{Status statement}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{warning}[theorem]{Firewall}
+
+\newcommand{\e}{\mathrm e}
+\newcommand{\ee}[1]{\e\!\left(#1\right)}
+\newcommand{\eord}[2]{\e_{#1}\!\left(#2\right)}
+\newcommand{\1}{\mathbf 1}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\T}{\mathbb T}
+\newcommand{\LL}{\mathcal L}
+\newcommand{\RR}{\mathcal R}
+\newcommand{\BB}{\mathcal B}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\cC}{\mathcal C}
+\newcommand{\cE}{\mathcal E}
+\newcommand{\cI}{\mathcal I}
+\newcommand{\cP}{\mathcal P}
+\newcommand{\cO}{\mathcal O}
+\newcommand{\wt}{\widetilde}
+\newcommand{\wh}{\widehat}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\ip}[2]{\left\langle #1,#2\right\rangle}
+\newcommand{\Om}{\Omega}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\ph}{\varphi}
+\newcommand{\Rhi}{\RR_{\mathrm{hi}}}
+\newcommand{\Roneone}{\RR_{11}}
+\newcommand{\soft}{X^{o(1)}}
+\newcommand{\Pmin}{P_*}
+\newcommand{\epsstar}{\eps_*}
+\newcommand{\epssafe}{\eps_{\mathrm{safe}}}
+
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\classification}[2]{%
+  \par\smallskip\noindent
+  {\footnotesize\textbf{Novelty classification:} \textsc{#1}.\quad
+   \textbf{Evidence level:} #2.}\par\smallskip}
+\newcommand{\standardresult}{STANDARD RESULT}
+\newcommand{\newderivation}{NEW DERIVATION}
+\newcommand{\newapplication}{NEW SOURCE-SPECIFIC APPLICATION}
+\newcommand{\newreduction}{NEW EXACT REDUCTION}
+\newcommand{\candidatenew}{CANDIDATE NEW THEOREM}
+\newcommand{\openstatus}{OPEN}
+
+\newenvironment{statusbox}{%
+  \par\medskip\noindent\begin{minipage}{\textwidth}\hrule\medskip\small
+}{%
+  \par\medskip\hrule\end{minipage}\par\medskip
+}
+
+\title[The Gate 1B $R_{11}$ frontier]{An Audited Rough-Conductor Reduction for the Gate 1B Eleven-Prime Residual}
+\author{Nam Chong Lau}
+\address{Independent research programme}
+\email{}
+\date{5 September 2026}
+\subjclass[2020]{11N35, 11N36, 11L40, 11N75, 68V20}
+\keywords{twin-prime sieve, Type II sums, multiplicative large sieve, rough moduli, M\"obius function, finite Fourier analysis, formal verification}
+
+\begin{document}
+\begin{abstract}
+We give a source-explicit and audit-separated account of the current Gate~1B
+$R_{11}$ programme.  The purpose is not to announce an $R_{11}$ estimate, a
+closure of Gate~1B, an $H^*$ theorem, or a proof of the twin-prime conjecture.
+Rather, we identify exactly which parts of the reduction are algebraically
+proved, which analytic estimates have survived independent hostile audit, which
+steps remain inherited hypotheses, and which single physical functional is
+presently open.
+
+At the exact level, an eleven-coordinate ordered exponent geometry gives the
+uniform cutoff $M\le 5/11$ and complementary mass at least $6/11$.  The
+$V=2$ Vaughan chart agrees literally with the long-M\"obius chart on odd
+arguments; the CARD5 coefficient is $\binom{10}{5}=252$; the internal
+$4\mid4\mid2$ allocation count $3150$ is completely consumed by its
+normalisation; and the matched equation
+\[
+        AB-kd=-2
+\]
+admits the unique affine parametrisation
+\[
+        d_t=d_0+At,\qquad B_t=B_0+kt.
+\]
+The associated two-copy determinant is
+\[
+        d_tB_{t+h}-d_{t+h}B_t=2h.
+\]
+These finite identities, together with an abstract Hilbert-valued reciprocal
+large-sieve theorem, are machine checked in Lean.  The formal development does
+not construct the physical Hilbert caller and does not prove that the canonical
+source equals the full historical $R_{11}$ source.
+
+The new analytic input is a rough-modulus variance estimate.  If
+$q\in[R,2R)$ is squarefree, has at most $j$ prime factors, and has least prime
+factor at least $P$, then for a single common $1$-bounded sequence supported on
+$(D,2D]$,
+\[
+ \sum_q\sum_{a\bmod q}^{*}\left|
+ \sum_{\substack{D<n\le y\\n\equiv a\, (q)}}a_n
+ -\frac1{\phi(q)}\sum_{\substack{D<n\le y\\(n,q)=1}}a_n
+ \right|^2
+ \ll_j DR+\frac{D^2}{P}.
+\]
+We prove this from the primitive multiplicative large sieve while retaining the
+full imprimitive coprimality correction.  The theorem transfers to the literal
+band-limited six-prime target and closes the former balanced-low Sector~A at
+arbitrary logarithmic precision.  It also closes every fixed-polylogarithmic
+frequency band throughout the larger region $K\ge R/\sqrt{P_*}$, and further
+where an explicit cellwise conductor deficit allows.
+
+After the independently audited corrections, the principal coprimality cost is
+$O_j(2^j(D/P+1))$, the conservative logarithmic ledger is
+$\LL^{114+3b/2}$ rather than $\LL^{113+3b/2}$, and the frequency cutoff is
+formed using the minimum cyclic conductor in each cell.  The old three-sector
+FSHC formulation is therefore superseded by the exact first-moment identity
+\[
+        \Roneone(X)=\Rhi(X)+O_S(X\LL^{-S}),
+\]
+where $\Rhi$ contains only the unremoved target frequencies and retains the
+literal M\"obius coordinate, all six-prime labels, and the complete physical
+normalisation.  No bound of the required strength is presently known for
+$\Rhi$.  Thus $R_{11}$ remains open.
+\end{abstract}
+
+\maketitle
+
+\begin{statusbox}
+\textbf{Authoritative status on 5 September 2026.}
+The former Sector~A is closed.  The former three-sector FSHC formulation is
+superseded.  The physical delta-plus-single-Poisson Hilbert--HMRD caller is
+retired as a nonclosing architecture, while the finite abstract Hilbert--HMRD
+theorem remains valid.  The current physical residual is $\Rhi$.  The nodes
+$R_{11}$, Global Gate~1B, $H^*$, and the twin-prime conjecture are all open.
+\end{statusbox}
+
+\tableofcontents
+
+\section{Introduction}
+
+The analytic difficulty addressed here is not the manufacture of another
+arbitrary-coefficient Type~II estimate.  The relevant object is a highly
+structured, signed, source-generated functional arising after an eleven-prime
+sieve source has been partitioned, reassembled, and placed on a determinant
+line.  Every useful estimate must therefore preserve four kinds of information
+simultaneously: the five-prime modulus, the six-prime target, the affine relation
+between the M\"obius and target variables, and the finite normalisation inherited
+from the source compiler.
+
+This manuscript has two aims.  The first is expository: to replace a sequence
+of research ledgers by a reviewable theorem--lemma--proof narrative.  The second
+is epistemic: to keep distinct the three evidentiary levels that are often
+silently conflated in long computational research programmes.
+
+\begin{enumerate}[label=\textup{(E\arabic*)},leftmargin=3em]
+\item \textbf{Kernel-checked exact mathematics.}  These are finite identities,
+      inequalities, and conditional interfaces proved in Lean~4 and mathlib
+      \cite{Lean4CADE2021,Mathlib2020}.
+\item \textbf{Independently audited analytic mathematics.}  These are paper
+      arguments replayed line by line by an independent hostile audit.  They
+      are not yet formalised in Lean.
+\item \textbf{Frozen source hypotheses.}  These are prior source-compilation,
+      coverage, and local-sector claims used as hypotheses in the newest run.
+      The present manuscript records but does not silently re-prove them.
+\end{enumerate}
+
+This separation matters.  In particular, the formal bank proves a canonical
+CARD5 source and proves many exact properties of it, but deliberately leaves
+\emph{CanonicalCoversFullR11} uninhabited.  Conversely, the analytic
+rough-conductor argument is conducted on the supplied full physical source,
+but its identification with historical $R_{11}$ is inherited rather than
+kernel checked.  The results below are stated with precisely those dependencies.
+
+The broad downstream motivation is the prime-producing sieve framework of Ford
+and Maynard \cite{FordMaynard2024}.  Nothing in this paper verifies the entire
+downstream compiler.  Consequently, even a future proof of the displayed
+high-pass estimate would first close the present $R_{11}$ node; it would not by
+itself constitute a proof of twin primes.
+
+\subsection{What has changed relative to the previous frontier}
+
+The previous frequency-spliced MHHC analysis removed the diagonal, a
+near-diagonal range, large determinant-gcd strata, exceptional five-prime
+moduli, and explicit pretentious character modes.  Its balanced-low target
+estimate supplied only a fixed logarithmic gain.  The rough-modulus variance
+theorem developed below removes the dependence on that weak balanced-low
+estimate and proves arbitrary-logarithmic first-moment control in a larger
+region.  The correct end product is no longer a three-piece absolute-value
+problem.  It is one signed high-pass functional $\Rhi$ obtained by a linear
+projection before any new two-copy expansion.
+
+\subsection{Novelty discipline}
+
+Every main result is labelled using one of the categories requested for this
+research bank.  ``New derivation'' means that the displayed argument was newly
+derived in this programme; it does not assert literature priority.  ``New
+source-specific application'' means that a standard or newly derived tool is
+inserted into the literal physical source.  ``Candidate new theorem'' is a
+research target, not an established result.  The labels are intentionally
+conservative.
+
+\section{Main results and the audited frontier}\label{sec:main}
+
+We begin by isolating the inherited assumptions under which the newest analytic
+claims are made.
+
+\begin{hypothesis}[Frozen physical source bank]\label{hyp:frozen}
+For each dyadic cell $C$, the supplied $R_{11}$ compiler produces variables
+\[
+ A\asymp R_C,\qquad k\asymp K_C,\qquad d\asymp D_C,
+ \qquad B\asymp \BB_C,
+\]
+with
+\[
+ D_CK_C\asymp X,\qquad R_C T_C\asymp D_C,
+ \qquad K_CT_C\asymp\BB_C,
+\]
+and with the matched relation $AB-kd=-2$.  The modulus $A$ is squarefree,
+has exactly five physical prime factors, and satisfies
+\[
+       P^-(A)\ge P_C\ge P_*\gg X^{2\epsstar}
+\]
+for a fixed $\epsstar>0$.  The target is the literal labelled six-prime
+coefficient described in \cref{sec:physical}.  The low-divisor compiler,
+previously owned local sectors, and the finite source reassembly contribute
