@@ -1,0 +1,260 @@
+where
+\[
+ U(x)=\begin{pmatrix}1&x\\0&1\end{pmatrix},\quad
+ D(u)=\begin{pmatrix}u&0\\0&u^{-1}\end{pmatrix},\quad
+ S=\begin{pmatrix}0&-1\\1&0\end{pmatrix}.
+\]
+The rescaled matrix has determinant one.  For every odd modulus $c$, the element
+$-2$ is a unit in $\Z/c\Z$, so the factorisation applies whenever $d$ is also a
+unit modulo $c$.
+\end{proposition}
+
+\begin{proof}
+Direct multiplication of the right-hand side gives the left-hand side after
+using $\lambda(AB-kd)=1$ and $dd^{-1}=1$.  The determinant is
+$\lambda(AB-kd)=1$.  If $c$ is odd, $(2,c)=1$, hence $-2$ is invertible modulo
+$c$.
+\end{proof}
+
+
+\section{The abstract Hilbert--HMRD theorem and the physical-caller no-go}\label{sec:hmrd}
+
+This section records the finite Hilbert-valued reciprocal estimate that survives
+formal verification.  Its validity must be separated from the failure of the
+particular physical caller for which it was originally proposed.
+
+Let $s\ge1$, let $H$ be a finite-dimensional complex Hilbert space, and let
+$D_0,W_0$ be finite index sets.  For coefficients $\alpha_d,\beta_w\in\C$,
+vectors $u_d,v_w\in H$, residue classes $x_d,y_w\in\Z/s\Z$, and a phase
+$f:\Z/s\Z\to\C$, define
+\begin{equation}\label{eq:hmrd-packet}
+ S_H=\sum_{d\in D_0}\sum_{w\in W_0}
+       \alpha_d\beta_w f(x_dy_w)\ip{u_d}{v_w},
+\end{equation}
+where the pairing is linear in the first variable.  Put
+\begin{align}
+ B_1&=\sum_{w\in W_0}|\beta_w|\norm{v_w},\label{eq:B1}\\
+ A_2^2&=\sum_{d\in D_0}|\alpha_d|^2\norm{u_d}^2,
+ &B_2^2&=\sum_{w\in W_0}|\beta_w|^2\norm{v_w}^2.\label{eq:A2B2}
+\end{align}
+
+\classification{\newderivation}{Kernel checked in \path{Gate1B/HilbertHMRD/Fourier.lean}, \path{OperatorStability.lean}, and \path{Core.lean}.}
+\begin{theorem}[Finite abstract Hilbert--HMRD]\label{thm:hmrd}
+Assume that $f$ is supported on the units modulo $s$ and $|f(x)|\le1$.  Suppose
+that
+\begin{equation}\label{eq:hmrd-P}
+ \norm{\sum_{d\in D_0}\alpha_d\eord{s}{m x_d}u_d}\le P
+       \qquad (m\bmod s).
+\end{equation}
+Then the small-modulus branch is
+\begin{equation}\label{eq:hmrd-small}
+                 |S_H|\le\sqrt{\phi(s)}\,P B_1.
+\end{equation}
+
+Suppose, alternatively and compatibly, that $A\in(\Z/s\Z)^\times$ and there
+are residue maps $p_d,q_w$ for which
+\begin{equation}\label{eq:hmrd-phase}
+              f(x_dy_w)=\eord{s}{A p_dq_w}.
+\end{equation}
+If every $p$-fibre has cardinality at most $c_D$ and every $q$-fibre has
+cardinality at most $c_W$, then the energy branch is
+\begin{equation}\label{eq:hmrd-energy}
+             |S_H|\le\sqrt{s c_Dc_W}\,A_2B_2.
+\end{equation}
+Consequently,
+\begin{equation}\label{eq:hmrd-min}
+ |S_H|\le
+ \min\left\{\sqrt{\phi(s)}\,PB_1,
+             \sqrt{s c_Dc_W}\,A_2B_2\right\}.
+\end{equation}
+For sources lying in intervals of lengths $D'$ and $W'$, one may take
+\[
+              c_D=1+\lfloor D'/s\rfloor,
+ \qquad       c_W=1+\lfloor W'/s\rfloor.
+\]
+\end{theorem}
+
+\begin{proof}
+Use the normalised finite Fourier coefficient
+\[
+ \widehat f(m)=\frac1s\sum_{x\bmod s}f(x)\eord{s}{-mx}.
+\]
+Fourier inversion gives
+$f(x)=\sum_{m\bmod s}\widehat f(m)\eord{s}{mx}$, while Parseval and the unit
+support give
+\[
+ \sum_{m\bmod s}|\widehat f(m)|^2
+   =\frac1s\sum_{x\bmod s}|f(x)|^2
+   \le\frac{\phi(s)}s.
+\]
+Cauchy--Schwarz therefore yields the exact Fourier $\ell^1$ cost
+\begin{equation}\label{eq:fourier-l1}
+              \sum_{m\bmod s}|\widehat f(m)|\le\sqrt{\phi(s)}.
+\end{equation}
+Expanding $f(x_dy_w)$ and grouping first in $d$ expresses the $m$-slice of
+$S_H$ as a sum over $w$ of a pairing between $v_w$ and a twisted $d$-vector.
+By \cref{eq:hmrd-P}, Cauchy--Schwarz in the Hilbert space, and
+\cref{eq:B1}, the norm of every slice is at most $PB_1$.  Summing against
+$|\widehat f(m)|$ and applying \cref{eq:fourier-l1} proves
+\cref{eq:hmrd-small}.
+
+For the energy branch, group the $d$-vectors and $w$-vectors by their residue
+classes:
+\[
+ X_p=\sum_{\substack{d\in D_0\\p_d=p}}\alpha_du_d,
+ \qquad
+ Y_q=\sum_{\substack{w\in W_0\\q_w=q}}\beta_wv_w.
+\]
+Then \cref{eq:hmrd-phase} transforms the packet into
+\[
+       \sum_{p,q\bmod s}\eord{s}{Apq}\ip{X_p}{Y_q}.
+\]
+The scalar kernel $K(p,q)=\eord{s}{Apq}$ satisfies
+\[
+ \sum_{p\bmod s}K(p,q)\overline{K(p,q')}
+  =\begin{cases}s,&q=q',\\0,&q\ne q',\end{cases}
+\]
+because $A$ is a unit.  Hence its scalar $\ell^2$ operator norm is $\sqrt s$.
+Tensoring with the identity on a finite-dimensional Hilbert space preserves
+that norm; the formal development proves both directions of this operator-norm
+identity.  Therefore
+\begin{equation}\label{eq:kernel-H-bound}
+ \left|\sum_{p,q}\eord{s}{Apq}\ip{X_p}{Y_q}\right|
+ \le\sqrt s
+      \left(\sum_p\norm{X_p}^2\right)^{1/2}
+      \left(\sum_q\norm{Y_q}^2\right)^{1/2}.
+\end{equation}
+Within a fibre of size at most $c_D$, Cauchy--Schwarz gives
+\[
+ \norm{X_p}^2\le c_D
+   \sum_{d:p_d=p}|\alpha_d|^2\norm{u_d}^2.
+\]
+Summing over $p$ gives $\sum_p\norm{X_p}^2\le c_DA_2^2$; similarly
+$\sum_q\norm{Y_q}^2\le c_WB_2^2$.  Substitution into
+\cref{eq:kernel-H-bound} proves \cref{eq:hmrd-energy}, and taking the minimum
+of two simultaneously valid upper bounds proves \cref{eq:hmrd-min}.  The
+interval fibre count is at most one plus interval length divided by the modulus.
+\end{proof}
+
+\begin{remark}[Effective modulus]
+The Hilbert theorem receives $s$ after conductor reduction.  In applications
+where a phase initially has modulus $r$ and coefficient $A$, the effective
+modulus $s=r/(A,r)$ must be produced before calling \cref{thm:hmrd}.  That
+separate algebraic reduction is not hidden inside the theorem.
+\end{remark}
+
+\classification{\newreduction}{Logical no-go kernel checked in \path{Gate1B/R11/StatusBank.lean}; analytic nonclosure independently retained.}
+\begin{proposition}[Physical-caller firewall]\label{prop:physical-caller}
+The abstract theorem \cref{thm:hmrd} does not imply a bound for the physical
+$R_{11}$ source unless all of the following are supplied:
+\begin{enumerate}[label=\textup{(\alph*)},leftmargin=2.7em]
+\item an exact factorisation of the physical delta-constrained source as a
+      finite packet of the form \cref{eq:hmrd-packet};
+\item the corresponding physical vector-valued M\"obius estimate required by
+      the small branch or the full residue-energy dictionary required by the
+      energy branch;
+\item a global mode ledger proving that the packets so produced exhaust the
+      physical source with the stated normalisation.
+\end{enumerate}
+No such data are constructed in the formal bank.  The previous
+``physical delta plus single Poisson'' caller is therefore retired as
+nonclosing.  This retirement does not invalidate \cref{thm:hmrd}.
+\end{proposition}
+
+\begin{proof}
+In the formal layer, \texttt{PhysicalHilbertCaller},
+\texttt{VectorMobiusPhysicalBound}, and \texttt{GlobalModeLedger} are explicit
+propositions or structures that are never inhabited.  The only transport
+result has the logical form ``if a physical caller is supplied, then the
+abstract HMRD bound applies''.  Thus no unconditional physical conclusion can
+be extracted.  Analytically, a single Poisson opening by itself neither proves
+that the target tensor factorises as \cref{eq:hmrd-packet} nor supplies the
+source norms in (b) and the exhaustive reassembly in (c).
+\end{proof}
+
+\section{The MHHC two-copy reduction}\label{sec:mhhc}
+
+The first-moment row on one affine line is schematically
+\begin{equation}\label{eq:first-moment-row}
+        \sum_{t\in\cI_{A,k,C}}\mu(d_t)b^\perp_{A,k,C}(t).
+\end{equation}
+A Cauchy--Schwarz or dispersion step creates the source-exact two-copy
+correlation
+\begin{equation}\label{eq:mhhc-two-copy}
+ \cO^\perp=
+ \sum_{C}\sum_{A,k}\sum_{0<|h|<T_C}\sum_t
+ \mu(d_t)\mu(d_t+Ah)
+ b^\perp_{A,k,C}(t)\overline{b^\perp_{A,k,C}(t+h)}.
+\end{equation}
+The determinant identity \cref{eq:det2h} is preserved term by term.
+
+\classification{\newreduction}{Exact determinant identity kernel checked; the reduction from the supplied physical row is inherited and not re-formalised.}
+\begin{proposition}[Matched-Hecke two-copy geometry]\label{prop:mhhc-geometry}
+For each term of \cref{eq:mhhc-two-copy},
+\begin{equation}\label{eq:mhhc-det}
+ d_tB_{t+h}-d_{t+h}B_t=2h,
+\end{equation}
+and
+\begin{equation}\label{eq:matrix-hecke}
+ \begin{pmatrix}d_t&d_{t+h}\\B_t&B_{t+h}\end{pmatrix}
+ =
+ \begin{pmatrix}d_t&A\\B_t&k\end{pmatrix}
+ \begin{pmatrix}1&1\\0&h\end{pmatrix}.
+\end{equation}
+The first factor has determinant $2$, and the second has determinant $h$.
+\end{proposition}
+
+\begin{proof}
+Equation \cref{eq:mhhc-det} is \cref{eq:det2h}.  Since
+$(d_{t+h},B_{t+h})=(d_t,B_t)+h(A,k)$, multiplication gives
+\cref{eq:matrix-hecke}.  The determinant statements follow from
+$kd_t-AB_t=2$.
+\end{proof}
+
+For $h>0$, after determinant normalisation one obtains
+\begin{equation}\label{eq:hecke-cell}
+ (2h)^{-1/2}
+ \begin{pmatrix}d_t&d_{t+h}\\B_t&B_{t+h}\end{pmatrix}
+ =g_tu_{h,1},
+\end{equation}
+where $g_t\in\mathrm{SL}_2(\R)$ and
+\[
+ u_{h,1}=h^{-1/2}\begin{pmatrix}1&1\\0&h\end{pmatrix}.
+\]
+This is one cell of a Hecke correspondence, not the full Hecke operator.  The
+exact completion of that cell in the upper-right residue is
+\begin{equation}\label{eq:hecke-completion}
+ f(u_{h,1})=\frac1h\sum_{\xi\bmod h}\eord{h}{-\xi}
+                  \sum_{b\bmod h}\eord{h}{\xi b}f(u_{h,b}).
+\end{equation}
+It leaves both nonzero $b$-frequencies and the other factorisations $ad=h$.
+
+\begin{warning}[One-copy and two-copy roles]
+The rough-conductor theorem below is applied to the complete \emph{first
+moment} before a fresh two-copy expansion.  It does not prove
+\cref{eq:mhhc-two-copy} small on the remaining high frequencies.  After the low
+projection is removed linearly, any later MHHC argument must be run on the
+actual high-pass target $(I-P_C^{\mathrm{lo}})b^\perp$.
+\end{warning}
+
+\section{Mean-zero and Fourier structure}\label{sec:fourier-physical}
+
+Choose an integer $Q_{A,k,C}$ satisfying
+\begin{equation}\label{eq:Q-range}
+       2T_C\le Q_{A,k,C}<4T_C
+\end{equation}
+(or any comparable cyclic length at least twice the physical interval), and
+extend $b^\perp$ by zero to $\Z/Q\Z$.  We use the normalised coefficients
+\begin{equation}\label{eq:cxi}
+ c_{A,k,C}(\xi)=\frac1Q\sum_{t\bmod Q}b^\perp(t)\eord{Q}{-\xi t}.
+\end{equation}
+Then
+\begin{equation}\label{eq:physical-fourier}
+ c(0)=0,\qquad
+ b^\perp(t)=\sum_{\xi\bmod Q}c(\xi)\eord{Q}{\xi t},
+ \qquad
+ \sum_{\xi\bmod Q}|c(\xi)|^2
+  =\frac1Q\sum_t|b^\perp(t)|^2.
+\end{equation}
+In particular, if $|b^\perp(t)|\le B_0$, then
+\begin{equation}\label{eq:c-energy}
