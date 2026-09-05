@@ -1,0 +1,260 @@
+
+\subsection{Primitive large sieve and the powers of $e$}
+
+We use the classical primitive multiplicative large sieve in the form
+\cite{IwaniecKowalski2004,MontgomeryVaughan2007}
+\begin{equation}\label{eq:primitive-ls}
+ \sum_{f\le Q}\frac f{\phi(f)}
+ \sum_{\chi^*\, (\mathrm{mod}\ f)}^{\mathrm{prim}}
+ \left|\sum_m c_m\chi^*(m)\right|^2
+ \le (Q^2+N)\sum_m|c_m|^2,
+\end{equation}
+when $(c_m)$ is supported in an interval of length at most $N$.  Since
+$f/\phi(f)\ge1$, the weight may be discarded for an upper bound.
+
+For fixed $e$, take
+\[
+ c_m=a_{em}\1_{D/e<m\le y/e}.
+\]
+Its support has length at most $2D/e$, and
+\begin{equation}\label{eq:c-energy-rough}
+                  \sum_m|c_m|^2\le\frac{2D}{e}
+\end{equation}
+whenever it is nonempty.  Applying \cref{eq:primitive-ls} with $Q=2F$ to
+\cref{eq:VF}, we obtain
+\begin{align}
+ V_F(y)
+ &\ll 4^j\sum_{e\ge1}\frac1{Fe}
+       \left(4F^2+\frac{2D}{e}\right)\frac{2D}{e}\notag\\
+ &\ll 4^j\left(
+       FD\sum_{e\ge1}e^{-2}
+       +\frac{D^2}{F}\sum_{e\ge1}e^{-3}
+       \right)\notag\\
+ &\ll_j FD+\frac{D^2}{F}.
+ \label{eq:VF-final}
+\end{align}
+The powers $e^{-2}$ and $e^{-3}$ are load-bearing: one $e^{-1}$ comes from
+complementary-modulus multiplicity, and the remaining powers come from support
+length and coefficient energy.
+
+\subsection{Dyadic conductor summation}
+
+By \cref{eq:f-lower}, the dyadic conductors satisfy $P\le F<2R$.  Hence
+\begin{equation}\label{eq:F-sums}
+       \sum_F FD\ll DR,
+ \qquad
+       \sum_F\frac{D^2}{F}\ll\frac{D^2}{P}.
+\end{equation}
+Both are geometric sums; neither costs a logarithm.  Summing
+\cref{eq:VF-final} proves \cref{eq:roughvariance}.
+
+Tracking the factors in
+\cref{eq:phi-lower,eq:imprimitive-cauchy,eq:r-count} and using
+$\sum e^{-2}<2$, $\sum e^{-3}<2$, together with the standard leading constant
+in \cref{eq:primitive-ls}, shows that $2^{2j+8}$ is a deliberately generous
+coefficient.  The theorem itself is recorded with $\ll_j$ because endpoint
+normalisations of the large sieve vary across references.
+\qed
+
+\begin{remark}[What is and is not standard]
+The primitive large sieve is standard.  The derivation above, including the
+roughness gain $D^2/P$, the exact imprimitive correction, and its insertion into
+the physical common-sequence dictionary, is the new derivation in this
+programme.  No claim is made that the abstract consequence
+\cref{eq:roughvariance} is absent from the literature.
+\end{remark}
+
+\section{Physical transference of the variance theorem}\label{sec:transference}
+
+Fix a cell and write $i=(q,k)$, with $q$ in the physical five-prime modulus set
+and $k\asymp K$.  Since $(q,k)=1$, the determinant congruence selects the
+reduced residue
+\begin{equation}\label{eq:ai}
+                        a_i\equiv2\bar k\pmod q.
+\end{equation}
+For fixed $q$ and fixed reduced residue $a$, the number of $k$ in a dyadic
+interval of length $K$ satisfying \cref{eq:ai} is
+\begin{equation}\label{eq:residue-multiplicity}
+                        O(1+K/R).
+\end{equation}
+Indeed, $k$ is fixed modulo $q$ and $q\asymp R$.
+
+Zero-extend the centred target to a cyclic group of order $Q_i\asymp D/q$,
+with $Q_i$ at least twice the line length, and let $c_i(\xi)$ be as in
+\cref{eq:cxi}.  The physical line coordinate $t_i(d)$ is affine with slope
+$1/q$; since $qQ_i\asymp D$,
+\begin{equation}\label{eq:phase-derivative}
+ \left|\frac{d}{dy}\eord{Q_i}{\xi t_i(y)}\right|
+                       \ll\frac{|\xi|}{D}.
+\end{equation}
+Only this Fourier atom is differentiated.  The six-prime coefficient is not
+assumed differentiable as a function of $t$.
+
+For $1\le H<Q_i/2$, define the exact band-limited first moment
+\begin{equation}\label{eq:LleH}
+ L_i^{\le H}=
+ \sum_{\substack{d\ \mathrm{in\ the\ physical\ dyadic\ line}}}
+ \mu(d)\sum_{0<|\xi|\le H}c_i(\xi)
+                   \eord{Q_i}{\xi t_i(d)}.
+\end{equation}
+
+\subsection{The nonprincipal progression part}
+
+Let $M_i^\circ(\xi)$ denote the sum in $d$ at frequency $\xi$ after the
+principal progression mean is subtracted.  Stieltjes summation gives
+\begin{equation}\label{eq:stieltjes}
+ M_i^\circ(\xi)
+   =\int_D^{2D}\eord{Q_i}{\xi t_i(y)}\,dE_q(a_i;y),
+\end{equation}
+with a bounded number of analogous endpoint terms when the physical interval is
+cut into subintervals.  Minkowski's inequality in the $\ell^2(i)$ norm,
+\cref{eq:phase-derivative}, the residue multiplicity
+\cref{eq:residue-multiplicity}, and \cref{thm:roughvariance} imply
+\begin{equation}\label{eq:Mxi-l2}
+ \sum_i|M_i^\circ(\xi)|^2
+ \ll_j (1+K/R)(1+|\xi|)^2
+             \left(DR+\frac{D^2}{P}\right).
+\end{equation}
+To see the factor $1+|\xi|$, the endpoint term costs one copy of
+$\sup_y\norm{E(y)}_2$, while the integral costs
+$D\cdot(|\xi|/D)\sup_y\norm{E(y)}_2$.
+
+For each $i$, Cauchy--Schwarz in frequency and \cref{eq:c-energy} give
+\[
+ |L_i^{\le H,\circ}|^2
+ \le B_0^2\sum_{0<|\xi|\le H}|M_i^\circ(\xi)|^2.
+\]
+There are $O(RK)$ pairs $(q,k)$.  Summing in $i$ and applying Cauchy--Schwarz
+once more gives
+\begin{align}
+ \sum_i|L_i^{\le H,\circ}|
+ &\ll_j B_0\sqrt{RK}\sqrt{1+K/R}
+ \left(
+   \sum_{0<|\xi|\le H}(1+|\xi|)^2
+   \left(DR+\frac{D^2}{P}\right)
+ \right)^{1/2}\notag\\
+ &\ll_j B_0(1+H)^{3/2}\sqrt{RK}\sqrt{1+K/R}
+          \sqrt{DR+\frac{D^2}{P}}.
+ \label{eq:nonprincipal-transfer}
+\end{align}
+For $K\le R$, the multiplicity factor is absolute.
+
+\subsection{The principal progression part}
+
+The principal term cannot be discarded: it is introduced and subtracted by an
+exact character expansion.  For every fixed $J>0$, the classical zero-free
+region for $\zeta(s)$ gives the uniform Mertens estimate
+\begin{equation}\label{eq:mertens}
+             \sup_{D\le y\le2D}
+             \left|\sum_{D<n\le y}\mu(n)\right|
+             \ll_J D\LL^{-J}
+\end{equation}
+for the polynomial-sized $D$ occurring here; see, for example,
+\cite{MontgomeryVaughan2007}.  Now use the exact inclusion--exclusion identity
+\[
+             \1_{(n,q)=1}=\sum_{e\mid(n,q)}\mu(e).
+\]
+The $e=1$ term is handled by \cref{eq:mertens}.  Every nontrivial divisor
+$e\mid q$ is at least $P$, and there are at most $2^j$ divisors.  Trivial
+counting therefore gives the corrected bound
+\begin{equation}\label{eq:principal-coprime}
+ \sup_{D\le y\le2D}
+ \left|\sum_{\substack{D<n\le y\\(n,q)=1}}\mu(n)\right|
+ \ll_{J,j}D\LL^{-J}+O_j\!\left(2^j\left(\frac DP+1\right)\right).
+\end{equation}
+The first draft's literal coefficient $j(D/P+1)$ is not justified by direct
+deletion because intersections of prime multiples must be included.  The
+$2^j$ inclusion--exclusion cost is the audited correction; since $j=5$ in the
+physical source, it changes no exponent.
+
+A second Stieltjes summation and \cref{eq:phase-derivative} show that, for each
+$i$,
+\begin{equation}\label{eq:principal-Mxi}
+ |M_i^{\mathrm{prin}}(\xi)|
+ \ll_{J,j}(1+|\xi|)\frac DR
+       \left(\LL^{-J}+P^{-1}+D^{-1}\right).
+\end{equation}
+Using \cref{eq:c-energy}, summing over the $O(RK)$ indices, and noting
+$\sum_{|\xi|\le H}(1+|\xi|)^2\ll(1+H)^3$, we obtain
+\begin{equation}\label{eq:principal-transfer}
+ \sum_i|L_i^{\le H,\mathrm{prin}}|
+ \ll_{J,j}B_0DK(1+H)^{3/2}
+       \left(\LL^{-J}+P^{-1}+D^{-1}\right).
+\end{equation}
+The same calculation allows the line-constant target frequency $\xi=0$.
+
+If the source sequence is $\mu(n)\1_{2\nmid n}$, write
+\[
+ M_{\mathrm{odd}}(x)=\sum_{\substack{n\le x\\2\nmid n}}\mu(n).
+\]
+The exact relation
+\[
+       M(x)=M_{\mathrm{odd}}(x)-M_{\mathrm{odd}}(x/2)
+\]
+gives
+\begin{equation}\label{eq:odd-recursion}
+       M_{\mathrm{odd}}(x)=\sum_{\ell\ge0}M(x/2^\ell),
+\end{equation}
+with a finite sum.  A conservative uniform implementation pays one additional
+factor $O(\log D)$; equivalently, one decreases the available Mertens exponent
+by one.  This is the source of the corrected global log ledger in
+\cref{sec:auditconstants}.
+
+\subsection{Normalisation}
+
+Combining \cref{eq:nonprincipal-transfer,eq:principal-transfer} and using
+$DK\asymp X$ gives
+\begin{align}
+ \frac{\sqrt{RK}\sqrt{DR+D^2/P}}{DK}
+ &=\left(\frac{R^2}{DK}+\frac{R}{KP}\right)^{1/2}\notag\\
+ &=\left(\frac{R^2}{X}+\frac{R}{KP}\right)^{1/2}.
+ \label{eq:normalised-deficit}
+\end{align}
+Thus \cref{thm:transference-main} follows.  For $K>R$, the squared
+nonprincipal deficit is
+\begin{align}
+ \left(1+\frac KR\right)
+ \left(\frac{R^2}{X}+\frac{R}{KP}\right)
+  &=\frac{R^2}{X}+\frac RD+\frac{R}{KP}+\frac1P,
+ \label{eq:four-term-deficit}
+\end{align}
+where $DK=X$ was used.
+
+\section{Physical closure of the former Sector A}\label{sec:sectorA}
+
+Set $P=P_*$.  In the range
+\begin{equation}\label{eq:enlarged-region}
+             K\ge\frac{R}{\sqrt{P_*}},\qquad K\le R,
+\end{equation}
+we have, by $R\ll X^{5/11}$,
+\begin{equation}\label{eq:sector-deficits}
+       \frac{R^2}{X}\ll X^{-1/11+o(1)},
+       \qquad
+       \frac{R}{KP_*}\le P_*^{-1/2}.
+\end{equation}
+Therefore the square root in \cref{eq:transference-main} is
+\begin{equation}\label{eq:delta}
+ \ll X^{-1/22+o(1)}+P_*^{-1/4}
+ \ll X^{-\delta+o(1)}
+\end{equation}
+for every fixed
+\begin{equation}\label{eq:delta-range}
+        0<\delta<\min\left(\frac1{22},\frac{\epsstar}{2}\right).
+\end{equation}
+If $H\le\LL^b$, the factor $(1+H)^{3/2}$ is at most a fixed power of
+$\LL$, and the power saving in \cref{eq:delta} absorbs every declared finite
+logarithmic cost.  The principal term is made arbitrarily small by choosing
+$J$ sufficiently large.  This proves \cref{cor:sectorA}.
+
+For cells with $K>R$, the extra term in \cref{eq:four-term-deficit} obeys
+\[
+       \frac RD\ll X^{-1/11+\epssafe}
+\]
+under \cref{eq:lowd-cutoff}.  If $\epssafe<1/11$, the overlap remains
+power-saving, with any
+\begin{equation}\label{eq:delta-Kgreater}
+ 0<\delta<\min\left(
+       \frac{1/11-\epssafe}{2},\frac{\epsstar}{2}
+       \right).
+\end{equation}
+This extension is included only on cells actually permitted by the inherited
