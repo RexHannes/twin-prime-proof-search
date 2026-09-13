@@ -9,6 +9,7 @@ Historical reports remain available as records of their own runs. The living cur
 
 ## Start here
 
+- [Gate 1B JCORE additions — 14 September 2026](GATE1B_SYNC_2026_09_14.md)
 - [Gate 1B formal-bank additions — 13 September 2026](GATE1B_SYNC_2026_09_13.md)
 - [Stable in-progress PDF](in-progress-twin-prime-proof.pdf)
 - [Versioned Draft 16 PDF](twin_prime_programme_draft16.pdf)
