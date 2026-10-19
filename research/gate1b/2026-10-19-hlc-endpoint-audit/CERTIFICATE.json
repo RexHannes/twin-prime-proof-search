@@ -1,0 +1,91 @@
+{
+  "checks_by_category": {
+    "Gamma_zero_Gram_negative_control": 4,
+    "L1_Linfinity_Gram_transport": 100,
+    "Z_gt_z_negative_control": 1,
+    "endpoint_formal_support_identity": 1497,
+    "missing_slope_antecedent_negative_control": 1,
+    "native_detector_split": 161,
+    "native_expected_prime_power_record": 1,
+    "native_full_Gram_identity": 1,
+    "native_nonzero_error_and_cross": 1,
+    "prime_slot_full_faces": 178,
+    "proportional_interval_power_count": 20,
+    "rough_Mobius_both_signs": 1,
+    "rough_Mobius_projection_eigenvector": 15,
+    "rough_Mobius_projection_idempotence": 225,
+    "rough_Mobius_projection_root_moment": 15,
+    "slope_exact_implication": 740,
+    "vaughan_formal_identity": 872
+  },
+  "native_fixture": {
+    "M": 4,
+    "X": 4096,
+    "Z": 7,
+    "c_cell": "(256,512]",
+    "exceptional_records": [
+      {
+        "c": 437,
+        "factorization": [
+          [
+            3,
+            7
+          ]
+        ],
+        "m": 5,
+        "n": 2187
+      }
+    ],
+    "z": 13
+  },
+  "nonclaims": [
+    "No finite test proves an asymptotic estimate.",
+    "The native arithmetic fixture is not an instantiated Ford occurrence certificate.",
+    "The Mobius-aligned rank-one matrix is not asserted to be the R11 operator.",
+    "No rough mixed cancellation, rough endpoint covariance, Full R11 or HSTAR closure.",
+    "No Lean build or independent human referee certification."
+  ],
+  "rough_Mobius_moment_control": {
+    "Z": 3,
+    "actual_R11_operator": false,
+    "diagonal_moment": "1/15",
+    "interval": "(48,96]",
+    "rank": 1,
+    "signs": [
+      -1,
+      1,
+      -1,
+      -1,
+      1,
+      -1,
+      -1,
+      -1,
+      1,
+      -1,
+      -1,
+      1,
+      -1,
+      1,
+      1
+    ],
+    "support": [
+      53,
+      55,
+      59,
+      61,
+      65,
+      67,
+      71,
+      73,
+      77,
+      79,
+      83,
+      85,
+      89,
+      91,
+      95
+    ]
+  },
+  "status": "PASS_FINITE_ONLY",
+  "total_exact_checks": 3833
+}

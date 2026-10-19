@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-19",
+  "inputs": [
+    {"file":"input/01_REPORT.md","sha256":"97ebe3c5dad6890ede6c256a63b18648c5d426e677a2bf371af8d76ed3919942","bytes":12155,"status":"unmodified input; not automatically recertified"},
+    {"file":"input/02_CLOSING_CONTRACT.md","sha256":"21e9e28b5f2f8faa562c5e903ef777f0018b3cd584f33aa5c84b9ac816b4e243","bytes":2253,"status":"unmodified input; not automatically recertified"},
+    {"file":"input/03_SOURCES_EVIDENCE.md","sha256":"402eb9e40e95bbf078e0a05f28dbb5cc229a21572c4e0057ce2ef44430bd6d84","bytes":1470,"status":"unmodified input; not automatically recertified"},
+    {"file":"input/04_verify.py","sha256":"0c8219b5940bb561c5d030f25e5b3cc1a5dcd061884a1dd61cdb96984d79cd92","bytes":3942,"status":"unmodified input; not automatically recertified"},
+    {"file":"input/05_CERTIFICATE.json","sha256":"86232c0f84ee0af553de059b0d9ae05a0ce0be4a5912eb5a6aa21261ebd7de68","bytes":1816,"status":"unmodified input; not automatically recertified"},
+    {"file":"input/HASHES.json","sha256":"204862ffc1d91f21e4608a8d8a352c2b91d989db5657a466dc76d2d524143644","bytes":459,"status":"unmodified input; not automatically recertified"},
+    {"file":"predecessors/REPORT(20261010-171900).md","sha256":"0ddc5ee36b9406fe36abf5dbfa5340e3e0ede8404b7e796ce8f0f0e16801b19f","bytes":12079,"status":"unmodified input; not automatically recertified"},
+    {"file":"predecessors/REPORT(20261018-114848).md","sha256":"edb06277a57c95ec47ee9cc426eab7d47c03df8364781a40b567aa7c5e539ad5","bytes":11119,"status":"unmodified input; not automatically recertified"},
+    {"file":"predecessors/REPORT(20261018-141857).md","sha256":"fc4e35962ac18d10e212397c09024ef5803352bf41a543b615db26cce875cae8","bytes":16345,"status":"unmodified input; not automatically recertified"},
+    {"file":"predecessors/SIGNED_ROUGHENING_REPORT.md","sha256":"47b75c5d2118cc0375b9f4bfff1a46a31ca6e51823b9092055fc26a4cef68c16","bytes":19871,"status":"inherited scoped roughening proof"}
+  ],
+  "primary_references": [
+    {"title":"On the Hardy--Littlewood--Chowla conjecture","authors":"Guangshi Lu, Zhiwei Wang, Jie Wu","url":"https://arxiv.org/html/2610.20242v1","checked":"Sections 2.3, 4; Proposition 4.2; (4.10), (4.67)-(4.68), Proposition 2.3","status":"preprint statement/interface checked; full external proof not independently certified"},
+    {"title":"On the theory of prime-producing sieves","authors":"Kevin Ford, James Maynard","url":"https://arxiv.org/html/2407.14368v1","checked":"Proposition 7.22 assumptions and final Type-II invocation"},
+    {"title":"NIST DLMF 27.2","url":"https://dlmf.nist.gov/27.2","checked":"Mobius, divisor-function, von Mangoldt definitions"},
+    {"title":"NIST DLMF 27.12","url":"https://dlmf.nist.gov/27.12","checked":"prime number theorem for rough-Mobius support count"}
+  ],
+  "repository": {"name":"RexHannes/twin-prime-proof-search","base_commit":"c52ceed44c8f1f5365ab1c65b630869865eb50e8","base_tree":"51ac389f67430ac9aabbfa40f323482dba2447f0","branch":"research/gate1b-endpoint-audit-20261019","authorization":"current user conditional research-branch handoff; connector identity/read verified"},
+  "limitations": ["No current executable occurrence-to-provider map was constructed.","No Lean build.","No research or closure status on main is changed.","No Full R11 or HSTAR closure."],
+  "input_location_note": "Input/predecessor paths identify snapshots retained in the downloadable audit archive; they are not claimed to have been uploaded into this research directory."
+}
