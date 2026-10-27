@@ -9,8 +9,10 @@ Historical reports remain available as records of their own runs. The living cur
 
 ## Start here
 
+- [Conditional Twin-Prime Reduction Notes — 27 October 2026](papers/conditional-reduction-2026-10-27/README.md) ([Revision 2 PDF](papers/conditional-reduction-2026-10-27/Twin_Primes_Conditional_Criterion_Rev2_2026-10-27.pdf) | [20-page Draft PDF](papers/conditional-reduction-2026-10-27/Twin_Primes_Conditional_Reduction_2026-10-27.pdf))
 - [Gate 1B JCORE additions — 14 September 2026](GATE1B_SYNC_2026_09_14.md)
 - [Gate 1B formal-bank additions — 13 September 2026](GATE1B_SYNC_2026_09_13.md)
+- [Gate 1B / R11 audited manuscript — 5 September 2026](papers/gate1b-r11-2026-09-05/README.md)
 - [Stable in-progress PDF](in-progress-twin-prime-proof.pdf)
 - [Versioned Draft 16 PDF](twin_prime_programme_draft16.pdf)
 - [Draft 16 LaTeX source](twin_prime_programme_draft16.tex)
