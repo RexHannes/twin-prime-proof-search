@@ -9,6 +9,7 @@ Historical reports remain available as records of their own runs. The living cur
 
 ## Start here
 
+- [Real 1B Route A & Route B Notes — 2–3 November 2026](papers/real1b-route-a-b-2026-11-03/README.md) ([Route B Signed Rosser-Error PDF](papers/real1b-route-a-b-2026-11-03/Real1B_RouteB_Signed_Rosser_Error_2026-11-03.pdf) | [Route A Stronger Lower Sieve PDF](papers/real1b-route-a-b-2026-11-03/Real1B_RouteA_Stronger_Lower_Sieve_2026-11-02.pdf))
 - [Conditional Twin-Prime Reduction Notes — 27 October 2026](papers/conditional-reduction-2026-10-27/README.md) ([Revision 2 PDF](papers/conditional-reduction-2026-10-27/Twin_Primes_Conditional_Criterion_Rev2_2026-10-27.pdf) | [20-page Draft PDF](papers/conditional-reduction-2026-10-27/Twin_Primes_Conditional_Reduction_2026-10-27.pdf))
 - [Gate 1B JCORE additions — 14 September 2026](GATE1B_SYNC_2026_09_14.md)
 - [Gate 1B formal-bank additions — 13 September 2026](GATE1B_SYNC_2026_09_13.md)
