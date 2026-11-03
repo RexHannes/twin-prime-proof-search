@@ -1,0 +1,30 @@
+# Overnight cloud formalisation task: Real 1B Gold 5.0 finite source and 151-cut frontier
+
+User requested two separate online proof-writing runs for #287 and Real 1B. This file is the concrete task for this repository only.
+
+Read `REQUEST.md` and `INPUT_INVENTORY.md` completely. Preserve the pinned bank; do not restart it or confuse reported manuscript proofs with kernel-checked source.
+
+## Priority order
+
+1. Inventory Gate1B/R11 and the real build/axiom state. Inspect the two current Route A/B PDFs as distinct, differently normalized sources.
+2. Define the Gold 5.0 physical weight with exact fixed shift +2 and exponent 21/100; formalize source support, squarefree sector definitions and finite sector/sign algebra.
+3. Prove detector polynomial algebra and the source-exact finite signed identity, making every sector/partition hypothesis visible.
+4. Define all 151 cuts, prove positive rational weights, telescoping and the faithful staircase lower bound. Separate finite algebra from asymptotic approximation.
+5. Prove a conditional terminal positivity implication from explicit named bounds. Certify numerical constants only if their full exact ledger is found in the provided sources; otherwise keep that obligation open.
+6. Attempt exact Farey / determinant-divisor algebra with full coprimality conditions. Keep spectral saving, prime-supported variance and favorable joint signed moment open.
+
+## Implementation and checking
+
+Create new completed Lean modules under `Gate1B/Gold50/`, with matching namespaces. Do not change old theorem statements or dependency versions. Keep all original statement / hypothesis comparisons in this task directory.
+
+1. If necessary, `bash automation/lean-cloud/setup.sh` installs the existing pinned environment; no external AI API credentials are needed.
+2. Run and record the historical baseline `lake build` result. Distinguish unrelated old failures from newly written mathematics.
+3. Write actual definitions, lemmas and Lean proofs, fix errors, and continue until the highest-priority fully specified results are proved or a precise mathematical/input obstruction is established. Do not stop at an implementation plan.
+4. Run `python3 automation/lean-cloud/audit_new.py` on every new module. It must return success and a nonempty theorem audit. Also include `#print axioms` for principal theorem names. Do not weaken or bypass the gate.
+5. Record full actual theorem types and compare every domain, quantifier, hypothesis and conclusion with the original brief. Do not assume the desired conclusion as a hypothesis or advertise a generic tautological implication as the requested source theorem.
+6. Copy useful build and axiom logs from `.lake/frontier-verification/` into this task's `results/` directory. Include final source and an `OPEN_FRONTIER.md` classifying each principal claim as KERNEL PROVED, CONDITIONAL ON NAMED HYPOTHESES, NOT FORMALIZED, or FALSE / REQUIRES REPAIR.
+7. Keep unresolved code in Markdown. Do not add sorry/admit/custom axioms, native_decide, implemented_by, opaque oracles, or fabricated analytic providers.
+
+## Completion
+
+Produce a draft pull request containing actual checked source, logs, and the precise frontier ledger. Keep the overall research problem OPEN unless a complete unconditional proof was actually established and checked. Do not merge your PR or modify historical status claims. Work within the hosted task's time/usage limits; checkpoint useful completed results rather than idling or scheduling recurring jobs. Missing manuscripts must be reported, but should not block independent rigorous finite work.
