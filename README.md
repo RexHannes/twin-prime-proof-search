@@ -1,11 +1,16 @@
 # Twin Prime Proof Search — Public Research Archive
 
 **Current public manuscript:** Draft 16 (27 August 2026)  
-**Latest repository status/scope overlay:** 1 September 2026
+**Latest research-status overlay:** 21 November 2026 — Gold 4.39 interim; G5 OPEN
 
 This repository is an exploratory fixed-shift / Ford–Maynard / Twin-Prime research archive. It does **not** claim a proof of the Twin Prime Conjecture.
 
 Historical reports remain available as records of their own runs. The living current status and dependency graph are project-local; older mixed-project material in Git history is noncontrolling.
+
+## Latest research checkpoint (interim, NOT a proof claim)
+
+- [REAL 1B Gold 4.39 — 21 November 2026 interim status](papers/real1b-gold4-39-2026-11-21/README.md): 4.39-B directional minor-arc and cofactor findings; 4.39-A marked weighted Type-II transfer still under review; full H2 and twin-prime infinitude remain **OPEN**.
+- This is a **research-only append-only update**, not a replacement for the historical Draft 16 manuscript or an external analytic certification.
 
 ## Start here
 
