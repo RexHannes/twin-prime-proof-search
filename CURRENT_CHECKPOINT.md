@@ -1,5 +1,10 @@
 # Current Public Research Checkpoint — 31 August 2026
 
+> **Later research-status overlay — 21 November 2026:** See [REAL 1B Gold 4.39 interim checkpoint](papers/real1b-gold4-39-2026-11-21/README.md). The earlier August Gate 1A/1B checkpoint below is preserved as a historical scope-specific record. Gold 4.39-A weighted Type-II is **in progress** in that overlay; Gold 4.39-B reports no positive twin reserve. **Full parity-breaking H2, global Type-II, and the Twin Prime Conjecture remain OPEN. No unconditional proof is claimed.**
+
+---
+
+
 **Publication-facing PDF:** Draft 16 (27 August 2026; may lag this research ledger)  
 **Gate 1A:** OPEN  
 **Gate 1B canonical balanced-`R_9`:** C2/C3/C4/C5 CLOSED at audited research level  
