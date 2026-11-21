@@ -1,5 +1,9 @@
 # Current Public Research Checkpoint — 31 August 2026
 
+> **Latest overlay — 21 November 2026, Gold 4.40-J/X:** [Paper research supplement](papers/real1b-gold4-40-2026-11-21/README.md) · [LaTeX proof-status addendum](papers/real1b-gold4-40-2026-11-21/PROOF_STATUS_ADDENDUM.tex) · [signed claim ledger](papers/real1b-gold4-40-2026-11-21/RESEARCH_LEDGER.md). Gold 4.39-A's completed supplied report describes marked Type-II cancellation, **not** full unmarked H2; deep analytic verification remains outstanding. Gold 4.40-J records a scoped Cauchy no-go and least-factor source reconstruction. Gold 4.40-X records a pointwise rough prime minorant and an **unproved** paired-prime closing condition. Third Gold 4.40 branch was unfinished in the last supplied extract. **No unconditional twin-prime proof, global Type-II closure, or G5 claim.** Draft 16 PDF/TeX and Lean formal banks remain unchanged.
+
+---
+
 > **Later research-status overlay — 21 November 2026:** See [REAL 1B Gold 4.39 interim checkpoint](papers/real1b-gold4-39-2026-11-21/README.md). The earlier August Gate 1A/1B checkpoint below is preserved as a historical scope-specific record. Gold 4.39-A weighted Type-II is **in progress** in that overlay; Gold 4.39-B reports no positive twin reserve. **Full parity-breaking H2, global Type-II, and the Twin Prime Conjecture remain OPEN. No unconditional proof is claimed.**
 
 ---
