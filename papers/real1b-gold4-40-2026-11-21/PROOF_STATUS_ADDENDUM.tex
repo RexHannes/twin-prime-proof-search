@@ -1,0 +1,159 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{proposition}{Proposition}
+\newtheorem{criterion}{Conditional criterion}
+\title{REAL 1B: Gold 4.40-J/X\\Signed Ledger and Conditional Twin-Prime Interfaces}
+\author{Provisional AI-assisted research addendum}
+\date{21 November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+This is a research-status supplement, not a proof of the Twin Prime Conjecture.
+We document two elementary identities, a pointwise rough-prime minorant,
+and the new source-specific arithmetic estimates still required to obtain a
+strictly positive twin-prime reserve. Imported asymptotic assertions in the
+Gold 4.39-A/4.40-J/4.40-X reports are subject to independent verification.
+\end{abstract}
+\section{Exact signed source identity}
+Let \(L=\log X\), \(N_0=\mathfrak S_2X/L\), \(z=(2X)^{1/4}\) and
+\[
+a(n)=\mathbf1_{X<n\le2X}\vartheta_{\mathbb P}(n-2),\qquad
+\vartheta_{\mathbb P}(m)=\log m\,\mathbf1_{m\in\mathbb P}.
+\]
+Write \(R_z(n)=\mathbf1_{P^-(n)>z}\), and assume
+\[
+\ell_B(n)=\alpha_XR_z(n)-w_X(n),\quad
+0<\alpha_X\le1,\quad w_X\ge0,\quad w_XR_z=0.
+\]
+Let \(T,C_2,C_3\) denote the masses of squarefree rough \(n\) with
+respectively one, two, or three prime factors, each weighted by \(a(n)\).
+There are no higher squarefree rough orders on this interval.
+Set \(O=(\mu^2-\mu)/2\), \(E=(\mu^2+\mu)/2\), and
+\[
+W_o=\sum a(n)w_X(n)O(n),\quad W_e=\sum a(n)w_X(n)E(n).
+\]
+For any auxiliary mark \(\mathcal W\) vanishing on rough inputs put
+\[
+A_{\rm sf}=\sum a\mu^2\ell_B,\quad
+\delta=\sum a\mu\ell_B\mathcal W,\quad
+\mathcal E_{\mathcal W}=\sum a\mu\ell_B(1-\mathcal W).
+\]
+\begin{proposition}[Exact ledger]
+\begin{align*}
+A_{\rm sf}&=\alpha_X(T+C_2+C_3)-W_o-W_e,\\
+\mathcal E_{\mathcal W}+\delta
+ &=\alpha_X(-T+C_2-C_3)+W_o-W_e,\\
+T&=\frac{A_{\rm sf}-\mathcal E_{\mathcal W}-\delta+2W_o}
+ {2\alpha_X}-C_3.
+\end{align*}
+\end{proposition}
+\begin{proof}
+On rough squarefree inputs \(\mu=-1,+1,-1\) according to the
+one-, two-, and three-prime-factor cases. On nonrough inputs
+\(\ell_B=-w_X\), yielding \(-W_o-W_e\) in the unsigned sum and
+\(W_o-W_e\) in the signed sum. Subtract the resulting equalities.
+\end{proof}
+Define \(c_B=\frac72\log3-4\log2\), \(c_3=0.49073558986414\ldots\)
+and \(h_0=c_B-2c_3=0.0910831083703276\ldots\).
+\begin{criterion}[Unmarked H2: OPEN]
+Assume the inherited source inequalities
+\(A_{\rm sf}\ge(c_B-e-o(1))N_0\),
+\(C_3\le(c_3+o(1))N_0\), \(\delta=o(N_0)\),
+and \(\alpha_X\ge\alpha_0>0\).
+If the as-yet \emph{unproved} estimate
+\[
+\mathcal E_{\mathcal W}\le(h_0-e-\kappa)N_0
+\quad(\kappa>0\text{ fixed})
+\]
+also holds, then
+\(
+T/N_0\ge c_3(\alpha_X^{-1}-1)+\kappa/(2\alpha_X)-o(1)>0.
+\)
+\end{criterion}
+\begin{proof}
+Insert the assumptions in the exact ledger and use \(W_o\ge0\).
+\end{proof}
+Gold 4.39-A reports a marked Type-II estimate
+\(\mathscr V_{u,e}[\mathcal W]=O_A(XL^{-A})\) with imported operator
+hypotheses, but \(\mathcal W\) vanishes on the rough sector.
+It does \emph{not} prove the unmarked estimate above.
+\section{Gold 4.40-X pointwise minorant}
+Fix \(3/8<\eta<1/2\) and put
+\[
+b_\eta(n)=\frac1L\sum_{\substack{p\mid n\\p>X^\eta}}\log p,
+\quad g_\eta(n)=\mu(n)b_\eta(n),\quad
+s=1-\eta,\quad t_X=\frac{\log(2X)}{2L},
+\]
+\[
+\lambda_X=\frac{s-t_X}{2}>0,\qquad
+a_X^*=\frac{s+t_X}{2}.
+\]
+\begin{proposition}[Pointwise rough prime minorant]
+For every \(X<n\le2X\),
+\[
+R_z(n)\{\lambda_X\mu^2(n)+\mu(n)[a_X^*-b_\eta(n)]\}
+\le t_X\mathbf1_{n\in\mathbb P}.
+\]
+\end{proposition}
+\begin{proof}
+For a rough prime the left side is \(b_\eta-t_X\le t_X\).
+For a rough semiprime at least one factor exceeds \(X^\eta\),
+and \(b_\eta\ge1-\eta=s\); the left side is \(s-b_\eta\le0\).
+For a rough triple at most one prime exceeds \(X^\eta\), since
+\(2\eta+1/4>1\). If present, it is below \(\sqrt{2X}\),
+so \(b_\eta\le t_X\); the left side is \(b_\eta-t_X\le0\).
+On nonsquarefree inputs both \(\mu,\mu^2\) vanish.
+Four rough prime factors would exceed \(2X\).
+\end{proof}
+Let
+\[
+S_X=\sum a(n)\mu^2(n)R_z(n),\quad
+M_X^\mu=\sum a(n)\mu(n)R_z(n),\quad
+G_X=\sum a(n)g_\eta(n)R_z(n).
+\]
+Summing the pointwise inequality against \(a(n)\ge0\) yields
+\[
+t_XT\ge\lambda_XS_X+a_X^*M_X^\mu-G_X.
+\]
+Furthermore \(S_X\ge A_{\rm sf}\) follows from the signed kernel
+decomposition with \(0<\alpha_X\le1\) and \(w_X\ge0\).
+\begin{criterion}[Paired-prime signed input: OPEN]
+Assume \(A_{\rm sf}\ge(c_B-e-o(1))N_0\).
+If a new estimate on this \emph{same two-prime source} proves
+\[
+G_X-a_X^*M_X^\mu
+ \le[\lambda_X(c_B-e)-\kappa]N_0\quad(\kappa>0),
+\]
+then \(T\ge(\kappa/t_X-o(1))N_0>0\) on unbounded scales.
+\end{criterion}
+\begin{proof}
+Insert the proposed bound and the inherited lower bound in the
+pointwise inequality; \(t_X\to1/2\).
+\end{proof}
+\section{Audit and scope}
+Gold 4.40-J's absolute-Cauchy certificate satisfies
+\(M=A_{\rm sf}+2W_0\), \(V=A_{\rm sf}+W_0+D_w\), and hence
+\(\sqrt{MV}\ge A_{\rm sf}\). This is a restriction on \emph{that
+upper-bound method}, not a lower bound on the actual signed residual.
+The supplied J/X reports contain further claimed analytic estimates
+which have not been independently re-established in this addendum.
+Neither J's ordinary BV cofactor treatment nor X's ordinary-integer
+distribution estimates imply the required \(\vartheta_{\mathbb P}(n-2)\)
+signed contrast. Gold 4.39-B even minor arcs and the third Gold 4.40
+source-capacity branch remain open at the last supplied checkpoint.
+The two conditional criteria overlap and cannot be added as
+independent arithmetic credit. No G3 historical novelty certification,
+G5 twin-prime closure or Lean certification is claimed.
+\begin{thebibliography}{9}
+\bibitem{FM} K. Ford and J. Maynard, \emph{On the theory of prime producing sieves},
+\url{https://arxiv.org/abs/2407.14368}.
+\bibitem{LWW} G. L\"u, Z. Wang and J. Wu,
+\emph{On the Hardy--Littlewood--Chowla conjecture},
+\url{https://arxiv.org/abs/2610.20242}.
+\bibitem{JLL} Y. Jiang, Y.-K. Lau and G. L\"u,
+\emph{An asymptotic formula for primes of the form \(u^2+v^2+1\)},
+\url{https://arxiv.org/abs/2611.12467}.
+\end{thebibliography}
+\end{document}
