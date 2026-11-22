@@ -86,8 +86,8 @@ def term (a x : ℝ) (n : ℕ) :=
   sieve (roughW a x) k * mu k ^ 2 * coeff (cutU x) (cutD x) k * phi x n
 def largeProduct (a x : ℝ) := total (x/2) (term a x)
 
-/-- Gold 4.59 Joint Signed, Part A (2.1). The last four comparisons
-are written additively to avoid truncated natural subtraction. -/
+/-- Gold 4.59 Joint Signed, Part A (2.1). Bounds involving 96-s or
+100-s are written additively to avoid truncated natural subtraction. -/
 def admissible (i j k l : ℕ) : Prop :=
   let s := i+j+k+l
   3 ≤ i ∧ i < j ∧ j < k ∧ k < l ∧ l ≤ 48 ∧ i+1 ≤ 19 ∧
@@ -189,6 +189,80 @@ theorem complement_pair_balance (a x : ℝ) (hu : 1 ≤ cutU x) :
       ring
   · by_cases hn : inE x n <;> simp [h, hn]
 
+/-- A subpower input presieve lies below every fixed positive power. -/
+theorem log_power_lt_linear {a b : ℝ} (ha : a < 1) (hb : 0 < b) :
+    ∀ᶠ x : ℝ in atTop, Real.log x ^ a < b * Real.log x := by
+  have ht := (tendsto_rpow_atTop (sub_pos.mpr ha)).comp Real.tendsto_log_atTop
+  filter_upwards [ht.eventually_gt_atTop (1/b), eventually_gt_atTop (1:ℝ)] with x hx hx1
+  change 1/b < Real.log x ^ (1-a) at hx
+  have hL := Real.log_pos hx1
+  have h1 := (div_lt_iff₀ hb).mp hx
+  have hsum : Real.log x ^ a * Real.log x ^ (1-a) = Real.log x := by
+    rw [← Real.rpow_add hL, show a + (1-a) = 1 by ring, Real.rpow_one]
+  nlinarith only [mul_lt_mul_of_pos_left h1 (Real.rpow_pos_of_pos hL a), hsum,
+    congrArg (fun t : ℝ => b*t) hsum]
+
+theorem boxes_prime_size {n p : ℕ} (hn : 1 < (n:ℝ)) (hB : boxes n)
+    (hp : p.Prime) (hd : p ∣ n) : 0.04 * Real.log n < Real.log p := by
+  obtain ⟨_, u,v,r,s,t,i,j,k,l,hf,hidx,hu,_⟩ := hB
+  have hmem : p ∈ n.primeFactorsList := (Nat.mem_primeFactorsList_iff_dvd (by
+    intro h; norm_num [h] at hn) hp).mpr hd
+  have hsort := (Nat.primeFactorsList_sorted n).pairwise
+  rw [hf] at hmem hsort
+  have hup : u ≤ p := by
+    rcases List.mem_cons.mp hmem with he | ht
+    · omega
+    · exact (List.pairwise_cons.mp hsort).1 p ht
+  have huprime : u.Prime := Nat.prime_of_mem_primeFactorsList (by rw [hf]; simp)
+  have hlog : Real.log u ≤ Real.log p := Real.log_le_log (by exact_mod_cast huprime.pos) (by exact_mod_cast hup)
+  have hfirst : (4:ℝ) ≤ i := by exact_mod_cast first_index_lower hidx
+  have hcell := (lt_div_iff₀ (Real.log_pos hn)).mp hu.1
+  nlinarith only [hcell, hlog, mul_le_mul_of_nonneg_right hfirst (Real.log_pos hn).le]
+
+/-- On the joint boxes the output presieve in the original prime source
+is eventually automatic throughout the physical window. -/
+theorem boxes_sifted : ∀ᶠ x : ℝ in atTop, ∀ n ∈ interval (x/2), boxes n → Sifted (y x) n := by
+  filter_upwards [log_power_lt_linear (a:=(1/20:ℝ)) (b:=0.01) (by norm_num) (by norm_num),
+    eventually_ge_atTop (4:ℝ)] with x hy hx n hn hB p hp hd
+  have hn' : x/2 < (n:ℝ) := (Finset.mem_filter.mp hn).2
+  have hn1 : (1:ℝ) < n := by linarith
+  have hlog := boxes_prime_size hn1 hB hp hd
+  have h2 := Real.log_le_log (by norm_num : (0:ℝ)<2) (by linarith : 2 ≤ (n:ℝ))
+  have h3 := Real.log_le_log (by linarith : 0 < x) (by linarith : x ≤ 2*(n:ℝ))
+  rw [Real.log_mul (by norm_num) (by linarith)] at h3
+  unfold y
+  rw [← Real.exp_log (by exact_mod_cast hp.pos : (0:ℝ) < p), Real.exp_lt_exp]
+  linarith [Real.log_pos hn1]
+
+def rawPrimeCompanion (x : ℝ) :=
+  total (x/2) (fun n => theta (n-2) * (if boxes n then phi x n else 0))
+theorem prime_companion_eq_raw : ∀ᶠ x : ℝ in atTop, primeCompanion x = rawPrimeCompanion x := by
+  filter_upwards [boxes_sifted] with x hx
+  unfold primeCompanion rawPrimeCompanion total
+  apply Finset.sum_congr rfl
+  intro n hn
+  by_cases hb : boxes n
+  · simp [hb, actual, sieve, hx n hn hb]
+  · simp [hb]
+
+/-- The inherited subpower presieve is redundant on the selected input mask. -/
+theorem selected_without_presieve {a : ℝ} (ha : a < 1) :
+    ∀ᶠ x : ℝ in atTop, selected a x = total (x/2) (fun n => if inE x n then
+      mu (n-2)^2 * coeff (cutU x) (cutD x) (n-2) * phi x n else 0) := by
+  filter_upwards [log_power_lt_linear (b:=0.24) ha (by norm_num),
+    eventually_gt_atTop (1:ℝ)] with x hlog hx
+  have hz : roughW a x < cutU x := by
+    unfold roughW cutU
+    rw [Real.rpow_def_of_pos (show 0 < x by linarith) (0.24:ℝ), Real.exp_lt_exp]
+    linarith
+  unfold selected total
+  apply Finset.sum_congr rfl
+  intro n _
+  by_cases h : inE x n
+  · have hw : Sifted (roughW a x) (n-2) := fun p hp hd => hz.trans (h.2.2 p hp hd)
+    simp [h, term, sieve, hw]
+  · simp [h]
+
 theorem margin_certificate :
     (0.00048 : ℝ) < 7558755113252227 / 15547490081739244800 ∧
     (0.999892775499 : ℝ) + 0.00048 = 1.000372775499 := by norm_num
@@ -232,16 +306,91 @@ theorem eventual_reserve {a κ : ℝ}
   have hR' := (abs_le.mp hR).2
   linarith only [hL, hR', hJ, hQ]
 
-theorem infinite_of_joint_complement {a : Set.Ioo (0:ℝ) 1} {κ : ℝ} (hκ : 0 < κ)
-    (hl : LowerLedger) (hr : Reduction a) (hj : Joint a) (hq : ComplementBound a κ)
+private theorem infinite_of_reserve {κ : ℝ} (hκ : 0 < κ)
+    (hR : ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop, (κ-e) * Sb x ≤ T x)
     (hs : ∀ᶠ x : ℝ in atTop, 0 < Sb x) :
     Set.Infinite {p : ℕ | p.Prime ∧ (p+2).Prime} := by
-  have h := eventual_reserve hl hr hj hq (κ/2) (by linarith)
+  have h := hR (κ/2) (by linarith)
   apply infinite_of_unbounded_mass
   intro M
   obtain ⟨x,hx,hT,hS⟩ := ((eventually_gt_atTop (2*(M:ℝ))).and (h.and hs)).exists
   refine ⟨x/2, by linarith, ?_⟩
   exact (mul_pos (by linarith : 0 < κ - κ/2) hS).trans_le (hT.trans (T_le_native x))
+
+theorem infinite_of_joint_complement {a : Set.Ioo (0:ℝ) 1} {κ : ℝ} (hκ : 0 < κ)
+    (hl : LowerLedger) (hr : Reduction a) (hj : Joint a) (hq : ComplementBound a κ)
+    (hs : ∀ᶠ x : ℝ in atTop, 0 < Sb x) :
+    Set.Infinite {p : ℕ | p.Prime ∧ (p+2).Prime} :=
+  infinite_of_reserve hκ (eventual_reserve hl hr hj hq) hs
+
+/-! Gold 4.60 Fouvry boxwise variant, §§B–E. The three analytic inputs below
+keep the lower-sieve population, all three short pairs in the positive
+exception, and the genuine prime companion on the same source. -/
+def triangle (x : ℝ) (k : ℕ) : Prop :=
+  ∃ p q r s : ℕ, k.primeFactorsList = [p,q,r,s] ∧
+    (p*q:ℕ) ≤ cutD x ∧ (p*r:ℕ) ≤ cutD x ∧ (q*r:ℕ) ≤ cutD x
+
+def inputPopulation (x : ℝ) :=
+  total (x/2) (fun n => if inE x n then mu (n-2)^2 * phi x n else 0)
+def trianglePopulation (x : ℝ) :=
+  total (x/2) (fun n => if inE x n ∧ triangle x (n-2) then mu (n-2)^2 * phi x n else 0)
+
+def RoughSupply : Prop := ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop,
+  (0.0026942415488-e) * Sb x ≤ 0.02 * Real.log x * inputPopulation x
+def TriangleCost : Prop := ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop,
+  0.49 * Real.log x * trianglePopulation x ≤ (153125/248769792+e) * Sb x
+def CoefficientAssembly (a : ℝ) : Prop := ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop,
+  selected a x - 0.02 * rawPrimeCompanion x ≤
+    0.49 * Real.log x * trianglePopulation x - 0.02 * Real.log x * inputPopulation x + e * Sb x
+def Joint60 (a : ℝ) : Prop := ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop,
+  selected a x - 0.02 * primeCompanion x ≤ (-0.00207+e) * Sb x
+def Complement60 (a κ : ℝ) : Prop := ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop,
+  QE a x ≤ (1.001962775499-κ+e) * Sb x
+
+/-- The rational cubic used by the box verifier always rounds the true
+logarithmic factor down. The next positive series term makes this strict. -/
+theorem cubic_log_lower {z : ℝ} (hz : 0 < z) (hz1 : z < 1) :
+    2 * (z+z^3/3) < Real.log ((1+z)/(1-z)) := by
+  have h := Real.hasSum_log_sub_log_of_abs_lt_one ((abs_of_pos hz).trans_lt hz1)
+  have hs := sum_le_hasSum (Finset.range 3) (fun k _ => by positivity) h
+  norm_num [Finset.sum_range_succ] at hs
+  rw [Real.log_div (by linarith) (by linarith)]
+  linarith only [hs, pow_pos hz 5]
+
+theorem boxwise_rounding :
+    (0.00207:ℝ) < 0.0026942415488 - 153125/248769792 ∧
+    (0.999892775499:ℝ)+0.00207 = 1.001962775499 := by norm_num
+
+theorem joint60_of_source_estimates {a : ℝ} (hN : RoughSupply) (hM : TriangleCost)
+    (hA : CoefficientAssembly a) (hs : ∀ᶠ x : ℝ in atTop, 0 < Sb x) : Joint60 a := by
+  intro e he
+  have h : 0 < e/3 := by linarith
+  filter_upwards [hN _ h, hM _ h, hA _ h, hs, prime_companion_eq_raw] with x h1 h2 h3 h4 h5
+  rw [h5]
+  linarith only [h1, h2, h3, mul_lt_mul_of_pos_right boxwise_rounding.1 h4]
+
+theorem gold60_lower {a : ℝ} (hl : LowerLedger) (hr : Reduction a) (hj : Joint60 a) :
+    ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop, (1.001962775499-e)*Sb x ≤ QE a x + T x := by
+  intro e he
+  have h : 0 < e/3 := by linarith
+  filter_upwards [hl _ h, hr _ h, hj _ h] with x hL hR hJ
+  rw [← signed_identity] at hJ
+  linarith only [hL, (abs_le.mp hR).2, hJ]
+
+theorem reserve60 {a κ : ℝ} (hl : LowerLedger) (hr : Reduction a) (hj : Joint60 a)
+    (hq : Complement60 a κ) :
+    ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop, (κ-e) * Sb x ≤ T x := by
+  intro e he
+  have h : 0 < e/2 := by linarith
+  filter_upwards [gold60_lower hl hr hj _ h, hq _ h] with x hL hQ
+  linarith only [hL,hQ]
+
+theorem infinite_of_boxwise_complement {a : Set.Ioo (0:ℝ) 1} {κ : ℝ} (hκ : 0 < κ)
+    (hl : LowerLedger) (hr : Reduction a) (hN : RoughSupply) (hM : TriangleCost)
+    (hA : CoefficientAssembly a) (hq : Complement60 a κ) (hs : ∀ᶠ x : ℝ in atTop, 0 < Sb x) :
+    Set.Infinite {p : ℕ | p.Prime ∧ (p+2).Prime} :=
+  infinite_of_reserve hκ (reserve60 hl hr (joint60_of_source_estimates hN hM hA hs) hq) hs
+
 
 end
 end REAL1B.FM.Closing
@@ -255,7 +404,19 @@ end REAL1B.FM.Closing
 #print axioms REAL1B.FM.Closing.pair_weight_nonneg
 #print axioms REAL1B.FM.Closing.pair_mass_nonneg
 #print axioms REAL1B.FM.Closing.complement_pair_balance
+#print axioms REAL1B.FM.Closing.log_power_lt_linear
+#print axioms REAL1B.FM.Closing.boxes_prime_size
+#print axioms REAL1B.FM.Closing.boxes_sifted
+#print axioms REAL1B.FM.Closing.prime_companion_eq_raw
+#print axioms REAL1B.FM.Closing.selected_without_presieve
 #print axioms REAL1B.FM.Closing.margin_certificate
 #print axioms REAL1B.FM.Closing.complement_bound_iff_pair_budget
 #print axioms REAL1B.FM.Closing.eventual_reserve
 #print axioms REAL1B.FM.Closing.infinite_of_joint_complement
+
+#print axioms REAL1B.FM.Closing.boxwise_rounding
+#print axioms REAL1B.FM.Closing.joint60_of_source_estimates
+#print axioms REAL1B.FM.Closing.gold60_lower
+#print axioms REAL1B.FM.Closing.reserve60
+#print axioms REAL1B.FM.Closing.infinite_of_boxwise_complement
+#print axioms REAL1B.FM.Closing.cubic_log_lower

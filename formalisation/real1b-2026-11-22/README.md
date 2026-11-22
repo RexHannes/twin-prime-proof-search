@@ -1,6 +1,6 @@
 # REAL 1B · independent Lean replay
 
-**Twin-prime infinitude is open.** This replay checks 68 named results, including the exact weighted identities, a finite Vaughan decomposition on the physical source, a positive numerical margin, a prime-power error estimate, and the Gold 4.60 conditional implication from the signed FM complement. The H2-B implication has five hypotheses. Their precise statements and mathematical status appear in the [dependency table](DEPENDENCIES.md).
+**Twin-prime infinitude is open.** This replay checks 79 named results, including the exact weighted identities, a finite Vaughan decomposition on the physical source, a positive numerical margin, a prime-power error estimate, and the Gold 4.60 conditional implication from the signed FM complement. The H2-B implication has five hypotheses. Their precise statements and mathematical status appear in the [dependency table](DEPENDENCIES.md).
 
 ## Run it in a browser
 
@@ -8,13 +8,13 @@
 
 ## Independently verify a checkout
 
-From the repository root, the following command regenerates the expected replay in memory, compares it byte for byte with the committed file, checks its SHA-256, and submits a new AXLE request. It checks the returned source, diagnostics, and axiom dependencies of all 68 named results. Python 3.9+ and network access are sufficient.
+From the repository root, the following command regenerates the expected replay in memory, compares it byte for byte with the committed file, checks its SHA-256, recalculates the finite boxwise margin using exact fractions, and submits a new AXLE request. It checks the returned source, diagnostics, and axiom dependencies of all 79 named results. Python 3.9+ and network access are sufficient.
 
 ```sh
 python3 formalisation/real1b-2026-11-22/verify.py --online
 ```
 
-To use the repository's pinned toolchain and your own Lean kernel, run the following command with Lake available. It obtains the Mathlib cache, builds the actual imported modules, and audits the exported declarations from a fresh Lean process. Running both modes checks both forms of the program.
+To use the repository's pinned toolchain and your own Lean kernel, run the following command with Lake available. It obtains the Mathlib cache, builds the actual imported modules, and prints every exported theorem type and its axiom dependencies from a fresh Lean process. Running both modes checks both forms of the program.
 
 ```sh
 python3 formalisation/real1b-2026-11-22/verify.py --lake
@@ -24,7 +24,7 @@ The Lake build target is `RequestProject.REAL1B_20261122`. For a repeatable revi
 
 ## Read the mathematical endpoints
 
-- **Gold 4.60 joint signed FM.** The new theorem derives a positive twin mass from the fixed-saving bound on the complete signed complement and its stated analytic inputs. [Proof obligations and exact semiprime balance](FM-CLOSING.md)
+- **Gold 4.60 joint signed FM.** Two endpoints preserve the original 0.00048 margin and the boxwise 0.00207 variant. Both derive a positive twin mass from an independent bound on the complete signed complement and their stated analytic inputs. [Proof obligations and exact semiprime balance](FM-CLOSING.md)
 
 - **H2-B.** [SieveInputs.lean](../../RequestProject/REAL1B_20261122/SieveInputs.lean) ends with `infinite_of_paper_inputs`. It consumes an H1 squarefree lower estimate with valid sieve rows, a rough triple cap, a Type-I calibration, a cutoff-collar estimate, and a full Type-II upper bound. [Vaughan.lean](../../RequestProject/REAL1B_20261122/Vaughan.lean) gives the actual coefficients of that last sum.
 - **Ford–Maynard.** [FMSource.lean](../../RequestProject/REAL1B_20261122/FMSource.lean) ends with `infinite_of_source_residual`. It uses a lower comparison, a signed residual upper estimate, and eventual positivity of the comparator prime baseline. All three refer to the specified source sums.

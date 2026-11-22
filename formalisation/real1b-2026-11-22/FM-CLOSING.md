@@ -27,6 +27,26 @@ Each tolerance is fixed before the scale tends to infinity. The paper status rec
 | LEAN_PROVED | `complement_pair_balance`, `complement_bound_iff_pair_budget` | The open bound is equivalent to the signed budget below. The support and weights are shared on the two sides. |
 | LEAN_PROVED | `eventual_reserve`, `infinite_of_joint_complement` | For each $e>0$, eventually $T\ge(\kappa-e)S_b$. Taking $e=\kappa/2$ and using eventual $S_b>0$ produces twin primes on unbounded scales. |
 
+## Stronger local estimate in Gold 4.60
+
+The *Gold 4.60 Joint Closure Evolutionary Proof Report*, §§A–E (23 November 2026), applies a box-dependent distribution level to the same output boxes, input mask, and companion. It reports a local margin of $0.00207$. The earlier $0.00048$ result remains independently callable as `infinite_of_joint_complement`.
+
+| Status | Lean name | Precise role |
+|---|---|---|
+| LEAN_PROVED | `boxes_prime_size`, `boxes_sifted`, `prime_companion_eq_raw` | Every prime dividing a selected output has $\log p>0.04\log n$. Eventually the original output presieve is automatic on the boxes. Its prime companion equals the paper's raw log-weighted prime-input sum. |
+| LEAN_PROVED | `selected_without_presieve` | For fixed $a<1$, eventually $w<U$. The selected source then equals the stated squarefree, $U$-rough sum with the redundant subpower presieve removed. |
+| PAPER_PROVED_NOT_FORMALIZED | `RoughSupply` | For each fixed $e>0$, eventually $0.02\log x\,N_\psi\ge(0.0026942415488-e)S_b$. Report §§B–C transfer fixed-box distribution and a lower sieve to the shifted rough inputs. This is the main analytic input specific to the stronger variant. |
+| PAPER_PROVED_NOT_FORMALIZED | `TriangleCost` | For each $e>0$, eventually $0.49\log x\,M_\psi\le(153125/248769792+e)S_b$. Section D inherits the positive rank-four triangle exception, with all three short pairs and the full output weight. |
+| PAPER_PROVED_NOT_FORMALIZED | `CoefficientAssembly a` | Section D combines the coefficient bound, prime-input log correction and bounded errors. It bounds $\mathcal U_E-0.02 A_\psi$ by the triangle cost minus the rough population term, up to $o(S_b)$. |
+| LEAN_PROVED | `cubic_log_lower`, `boxwise_rounding` | For $0<z<1$, $2(z+z^3/3)<\log((1+z)/(1-z))$. The proved inequality justifies the downward logarithm approximation. The stated lower coefficient minus the exact triangle cost exceeds $0.00207$. |
+| LEAN_PROVED | `joint60_of_source_estimates`, `gold60_lower` | From the three named analytic estimates and eventual comparator positivity, the joint margin follows. The lower ledger and reduction then imply $Q_E+T\ge(1.001962775499-o(1))S_b$. |
+| OPEN_ARITHMETIC | `Complement60 a κ` | Independently bound the same $Q_E$ by $(1.001962775499-\kappa+o(1))S_b$ for a fixed $\kappa>0$. |
+| LEAN_PROVED | `reserve60`, `infinite_of_boxwise_complement` | The independent upper bound and the listed supporting estimates imply $T\ge(\kappa-o(1))S_b$ and twin-prime infinitude. |
+
+Both verification commands run a separate exact-rational check of the finite sum over admissible boxes, including the boxwise level selection, the cubic lower bound and the full triangle charge. This calculation certifies the numerical coefficient. The assertions about the distribution of actual primes are Lean theorem parameters. [Rational checker](boxwise.py)
+
+The paper's distribution inputs are Fouvry Theorem 1′ for the boxes admitting a short prime and Liu–Park–Song Theorem 3.2 for the fallback level. Their transfer to these shifted, normalized boxes is part of the manuscript's analytic obligation. [Fouvry](https://people.math.ethz.ch/~kowalski/fouvry-bombieri-vinogradov.pdf) · [Liu–Park–Song](https://link.springer.com/article/10.1007/s40993-017-0089-3)
+
 ## A source-specific form of the open estimate
 
 Within the literal complement, take the semiprime inputs $k=pq$ of the coefficient theorem above. Write $M_-$ and $M_+$ for the masses of $\max(-\Phi,0)$ and $\max(\Phi,0)$ on precisely these inputs, weighted by $R_w(k)\mu(k)^2\log k$. Lean proves both masses nonnegative. Let $R$ sum the original signed weight over every other input in the complement. Lean checks the finite equality
@@ -44,3 +64,4 @@ This exposes the sign that a source estimate must deliver. A negative output wei
 - *REAL1B Gold 4.57FM Research Note*, 22 November 2026, source contract and complete accounting.
 - *REAL1B Gold 4.58 FM Complete Proofs*, 23 November 2026, exact owner normalization and unified accepted theorem.
 - *REAL1B Gold 4.59 FM Joint Signed Proofs*, 23 November 2026, Part A §2 (2.1), and *REAL1B Gold 4.59 FM Joint Signed Report*, §§1–5. The matching project verifier names its selector `positive_boxes()`.
+- *REAL1B Gold 4.60 Joint Closure Evolutionary Proof Report*, 23 November 2026, §§A–H. Source SHA-256 `1aa1b0700073aee6a76807db55112f3e9966855603d39f2d624f5d4c5c5fc1c6`. The 4.59 Joint Signed Report has SHA-256 `09874661e9faab3da3a123fefef3de1712e7c512cf0fe3e49229491172701579`.

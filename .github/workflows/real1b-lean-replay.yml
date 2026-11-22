@@ -12,6 +12,7 @@ on:
       - 'formalisation/real1b-2026-11-22/Replay.lean'
       - 'formalisation/real1b-2026-11-22/Verification.json'
       - 'formalisation/real1b-2026-11-22/verify.py'
+      - 'formalisation/real1b-2026-11-22/boxwise.py'
       - 'lake-manifest.json'
       - 'lakefile.toml'
       - 'lean-toolchain'

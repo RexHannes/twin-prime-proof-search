@@ -9,7 +9,7 @@ Historical reports remain available as records of their own runs. The living cur
 
 ## Latest research checkpoint
 
-The Gold 4.60 FM route now has a runnable conditional Lean endpoint for the Gold 4.57–4.59 joint signed chain. Its decisive open arithmetic input bounds the literal complement together with the prime companion. [Exact source, remaining assumptions and theorem ledger](formalisation/real1b-2026-11-22/FM-CLOSING.md)
+The Gold 4.60 FM route now has a runnable conditional Lean endpoint for the Gold 4.57–4.59 joint signed chain. It includes the original joint margin of 0.00048 and the stronger conditional boxwise margin of 0.00207. Both require an independent bound on the literal complement together with its prime companion. [Exact source, remaining assumptions and theorem ledger](formalisation/real1b-2026-11-22/FM-CLOSING.md)
 
 ### Earlier checkpoints
 

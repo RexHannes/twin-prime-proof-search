@@ -101,6 +101,7 @@ def main():
     names = re.findall(r"^#print axioms ([\w.]+)$", source, re.MULTILINE)
     if not names or len(names) != len(set(names)) or set(names) != set(record["audited_declarations"]):
         raise ValueError("Audited theorem list differs from the verification record")
+    subprocess.run([sys.executable, str(HERE / "boxwise.py")], check=True)
     if args.online:
         online(source, names)
     else:

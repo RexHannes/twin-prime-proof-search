@@ -5,12 +5,12 @@ import RequestProject.REAL1B_20261122.SourceBridge
 import RequestProject.REAL1B_20261122.SieveInputs
 import RequestProject.REAL1B_20261122.FMClosing
 
-/-! Aggregate entry point for the finite REAL 1B proof bank of 22 November 2026.
-The fully specified endpoints are H2.infinite_of_paper_inputs and
-FM.Source.infinite_of_source_residual. The earlier scalar H2 route below needs the two source estimates on the same unbounded
-sequence of scales, with aggregate error small enough to leave a positive margin.
-The Ford–Maynard and historical decomposition results are independent modules. -/
-
+/-! Entry point for the REAL 1B proofs of 22–23 November 2026.
+The primary FM endpoints are Closing.infinite_of_joint_complement and
+Closing.infinite_of_boxwise_complement inside REAL1B.FM.
+The earlier FM residual and H2 reductions remain separately callable.
+The scalar theorem below consumes both H2 source estimates on one unbounded
+sequence of scales, with enough aggregate margin to produce a twin pair. -/
 namespace REAL1B
 
 /-- Combine the per-scale H2 lower bound with the dyadic infinitude criterion. -/
