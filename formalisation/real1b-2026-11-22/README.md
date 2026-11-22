@@ -4,6 +4,8 @@
 
 ## Run it in a browser
 
+The 23 November replay is pinned to commit `6e6c65e`. The GitHub-hosted Lake job starts from a clean checkout, builds the imported modules, runs both finite verifiers and prints all 81 theorem types and axiom lists. [Open this replay in Chromium](https://live.lean-lang.org/#project=mathlib-v4.28.0&url=https%3A%2F%2Fraw.githubusercontent.com%2FRexHannes%2Ftwin-prime-proof-search%2F6e6c65e00d89861180516b85bbefa9f26935581d%2Fformalisation%2Freal1b-2026-11-22%2FReplay.lean) · [Native Lake run and log](https://github.com/RexHannes/twin-prime-proof-search/actions/runs/45055431579)
+
 [Open the combined source in Live Lean](https://live.lean-lang.org/#project=mathlib-v4.28.0&url=https%3A%2F%2Fraw.githubusercontent.com%2FRexHannes%2Ftwin-prime-proof-search%2Fmain%2Fformalisation%2Freal1b-2026-11-22%2FReplay.lean). The replay includes every project definition it uses and imports Mathlib. To use the environment recorded in the verification file, paste the [single Lean file](Replay.lean) into [AXLE](https://axle.axiommath.ai/check), select `lean-4.28.0`, clear **ignore_imports**, and select **RUN**. Inspect the theorem types as well as the `#print axioms` output.
 
 ## Independently verify a checkout
