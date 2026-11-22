@@ -1,5 +1,7 @@
 # What the replay proves and what remains
 
+The 23 November update adds the [Gold 4.60 joint signed FM dependency ledger](FM-CLOSING.md).
+
 For H2-B, the larger member is $n$. The source assigns weight $\log(n-2)$ exactly when $X<n\le 2X$ and $n-2$ is prime. The twin mass $T$ uses the additional condition that $n$ is prime. Throughout, $N_0=\mathfrak S_2 X/\log X$. The Euler product in the code starts at $p=k+3$ and supplies a unit factor for composite $p$.
 
 ## Five inputs to the H2-B endpoint
@@ -37,7 +39,7 @@ The terminal theorem has three inputs: `Lower` is the inherited signed-compariso
 
 ## Research coverage
 
-The dependency list is exhaustive for the two displayed Lean endpoints. The Chen H2-A minor-arc route, JCORE, Gate 1A, $H_*$, and the remaining historical Type-I/II arguments have distinct scope in the research archive. The package makes no compilation claim for these manuscript chapters. See the [repository research ledger](../../RESEARCH_FRONTIERS/CURRENT_FRONTIERS.md) for the historical branches.
+The dependency list is exhaustive for the two earlier endpoints displayed on this page. The Chen H2-A minor-arc route, JCORE, Gate 1A, $H_*$, and the remaining historical Type-I/II arguments have distinct scope in the research archive. The package makes no compilation claim for these manuscript chapters. See the [repository research ledger](../../RESEARCH_FRONTIERS/CURRENT_FRONTIERS.md) for the historical branches.
 
 The two supplied volumes are identified by SHA-256 so a reviewer can match the page references.
 

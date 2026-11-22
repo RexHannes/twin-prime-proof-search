@@ -71,13 +71,15 @@ def online(source, names):
 def native(names):
     subprocess.run(["lake", "exe", "cache", "get"], cwd=ROOT, check=True)
     subprocess.run(["lake", "build", ENTRY], cwd=ROOT, check=True)
-    commands = f"import {ENTRY}\n" + "\n".join(f"#print axioms {name}" for name in names)
+    commands = f"import {ENTRY}\n" + "\n".join(
+        f"#check @{name}\n#print axioms {name}" for name in names)
     result = subprocess.run(["lake", "env", "lean", "--stdin"], cwd=ROOT, input=commands,
                             text=True, capture_output=True)
     output = result.stdout + result.stderr
     if result.returncode or "warning:" in output or "error:" in output:
         raise ValueError(output)
     check_audits(output, names)
+    print(output.rstrip())
 
 
 def main():

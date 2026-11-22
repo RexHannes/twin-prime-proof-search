@@ -3,7 +3,7 @@ import RequestProject.REAL1B_20261122.FMResidual
 import RequestProject.REAL1B_20261122.WeightedDecomposition
 import RequestProject.REAL1B_20261122.SourceBridge
 import RequestProject.REAL1B_20261122.SieveInputs
-import RequestProject.REAL1B_20261122.FMSource
+import RequestProject.REAL1B_20261122.FMClosing
 
 /-! Aggregate entry point for the finite REAL 1B proof bank of 22 November 2026.
 The fully specified endpoints are H2.infinite_of_paper_inputs and

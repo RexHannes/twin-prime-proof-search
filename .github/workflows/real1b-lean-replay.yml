@@ -1,0 +1,38 @@
+name: REAL 1B native Lean replay
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'RequestProject/REAL1B_20261122.lean'
+      - 'RequestProject/REAL1B_20261122/**'
+      - 'RequestProject/TwinPrimeDefinitions.lean'
+      - 'RequestProject/WeightedTwinCount.lean'
+      - 'formalisation/real1b-2026-11-22/Replay.lean'
+      - 'formalisation/real1b-2026-11-22/Verification.json'
+      - 'formalisation/real1b-2026-11-22/verify.py'
+      - 'lake-manifest.json'
+      - 'lakefile.toml'
+      - 'lean-toolchain'
+      - '.github/workflows/real1b-lean-replay.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install the pinned Lean toolchain
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-mathlib-cache: false
+          build: false
+          test: false
+          lint: false
+      - name: Build modules and audit exported statements and axioms
+        run: python3 formalisation/real1b-2026-11-22/verify.py --lake

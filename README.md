@@ -1,13 +1,17 @@
 # Twin Prime Proof Search — Public Research Archive
 
 **Current public manuscript:** Draft 16 (27 August 2026)  
-**Latest research-status overlay:** 21 November 2026 — Gold 4.40-J/X research addendum; G5 OPEN
+**Latest research-status overlay:** 23 November 2026 — Gold 4.60 Ford–Maynard joint signed complement. G5 remains open.
 
 This repository is an exploratory fixed-shift / Ford–Maynard / Twin-Prime research archive. It does **not** claim a proof of the Twin Prime Conjecture.
 
 Historical reports remain available as records of their own runs. The living current status and dependency graph are project-local; older mixed-project material in Git history is noncontrolling.
 
-## Latest research checkpoint (interim, NOT a proof claim)
+## Latest research checkpoint
+
+The Gold 4.60 FM route now has a runnable conditional Lean endpoint for the Gold 4.57–4.59 joint signed chain. Its decisive open arithmetic input bounds the literal complement together with the prime companion. [Exact source, remaining assumptions and theorem ledger](formalisation/real1b-2026-11-22/FM-CLOSING.md)
+
+### Earlier checkpoints
 
 - [REAL 1B Gold 4.40-J/X — 21 November 2026 research manuscript supplement](papers/real1b-gold4-40-2026-11-21/README.md): [LaTeX proof-status addendum](papers/real1b-gold4-40-2026-11-21/PROOF_STATUS_ADDENDUM.tex) and [signed claim ledger](papers/real1b-gold4-40-2026-11-21/RESEARCH_LEDGER.md). Preserves Gold 4.39-A final marked-only result, J's scoped no-go/least-factor work, X's pointwise rough minorant, and the third branch's unfinished status. **Unmarked H2, paired-prime contrast, and G5 remain OPEN.**
 - [REAL 1B Gold 4.39 — 21 November 2026 interim status](papers/real1b-gold4-39-2026-11-21/README.md): 4.39-B directional minor-arc and cofactor findings; 4.39-A marked weighted Type-II transfer still under review; full H2 and twin-prime infinitude remain **OPEN**.
