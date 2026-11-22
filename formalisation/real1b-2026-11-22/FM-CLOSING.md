@@ -27,6 +27,8 @@ Each tolerance is fixed before the scale tends to infinity. The paper status rec
 | LEAN_PROVED | `complement_pair_balance`, `complement_bound_iff_pair_budget` | The open bound is equivalent to the signed budget below. The support and weights are shared on the two sides. |
 | LEAN_PROVED | `eventual_reserve`, `infinite_of_joint_complement` | For each $e>0$, eventually $T\ge(\kappa-e)S_b$. Taking $e=\kappa/2$ and using eventual $S_b>0$ produces twin primes on unbounded scales. |
 
+The Gold 4.59 paper supplies a more detailed version of the Joint input. At its fixed sieve levels Part A §7.1, the rough-population coefficient is $68853556/62497500025$. Its triangle cost is $153125/248769792$. Lean proves their exact difference in `fixed_level_certificate` and proves `joint59_of_source_estimates` from `RoughSupply59`, `TriangleCost`, `CoefficientAssembly` and eventual comparator positivity. These population and assembly estimates still require Lean proofs. The 4.59 and 4.60 derivations use the identical prime companion and triangle charge.
+
 ## Stronger local estimate in Gold 4.60
 
 The *Gold 4.60 Joint Closure Evolutionary Proof Report*, §§A–E (23 November 2026), applies a box-dependent distribution level to the same output boxes, input mask, and companion. It reports a local margin of $0.00207$. The earlier $0.00048$ result remains independently callable as `infinite_of_joint_complement`.
@@ -63,5 +65,5 @@ This exposes the sign that a source estimate must deliver. A negative output wei
 
 - *REAL1B Gold 4.57FM Research Note*, 22 November 2026, source contract and complete accounting.
 - *REAL1B Gold 4.58 FM Complete Proofs*, 23 November 2026, exact owner normalization and unified accepted theorem.
-- *REAL1B Gold 4.59 FM Joint Signed Proofs*, 23 November 2026, Part A §2 (2.1), and *REAL1B Gold 4.59 FM Joint Signed Report*, §§1–5. The matching project verifier names its selector `positive_boxes()`.
+- *REAL1B Gold 4.59 FM Joint Signed Proofs*, 23 November 2026, Part A §2 (2.1), and *REAL1B Gold 4.59 FM Joint Signed Report*, §§1–5. The [original project verifier](REAL1B_Gold4_59_FM_Joint_Signed_Verify_20261123.py) names its selector `positive_boxes()`. Its complete finite output reproduces the original registry, including the ordered-box digest and 7,272 kernel profiles. The complete proof, report and verifier matched the file hashes in the original registry. The SHA-256 of the complete proof is `828f8ce69549375b28f575ddcb964ffa0369ca28d7794fe3a62f1cdd95c55717`.
 - *REAL1B Gold 4.60 Joint Closure Evolutionary Proof Report*, 23 November 2026, §§A–H. Source SHA-256 `1aa1b0700073aee6a76807db55112f3e9966855603d39f2d624f5d4c5c5fc1c6`. The 4.59 Joint Signed Report has SHA-256 `09874661e9faab3da3a123fefef3de1712e7c512cf0fe3e49229491172701579`.

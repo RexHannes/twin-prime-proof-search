@@ -13,6 +13,7 @@ on:
       - 'formalisation/real1b-2026-11-22/Verification.json'
       - 'formalisation/real1b-2026-11-22/verify.py'
       - 'formalisation/real1b-2026-11-22/boxwise.py'
+      - 'formalisation/real1b-2026-11-22/REAL1B_Gold4_59_FM_Joint_Signed_Verify_20261123.py'
       - 'lake-manifest.json'
       - 'lakefile.toml'
       - 'lean-toolchain'

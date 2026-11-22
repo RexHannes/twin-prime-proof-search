@@ -335,8 +335,10 @@ def inputPopulation (x : ℝ) :=
 def trianglePopulation (x : ℝ) :=
   total (x/2) (fun n => if inE x n ∧ triangle x (n-2) then mu (n-2)^2 * phi x n else 0)
 
-def RoughSupply : Prop := ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop,
-  (0.0026942415488-e) * Sb x ≤ 0.02 * Real.log x * inputPopulation x
+def SupplyAt (c : ℝ) : Prop := ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop,
+  (c-e) * Sb x ≤ 0.02 * Real.log x * inputPopulation x
+def RoughSupply : Prop := SupplyAt 0.0026942415488
+def RoughSupply59 : Prop := SupplyAt (68853556/62497500025)
 def TriangleCost : Prop := ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop,
   0.49 * Real.log x * trianglePopulation x ≤ (153125/248769792+e) * Sb x
 def CoefficientAssembly (a : ℝ) : Prop := ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop,
@@ -361,13 +363,29 @@ theorem boxwise_rounding :
     (0.00207:ℝ) < 0.0026942415488 - 153125/248769792 ∧
     (0.999892775499:ℝ)+0.00207 = 1.001962775499 := by norm_num
 
-theorem joint60_of_source_estimates {a : ℝ} (hN : RoughSupply) (hM : TriangleCost)
-    (hA : CoefficientAssembly a) (hs : ∀ᶠ x : ℝ in atTop, 0 < Sb x) : Joint60 a := by
+/-- Gold 4.59 fixed sieve levels in Part A §7.1, equation (7.5). -/
+theorem fixed_level_certificate :
+    (68853556/62497500025 : ℝ) - 153125/248769792 =
+      7558755113252227/15547490081739244800 := by norm_num
+
+private theorem joint_from_costs {a c margin : ℝ} (hc : margin < c - 153125/248769792)
+    (hN : SupplyAt c) (hM : TriangleCost) (hA : CoefficientAssembly a)
+    (hs : ∀ᶠ x : ℝ in atTop, 0 < Sb x) :
+    ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop,
+      selected a x - 0.02 * primeCompanion x ≤ (-margin+e) * Sb x := by
   intro e he
   have h : 0 < e/3 := by linarith
   filter_upwards [hN _ h, hM _ h, hA _ h, hs, prime_companion_eq_raw] with x h1 h2 h3 h4 h5
   rw [h5]
-  linarith only [h1, h2, h3, mul_lt_mul_of_pos_right boxwise_rounding.1 h4]
+  linarith only [h1, h2, h3, mul_lt_mul_of_pos_right hc h4]
+
+theorem joint59_of_source_estimates {a : ℝ} (hN : RoughSupply59) (hM : TriangleCost)
+    (hA : CoefficientAssembly a) (hs : ∀ᶠ x : ℝ in atTop, 0 < Sb x) : Joint a :=
+  joint_from_costs (fixed_level_certificate.symm ▸ margin_certificate.1) hN hM hA hs
+
+theorem joint60_of_source_estimates {a : ℝ} (hN : RoughSupply) (hM : TriangleCost)
+    (hA : CoefficientAssembly a) (hs : ∀ᶠ x : ℝ in atTop, 0 < Sb x) : Joint60 a :=
+  joint_from_costs boxwise_rounding.1 hN hM hA hs
 
 theorem gold60_lower {a : ℝ} (hl : LowerLedger) (hr : Reduction a) (hj : Joint60 a) :
     ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop, (1.001962775499-e)*Sb x ≤ QE a x + T x := by
@@ -420,3 +438,5 @@ end REAL1B.FM.Closing
 #print axioms REAL1B.FM.Closing.reserve60
 #print axioms REAL1B.FM.Closing.infinite_of_boxwise_complement
 #print axioms REAL1B.FM.Closing.cubic_log_lower
+#print axioms REAL1B.FM.Closing.fixed_level_certificate
+#print axioms REAL1B.FM.Closing.joint59_of_source_estimates

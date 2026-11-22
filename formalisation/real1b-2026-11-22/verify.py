@@ -101,6 +101,14 @@ def main():
     names = re.findall(r"^#print axioms ([\w.]+)$", source, re.MULTILINE)
     if not names or len(names) != len(set(names)) or set(names) != set(record["audited_declarations"]):
         raise ValueError("Audited theorem list differs from the verification record")
+    paper_source = HERE / "REAL1B_Gold4_59_FM_Joint_Signed_Verify_20261123.py"
+    if hashlib.sha256(paper_source.read_bytes()).hexdigest() != record["joint_verifier"]["source_sha256"]:
+        raise ValueError("Gold 4.59 verifier differs from its recorded source")
+    paper = subprocess.check_output([sys.executable, str(paper_source)])
+    canonical = json.dumps(json.loads(paper), sort_keys=True, separators=(",", ":")).encode()
+    if hashlib.sha256(canonical).hexdigest() != record["joint_verifier"]["result_sha256"]:
+        raise ValueError("Gold 4.59 finite checks differ from the source registry")
+    print("Gold 4.59 finite checks match the original registry.", flush=True)
     subprocess.run([sys.executable, str(HERE / "boxwise.py")], check=True)
     if args.online:
         online(source, names)

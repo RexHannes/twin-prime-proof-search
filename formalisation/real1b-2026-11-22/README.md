@@ -1,6 +1,6 @@
 # REAL 1B · independent Lean replay
 
-**Twin-prime infinitude is open.** This replay checks 79 named results, including the exact weighted identities, a finite Vaughan decomposition on the physical source, a positive numerical margin, a prime-power error estimate, and the Gold 4.60 conditional implication from the signed FM complement. The H2-B implication has five hypotheses. Their precise statements and mathematical status appear in the [dependency table](DEPENDENCIES.md).
+**Twin-prime infinitude is open.** This replay checks 81 named results, including the exact weighted identities, a finite Vaughan decomposition on the physical source, a positive numerical margin, a prime-power error estimate, and the Gold 4.60 conditional implication from the signed FM complement. The H2-B implication has five hypotheses. Their precise statements and mathematical status appear in the [dependency table](DEPENDENCIES.md).
 
 ## Run it in a browser
 
@@ -8,7 +8,7 @@
 
 ## Independently verify a checkout
 
-From the repository root, the following command regenerates the expected replay in memory, compares it byte for byte with the committed file, checks its SHA-256, recalculates the finite boxwise margin using exact fractions, and submits a new AXLE request. It checks the returned source, diagnostics, and axiom dependencies of all 79 named results. Python 3.9+ and network access are sufficient.
+From the repository root, the following command regenerates the expected replay in memory, compares it byte for byte with the committed file, checks its SHA-256, reruns the original Gold 4.59 finite verifier against its registry and recalculates the Gold 4.60 boxwise margin using exact fractions, and submits a new AXLE request. It checks the returned source, diagnostics, and axiom dependencies of all 81 named results. Python 3.9+ and network access are sufficient.
 
 ```sh
 python3 formalisation/real1b-2026-11-22/verify.py --online
