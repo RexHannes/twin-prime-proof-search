@@ -1,9 +1,13 @@
 import RequestProject.REAL1B_20261122.QuarterRough
 import RequestProject.REAL1B_20261122.FMResidual
 import RequestProject.REAL1B_20261122.WeightedDecomposition
+import RequestProject.REAL1B_20261122.SourceBridge
+import RequestProject.REAL1B_20261122.SieveInputs
+import RequestProject.REAL1B_20261122.FMSource
 
 /-! Aggregate entry point for the finite REAL 1B proof bank of 22 November 2026.
-The H2 route below needs the two source estimates on the same unbounded
+The fully specified endpoints are H2.infinite_of_paper_inputs and
+FM.Source.infinite_of_source_residual. The earlier scalar H2 route below needs the two source estimates on the same unbounded
 sequence of scales, with aggregate error small enough to leave a positive margin.
 The Ford–Maynard and historical decomposition results are independent modules. -/
 

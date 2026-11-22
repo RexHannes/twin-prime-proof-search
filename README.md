@@ -62,7 +62,7 @@ No Hardy–Littlewood asymptotic is claimed. Local generated Type-II closure is 
 
 ## Formal bank
 
-[Run the 22 November REAL 1B Lean proofs](formalisation/real1b-2026-11-22/README.md), including the exact quarter-root identity and the conditional H2 deduction of twin-prime infinitude.
+[Run the 22 November REAL 1B Lean proofs](formalisation/real1b-2026-11-22/README.md), including the native Vaughan decomposition, prime-power error bound, and conditional H2 and Ford–Maynard endpoints. The [dependency table](formalisation/real1b-2026-11-22/DEPENDENCIES.md) identifies the remaining source estimates.
 
 The living machine-readable status is:
 
