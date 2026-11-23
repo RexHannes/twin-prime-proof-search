@@ -2,6 +2,8 @@
 
 The open arithmetic target is a strict upper bound for the full contribution from outputs outside the original 1,566 five-prime boxes. For fixed $0<a<1$ and some fixed $\kappa>0$, the target coefficient is $0.317014679964-\kappa$. The conditional endpoint uses the physical twin-prime mass $T$ and the original comparator $S_b$.
 
+Gold 4.67 expands the lower ledger, Vaughan reduction, five-prime calibration, profile transfer and low-label dependencies into checks on the individual source sums. [Updated analytic dependency graph](FM-ANALYTIC.md)
+
 ## Source equivalence
 
 | Manuscript definition | Lean object and check |

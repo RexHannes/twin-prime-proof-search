@@ -1,13 +1,15 @@
 # Twin Prime Proof Search — Public Research Archive
 
 **Current public manuscript:** Draft 16 (27 August 2026)  
-**Latest research-status overlay:** 23 November 2026 — Gold 4.66 direct Ford–Maynard reduction. The complete outside-box estimate is open.
+**Latest research-status overlay:** 23 November 2026 — Gold 4.67 analytic formalization of the direct Ford–Maynard route. The complete outside-box estimate is open.
 
 This repository is an exploratory fixed-shift / Ford–Maynard / Twin-Prime research archive. It does **not** claim a proof of the Twin Prime Conjecture.
 
 Historical reports remain available as records of their own runs. The living current status and dependency graph are project-local; older mixed-project material in Git history is noncontrolling.
 
 ## Latest research checkpoint
+
+Gold 4.67 proves source-specific analytic reductions and tracks each outstanding estimate. [Analytic dependency graph](formalisation/real1b-2026-11-22/FM-ANALYTIC.md)
 
 The Gold 4.66 direct route proves the good-set equivalence, full native source partition, exact owner identities and conditional closing theorem. [Gold 4.66 source and dependency audit](formalisation/real1b-2026-11-22/FM-DIRECT.md)
 

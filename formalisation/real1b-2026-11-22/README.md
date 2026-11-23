@@ -4,10 +4,12 @@
 
 Earlier results include the exact weighted identities, a finite Vaughan decomposition on the physical source, a positive numerical margin, a prime-power error estimate, and the Gold 4.60 conditional implication from the signed FM complement. The H2-B implication has five hypotheses. Their precise statements and mathematical status appear in the [dependency table](DEPENDENCIES.md).
 
-## Check out the direct route
+Gold 4.67 verifies the original-source prime-power estimate, the finite complete Vaughan and ledger decompositions, and the five-prime and low-label source transfers. [Analytic theorem inventory and remaining estimates](FM-ANALYTIC.md)
+
+## Check out the analytic route
 
 ```sh
-git clone --depth 1 --branch real1b-gold466-direct https://github.com/RexHannes/twin-prime-proof-search.git
+git clone --depth 1 --branch real1b-gold467-analytic https://github.com/RexHannes/twin-prime-proof-search.git
 cd twin-prime-proof-search
 ```
 
@@ -15,7 +17,7 @@ cd twin-prime-proof-search
 
 The historical Gold 4.60 replay is pinned to commit `6e6c65e`. The GitHub-hosted Lake job starts from a clean checkout, builds the imported modules, runs both finite verifiers and prints all 81 theorem types and axiom lists. [Open this replay in Chromium](https://live.lean-lang.org/#project=mathlib-v4.28.0&url=https%3A%2F%2Fraw.githubusercontent.com%2FRexHannes%2Ftwin-prime-proof-search%2F6e6c65e00d89861180516b85bbefa9f26935581d%2Fformalisation%2Freal1b-2026-11-22%2FReplay.lean) · [Native Lake run and log](https://github.com/RexHannes/twin-prime-proof-search/actions/runs/45055431579)
 
-[Open the combined source in Live Lean](https://live.lean-lang.org/#project=mathlib-v4.28.0&url=https%3A%2F%2Fraw.githubusercontent.com%2FRexHannes%2Ftwin-prime-proof-search%2Fmain%2Fformalisation%2Freal1b-2026-11-22%2FReplay.lean). The replay includes every project definition it uses and imports Mathlib. To use the environment recorded in the verification file, paste the [single Lean file](Replay.lean) into [AXLE](https://axle.axiommath.ai/check), select `lean-4.28.0`, clear **ignore_imports**, and select **RUN**. Inspect the theorem types as well as the `#print axioms` output.
+[Open the combined source in Live Lean](https://live.lean-lang.org/#project=mathlib-v4.28.0&url=https%3A%2F%2Fraw.githubusercontent.com%2FRexHannes%2Ftwin-prime-proof-search%2Freal1b-gold467-analytic%2Fformalisation%2Freal1b-2026-11-22%2FReplay.lean). The replay includes every project definition it uses and imports Mathlib. To use the environment recorded in the verification file, paste the [single Lean file](Replay.lean) into [AXLE](https://axle.axiommath.ai/check), select `lean-4.28.0`, clear **ignore_imports**, and select **RUN**. Inspect the theorem types as well as the `#print axioms` output.
 
 ## Independently verify a checkout
 
@@ -25,13 +27,13 @@ From the repository root, the following command regenerates the expected replay 
 python3 formalisation/real1b-2026-11-22/verify.py --online
 ```
 
-To use the repository's pinned toolchain and your own Lean kernel, run the following command with Lake available. It obtains the Mathlib cache, builds the actual imported modules, and prints every exported theorem type and its axiom dependencies from a fresh Lean process. The native run also builds the complete 6,414,336-cell integer certificate and audits the final endpoint in `FMGridExact`.
+To use the repository's pinned toolchain and your own Lean kernel, run the following command with Lake available. It obtains the Mathlib cache, builds the actual imported modules, and prints every exported theorem type and its axiom dependencies from a fresh Lean process. The native run also builds the complete 6,414,336-cell integer certificate and audits the analytic endpoint in `FMAnalyticEndpoint`.
 
 ```sh
 python3 formalisation/real1b-2026-11-22/verify.py --lake
 ```
 
-The compact build target is `RequestProject.REAL1B_20261122`. For the fully certified numerical endpoint, import `RequestProject.REAL1B_20261122.FMGridExact` and inspect `#check @REAL1B.FM.Grid.infinite_of_certified_profile`. The online replay checks the integral-to-mesh bound with Lean and recomputes the numerical endpoints in Python. The native command checks the integer upper endpoint with the Lean kernel as well. For a repeatable review, use the **Copy permalink** action on this file and check out the corresponding commit. The [verification record](Verification.json) contains the replay digest, environment, request ID, declaration list and compiler output. It records the online run. Standard axioms allowed by the reviewer script are `propext`, `Classical.choice` and `Quot.sound`.
+The compact build target is `RequestProject.REAL1B_20261122`. For the analytic endpoint with kernel-checked cubature, import `RequestProject.REAL1B_20261122.FMAnalyticEndpoint` and inspect `#check @REAL1B.FM.Analytic.infinite_of_analytic_estimates`. The online replay checks the integral-to-mesh bound with Lean and recomputes the numerical endpoints in Python. The native command checks the integer upper endpoint with the Lean kernel as well. For a repeatable review, use the **Copy permalink** action on this file and check out the corresponding commit. The [verification record](Verification.json) contains the replay digest, environment, request ID, declaration list and compiler output. It records the online run. Standard axioms allowed by the reviewer script are `propext`, `Classical.choice` and `Quot.sound`.
 
 ## Read the mathematical endpoints
 

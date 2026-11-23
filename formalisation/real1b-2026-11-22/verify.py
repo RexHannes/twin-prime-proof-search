@@ -91,7 +91,7 @@ def native_audit(module, names):
 
 def certificate_files():
     base = ROOT / "RequestProject/REAL1B_20261122"
-    return sorted((base / "GridColumns").glob("C*.lean")) + [base / "FMGridExact.lean"]
+    return sorted((base / "GridColumns").glob("C*.lean")) + [base / "FMGridExact.lean", base / "FMAnalyticEndpoint.lean"]
 
 
 def certificate_manifest():
@@ -110,8 +110,8 @@ def native(names, certificate_names):
     native_audit(ENTRY, names)
     # Each numeral proof is reduced by the kernel. Limit concurrent column
     # builds to keep peak memory bounded on the hosted runner.
-    module = ENTRY + ".FMGridExact"
-    columns = sorted(certificate_files()[:-1], key=lambda p: -p.stat().st_size)
+    module = ENTRY + ".FMAnalyticEndpoint"
+    columns = sorted((p for p in certificate_files() if p.parent.name == "GridColumns"), key=lambda p: -p.stat().st_size)
     env = dict(os.environ, LEAN_NUM_THREADS="1")
     for i in range(0, len(columns), 2):
         targets = [ENTRY + ".GridColumns." + p.stem for p in columns[i:i+2]]

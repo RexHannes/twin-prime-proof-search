@@ -8,6 +8,7 @@ import RequestProject.REAL1B_20261122.FMOwners
 import RequestProject.REAL1B_20261122.FMSemantics
 import RequestProject.REAL1B_20261122.FMCompleteLabel
 import RequestProject.REAL1B_20261122.FMIntegral
+import RequestProject.REAL1B_20261122.FMLowPrefix
 
 /-! Entry point for the REAL 1B proofs of 22–23 November 2026.
 The Gold 4.66 endpoint is Direct.infinite_of_direct. The joint FM endpoints are Closing.infinite_of_joint_complement and

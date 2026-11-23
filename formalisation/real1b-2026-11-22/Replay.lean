@@ -2689,6 +2689,1049 @@ end
 end REAL1B.FM.Grid
 #print axioms REAL1B.FM.Grid.integral_le_mesh
 
+-- RequestProject/REAL1B_20261122/FMAnalyticWeights.lean
+/-! A coarse pointwise envelope for the actual FM output, sufficient to discard
+proper prime powers. No boundedness or sign hypothesis on the output is used. -/
+namespace REAL1B.FM.Analytic
+open ArithmeticFunction Source Vaughan
+noncomputable section
+open Classical
+
+private theorem mu_abs (n : ℕ) : |mu n| ≤ 1 := by
+  unfold mu
+  exact_mod_cast abs_moebius_le_one (n := n)
+
+private theorem g0_abs (v : List ℝ) : |g0 v| ≤ 1 := by
+  unfold g0
+  split <;> (try split_ifs) <;> norm_num
+
+theorem H_abs (n : ℕ) : |kernelH n| ≤ n.divisors.card := by
+  apply (Finset.abs_sum_le_sum_abs ..).trans
+  calc
+    _ ≤ ∑ _ ∈ n.divisors, (1:ℝ) := by
+      apply Finset.sum_le_sum
+      intro d _
+      dsimp only [divisorCoefficient]
+      split_ifs
+      · rw [abs_mul]
+        exact mul_le_one₀ (mu_abs _) (abs_nonneg _) (g0_abs _)
+      · norm_num
+    _ = _ := by simp
+
+private theorem label_bound {n d : ℕ} (hn : n ≠ 0) (hd : d ∣ n) (X : ℝ) :
+    labels X d ≤ n.divisors.card^3 := by
+  let D := n.divisors.card
+  have card {t : ℕ} (ht : t ∣ n) : t.divisors.card ≤ D :=
+    Finset.card_le_card (Nat.divisors_subset_of_dvd hn ht)
+  unfold labels
+  calc
+    _ ≤ ∑ _ ∈ d.divisors, D^2 := by
+      apply Finset.sum_le_sum
+      intro u hu
+      have h₁ := (Nat.div_dvd_of_dvd (Nat.mem_divisors.mp hu).1).trans hd
+      calc
+        _ ≤ ∑ _ ∈ (d/u).divisors, D := by
+          apply Finset.sum_le_sum
+          intro v hv
+          calc
+            _ ≤ ∑ _ ∈ (d/u/v).divisors, 1 := Finset.sum_le_sum (fun w _ => by split_ifs <;> omega)
+            _ ≤ D := by simpa using card ((Nat.div_dvd_of_dvd (Nat.mem_divisors.mp hv).1).trans h₁)
+        _ ≤ D^2 := by simpa [pow_two] using Nat.mul_le_mul_right D (card h₁)
+    _ = d.divisors.card * D^2 := by simp
+    _ ≤ D * D^2 := Nat.mul_le_mul_right _ (card hd)
+    _ = _ := by change D * D^2 = D^3; ring
+
+theorem K_abs (X : ℝ) {n : ℕ} (hn : 1 < n) : |kernelK X n| ≤ (n.divisors.card:ℝ)^4 := by
+  have hsum : |∑ d ∈ n.divisors, mu d * ((labels X d:ℝ)/64^3) *
+      (1-(Real.log d)^2/(Real.log n)^2)| ≤ (n.divisors.card:ℝ)^4 := by
+    apply (Finset.abs_sum_le_sum_abs ..).trans
+    calc
+      _ ≤ ∑ _ ∈ n.divisors, (n.divisors.card:ℝ)^3 := by
+        apply Finset.sum_le_sum
+        intro d hd
+        obtain ⟨hdiv,hn₀⟩ := Nat.mem_divisors.mp hd
+        have hd₀ := Nat.pos_of_dvd_of_pos hdiv (Nat.zero_lt_of_lt hn)
+        have hlog : Real.log d ≤ Real.log n := Real.log_le_log (by exact_mod_cast hd₀) (by exact_mod_cast Nat.le_of_dvd (by omega) hdiv)
+        have hnl : 0 < Real.log n := Real.log_pos (by exact_mod_cast hn)
+        have hdl := Real.log_natCast_nonneg d
+        have hq : 0 ≤ (Real.log d)^2/(Real.log n)^2 := by positivity
+        have hu : (Real.log d)^2/(Real.log n)^2 ≤ 1 :=
+          (div_le_one (by positivity)).mpr (by nlinarith)
+        have hlabel : (labels X d:ℝ) ≤ (n.divisors.card:ℝ)^3 := by exact_mod_cast label_bound hn₀ hdiv X
+        rw [abs_mul, abs_mul, abs_of_nonneg (by positivity : 0 ≤ (labels X d:ℝ)/64^3),
+          abs_of_nonneg (sub_nonneg.mpr hu)]
+        calc
+          _ ≤ (1 * ((n.divisors.card:ℝ)^3)) * 1 := by
+            apply mul_le_mul _ (by linarith only [hq]) (sub_nonneg.mpr hu) (by positivity)
+            exact mul_le_mul (mu_abs _) ((div_le_self (by positivity : (0:ℝ) ≤ labels X d) (by norm_num : (1:ℝ) ≤ 64^3)).trans hlabel)
+              (by positivity) zero_le_one
+          _ = _ := by ring
+      _ = _ := by simp [pow_succ, mul_comm]
+  unfold kernelK
+  rw [abs_mul, abs_mul, abs_pow]
+  have hμ := pow_le_one₀ (abs_nonneg (mu n)) (mu_abs n) (n:=2)
+  have hR : |sieve (markCut X) n| ≤ 1 := by unfold sieve; split_ifs <;> norm_num
+  exact (mul_le_of_le_one_left (abs_nonneg _) (mul_le_one₀ hμ (abs_nonneg _) hR)).trans hsum
+
+/-- For squarefree n the sixteen units contributed by every prime to τ(n)^4
+are absorbed in p^(1/4) once p≥16^4. The small-prime factor is absolute. -/
+theorem divisor_fourth {n : ℕ} (hn : Squarefree n) :
+    (n.divisors.card:ℝ)^4 ≤ (16:ℝ)^65536 * (n:ℝ)^(1/4:ℝ) := by
+  have hτ : n.divisors.card = 2^n.primeFactors.card := by
+    rw [Nat.card_divisors hn.ne_zero]
+    calc
+      _ = ∏ _ ∈ n.primeFactors, 2 := Finset.prod_congr rfl (fun p hp => by
+        rw [Nat.factorization_eq_one_of_squarefree hn (Nat.prime_of_mem_primeFactors hp) (Nat.dvd_of_mem_primeFactors hp)])
+      _ = _ := by simp
+  let S := n.primeFactors.filter (· < 65536)
+  have hsub : S ⊆ Finset.range 65536 := fun _ hx => Finset.mem_range.mpr (Finset.mem_filter.mp hx).2
+  have hcard : S.card ≤ 65536 := (Finset.card_le_card hsub).trans_eq (Finset.card_range _)
+  have pow16 : (65536:ℝ)^(1/4:ℝ) = 16 := by
+    rw [show (65536:ℝ) = 16^ (4:ℕ) by norm_num, ← Real.rpow_natCast, ← Real.rpow_mul (by norm_num : (0:ℝ) ≤ 16)]
+    norm_num
+  have small : (∏ p ∈ n.primeFactors, (if p < 65536 then (16:ℝ) else 1)) = 16^S.card := by
+    rw [← Finset.prod_filter]; simp [S]
+  calc
+    _ = ∏ _ ∈ n.primeFactors, (16:ℝ) := by
+      rw [hτ, Nat.cast_pow, Finset.prod_const, ← pow_mul, Nat.mul_comm, pow_mul]
+      norm_num
+    _ ≤ ∏ p ∈ n.primeFactors, (if p < 65536 then (16:ℝ) else 1) * (p:ℝ)^(1/4:ℝ) := by
+      apply Finset.prod_le_prod (by intros; norm_num)
+      intro p hp
+      by_cases h : p < 65536
+      · rw [if_pos h]
+        exact le_mul_of_one_le_right (by norm_num) (Real.one_le_rpow (by exact_mod_cast (Nat.prime_of_mem_primeFactors hp).one_le) (by norm_num))
+      · rw [if_neg h, one_mul, ← pow16]
+        exact Real.rpow_le_rpow (by norm_num) (by exact_mod_cast le_of_not_gt h) (by norm_num)
+    _ = 16^S.card * (n:ℝ)^(1/4:ℝ) := by
+      rw [Finset.prod_mul_distrib, small, Real.finset_prod_rpow _ (fun p : ℕ => (p:ℝ)) (fun _ _ => Nat.cast_nonneg _) _,
+        ← Nat.cast_prod, Nat.prod_primeFactors_of_squarefree hn]
+    _ ≤ _ := by gcongr; norm_num
+
+def envelope : ℝ := 3 * (16:ℝ)^65536
+
+theorem phi_envelope (x : ℝ) {n : ℕ} (hn : 1 < n) :
+    |Direct.phi x n| ≤ envelope * (n:ℝ)^(1/4:ℝ) := by
+  have hc : 1 ≤ n.divisors.card := Finset.card_pos.mpr ⟨1, Nat.one_mem_divisors.mpr (by omega)⟩
+  have hpow : (n.divisors.card:ℝ) ≤ (n.divisors.card:ℝ)^4 := by
+    simpa using pow_le_pow_right₀ (by exact_mod_cast hc : 1 ≤ (n.divisors.card:ℝ)) (show 1 ≤ 4 by decide)
+  have hH := (H_abs n).trans hpow
+  have hK := K_abs (x/2) hn
+  by_cases hs : Squarefree n
+  · have h := divisor_fourth hs
+    have hG : |max (-kernelH n) 0| ≤ (n.divisors.card:ℝ)^4 := by
+      rw [abs_of_nonneg (le_max_right _ _)]
+      exact max_le ((neg_le_abs _).trans hH) (by positivity)
+    have hF := (abs_sub (kernelH n) (kernelK (x/2) n)).trans (add_le_add hH hK)
+    have hb : |Direct.phi x n| ≤ 3*(n.divisors.card:ℝ)^4 := by
+      apply (abs_sub ..).trans
+      unfold Direct.F Direct.G
+      split_ifs <;> (try simp only [abs_zero, zero_add, add_zero]) <;>
+        linarith only [hF, hG, show (0:ℝ) ≤ (n.divisors.card:ℝ)^4 by positivity]
+    exact hb.trans ((mul_le_mul_of_nonneg_left h (by norm_num : (0:ℝ) ≤ 3)).trans_eq
+      (mul_assoc _ _ _).symm)
+  · have hE : 0 ≤ envelope := by unfold envelope; positivity
+    simpa [Direct.phi, Direct.F, Direct.G, hs] using mul_nonneg hE (Real.rpow_nonneg (Nat.cast_nonneg n) (1/4:ℝ))
+
+
+end
+end REAL1B.FM.Analytic
+#print axioms REAL1B.FM.Analytic.H_abs
+#print axioms REAL1B.FM.Analytic.K_abs
+#print axioms REAL1B.FM.Analytic.divisor_fourth
+#print axioms REAL1B.FM.Analytic.phi_envelope
+
+-- RequestProject/REAL1B_20261122/FMPrimePower.lean
+/-! Gold 4.58 Part II (4.2): changing the input presieve on the original
+von Mangoldt source costs o(x/log x). The source bound is proved internally. -/
+namespace REAL1B.FM.Analytic
+open Filter Vaughan Source Closing ArithmeticFunction
+noncomputable section
+open Classical
+
+def negligible (f s : ℝ → ℝ) : Prop :=
+  ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop, |f x| ≤ e * s x
+
+def scale (x : ℝ) := x / Real.log x
+def ScaleLower : Prop := ∃ c : ℝ, 0 < c ∧ ∀ᶠ x : ℝ in atTop, c * scale x ≤ Sb x
+
+theorem comparator_pos (h : ScaleLower) : ∀ᶠ x : ℝ in atTop, 0 < Sb x := by
+  obtain ⟨c,hc,h⟩ := h
+  filter_upwards [eventually_gt_atTop (1:ℝ), h] with x hx hh
+  exact (mul_pos hc (div_pos (by linarith) (Real.log_pos hx))).trans_le hh
+
+theorem negligible_comparator {f : ℝ → ℝ} (hf : negligible f scale) (hs : ScaleLower) :
+    negligible f Sb := by
+  obtain ⟨c,hc,h⟩ := hs
+  intro e he
+  filter_upwards [hf (e*c) (mul_pos he hc),h] with x hx hs
+  linarith only [hx, mul_le_mul_of_nonneg_left hs he.le]
+
+def powerMass (f : ℝ → ℕ → ℝ) (x : ℝ) := total (x/2) (fun n =>
+  (if (n-2).Prime then 0 else lam (n-2)) * |f x n|)
+
+theorem window {x : ℝ} {n : ℕ} (hn : n ∈ interval (x/2)) :
+    x/2 < (n:ℝ) ∧ (n:ℝ) ≤ x ∧ 2 ≤ n := by
+  obtain ⟨hm,hx⟩ := Finset.mem_filter.mp hn
+  obtain ⟨hn₀,hh⟩ := Finset.mem_Icc.mp hm
+  have hh' : n ≤ ⌊x⌋₊ := by simpa only [show 2*(x/2)=x by ring] using hh
+  have hpos : 0 ≤ x := by
+    by_contra! h
+    rw [Nat.floor_of_nonpos h.le] at hh'
+    omega
+  exact ⟨hx,(Nat.le_floor_iff hpos).mp hh',hn₀⟩
+
+private theorem power_population {x : ℝ} (hx : 8 ≤ x) :
+    (∑ n ∈ interval (x/2), if (n-2).Prime then 0 else lam (n-2)) ≤
+      2 * Real.sqrt x * Real.log x := by
+  let I := (interval (x/2)).image (fun n : ℕ => n-2)
+  have inj : Set.InjOn (fun n : ℕ => n-2) (interval (x/2) : Set ℕ) := by
+    intro m hm n hn h
+    have := (window hm).2.2
+    have := (window hn).2.2
+    change m-2 = n-2 at h
+    omega
+  have hsub : I ⊆ Finset.Ioc 0 ⌊x⌋₊ := by
+    intro k hk
+    obtain ⟨n,hn,rfl⟩ := Finset.mem_image.mp hk
+    obtain ⟨hn₁,hn₂,_⟩ := window hn
+    have hn' : 4 < n := by exact_mod_cast (show (4:ℝ) < n by linarith)
+    exact Finset.mem_Ioc.mpr ⟨by omega, (Nat.sub_le _ _).trans (Nat.le_floor hn₂)⟩
+  calc
+    _ = ∑ k ∈ I, if k.Prime then 0 else lam k := (Finset.sum_image inj).symm
+    _ ≤ ∑ k ∈ Finset.Ioc 0 ⌊x⌋₊, if k.Prime then 0 else lam k :=
+      Finset.sum_le_sum_of_subset_of_nonneg hsub (fun k _ _ => by split_ifs <;> first | exact le_refl _ | exact vonMangoldt_nonneg)
+    _ = Chebyshev.psi x - Chebyshev.theta x := by
+      rw [Chebyshev.psi_sub_theta_eq_sum_not_prime, Finset.sum_filter]
+      simp [lam, ite_not]
+    _ ≤ _ := (le_abs_self _).trans (Chebyshev.abs_psi_sub_theta_le_sqrt_mul_log (by linarith))
+
+theorem power_mass_bound {x : ℝ} (hx : 8 ≤ x) {f : ℝ → ℕ → ℝ}
+    {B : ℝ} (hB : 0 ≤ B) (hf : ∀ n ∈ interval (x/2), |f x n| ≤ B) :
+    powerMass f x ≤ B * (2 * Real.sqrt x * Real.log x) := by
+  unfold powerMass total
+  calc
+    _ ≤ ∑ n ∈ interval (x/2), (if (n-2).Prime then 0 else lam (n-2)) * B := by
+      apply Finset.sum_le_sum
+      intro n hn
+      exact mul_le_mul_of_nonneg_left (hf n hn) (by split_ifs <;> first | exact le_refl _ | exact vonMangoldt_nonneg)
+    _ ≤ _ := by rw [← Finset.sum_mul, mul_comm]; exact mul_le_mul_of_nonneg_left (power_population hx) hB
+
+theorem power_mass_negligible {f : ℝ → ℕ → ℝ}
+    (hf : ∀ᶠ x : ℝ in atTop, ∀ n ∈ interval (x/2), |f x n| ≤ envelope * x^(1/4:ℝ)) :
+    negligible (powerMass f) scale := by
+  have hC : 0 < envelope := by unfold envelope; positivity
+  intro e he
+  have hη : 0 < e / (2*envelope) := div_pos he (by positivity)
+  have hlog := (isLittleO_log_rpow_rpow_atTop (2:ℝ) (by norm_num : (0:ℝ)<1/4)).bound hη
+  filter_upwards [hf,hlog,eventually_ge_atTop (8:ℝ)] with x hx hl h₈
+  have hpos : 0 < x := by linarith
+  have hL : 0 < Real.log x := Real.log_pos (by linarith)
+  have hQ := Real.rpow_pos_of_pos hpos (1/4:ℝ)
+  have h1 := power_mass_bound h₈ (mul_nonneg hC.le hQ.le) hx
+  have h2 : 0 ≤ powerMass f x := by
+    unfold powerMass total
+    apply Finset.sum_nonneg
+    intro n _
+    apply mul_nonneg _ (abs_nonneg _)
+    split_ifs <;> first | exact le_refl _ | exact vonMangoldt_nonneg
+  have hh : (Real.log x)^2 ≤ (e/(2*envelope))*x^(1/4:ℝ) := by
+    simpa only [Real.norm_eq_abs, Real.rpow_two, abs_of_nonneg (sq_nonneg (Real.log x)), abs_of_pos hQ] using hl
+  have hpow : (x^(1/4:ℝ)*Real.sqrt x)*x^(1/4:ℝ) = x := by
+    rw [Real.sqrt_eq_rpow, ← Real.rpow_add hpos, ← Real.rpow_add hpos]
+    norm_num
+  rw [abs_of_nonneg h2, scale, ← mul_div_assoc, le_div_iff₀ hL]
+  have hcost := (le_div_iff₀ (by positivity : 0 < 2*envelope)).mp
+    (show (Real.log x)^2 ≤ e*x^(1/4:ℝ)/(2*envelope) by convert hh using 1; ring)
+  nlinarith only [mul_le_mul_of_nonneg_right h1 hL.le,
+    mul_le_mul_of_nonneg_right hcost (mul_nonneg hQ.le (Real.sqrt_nonneg x)), congrArg (fun t => e*t) hpow]
+
+theorem native_power_mass : negligible (powerMass Direct.phi) scale := by
+  apply power_mass_negligible
+  filter_upwards [eventually_ge_atTop (8:ℝ)] with x hx n hn
+  obtain ⟨_,hu,hl⟩ := window hn
+  exact (phi_envelope x (by omega : 1<n)).trans (mul_le_mul_of_nonneg_left
+    (Real.rpow_le_rpow (Nat.cast_nonneg _) hu (by norm_num)) (by unfold envelope; positivity))
+
+end
+end REAL1B.FM.Analytic
+#print axioms REAL1B.FM.Analytic.comparator_pos
+#print axioms REAL1B.FM.Analytic.negligible_comparator
+#print axioms REAL1B.FM.Analytic.power_mass_bound
+#print axioms REAL1B.FM.Analytic.native_power_mass
+
+-- RequestProject/REAL1B_20261122/FMAnalyticReduction.lean
+/-! Gold 4.58 (U3)–(U5) on a specified output profile. The comparator and
+short product have separate estimates; the nonsquarefree error is absolute. -/
+namespace REAL1B.FM.Analytic
+open Filter Vaughan Source Closing ArithmeticFunction
+noncomputable section
+open Classical
+
+def lambdaSum (z x : ℝ) (f : ℕ → ℝ) := total (x/2) (fun n => sieve z (n-2) * lam (n-2) * f n)
+def primeSum (x : ℝ) (f : ℕ → ℝ) := total (x/2) (fun n => theta (n-2) * f n)
+def intrinsicCut (x : ℝ) := x^(1/800000000000:ℝ)
+def SmallCut (z : ℝ → ℝ) : Prop := ∀ᶠ x : ℝ in atTop, ∀ n ∈ interval (x/2), z x < (n-2:ℕ)
+
+private theorem small_sqrt : SmallCut Real.sqrt := by
+  filter_upwards [eventually_ge_atTop (36:ℝ)] with x hx n hn
+  obtain ⟨hn',_,h₂⟩ := window hn
+  rw [Nat.cast_sub h₂, Nat.cast_ofNat]
+  nlinarith only [hx,hn',Real.sq_sqrt (by linarith : 0 ≤ x),sq_nonneg (Real.sqrt x-2)]
+
+theorem small_power {s : ℝ} (hs : s ≤ 1/2) : SmallCut (fun x : ℝ => x^s) := by
+  filter_upwards [small_sqrt, eventually_ge_atTop (1:ℝ)] with x h hx n hn
+  rw [Real.sqrt_eq_rpow] at h
+  exact (Real.rpow_le_rpow_of_exponent_le hx hs).trans_lt (h n hn)
+
+theorem small_roughW {a : ℝ} (ha : a < 1) : SmallCut (roughW a) := by
+  filter_upwards [small_sqrt, log_power_lt_linear (a:=a) (b:=1/2) ha (by norm_num),
+    eventually_gt_atTop (1:ℝ)] with x h hlog hx n hn
+  calc
+    roughW a x < Real.exp (Real.log x * (1/2)) := Real.exp_lt_exp.mpr (by linarith)
+    _ = Real.sqrt x := by rw [Real.sqrt_eq_rpow, Real.rpow_def_of_pos (by linarith : 0 < x)]
+    _ < _ := h n hn
+
+private theorem sieve_prime {p : ℕ} (hp : p.Prime) {z : ℝ} (hz : z < p) : sieve z p = 1 := by
+  apply if_pos
+  intro q hq hd
+  exact (Nat.prime_dvd_prime_iff_eq hq hp).mp hd ▸ hz
+
+theorem lambda_prime_error {x z : ℝ} {f : ℝ → ℕ → ℝ}
+    (hz : ∀ n ∈ interval (x/2), z < (n-2:ℕ)) :
+    |lambdaSum z x (f x) - primeSum x (f x)| ≤ powerMass f x := by
+  unfold lambdaSum primeSum powerMass total
+  rw [← Finset.sum_sub_distrib]
+  apply (Finset.abs_sum_le_sum_abs ..).trans
+  apply Finset.sum_le_sum
+  intro n hn
+  by_cases hp : (n-2).Prime
+  · simp [sieve_prime hp (hz n hn),lam,theta,hp,vonMangoldt_apply_prime hp]
+  · simp only [theta,if_neg hp,zero_mul,sub_zero,abs_mul]
+    have hL : 0 ≤ lam (n-2) := vonMangoldt_nonneg
+    rw [abs_of_nonneg hL]
+    unfold sieve
+    split_ifs <;> simp [mul_nonneg hL (abs_nonneg _)]
+
+theorem prime_replacement {z : ℝ → ℝ} (hz : SmallCut z) {f : ℝ → ℕ → ℝ}
+    (hf : negligible (powerMass f) scale) :
+    negligible (fun x => lambdaSum (z x) x (f x) - primeSum x (f x)) scale := by
+  intro e he
+  filter_upwards [hz,hf e he] with x h hh
+  exact (lambda_prime_error h).trans ((le_abs_self _).trans hh)
+
+theorem native_presieve {a : ℝ} (ha : a < 1) :
+    negligible (fun x => lambdaSum (intrinsicCut x) x (Direct.phi x) -
+      lambdaSum (roughW a x) x (Direct.phi x)) scale := by
+  intro e he
+  have hε : 0 < e/2 := by linarith
+  have h₁ := prime_replacement (small_power (by norm_num : (1/800000000000:ℝ) ≤ 1/2)) native_power_mass
+  have h₂ := prime_replacement (small_roughW ha) native_power_mass
+  filter_upwards [h₁ _ hε,h₂ _ hε] with x h₁ h₂
+  apply abs_le.mpr
+  change |lambdaSum (intrinsicCut x) x _ - primeSum x _| ≤ _ at h₁
+  constructor <;> linarith only [(abs_le.mp h₁).1,(abs_le.mp h₁).2,(abs_le.mp h₂).1,(abs_le.mp h₂).2]
+
+def shortCoeff (u D : ℝ) (k : ℕ) := ∑ l ∈ k.divisors, if l.Prime ∧ u < (l:ℝ) then
+  Real.log l * ∑ m ∈ (k/l).divisors, if u < (m:ℝ) ∧ (m*l:ℕ) ≤ D then mu m else 0 else 0
+
+private theorem coeffII_rows (u : ℝ) (k : ℕ) : coeffII u u k =
+    ∑ l ∈ k.divisors, (if u < (l:ℝ) then lam l else 0) *
+      ∑ m ∈ (k/l).divisors, if u < (m:ℝ) then mu m else 0 := by
+  have h : coeffII u u = high u lam * (high u mob * zetaR) := by unfold coeffII cV; ac_rfl
+  rw [h, ArithmeticFunction.mul_apply, Nat.sum_divisorsAntidiagonal (fun l r => high u lam l * (high u mob * zetaR) r)]
+  apply Finset.sum_congr rfl
+  intro l _
+  simp only [high_apply, zetaR, coe_mul_zeta_apply]
+  rfl
+
+theorem squarefree_owner_split {k : ℕ} (hk : Squarefree k) (u D : ℝ) :
+    coeffII u u k = shortCoeff u D k + coeff u D k := by
+  rw [coeffII_rows,shortCoeff,coeff,← Finset.sum_add_distrib]
+  apply Finset.sum_congr rfl
+  intro l hl
+  by_cases hp : l.Prime
+  · by_cases hu : u < (l:ℝ)
+    · simp only [hu,hp,and_self,if_true,primeRow,lam,vonMangoldt_apply_prime hp,← mul_add,← Finset.sum_add_distrib]
+      congr 1
+      apply Finset.sum_congr rfl
+      intro m _
+      push_cast
+      by_cases h : u < (m:ℝ) <;> by_cases hd : D < (m:ℝ)*l <;> simp [h,hd,le_of_not_gt,not_le.mpr]
+    · simp [hu,hp]
+  · have hsf := hk.squarefree_of_dvd (Nat.mem_divisors.mp hl).1
+    have hL : lam l = 0 := vonMangoldt_eq_zero_iff.mpr (fun h =>
+      hp (Nat.squarefree_and_prime_pow_iff_prime.mp ⟨hsf,h⟩))
+    simp [hp,hL]
+
+theorem coeffII_abs (u : ℝ) {k : ℕ} (hk : 0 < k) :
+    |coeffII u u k| ≤ k.divisors.card * Real.log k := by
+  rw [coeffII, ArithmeticFunction.mul_apply, Nat.sum_divisorsAntidiagonal (fun m r => high u mob m * cV u r)]
+  apply (Finset.abs_sum_le_sum_abs ..).trans
+  calc
+    _ ≤ ∑ _ ∈ k.divisors, Real.log k := by
+      apply Finset.sum_le_sum
+      intro m hm
+      have hq := Nat.div_pos (Nat.le_of_dvd hk (Nat.mem_divisors.mp hm).1) (Nat.pos_of_mem_divisors hm)
+      have hL : 0 ≤ cV u (k/m) := by rw [cV_divisors]; exact Finset.sum_nonneg (fun i _ => by
+        split_ifs <;> first | exact vonMangoldt_nonneg | rfl)
+      have hle : cV u (k/m) ≤ Real.log (k/m:ℕ) := by
+        rw [cV_divisors,← vonMangoldt_sum]
+        apply Finset.sum_le_sum
+        intro p _
+        split_ifs <;> first | exact le_refl _ | exact vonMangoldt_nonneg
+      have hmu : |high u mob m| ≤ 1 := by
+        rw [high_apply]; split_ifs
+        · change |mu m| ≤ 1
+          unfold mu
+          exact_mod_cast abs_moebius_le_one (n:=m)
+        · norm_num
+      rw [abs_mul,abs_of_nonneg hL]
+      exact (mul_le_of_le_one_left hL hmu).trans (hle.trans (Real.log_le_log
+        (by exact_mod_cast hq) (by exact_mod_cast Nat.div_le_self k m)))
+    _ = _ := by simp
+
+theorem mu_sq {k : ℕ} (hk : Squarefree k) : mu k ^ 2 = 1 := by
+  unfold mu
+  exact_mod_cast moebius_sq_eq_one_of_squarefree hk
+
+theorem shortCoeff_abs (u D : ℝ) {k : ℕ} (hk : 0 < k) :
+    |shortCoeff u D k| ≤ k.divisors.card * Real.log k := by
+  unfold shortCoeff
+  apply (Finset.abs_sum_le_sum_abs ..).trans
+  rw [← vonMangoldt_sum, Finset.mul_sum]
+  apply Finset.sum_le_sum
+  intro l hl
+  split_ifs with h
+  · obtain ⟨hp,_⟩ := h
+    rw [vonMangoldt_apply_prime hp,abs_mul,abs_of_nonneg (Real.log_natCast_nonneg _),mul_comm]
+    apply mul_le_mul_of_nonneg_right _ (Real.log_natCast_nonneg _)
+    apply (Finset.abs_sum_le_sum_abs ..).trans
+    calc
+      _ ≤ ∑ _ ∈ (k/l).divisors, (1:ℝ) := Finset.sum_le_sum (fun m _ => by
+        split_ifs
+        · unfold mu
+          exact_mod_cast abs_moebius_le_one (n:=m)
+        · norm_num)
+      _ ≤ _ := by
+        simp only [Finset.sum_const, nsmul_eq_mul, mul_one]
+        exact_mod_cast Finset.card_le_card (Nat.divisors_subset_of_dvd hk.ne' (Nat.div_dvd_of_dvd (Nat.mem_divisors.mp hl).1))
+  · rw [abs_zero]
+    exact mul_nonneg (by positivity) vonMangoldt_nonneg
+
+def weightedInput (a x : ℝ) (f : ℕ → ℝ) (c : ℕ → ℝ) := total (x/2) (fun n =>
+  sieve (roughW a x) (n-2) * c (n-2) * f n)
+def typeI (a x : ℝ) (f : ℕ → ℝ) := weightedInput a x f (coeffI (cutU x) (cutU x))
+def shortProduct (a x : ℝ) (f : ℕ → ℝ) := weightedInput a x f (shortCoeff (cutU x) (cutD x))
+def squarefulMass (a x : ℝ) (f : ℕ → ℝ) := weightedInput a x (fun n => |f n|) (fun k =>
+  if Squarefree k then 0 else 2 * k.divisors.card * Real.log k)
+
+/-- Finite (U4)–(U5), valid for signed profiles, with every discarded input charged absolutely. -/
+theorem physical_vaughan (a x : ℝ) (f : ℕ → ℝ)
+    (hcut : ∀ n ∈ interval (x/2), cutU x < (n-2:ℕ))
+    (hpos : ∀ n ∈ interval (x/2), 0 < n-2) :
+    |lambdaSum (roughW a x) x f - typeI a x f - shortProduct a x f - Direct.largeSum a x f| ≤
+      squarefulMass a x f := by
+  unfold lambdaSum typeI shortProduct Direct.largeSum squarefulMass weightedInput total
+  rw [← Finset.sum_sub_distrib, ← Finset.sum_sub_distrib, ← Finset.sum_sub_distrib]
+  apply (Finset.abs_sum_le_sum_abs ..).trans
+  apply Finset.sum_le_sum
+  intro n hn
+  let k := n-2
+  have hv := DFunLike.congr_fun (vaughan_identity (cutU x) (cutU x)) k
+  have hlam : lam k = coeffI (cutU x) (cutU x) k + coeffII (cutU x) (cutU x) k := by
+    simpa [low,not_le.mpr (hcut n hn),k] using hv
+  change |sieve _ k * lam k * f n - _ - _ - _| ≤ _
+  rw [hlam]
+  by_cases hs : Squarefree k
+  · simp only [show n-2=k from rfl,hs,if_true,mu_sq hs,squarefree_owner_split hs (cutU x) (cutD x),mul_one,mul_zero,zero_mul]
+    ring_nf
+    simp
+  · have hμ : mu k = 0 := by simp [mu,moebius_eq_zero_of_not_squarefree hs]
+    simp only [show n-2=k from rfl,hs,if_false,hμ,zero_pow (by decide : 2 ≠ 0),mul_zero,zero_mul,sub_zero]
+    rw [show sieve (roughW a x) k * (_ + _) * f n - _ - _ =
+      sieve (roughW a x) k * (coeffII (cutU x) (cutU x) k - shortCoeff (cutU x) (cutD x) k) * f n by ring,
+      abs_mul,abs_mul,abs_of_nonneg (show 0 ≤ sieve (roughW a x) k by unfold sieve; split_ifs <;> norm_num)]
+    apply mul_le_mul_of_nonneg_right _ (abs_nonneg _)
+    apply mul_le_mul_of_nonneg_left _ (by unfold sieve; split_ifs <;> norm_num)
+    linarith only [abs_sub (coeffII (cutU x) (cutU x) k) (shortCoeff (cutU x) (cutD x) k),
+      coeffII_abs (cutU x) (hpos n hn),shortCoeff_abs (cutU x) (cutD x) (hpos n hn)]
+
+end
+end REAL1B.FM.Analytic
+#print axioms REAL1B.FM.Analytic.native_presieve
+#print axioms REAL1B.FM.Analytic.prime_replacement
+#print axioms REAL1B.FM.Analytic.squarefree_owner_split
+#print axioms REAL1B.FM.Analytic.coeffII_abs
+#print axioms REAL1B.FM.Analytic.shortCoeff_abs
+#print axioms REAL1B.FM.Analytic.physical_vaughan
+
+-- RequestProject/REAL1B_20261122/FMAnalyticTransfer.lean
+/-! Full and five-prime restricted sources require their own distribution estimates. -/
+namespace REAL1B.FM.Analytic
+open Filter Vaughan Source Closing
+noncomputable section
+open Classical
+
+def mean (f : ℝ → ℕ → ℝ) (x : ℝ) := H2.series * total (x/2) (f x)
+
+/-- Three distinct estimates at the original presieve. The unsigned charge includes
+all nonsquarefree inputs, including those with internal proper powers. -/
+structure VaughanEstimates (a : ℝ) (f : ℝ → ℕ → ℝ) : Prop where
+  typeI_centered : negligible (fun x => typeI a x (f x) - mean f x) Sb
+  short : negligible (fun x => shortProduct a x (f x)) Sb
+  squareful : negligible (fun x => squarefulMass a x (f x)) Sb
+
+theorem presieved_transfer {a : ℝ} {f : ℝ → ℕ → ℝ} (h : VaughanEstimates a f) :
+    negligible (fun x => lambdaSum (roughW a x) x (f x) - mean f x - Direct.largeSum a x (f x)) Sb := by
+  intro e he
+  have ht : 0 < e/3 := by linarith
+  filter_upwards [small_power (by norm_num : (0.24:ℝ) ≤ 1/2), h.typeI_centered _ ht,
+    h.short _ ht,h.squareful _ ht,eventually_ge_atTop (8:ℝ)] with x hu hI hS hQ hx
+  have hk (n : ℕ) (hn : n ∈ interval (x/2)) : 0 < n-2 := by
+    have hn' := (window hn).1
+    have : (2:ℝ) < n := by linarith
+    exact Nat.sub_pos_of_lt (by exact_mod_cast this)
+  have hv := physical_vaughan a x (f x) hu hk
+  apply abs_le.mpr
+  dsimp only at hI hS hQ ⊢
+  constructor <;> linarith only [(abs_le.mp hv).1,(abs_le.mp hv).2,(abs_le.mp hI).1,
+    (abs_le.mp hI).2,(abs_le.mp hS).1,(abs_le.mp hS).2,(le_abs_self _).trans hQ]
+
+theorem native_covariance (x : ℝ) :
+    covariance x = lambdaSum (intrinsicCut x) x (Direct.phi x) - mean Direct.phi x := by
+  unfold covariance lambdaSum mean total
+  rw [Finset.mul_sum,← Finset.sum_sub_distrib]
+  apply Finset.sum_congr rfl
+  intro n hn
+  rw [Direct.phi_eq_legacy hn]
+  unfold intrinsicCut
+  ring
+
+theorem reduction_of_estimates {a : ℝ} (ha : a < 1) (hs : ScaleLower)
+    (h : VaughanEstimates a Direct.phi) : Reduction a := by
+  intro e he
+  have ht : 0 < e/2 := by linarith
+  filter_upwards [negligible_comparator (native_presieve ha) hs _ ht,presieved_transfer h _ ht]
+    with x h₁ h₂
+  rw [native_covariance,← Direct.whole_eq_legacy]
+  unfold Direct.whole
+  apply abs_le.mpr
+  constructor <;> linarith only [(abs_le.mp h₁).1,(abs_le.mp h₁).2,(abs_le.mp h₂).1,(abs_le.mp h₂).2]
+
+theorem box_power_mass : negligible (powerMass Direct.psi) scale := by
+  apply power_mass_negligible
+  filter_upwards [eventually_ge_atTop (8:ℝ)] with x _ n hn
+  obtain ⟨_,hu,hl⟩ := window hn
+  unfold Direct.psi
+  split_ifs
+  · exact (phi_envelope x (by omega : 1<n)).trans (mul_le_mul_of_nonneg_left
+      (Real.rpow_le_rpow (Nat.cast_nonneg _) hu (by norm_num)) (by unfold envelope; positivity))
+  · rw [abs_zero]
+    unfold envelope; positivity
+
+theorem box_prime_source : ∀ᶠ x : ℝ in atTop, Direct.primeBox x = primeSum x (Direct.psi x) := by
+  filter_upwards [boxes_sifted] with x hx
+  unfold Direct.primeBox primeSum total
+  apply Finset.sum_congr rfl
+  intro n hn
+  by_cases hb : boxes n
+  · simp [Direct.psi,hb,actual,sieve,hx n hn hb]
+  · simp [Direct.psi,hb]
+
+theorem calibration_of_estimates {a : ℝ} (ha : a < 1) (hs : ScaleLower)
+    (h : VaughanEstimates a Direct.psi)
+    (hm : negligible (fun x => mean Direct.psi x - Direct.J * Sb x) Sb) : Direct.Calibration a := by
+  intro e he
+  have ht : 0 < e/3 := by linarith
+  filter_upwards [presieved_transfer h _ ht,negligible_comparator
+    (prime_replacement (small_roughW ha) box_power_mass) hs _ ht,hm _ ht,box_prime_source] with x hv hp hJ hsource
+  rw [hsource]
+  unfold Direct.box
+  apply abs_le.mpr
+  constructor <;> linarith only [(abs_le.mp hv).1,(abs_le.mp hv).2,(abs_le.mp hp).1,(abs_le.mp hp).2,
+    (abs_le.mp hJ).1,(abs_le.mp hJ).2]
+
+end
+end REAL1B.FM.Analytic
+#print axioms REAL1B.FM.Analytic.presieved_transfer
+#print axioms REAL1B.FM.Analytic.native_covariance
+#print axioms REAL1B.FM.Analytic.reduction_of_estimates
+#print axioms REAL1B.FM.Analytic.box_power_mass
+#print axioms REAL1B.FM.Analytic.box_prime_source
+#print axioms REAL1B.FM.Analytic.calibration_of_estimates
+
+-- RequestProject/REAL1B_20261122/FMLowerLedger.lean
+/-! Gold 4.57 complete-source partition and Gold 4.58 (U9).
+All error functions below are finite sums on the same physical window. -/
+namespace REAL1B.FM.Ledger
+open Filter Vaughan Source Analytic ArithmeticFunction
+noncomputable section
+open Classical
+
+def positive (x : ℝ) (n : ℕ) : ℝ := if n ∈ interval (x/2) ∧ Squarefree n ∧ Direct.good n
+  then max (kernelH n) 0 else 0
+def calibrated (x : ℝ) (n : ℕ) : ℝ := if Squarefree n ∧ Sifted (z x) n
+  then kernelH n - kernelK (x/2) n else 0
+def omitted (rank : ℕ → Prop) (x : ℝ) (n : ℕ) : ℝ :=
+  if ¬Direct.good n ∧ rank (cardFactors n) then calibrated x n else 0
+
+/-- Pointwise geometric inputs on the actual H/K source, stated only where used. -/
+structure GeometryAt (x : ℝ) : Prop where
+  prime : ∀ n ∈ interval (x/2), n.Prime → Sifted (z x) n ∧ kernelH n - kernelK (x/2) n = 1
+  good : ∀ n ∈ interval (x/2), Squarefree n → Direct.good n →
+    kernelK (x/2) n = 0 ∧ (kernelH n ≠ 0 → Sifted (z x) n)
+
+theorem H_prime {p : ℕ} (hp : p.Prime) : kernelH p = 1 := by
+  have hp' : (1:ℝ) < p := by exact_mod_cast hp.one_lt
+  have hlt : (p:ℝ)^γ < p := by
+    simpa only [Real.rpow_one] using Real.rpow_lt_rpow_of_exponent_lt hp' (by norm_num [γ,ε] : γ < 1)
+  have hge : 1 ≤ (p:ℝ)^γ := Real.one_le_rpow hp'.le (by norm_num [γ,ε])
+  have h₁ : divisorCoefficient p 1 = 1 := by
+    simp [divisorCoefficient,profile,g0,mu,hge,show (0:ℝ) ≤ β by norm_num [β,ε]]
+  have h₂ : divisorCoefficient p p = 0 := by simp [divisorCoefficient,not_le.mpr hlt]
+  simp [kernelH,hp.divisors,Ne.symm hp.ne_one,h₁,h₂]
+
+theorem K_prime (X : ℝ) {p : ℕ} (hp : p.Prime) : kernelK X p = 0 := by
+  have hzero (d : ℕ) (hd : d ∈ p.divisors) : labels X d = 0 := by
+    unfold labels
+    apply Finset.sum_eq_zero
+    intro u hu
+    apply Finset.sum_eq_zero
+    intro v hv
+    apply Finset.sum_eq_zero
+    intro w _
+    apply if_neg
+    rintro ⟨hu',hv',_⟩
+    have hdu := (Nat.mem_divisors.mp hu).1
+    have hdp := (Nat.mem_divisors.mp hd).1
+    have hueq := (Nat.prime_dvd_prime_iff_eq hu' hp).mp (hdu.trans hdp)
+    have hdeq : d = u := Nat.le_antisymm (hueq ▸ Nat.le_of_dvd hp.pos hdp)
+      (Nat.le_of_dvd (Nat.pos_of_mem_divisors hd) hdu)
+    have hv₁ := (Nat.mem_divisors.mp hv).1
+    rw [hdeq,Nat.div_self hu'.pos] at hv₁
+    exact hv'.ne_one (Nat.dvd_one.mp hv₁)
+  unfold kernelK
+  rw [Finset.sum_eq_zero (fun d hd => by simp [hzero d hd]),mul_zero]
+
+theorem geometry_of_good
+    (hgood : ∀ᶠ x : ℝ in atTop, ∀ n ∈ interval (x/2), Squarefree n → Direct.good n →
+      kernelK (x/2) n = 0 ∧ (kernelH n ≠ 0 → Sifted (z x) n)) :
+    ∀ᶠ x : ℝ in atTop, GeometryAt x := by
+  filter_upwards [hgood,small_power (by norm_num : (1/400000000000:ℝ) ≤ 1/2)] with x hgood hz
+  refine ⟨?_,hgood⟩
+  intro p hp hprime
+  refine ⟨?_,by rw [H_prime hprime,K_prime _ hprime,sub_zero]⟩
+  intro q hq hd
+  have hlt : z x < (p:ℝ) := (hz p hp).trans_le (by exact_mod_cast Nat.sub_le p 2)
+  exact (Nat.prime_dvd_prime_iff_eq hq hprime).mp hd ▸ hlt
+
+theorem partition {x : ℝ} (h : GeometryAt x) {n : ℕ} (hn : n ∈ interval (x/2)) :
+    calibrated x n = primeMask n + positive x n + Direct.phi x n +
+      omitted (· = 2) x n + omitted (· = 4) x n + omitted (256 ≤ ·) x n := by
+  have hn₂ := (window hn).2.2
+  by_cases hp : n.Prime
+  · obtain ⟨hz,hk⟩ := h.prime n hn hp
+    have hcard := cardFactors_eq_one_iff_prime.mpr hp
+    have hg : ¬ Direct.good n := fun hh => hh.2.1 hp
+    simp [calibrated,primeMask,hp,hp.squarefree,hz,hk,positive,Direct.phi,Direct.F,Direct.G,
+      omitted,hg,retained,hcard]
+  · have hc₀ : cardFactors n ≠ 0 := fun hc => by
+      rcases cardFactors_eq_zero_iff_eq_zero_or_one.mp hc with h | h <;> omega
+    have hc₁ : cardFactors n ≠ 1 := fun hc => hp (cardFactors_eq_one_iff_prime.mp hc)
+    by_cases hs : Squarefree n
+    · by_cases hg : Direct.good n
+      · obtain ⟨hK,hH⟩ := h.good n hn hs hg
+        by_cases hz : Sifted (z x) n
+        · simp [calibrated,primeMask,hp,positive,hn,hs,hg,hK,hz,Direct.phi,Direct.F,Direct.G,omitted]
+          simpa [sub_eq_add_neg] using (max_zero_sub_max_neg_zero_eq_self (kernelH n)).symm
+        · have hzero : kernelH n = 0 := by by_contra hne; exact hz (hH hne)
+          simp [calibrated,primeMask,hp,positive,hn,hs,hg,hz,hzero,Direct.phi,Direct.F,Direct.G,omitted]
+      · by_cases hz : Sifted (z x) n
+        · have hr : retained n ↔ cardFactors n ≠ 2 ∧ cardFactors n ≠ 4 ∧ ¬256 ≤ cardFactors n := by
+            unfold retained; omega
+          simp only [calibrated,hs,hz,and_self,if_true,primeMask,if_neg hp,positive,hn,hg,and_false,
+            if_false,Direct.phi,Direct.F,Direct.G,not_false_eq_true, true_and,omitted,hr]
+          split_ifs <;> first | omega | ring
+        · simp [calibrated,primeMask,hp,positive,hg,hz,Direct.phi,Direct.F,Direct.G,omitted]
+    · simp [calibrated,primeMask,hp,positive,hs,Direct.phi,Direct.F,Direct.G,omitted]
+
+def weighted (w : ℝ → ℕ → ℝ) (f : ℝ → ℕ → ℝ) (x : ℝ) := total (x/2) (fun n => w x n * f x n)
+def deviation (f : ℝ → ℕ → ℝ) (x : ℝ) := weighted actual f x - weighted compare f x
+def normalError (x : ℝ) := mean Direct.phi x - weighted compare Direct.phi x
+def powerError (x : ℝ) := lambdaSum (intrinsicCut x) x (Direct.phi x) - weighted actual Direct.phi x
+
+theorem exact_ledger {x : ℝ} (h : GeometryAt x) :
+    Closing.covariance x + T x + weighted actual positive x =
+    Sb x + weighted compare positive x - deviation (omitted (· = 2)) x -
+      deviation (omitted (· = 4)) x - deviation (omitted (256 ≤ ·)) x +
+      deviation calibrated x + powerError x - normalError x := by
+  have part (w : ℝ → ℕ → ℝ) : weighted w calibrated x = total (x/2) (fun n => w x n * primeMask n) +
+      weighted w positive x + weighted w Direct.phi x + weighted w (omitted (· = 2)) x +
+      weighted w (omitted (· = 4)) x + weighted w (omitted (256 ≤ ·)) x := by
+    unfold weighted total
+    simp only [← Finset.sum_add_distrib]
+    apply Finset.sum_congr rfl
+    intro n hn
+    rw [partition h hn]
+    ring
+  rw [native_covariance]
+  unfold deviation powerError normalError T Sb
+  rw [part actual,part compare]
+  ring
+
+def goodCap : ℝ := 0.0000000142500001
+def pairCap : ℝ := ε / (ν*(1-ν))
+def tailCap : ℝ := 1/10^58
+def transferCap : ℝ := 9 * (400000000000:ℝ)^2 / (50 * (Nat.factorial 99:ℝ))
+
+theorem ledger_rounding : (0.999892775499:ℝ) ≤
+    1 - 3*goodCap - 3*pairCap - 0.000107163 - tailCap - transferCap := by
+  norm_num [goodCap,pairCap,tailCap,transferCap,ε,ν,Nat.factorial]
+
+def upper (f : ℝ → ℝ) (c : ℝ) : Prop := ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop, f x ≤ (c+e)*Sb x
+
+structure Estimates : Prop where
+  geometry : ∀ᶠ x : ℝ in atTop, GeometryAt x
+  goodMass : ∃ Jp : ℝ, Jp ≤ goodCap ∧ negligible (fun x => weighted compare positive x - Jp*Sb x) Sb ∧
+    upper (weighted actual positive) (4*Jp)
+  pairs : upper (deviation (omitted (· = 2))) (3*pairCap)
+  four : upper (fun x => |deviation (omitted (· = 4)) x|) 0.000107163
+  tail : upper (fun x => |deviation (omitted (256 ≤ ·)) x|) tailCap
+  calibratedMean : upper (fun x => |deviation calibrated x|) transferCap
+  comparator : negligible normalError Sb
+
+/-- Output presieving is separate from the prime-power estimate on the input. -/
+def OutputSupport : Prop := ∀ᶠ x : ℝ in atTop, ∀ n ∈ interval (x/2),
+  Direct.phi x n ≠ 0 → Sifted (y x) n
+
+theorem output_support (hgeom : ∀ᶠ x : ℝ in atTop, GeometryAt x) : OutputSupport := by
+  filter_upwards [hgeom,Closing.log_power_lt_linear (a:=1/20) (b:=1/400000000000)
+    (by norm_num) (by norm_num),eventually_gt_atTop (1:ℝ)] with x hg hlog hx n hn hne
+  have hy : y x ≤ z x := by
+    unfold y z
+    rw [Real.rpow_def_of_pos (by linarith : 0<x),Real.exp_le_exp]
+    linarith only [hlog]
+  have hZ : Sifted (z x) n := by
+    by_contra hno
+    apply hne
+    unfold Direct.phi Direct.F Direct.G
+    simp only [hno,false_and,and_false,if_false,zero_sub,neg_eq_zero]
+    split_ifs with h
+    · have hzero : kernelH n = 0 := by
+        by_contra hH
+        exact hno ((hg.good n hn h.2.1 h.2.2).2 hH)
+      simp [hzero]
+    · rfl
+  exact fun p hp hd => hy.trans_lt (hZ p hp hd)
+
+theorem powerError_small (hs : ScaleLower) (hout : OutputSupport) : negligible powerError Sb := by
+  have hp := negligible_comparator (prime_replacement
+    (small_power (by norm_num : (1/800000000000:ℝ) ≤ 1/2)) native_power_mass) hs
+  intro e he
+  filter_upwards [hp e he,hout] with x h hx
+  have heq : weighted actual Direct.phi x = primeSum x (Direct.phi x) := by
+    unfold weighted primeSum total
+    apply Finset.sum_congr rfl
+    intro n hn
+    by_cases hzero : Direct.phi x n = 0
+    · simp [hzero]
+    · simp [actual,sieve,hx n hn hzero]
+  simpa only [powerError,heq,intrinsicCut] using h
+
+theorem lower_of_estimates (h : Estimates) (hs : ScaleLower) : Closing.LowerLedger := by
+  obtain ⟨j,hj,hB,hA⟩ := h.goodMass
+  intro e he
+  have ht : 0 < e/8 := by linarith
+  filter_upwards [h.geometry,comparator_pos hs,hB _ ht,hA _ ht,h.pairs _ ht,h.four _ ht,
+    h.tail _ ht,h.calibratedMean _ ht,powerError_small hs (output_support h.geometry) _ ht,h.comparator _ ht]
+    with x hg hpos hB hA hR h4 hT hW hP hC
+  have hc := mul_le_mul_of_nonneg_right ledger_rounding hpos.le
+  have hj' := mul_le_mul_of_nonneg_right hj hpos.le
+  linarith only [exact_ledger hg,hc,hj',(abs_le.mp hB).1,hA,hR,(abs_le.mp h4).2,
+    (abs_le.mp hT).2,(abs_le.mp hW).1,(abs_le.mp hP).1,(abs_le.mp hC).2]
+
+end
+end REAL1B.FM.Ledger
+#print axioms REAL1B.FM.Ledger.partition
+#print axioms REAL1B.FM.Ledger.exact_ledger
+#print axioms REAL1B.FM.Ledger.ledger_rounding
+#print axioms REAL1B.FM.Ledger.powerError_small
+#print axioms REAL1B.FM.Ledger.lower_of_estimates
+#print axioms REAL1B.FM.Ledger.output_support
+#print axioms REAL1B.FM.Ledger.H_prime
+#print axioms REAL1B.FM.Ledger.K_prime
+#print axioms REAL1B.FM.Ledger.geometry_of_good
+
+-- RequestProject/REAL1B_20261122/FMBoxGeometry.lean
+namespace REAL1B.FM.Analytic
+open Filter Vaughan Source Closing ArithmeticFunction
+noncomputable section
+open Classical
+
+theorem rank_gap {N : ℕ} {t : Fin N → ℝ} (hp : ∀ i, 0 ≤ t i) {i : Fin N}
+    (hi : ε ≤ t i) (hl : t i ≤ Direct.lowerEdge) : ¬ Direct.rankTest t := by
+  rintro ⟨r,_,hbig,ht⟩
+  by_cases hz : r i = 0
+  · have nn (j : Fin N) : 0 ≤ Direct.tinyCost (t j) (r j) := by
+      unfold Direct.tinyCost
+      split_ifs
+      · exact hp j
+      · exact le_max_right _ _
+    have h := Finset.single_le_sum (fun j (_ : j ∈ (Finset.univ : Finset (Fin N))) => nn j) (Finset.mem_univ i)
+    rw [Direct.tinyCost,if_pos hz] at h
+    exact (not_lt.mpr hi) (h.trans_lt ht)
+  · have hr : (1:ℝ) ≤ r i := by exact_mod_cast (show 1 ≤ r i by omega)
+    have he : 0 ≤ Direct.lowerEdge := by norm_num [Direct.lowerEdge,ε]
+    have h := hbig i (by omega)
+    nlinarith only [hl,h,mul_le_mul_of_nonneg_right hr he]
+
+theorem boxes_not_good {n : ℕ} (hb : boxes n) : ¬ Direct.good n := by
+  obtain ⟨_,p,q,r,s,t,i,j,k,l,hf,had,hcell,_⟩ := hb
+  rintro ⟨_,_,hr⟩
+  let i₀ : Fin n.primeFactorsList.length := ⟨0,by simp [hf]⟩
+  have hget : n.primeFactorsList.get i₀ = p := by simp [i₀,List.get_eq_getElem,hf]
+  have hi := first_index_lower had
+  have hu : i+1 ≤ 19 := had.2.2.2.2.2.1
+  have ha : (4:ℝ) ≤ i := by exact_mod_cast hi
+  have hc : (i:ℝ)+1 ≤ 19 := by exact_mod_cast hu
+  apply rank_gap (i:=i₀) (t:=fun j => Real.log (n.primeFactorsList.get j)/Real.log n) _ _ _ hr
+  · exact fun j => div_nonneg (Real.log_natCast_nonneg _) (Real.log_natCast_nonneg _)
+  · dsimp only; rw [hget]; unfold ε; linarith only [hcell.1,ha]
+  · dsimp only; rw [hget]; unfold Direct.lowerEdge ε; linarith only [hcell.2,hc]
+
+private theorem box_prime_lower {x : ℝ} (hx : 4 ≤ x) {n p : ℕ} (hn : n ∈ interval (x/2))
+    (hb : boxes n) (hp : p.Prime) (hd : p ∣ n) : x^(1/50:ℝ) < (p:ℝ) := by
+  obtain ⟨h₁,_,h₂⟩ := window hn
+  have hn' : (1:ℝ)<n := by exact_mod_cast (show 1<n by omega)
+  have h2 := Real.log_le_log (by norm_num : (0:ℝ)<2) (by exact_mod_cast h₂ : (2:ℝ) ≤ n)
+  have h3 := Real.log_le_log (by linarith : 0<x) (by linarith : x ≤ 2*(n:ℝ))
+  rw [Real.log_mul (by norm_num) (by linarith)] at h3
+  rw [Real.rpow_def_of_pos (by linarith : 0<x),← Real.exp_log (by exact_mod_cast hp.pos : (0:ℝ)<p),Real.exp_lt_exp]
+  linarith only [h2,h3,boxes_prime_size hn' hb hp hd]
+
+theorem boxes_Z {x : ℝ} (hx : 4 ≤ x) {n : ℕ} (hn : n ∈ interval (x/2))
+    (hb : boxes n) : Sifted (z x) n := by
+  intro p hp hd
+  exact (Real.rpow_le_rpow_of_exponent_le (by linarith : 1 ≤ x)
+    (by norm_num : (1/400000000000:ℝ) ≤ 1/50)).trans_lt (box_prime_lower hx hn hb hp hd)
+
+theorem boxes_K_zero {x : ℝ} (hx : 4 ≤ x) {n : ℕ} (hn : n ∈ interval (x/2))
+    (hb : boxes n) : kernelK (x/2) n = 0 := by
+  have hX : 1 < x/2 := by linarith
+  have hn₁ := (window hn).1
+  have hn₂ : (1:ℝ)<n := by linarith
+  have hlog := Real.log_le_log (by linarith : 0 < x/2) hn₁.le
+  have hlabel (d : ℕ) (hd : d ∈ n.divisors) : labels (x/2) d = 0 := by
+    unfold labels
+    apply Finset.sum_eq_zero
+    intro u hu
+    apply Finset.sum_eq_zero
+    intro v _
+    apply Finset.sum_eq_zero
+    intro w _
+    apply if_neg
+    rintro ⟨hp,_,_,hu',_⟩
+    have hq := boxes_prime_size hn₂ hb hp ((Nat.mem_divisors.mp hu).1.trans (Nat.mem_divisors.mp hd).1)
+    have hbank := Real.log_le_log (by exact_mod_cast hp.pos : (0:ℝ)<u) hu'.2
+    rw [Real.log_rpow (by linarith : 0<x/2)] at hbank
+    linarith only [hq,hbank,hlog,Real.log_pos hn₂]
+  unfold kernelK
+  rw [Finset.sum_eq_zero (fun d hd => by simp [hlabel d hd]),mul_zero]
+
+theorem box_phi_eq_H {x : ℝ} (hx : 4 ≤ x) {n : ℕ} (hn : n ∈ interval (x/2)) (hb : boxes n) :
+    Direct.psi x n = kernelH n := by
+  have hsf := hb.1
+  have hcard : cardFactors n = 5 := by
+    obtain ⟨_,_,_,_,_,_,_,_,_,_,hf,_⟩ := hb
+    simp [cardFactors_apply,hf]
+  have hret : retained n := Or.inr ⟨by omega,by omega⟩
+  simp [Direct.psi,hb,Direct.phi,Direct.F,Direct.G,hn,hsf,boxes_not_good hb,boxes_Z hx hn hb,hret,boxes_K_zero hx hn hb]
+
+end
+end REAL1B.FM.Analytic
+#print axioms REAL1B.FM.Analytic.rank_gap
+#print axioms REAL1B.FM.Analytic.boxes_not_good
+#print axioms REAL1B.FM.Analytic.boxes_Z
+#print axioms REAL1B.FM.Analytic.boxes_K_zero
+#print axioms REAL1B.FM.Analytic.box_phi_eq_H
+
+-- RequestProject/REAL1B_20261122/FMProfileTransfer.lean
+/-! Finite parts of the Gold 4.64–4.65 transfer to the fixed five-prime source. -/
+namespace REAL1B.FM.Profile
+open Filter Vaughan Source Closing Analytic ArithmeticFunction
+noncomputable section
+open Classical
+
+def smooth (z : ℝ) (k : ℕ) : Prop := ∀ p : ℕ, p.Prime → p ∣ k → (p:ℝ) ≤ z
+def smoothMask (z : ℝ) (k : ℕ) : ℝ := if smooth z k then 1 else 0
+
+theorem smooth_mask_mul (z : ℝ) (m n : ℕ) : smoothMask z (m*n) = smoothMask z m * smoothMask z n := by
+  have h : smooth z (m*n) ↔ smooth z m ∧ smooth z n := by
+    constructor
+    · intro h
+      exact ⟨fun p hp hd => h p hp (dvd_mul_of_dvd_left hd n),
+        fun p hp hd => h p hp (dvd_mul_of_dvd_right hd m)⟩
+    · rintro ⟨h₁,h₂⟩ p hp hd
+      exact (hp.dvd_mul.mp hd).elim (h₁ p hp) (h₂ p hp)
+  by_cases hm : smooth z m <;> by_cases hn : smooth z n <;> simp [smoothMask,h,hm,hn]
+
+def restrictSmooth (z : ℝ) (f : AF) : AF := ⟨fun k => smoothMask z k * f k, by simp⟩
+
+theorem smooth_convolution (z : ℝ) (f g : AF) :
+    restrictSmooth z (f*g) = restrictSmooth z f * restrictSmooth z g := by
+  ext k
+  change smoothMask z k * (f*g) k = _
+  rw [ArithmeticFunction.mul_apply,ArithmeticFunction.mul_apply,Finset.mul_sum]
+  apply Finset.sum_congr rfl
+  intro p hp
+  change smoothMask z k * (f p.1 * g p.2) = smoothMask z p.1 * f p.1 * (smoothMask z p.2 * g p.2)
+  rw [← (Nat.mem_divisorsAntidiagonal.mp hp).1,smooth_mask_mul]
+  ring
+
+theorem squarefree_mask_obstruction : Squarefree (2:ℕ) ∧ ¬ Squarefree ((2:ℕ)*2) := by
+  refine ⟨Nat.prime_two.squarefree,fun h => ?_⟩
+  have := h 2 (dvd_refl (2*2))
+  norm_num at this
+
+/-- Exact difference between a primitive principal and a total main, at each genuine modulus. -/
+def primitive (x : ℝ) (d : ℕ) (f : ℕ → ℝ) := total (x/2) (fun n => if n.Coprime d then f n else 0)
+def collision (x : ℝ) (d : ℕ) (f : ℕ → ℝ) := total (x/2) (fun n => if n.Coprime d then 0 else f n)
+
+theorem primitive_correction (x : ℝ) (d : ℕ) (f : ℕ → ℝ) :
+    total (x/2) f / d.totient - primitive x d f / d.totient = collision x d f / d.totient := by
+  rw [← sub_div]
+  congr 1
+  unfold primitive collision total
+  rw [← Finset.sum_sub_distrib]
+  apply Finset.sum_congr rfl
+  intro n _
+  change (f n - (if n.Coprime d then f n else 0)) = (if n.Coprime d then 0 else f n)
+  split_ifs <;> ring
+
+theorem shared_prime {n d : ℕ} {x : ℝ} (hn : n ∈ interval (x/2)) (hb : boxes n) (hd : ¬n.Coprime d) :
+    ∃ p : ℕ, p.Prime ∧ p ∣ n ∧ p ∣ d ∧ 0.04 * Real.log n < Real.log p := by
+  obtain ⟨p,hp,h₁,h₂⟩ := Nat.Prime.not_coprime_iff_dvd.mp hd
+  exact ⟨p,hp,h₁,h₂,boxes_prime_size (by exact_mod_cast (show 1<n by have := (window hn).2.2; omega)) hb hp h₁⟩
+
+def roughProfile (x : ℝ) := total (x/2) (fun n =>
+  sieve (cutU x) (n-2) * Real.log (n-2:ℕ) * Direct.psi x n)
+
+theorem prime_le_rough (hψ : ∀ᶠ x : ℝ in atTop, ∀ n ∈ interval (x/2), 0 ≤ Direct.psi x n) :
+    ∀ᶠ x : ℝ in atTop, Direct.primeBox x ≤ roughProfile x := by
+  filter_upwards [box_prime_source,small_power (by norm_num : (0.24:ℝ) ≤ 1/2),hψ] with x he hu hnon
+  rw [he]
+  unfold primeSum roughProfile total
+  apply Finset.sum_le_sum
+  intro n hn
+  apply mul_le_mul_of_nonneg_right _ (hnon n hn)
+  by_cases hp : (n-2).Prime
+  · have hz : Sifted (cutU x) (n-2) := fun p h hd => (Nat.prime_dvd_prime_iff_eq h hp).mp hd ▸ hu n hn
+    simp [theta,hp,sieve,hz]
+  · simp only [theta,if_neg hp]
+    unfold sieve
+    split_ifs <;> simp [Real.log_natCast_nonneg]
+
+def reference (x : ℝ) := (H2.series/2) * scale x
+def Normalization : Prop := negligible (fun x => Sb x - reference x) scale
+
+theorem scale_lower (h : Normalization) : ScaleLower := by
+  have hp := H2.series_pos
+  refine ⟨H2.series/4,by linarith,?_⟩
+  filter_upwards [h (H2.series/4) (by linarith)] with x hx
+  unfold reference at hx
+  linarith only [(abs_le.mp hx).1]
+
+/-- The rough-source estimate is supplied against the independent reference mass. -/
+theorem profile_upper (hn : Normalization)
+    (hψ : ∀ᶠ x : ℝ in atTop, ∀ n ∈ interval (x/2), 0 ≤ Direct.psi x n)
+    (hrough : ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop,
+      roughProfile x ≤ Direct.cStar * Direct.J * reference x + e * Sb x) : Direct.ProfileUpper := by
+  let C := Direct.cStar * Direct.J
+  have hdiff := negligible_comparator hn (scale_lower hn)
+  intro e he
+  have ht : 0 < e/(2*(|C|+1)) := div_pos he (by positivity)
+  filter_upwards [hrough (e/2) (by linarith),prime_le_rough hψ,hdiff _ ht,
+    comparator_pos (scale_lower hn)] with x hr hp hd hs
+  have hbound : |C*(reference x - Sb x)| ≤ e/2*Sb x := by
+    rw [abs_mul,abs_sub_comm (reference x)]
+    calc
+      _ ≤ (|C|+1) * |Sb x - reference x| := mul_le_mul_of_nonneg_right (by linarith) (abs_nonneg _)
+      _ ≤ (|C|+1)*(e/(2*(|C|+1))*Sb x) := mul_le_mul_of_nonneg_left hd (by positivity)
+      _ = _ := by field_simp [ne_of_gt (by positivity : 0 < |C|+1)]
+  change _ ≤ (C+e)*Sb x
+  change _ ≤ C*reference x + _ at hr
+  linarith only [hp,hr,(abs_le.mp hbound).2]
+
+end
+end REAL1B.FM.Profile
+#print axioms REAL1B.FM.Profile.smooth_convolution
+#print axioms REAL1B.FM.Profile.squarefree_mask_obstruction
+#print axioms REAL1B.FM.Profile.primitive_correction
+#print axioms REAL1B.FM.Profile.shared_prime
+#print axioms REAL1B.FM.Profile.prime_le_rough
+#print axioms REAL1B.FM.Profile.scale_lower
+#print axioms REAL1B.FM.Profile.profile_upper
+
+-- RequestProject/REAL1B_20261122/FMLowPrefix.lean
+namespace REAL1B.FM.Analytic
+open Filter Vaughan Source Closing Direct
+noncomputable section
+open Classical
+
+def lowPrefix (a x : ℝ) := total (x/2) (fun n => if clean x n then
+  sieve (roughW a x) (n-2) * mu (n-2)^2 * (∑ l ∈ (n-2).divisors,
+    if l.Prime ∧ cutU x < (l:ℝ) ∧ (l:ℝ) ≤ x^(0.2697:ℝ) then
+      -(Real.log l * Owners.truncated (Owners.edge (cutU x) (cutD x) l) ((n-2)/l)) else 0) *
+    outsideProfile x n else 0)
+
+theorem low_prefix_source (a : ℝ) : ∀ᶠ x : ℝ in atTop, lowLabel a x = lowPrefix a x := by
+  filter_upwards [small_power (by norm_num : (0.2697:ℝ) ≤ 1/2)] with x hx
+  unfold lowLabel cleanSum lowPrefix total
+  apply Finset.sum_congr rfl
+  intro n hn
+  by_cases hc : clean x n
+  · simp only [if_pos hc,labelSum]
+    congr 2
+    apply Finset.sum_congr rfl
+    intro l hl
+    split_ifs with h
+    · have hnlt : (l:ℝ) < (n-2:ℕ) := lt_of_le_of_lt h.2.2 (hx n hn)
+      have hq : (n-2)/l ≠ 1 := by
+        intro he
+        have hEq := Nat.div_mul_cancel (Nat.mem_divisors.mp hl).1
+        rw [he,one_mul] at hEq
+        exact (ne_of_lt hnlt) (by exact_mod_cast hEq)
+      rw [Owners.owner_row h.1,if_neg hq]
+      ring
+    · rfl
+  · simp [hc]
+
+theorem log_saving {f : ℝ → ℝ} {C : ℝ}
+    (h : ∀ᶠ x : ℝ in atTop, |f x| ≤ C * (x / (Real.log x)^2)) : negligible f scale := by
+  intro e he
+  filter_upwards [h,Real.tendsto_log_atTop.eventually_gt_atTop (C/e),eventually_gt_atTop (1:ℝ)]
+    with x hf hL hx
+  have hlog := Real.log_pos hx
+  have hCe : C ≤ e*Real.log x := by linarith only [(div_lt_iff₀ he).mp hL]
+  apply hf.trans
+  unfold scale
+  rw [← mul_div_assoc,← mul_div_assoc,div_le_div_iff₀ (sq_pos_of_pos hlog) hlog]
+  nlinarith only [mul_le_mul_of_nonneg_right hCe (mul_nonneg (by linarith : 0 ≤ x) hlog.le)]
+
+theorem low_label_of_prefix_saving {a C : ℝ} (hs : ScaleLower)
+    (h : ∀ᶠ x : ℝ in atTop, |lowPrefix a x| ≤ C * (x/(Real.log x)^2)) : LowLabelEstimate a := by
+  have h₁ := negligible_comparator (log_saving h) hs
+  intro e he
+  filter_upwards [low_prefix_source a,h₁ e he] with x hx hbound
+  rwa [hx]
+
+end
+end REAL1B.FM.Analytic
+#print axioms REAL1B.FM.Analytic.low_prefix_source
+#print axioms REAL1B.FM.Analytic.log_saving
+#print axioms REAL1B.FM.Analytic.low_label_of_prefix_saving
+
 -- RequestProject/REAL1B_20261122.lean
 /-! Entry point for the REAL 1B proofs of 22–23 November 2026.
 The Gold 4.66 endpoint is Direct.infinite_of_direct. The joint FM endpoints are Closing.infinite_of_joint_complement and
