@@ -3261,217 +3261,6 @@ end REAL1B.FM.Analytic
 #print axioms REAL1B.FM.Analytic.box_prime_source
 #print axioms REAL1B.FM.Analytic.calibration_of_estimates
 
--- RequestProject/REAL1B_20261122/FMLowerLedger.lean
-/-! Gold 4.57 complete-source partition and Gold 4.58 (U9).
-All error functions below are finite sums on the same physical window. -/
-namespace REAL1B.FM.Ledger
-open Filter Vaughan Source Analytic ArithmeticFunction
-noncomputable section
-open Classical
-
-def positive (x : ℝ) (n : ℕ) : ℝ := if n ∈ interval (x/2) ∧ Squarefree n ∧ Direct.good n
-  then max (kernelH n) 0 else 0
-def calibrated (x : ℝ) (n : ℕ) : ℝ := if Squarefree n ∧ Sifted (z x) n
-  then kernelH n - kernelK (x/2) n else 0
-def omitted (rank : ℕ → Prop) (x : ℝ) (n : ℕ) : ℝ :=
-  if ¬Direct.good n ∧ rank (cardFactors n) then calibrated x n else 0
-
-/-- Pointwise geometric inputs on the actual H/K source, stated only where used. -/
-structure GeometryAt (x : ℝ) : Prop where
-  prime : ∀ n ∈ interval (x/2), n.Prime → Sifted (z x) n ∧ kernelH n - kernelK (x/2) n = 1
-  good : ∀ n ∈ interval (x/2), Squarefree n → Direct.good n →
-    kernelK (x/2) n = 0 ∧ (kernelH n ≠ 0 → Sifted (z x) n)
-
-theorem H_prime {p : ℕ} (hp : p.Prime) : kernelH p = 1 := by
-  have hp' : (1:ℝ) < p := by exact_mod_cast hp.one_lt
-  have hlt : (p:ℝ)^γ < p := by
-    simpa only [Real.rpow_one] using Real.rpow_lt_rpow_of_exponent_lt hp' (by norm_num [γ,ε] : γ < 1)
-  have hge : 1 ≤ (p:ℝ)^γ := Real.one_le_rpow hp'.le (by norm_num [γ,ε])
-  have h₁ : divisorCoefficient p 1 = 1 := by
-    simp [divisorCoefficient,profile,g0,mu,hge,show (0:ℝ) ≤ β by norm_num [β,ε]]
-  have h₂ : divisorCoefficient p p = 0 := by simp [divisorCoefficient,not_le.mpr hlt]
-  simp [kernelH,hp.divisors,Ne.symm hp.ne_one,h₁,h₂]
-
-theorem K_prime (X : ℝ) {p : ℕ} (hp : p.Prime) : kernelK X p = 0 := by
-  have hzero (d : ℕ) (hd : d ∈ p.divisors) : labels X d = 0 := by
-    unfold labels
-    apply Finset.sum_eq_zero
-    intro u hu
-    apply Finset.sum_eq_zero
-    intro v hv
-    apply Finset.sum_eq_zero
-    intro w _
-    apply if_neg
-    rintro ⟨hu',hv',_⟩
-    have hdu := (Nat.mem_divisors.mp hu).1
-    have hdp := (Nat.mem_divisors.mp hd).1
-    have hueq := (Nat.prime_dvd_prime_iff_eq hu' hp).mp (hdu.trans hdp)
-    have hdeq : d = u := Nat.le_antisymm (hueq ▸ Nat.le_of_dvd hp.pos hdp)
-      (Nat.le_of_dvd (Nat.pos_of_mem_divisors hd) hdu)
-    have hv₁ := (Nat.mem_divisors.mp hv).1
-    rw [hdeq,Nat.div_self hu'.pos] at hv₁
-    exact hv'.ne_one (Nat.dvd_one.mp hv₁)
-  unfold kernelK
-  rw [Finset.sum_eq_zero (fun d hd => by simp [hzero d hd]),mul_zero]
-
-theorem geometry_of_good
-    (hgood : ∀ᶠ x : ℝ in atTop, ∀ n ∈ interval (x/2), Squarefree n → Direct.good n →
-      kernelK (x/2) n = 0 ∧ (kernelH n ≠ 0 → Sifted (z x) n)) :
-    ∀ᶠ x : ℝ in atTop, GeometryAt x := by
-  filter_upwards [hgood,small_power (by norm_num : (1/400000000000:ℝ) ≤ 1/2)] with x hgood hz
-  refine ⟨?_,hgood⟩
-  intro p hp hprime
-  refine ⟨?_,by rw [H_prime hprime,K_prime _ hprime,sub_zero]⟩
-  intro q hq hd
-  have hlt : z x < (p:ℝ) := (hz p hp).trans_le (by exact_mod_cast Nat.sub_le p 2)
-  exact (Nat.prime_dvd_prime_iff_eq hq hprime).mp hd ▸ hlt
-
-theorem partition {x : ℝ} (h : GeometryAt x) {n : ℕ} (hn : n ∈ interval (x/2)) :
-    calibrated x n = primeMask n + positive x n + Direct.phi x n +
-      omitted (· = 2) x n + omitted (· = 4) x n + omitted (256 ≤ ·) x n := by
-  have hn₂ := (window hn).2.2
-  by_cases hp : n.Prime
-  · obtain ⟨hz,hk⟩ := h.prime n hn hp
-    have hcard := cardFactors_eq_one_iff_prime.mpr hp
-    have hg : ¬ Direct.good n := fun hh => hh.2.1 hp
-    simp [calibrated,primeMask,hp,hp.squarefree,hz,hk,positive,Direct.phi,Direct.F,Direct.G,
-      omitted,hg,retained,hcard]
-  · have hc₀ : cardFactors n ≠ 0 := fun hc => by
-      rcases cardFactors_eq_zero_iff_eq_zero_or_one.mp hc with h | h <;> omega
-    have hc₁ : cardFactors n ≠ 1 := fun hc => hp (cardFactors_eq_one_iff_prime.mp hc)
-    by_cases hs : Squarefree n
-    · by_cases hg : Direct.good n
-      · obtain ⟨hK,hH⟩ := h.good n hn hs hg
-        by_cases hz : Sifted (z x) n
-        · simp [calibrated,primeMask,hp,positive,hn,hs,hg,hK,hz,Direct.phi,Direct.F,Direct.G,omitted]
-          simpa [sub_eq_add_neg] using (max_zero_sub_max_neg_zero_eq_self (kernelH n)).symm
-        · have hzero : kernelH n = 0 := by by_contra hne; exact hz (hH hne)
-          simp [calibrated,primeMask,hp,positive,hn,hs,hg,hz,hzero,Direct.phi,Direct.F,Direct.G,omitted]
-      · by_cases hz : Sifted (z x) n
-        · have hr : retained n ↔ cardFactors n ≠ 2 ∧ cardFactors n ≠ 4 ∧ ¬256 ≤ cardFactors n := by
-            unfold retained; omega
-          simp only [calibrated,hs,hz,and_self,if_true,primeMask,if_neg hp,positive,hn,hg,and_false,
-            if_false,Direct.phi,Direct.F,Direct.G,not_false_eq_true, true_and,omitted,hr]
-          split_ifs <;> first | omega | ring
-        · simp [calibrated,primeMask,hp,positive,hg,hz,Direct.phi,Direct.F,Direct.G,omitted]
-    · simp [calibrated,primeMask,hp,positive,hs,Direct.phi,Direct.F,Direct.G,omitted]
-
-def weighted (w : ℝ → ℕ → ℝ) (f : ℝ → ℕ → ℝ) (x : ℝ) := total (x/2) (fun n => w x n * f x n)
-def deviation (f : ℝ → ℕ → ℝ) (x : ℝ) := weighted actual f x - weighted compare f x
-def normalError (x : ℝ) := mean Direct.phi x - weighted compare Direct.phi x
-def powerError (x : ℝ) := lambdaSum (intrinsicCut x) x (Direct.phi x) - weighted actual Direct.phi x
-
-theorem exact_ledger {x : ℝ} (h : GeometryAt x) :
-    Closing.covariance x + T x + weighted actual positive x =
-    Sb x + weighted compare positive x - deviation (omitted (· = 2)) x -
-      deviation (omitted (· = 4)) x - deviation (omitted (256 ≤ ·)) x +
-      deviation calibrated x + powerError x - normalError x := by
-  have part (w : ℝ → ℕ → ℝ) : weighted w calibrated x = total (x/2) (fun n => w x n * primeMask n) +
-      weighted w positive x + weighted w Direct.phi x + weighted w (omitted (· = 2)) x +
-      weighted w (omitted (· = 4)) x + weighted w (omitted (256 ≤ ·)) x := by
-    unfold weighted total
-    simp only [← Finset.sum_add_distrib]
-    apply Finset.sum_congr rfl
-    intro n hn
-    rw [partition h hn]
-    ring
-  rw [native_covariance]
-  unfold deviation powerError normalError T Sb
-  rw [part actual,part compare]
-  ring
-
-def goodCap : ℝ := 0.0000000142500001
-def goodRational : ℝ :=
-  let a₀ := 1/5 - ε
-  ε/(a₀*(1-a₀)) + 2*ε/(β*(1-β)) + ε^2/(2*a₀^2*(3/5)) +
-    3*(5*ε)^4/((Nat.factorial 5:ℝ)*Nat.factorial 4*a₀^5)
-
-theorem good_cap_rounding : goodRational < goodCap := by
-  norm_num [goodRational,goodCap,ε,β,Nat.factorial]
-
-def pairCap : ℝ := ε / (ν*(1-ν))
-def tailCap : ℝ := 1/10^58
-def transferCap : ℝ := 9 * (400000000000:ℝ)^2 / (50 * (Nat.factorial 99:ℝ))
-
-theorem ledger_rounding : (0.999892775499:ℝ) ≤
-    1 - 3*goodCap - 3*pairCap - 0.000107163 - tailCap - transferCap := by
-  norm_num [goodCap,pairCap,tailCap,transferCap,ε,ν,Nat.factorial]
-
-def upper (f : ℝ → ℝ) (c : ℝ) : Prop := ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop, f x ≤ (c+e)*Sb x
-
-structure Estimates : Prop where
-  geometry : ∀ᶠ x : ℝ in atTop, GeometryAt x
-  goodMass : ∃ Jp : ℝ, Jp ≤ goodRational ∧ negligible (fun x => weighted compare positive x - Jp*Sb x) Sb ∧
-    upper (weighted actual positive) (4*Jp)
-  pairs : upper (deviation (omitted (· = 2))) (3*pairCap)
-  four : upper (fun x => |deviation (omitted (· = 4)) x|) 0.000107163
-  tail : upper (fun x => |deviation (omitted (256 ≤ ·)) x|) tailCap
-  calibratedMean : upper (fun x => |deviation calibrated x|) transferCap
-  comparator : negligible normalError Sb
-
-/-- Output presieving is separate from the prime-power estimate on the input. -/
-def OutputSupport : Prop := ∀ᶠ x : ℝ in atTop, ∀ n ∈ interval (x/2),
-  Direct.phi x n ≠ 0 → Sifted (y x) n
-
-theorem output_support (hgeom : ∀ᶠ x : ℝ in atTop, GeometryAt x) : OutputSupport := by
-  filter_upwards [hgeom,Closing.log_power_lt_linear (a:=1/20) (b:=1/400000000000)
-    (by norm_num) (by norm_num),eventually_gt_atTop (1:ℝ)] with x hg hlog hx n hn hne
-  have hy : y x ≤ z x := by
-    unfold y z
-    rw [Real.rpow_def_of_pos (by linarith : 0<x),Real.exp_le_exp]
-    linarith only [hlog]
-  have hZ : Sifted (z x) n := by
-    by_contra hno
-    apply hne
-    unfold Direct.phi Direct.F Direct.G
-    simp only [hno,false_and,and_false,if_false,zero_sub,neg_eq_zero]
-    split_ifs with h
-    · have hzero : kernelH n = 0 := by
-        by_contra hH
-        exact hno ((hg.good n hn h.2.1 h.2.2).2 hH)
-      simp [hzero]
-    · rfl
-  exact fun p hp hd => hy.trans_lt (hZ p hp hd)
-
-theorem powerError_small (hs : ScaleLower) (hout : OutputSupport) : negligible powerError Sb := by
-  have hp := negligible_comparator (prime_replacement
-    (small_power (by norm_num : (1/800000000000:ℝ) ≤ 1/2)) native_power_mass) hs
-  intro e he
-  filter_upwards [hp e he,hout] with x h hx
-  have heq : weighted actual Direct.phi x = primeSum x (Direct.phi x) := by
-    unfold weighted primeSum total
-    apply Finset.sum_congr rfl
-    intro n hn
-    by_cases hzero : Direct.phi x n = 0
-    · simp [hzero]
-    · simp [actual,sieve,hx n hn hzero]
-  simpa only [powerError,heq,intrinsicCut] using h
-
-theorem lower_of_estimates (h : Estimates) (hs : ScaleLower) : Closing.LowerLedger := by
-  obtain ⟨j,hj,hB,hA⟩ := h.goodMass
-  intro e he
-  have ht : 0 < e/8 := by linarith
-  filter_upwards [h.geometry,comparator_pos hs,hB _ ht,hA _ ht,h.pairs _ ht,h.four _ ht,
-    h.tail _ ht,h.calibratedMean _ ht,powerError_small hs (output_support h.geometry) _ ht,h.comparator _ ht]
-    with x hg hpos hB hA hR h4 hT hW hP hC
-  have hc := mul_le_mul_of_nonneg_right ledger_rounding hpos.le
-  have hj' := mul_le_mul_of_nonneg_right (hj.trans good_cap_rounding.le) hpos.le
-  linarith only [exact_ledger hg,hc,hj',(abs_le.mp hB).1,hA,hR,(abs_le.mp h4).2,
-    (abs_le.mp hT).2,(abs_le.mp hW).1,(abs_le.mp hP).1,(abs_le.mp hC).2]
-
-end
-end REAL1B.FM.Ledger
-#print axioms REAL1B.FM.Ledger.partition
-#print axioms REAL1B.FM.Ledger.exact_ledger
-#print axioms REAL1B.FM.Ledger.ledger_rounding
-#print axioms REAL1B.FM.Ledger.powerError_small
-#print axioms REAL1B.FM.Ledger.lower_of_estimates
-#print axioms REAL1B.FM.Ledger.output_support
-#print axioms REAL1B.FM.Ledger.H_prime
-#print axioms REAL1B.FM.Ledger.K_prime
-#print axioms REAL1B.FM.Ledger.geometry_of_good
-#print axioms REAL1B.FM.Ledger.good_cap_rounding
-
 -- RequestProject/REAL1B_20261122/FMBoxGeometry.lean
 namespace REAL1B.FM.Analytic
 open Filter Vaughan Source Closing ArithmeticFunction
@@ -3573,7 +3362,7 @@ open Source Analytic Vaughan ArithmeticFunction Filter
 noncomputable section
 open Classical
 
-private theorem recover {n : ℕ} {l : List ℕ} (h : l.Sublist n.primeFactorsList) :
+theorem recover {n : ℕ} {l : List ℕ} (h : l.Sublist n.primeFactorsList) :
     l.prod.primeFactorsList = l := by
   have hperm := Nat.primeFactorsList_unique (n:=l.prod) rfl (fun p hp => Nat.prime_of_mem_primeFactorsList (h.subset hp))
   exact (List.Perm.eq_of_pairwise (fun _ _ _ _ => Nat.le_antisymm)
@@ -3599,13 +3388,13 @@ theorem H_sublists {n : ℕ} (hs : Squarefree n) : kernelH n =
 def coord (n p : ℕ) := Real.log p / Real.log n
 def mass (n : ℕ) (l : List ℕ) := (l.map (coord n)).sum
 
-private theorem source_profile (n : ℕ) (l : List ℕ) : profile n l = l.map (coord n) := by
+theorem source_profile (n : ℕ) (l : List ℕ) : profile n l = l.map (coord n) := by
   unfold profile
   change (l.flatMap (fun p : ℕ => [(p:ℝ)])).map _ = _
   rw [← List.map_eq_flatMap,List.map_map]
   rfl
 
-private theorem log_mass {n : ℕ} {l : List ℕ} (h : l.Sublist n.primeFactorsList) :
+theorem log_mass {n : ℕ} {l : List ℕ} (h : l.Sublist n.primeFactorsList) :
     mass n l = Real.log (l.prod:ℕ) / Real.log n := by
   induction l with
   | nil => simp [mass]
@@ -3618,7 +3407,7 @@ private theorem log_mass {n : ℕ} {l : List ℕ} (h : l.Sublist n.primeFactorsL
     unfold coord
     ring
 
-private theorem mu_sublist {n : ℕ} (hs : Squarefree n) {l : List ℕ} (h : l.Sublist n.primeFactorsList) :
+theorem mu_sublist {n : ℕ} (hs : Squarefree n) {l : List ℕ} (h : l.Sublist n.primeFactorsList) :
     mu l.prod = (-1:ℝ)^l.length := by
   have hd : l.prod ∣ n := by simpa [Nat.prod_primeFactorsList hs.ne_zero] using h.prod_dvd_prod
   rw [mu,moebius_apply_of_squarefree (hs.squarefree_of_dvd hd),cardFactors_apply,recover h]
@@ -3681,7 +3470,7 @@ private theorem filter_mass (n : ℕ) (f : ℕ → Bool) (l : List ℕ) :
     have hp : 0 ≤ coord n p := div_nonneg (Real.log_natCast_nonneg _) (Real.log_natCast_nonneg _)
     by_cases hf : f p <;> simp [mass,hf] at ih ⊢ <;> linarith
 
-private theorem mass_cut {n : ℕ} (hn : 1<n) {l : List ℕ} (hl : l.Sublist n.primeFactorsList) :
+theorem mass_cut {n : ℕ} (hn : 1<n) {l : List ℕ} (hl : l.Sublist n.primeFactorsList) :
     ((l.prod:ℝ) ≤ (n:ℝ)^γ) ↔ mass n l ≤ γ := by
   have hx : (0:ℝ) < n := by exact_mod_cast (show 0<n by omega)
   have hp : l.prod ≠ 0 := fun he => (Nat.prime_of_mem_primeFactorsList (hl.subset (List.prod_eq_zero_iff.mp he))).ne_zero rfl
@@ -3791,7 +3580,7 @@ private theorem cell_gap {n p i : ℕ} (h : Closing.inCell n p i) (hi : i+1 ≤ 
   · have hh : (21:ℝ) ≤ i := by exact_mod_cast h₂
     right; unfold coord; linarith only [h.1,hh]
 
-private theorem cutoff_iff {n p : ℕ} (hn : 1<n) (hp : p.Prime) :
+theorem cutoff_iff {n p : ℕ} (hn : 1<n) (hp : p.Prime) :
     ((n:ℝ)^ν ≤ p) ↔ ν ≤ coord n p := by
   have hn' : (0:ℝ)<n := by exact_mod_cast (show 0<n by omega)
   rw [← Real.log_le_log_iff (Real.rpow_pos_of_pos hn' _) (by exact_mod_cast hp.pos),
@@ -3970,6 +3759,412 @@ end REAL1B.FM.Box
 #print axioms REAL1B.FM.Box.psi_profile
 #print axioms REAL1B.FM.Box.psi_nonneg
 #print axioms REAL1B.FM.Box.source_profile_sum
+
+-- RequestProject/REAL1B_20261122/FMGoodSupport.lean
+/-! Gold 4.55 Part I, Propositions 1–2. Complete the small-prime Möbius
+sum on the actual good set before applying any source-distribution estimate. -/
+namespace REAL1B.FM.GoodSupport
+open Filter Source Vaughan Analytic Box
+noncomputable section
+open Classical
+
+def small (n p : ℕ) := decide ((p:ℝ) < (n:ℝ)^ν)
+
+private theorem mass_filter (n : ℕ) (s : ℕ → Bool) (l : List ℕ) :
+    Box.mass n (l.filter s) = (l.map (fun p => if s p then coord n p else 0)).sum := by
+  induction l with
+  | nil => rfl
+  | cons p l ih =>
+    by_cases h : s p <;> simp [Box.mass,h] at ih ⊢ <;> exact ih
+
+private theorem both_mass (n : ℕ) (s : ℕ → Bool) (l : List ℕ) :
+    Box.mass n l = Box.mass n (l.filter s) + Box.mass n (l.filter (fun p => !s p)) := by
+  induction l with
+  | nil => simp [Box.mass]
+  | cons p l ih => by_cases h : s p <;> simp [Box.mass,h] at ih ⊢ <;> linarith only [ih]
+
+theorem tiny_budget {n : ℕ} (hg : Direct.good n) {l : List ℕ} (hl : l.Sublist n.primeFactorsList) :
+    Box.mass n (l.filter (small n)) < ε := by
+  obtain ⟨hn,_,r,_,hr,hc⟩ := hg
+  let f := fun p : ℕ => if small n p then coord n p else 0
+  have local_le (i : Fin n.primeFactorsList.length) : f (n.primeFactorsList.get i) ≤
+      Direct.tinyCost (coord n (n.primeFactorsList.get i)) (r i) := by
+    let p := n.primeFactorsList.get i
+    have hp : p.Prime := Nat.prime_of_mem_primeFactorsList (List.get_mem _ _)
+    have hpos : 0 ≤ coord n p := div_nonneg (Real.log_natCast_nonneg _) (Real.log_natCast_nonneg _)
+    by_cases h : small n p
+    · have hp' : (p:ℝ) < (n:ℝ)^ν := of_decide_eq_true h
+      have ht : coord n p < ν := lt_of_not_ge (fun ht => (not_le.mpr hp') ((cutoff_iff hn hp).mpr ht))
+      have hz : r i = 0 := by
+        by_contra he
+        have h₁ : (1:ℝ) ≤ r i := by exact_mod_cast (show 1 ≤ r i by omega)
+        have h₂ := hr i (by omega)
+        change _ < coord n p at h₂
+        have hb : 0 ≤ Direct.lowerEdge := by norm_num [Direct.lowerEdge,ε]
+        have h₃ := mul_le_mul_of_nonneg_right h₁ hb
+        simp only [Direct.lowerEdge,ν,ε] at h₂ ht h₃
+        linarith only [h₂,ht,h₃]
+      change (if small n p then coord n p else 0) ≤ Direct.tinyCost (coord n p) _
+      simp [h,Direct.tinyCost,hz]
+    · change (if small n p then coord n p else 0) ≤ Direct.tinyCost (coord n p) _
+      simp only [if_neg h,Direct.tinyCost]
+      split_ifs <;> first | exact hpos | exact le_max_right _ _
+  have allmass : (n.primeFactorsList.map f).sum < ε := by
+    have hh := (Finset.sum_le_sum (fun i _ => local_le i)).trans_lt hc
+    rw [← List.sum_ofFn] at hh
+    have hmap := (List.map_ofFn n.primeFactorsList.get f).symm
+    rw [List.ofFn_get] at hmap
+    change (List.ofFn (f ∘ n.primeFactorsList.get)).sum < ε at hh
+    rw [hmap] at hh
+    exact hh
+  rw [mass_filter]
+  apply lt_of_le_of_lt _ allmass
+  apply (hl.map f).sum_le_sum
+  intro y hy
+  obtain ⟨p,_,rfl⟩ := List.mem_map.mp hy
+  dsimp only [f]
+  split_ifs
+  · exact div_nonneg (Real.log_natCast_nonneg _) (Real.log_natCast_nonneg _)
+  · rfl
+
+def signedWeight {α : Type} (s : α → Bool) (g : List α → ℝ) (l : List α) :=
+  (-1:ℝ)^(l.filter s).length * g (l.filter (fun a => !s a))
+
+private theorem complete_cancel {α : Type} (s : α → Bool) (L : List α)
+    (h : ∃ p ∈ L, s p = true) (g : List α → ℝ) :
+    (L.sublists'.map (signedWeight s g)).sum = 0 := by
+  induction L generalizing g with
+  | nil => simp at h
+  | cons p L ih =>
+    rw [List.sublists'_cons,List.map_append,List.sum_append,List.map_map]
+    by_cases hs : s p
+    · have hn (l : List α) : (signedWeight s g ∘ List.cons p) l = -signedWeight s g l := by
+        simp [signedWeight,hs,pow_succ]
+      rw [show (signedWeight s g ∘ List.cons p) = (fun l => -signedWeight s g l) from funext hn]
+      have negmap (A : List (List α)) : (A.map (fun l => -signedWeight s g l)).sum =
+          -(A.map (signedWeight s g)).sum := by
+        induction A with
+        | nil => simp
+        | cons a A ih => simp [ih,add_comm]
+      rw [negmap,add_neg_cancel]
+    · obtain ⟨q,hq,hb⟩ := h
+      have htail : ∃ q ∈ L, s q = true := by
+        rcases List.mem_cons.mp hq with rfl | hmem
+        · exact False.elim (hs hb)
+        · exact ⟨q,hmem,hb⟩
+      have hn (l : List α) : (signedWeight s g ∘ List.cons p) l = signedWeight s (fun t => g (p::t)) l := by
+        simp [signedWeight,hs]
+      rw [show (signedWeight s g ∘ List.cons p) = _ from funext hn,ih htail,ih htail,zero_add]
+
+private def bigWeight (n : ℕ) (l : List ℕ) := if Box.mass n l ≤ β then g0 (l.map (coord n)) else 0
+
+theorem native_factorization {n : ℕ} (hs : Squarefree n) (hg : Direct.good n) {l : List ℕ}
+    (hl : l.Sublist n.primeFactorsList) :
+    divisorCoefficient n l.prod = signedWeight (small n) (bigWeight n) l := by
+  have ht := tiny_budget hg hl
+  have hmass := both_mass n (small n) l
+  have hB : (fun p : ℕ => decide ((n:ℝ)^ν ≤ (p:ℝ))) = fun p => !(small n p) := by
+    funext p
+    by_cases h : (p:ℝ) < (n:ℝ)^ν <;> simp [small,h,not_le.mpr,le_of_not_gt]
+  unfold divisorCoefficient
+  simp only [recover hl,source_profile,hB]
+  change (if (l.prod:ℝ) ≤ (n:ℝ)^γ ∧ Box.mass n (l.filter (fun p => !(small n p))) ≤ β then
+    mu (l.filter (small n)).prod * g0 ((l.filter (fun p => !(small n p))).map (coord n)) else 0) = _
+  rw [mu_sublist hs (List.filter_sublist.trans hl)]
+  unfold signedWeight bigWeight
+  by_cases hb : Box.mass n (l.filter (fun p => !(small n p))) ≤ β
+  · have hh : (l.prod:ℝ) ≤ (n:ℝ)^γ := (mass_cut hg.1 hl).mpr (by unfold γ; unfold β at hb; linarith only [hmass,ht,hb])
+    simp only [hh,hb,and_self,if_true]
+  · simp only [hb,and_false,if_false,mul_zero]
+
+theorem small_prime_cancels {n : ℕ} (hs : Squarefree n) (hg : Direct.good n)
+    {p : ℕ} (hp : p.Prime) (hd : p ∣ n) (hsmall : (p:ℝ) < (n:ℝ)^ν) : kernelH n = 0 := by
+  rw [H_sublists hs]
+  have hh : n.primeFactorsList.sublists'.map (fun l => divisorCoefficient n l.prod) =
+      n.primeFactorsList.sublists'.map (signedWeight (small n) (bigWeight n)) :=
+    List.map_congr_left (fun l hl => native_factorization hs hg (List.mem_sublists'.mp hl))
+  rw [hh]
+  exact complete_cancel _ _ ⟨p,(Nat.mem_primeFactorsList hs.ne_zero).mpr ⟨hp,hd⟩,decide_eq_true hsmall⟩ _
+
+private theorem gap_excluded {n p : ℕ} (hg : Direct.good n) (hp : p.Prime) (hd : p ∣ n)
+    (lo : ε ≤ coord n p) (hi : coord n p ≤ Direct.lowerEdge) : False := by
+  obtain ⟨hn,_,hr⟩ := hg
+  obtain ⟨i,he⟩ := List.mem_iff_get.mp ((Nat.mem_primeFactorsList (by omega)).mpr ⟨hp,hd⟩)
+  apply rank_gap (t:=fun j => coord n (n.primeFactorsList.get j))
+    (fun _ => div_nonneg (Real.log_natCast_nonneg _) (Real.log_natCast_nonneg _)) (i:=i) _ _ hr
+  · change ε ≤ coord n (n.primeFactorsList.get i)
+    rwa [he]
+  · change coord n (n.primeFactorsList.get i) ≤ Direct.lowerEdge
+    rwa [he]
+
+theorem marked_zero {x : ℝ} (hx : 4 ≤ x) {n : ℕ} (hn : n ∈ interval (x/2)) (hg : Direct.good n) :
+    kernelK (x/2) n = 0 := by
+  obtain ⟨hnX,hnx,_⟩ := window hn
+  have hX : 0 < x/2 := by linarith
+  have hlog := Real.log_pos (by exact_mod_cast hg.1 : (1:ℝ)<n)
+  have hupper := Real.log_le_log (by exact_mod_cast (Nat.zero_lt_of_lt hg.1) : (0:ℝ)<n) hnx
+  have hlower := Real.log_le_log hX hnX.le
+  have h₂ := Real.log_le_log (by norm_num : (0:ℝ)<2) (by linarith : 2 ≤ x/2)
+  have hsplit : Real.log x = Real.log 2 + Real.log (x/2) := by
+    rw [← Real.log_mul (by norm_num : (2:ℝ) ≠ 0) hX.ne']; congr 1; ring
+  have no_label (d : ℕ) (hd : d ∈ n.divisors) : labels (x/2) d = 0 := by
+    unfold labels
+    apply Finset.sum_eq_zero
+    intro p hp
+    apply Finset.sum_eq_zero
+    intro _ _
+    apply Finset.sum_eq_zero
+    intro _ _
+    apply if_neg
+    rintro ⟨hprime,_,_,hbank,_⟩
+    have h₁ := Real.log_lt_log (Real.rpow_pos_of_pos hX _) hbank.1
+    have h₃ := Real.log_le_log (by exact_mod_cast hprime.pos) hbank.2
+    rw [Real.log_rpow hX] at h₁ h₃
+    apply gap_excluded hg hprime ((Nat.mem_divisors.mp hp).1.trans (Nat.mem_divisors.mp hd).1)
+    · apply (le_div_iff₀ hlog).mpr
+      unfold ε; linarith only [h₁,hupper,h₂,hsplit,hlog]
+    · apply (div_le_iff₀ hlog).mpr
+      unfold Direct.lowerEdge ε; linarith only [h₃,hlower,hlog]
+  unfold kernelK
+  rw [Finset.sum_eq_zero (fun d hd => by simp [no_label d hd]),mul_zero]
+
+theorem active_rough {x : ℝ} (hx : 4 ≤ x) {n : ℕ} (hn : n ∈ interval (x/2))
+    (hs : Squarefree n) (hg : Direct.good n) (hH : kernelH n ≠ 0) : Sifted (z x) n := by
+  intro p hp hd
+  have h₁ : (n:ℝ)^ν ≤ p := le_of_not_gt (fun h => hH (small_prime_cancels hs hg hp hd h))
+  have hwin := (window hn).1
+  have hnpos : (0:ℝ)<n := by exact_mod_cast (Nat.zero_lt_of_lt hg.1)
+  have hL := Real.log_pos (by exact_mod_cast hg.1 : (1:ℝ)<n)
+  have h₂ := Real.log_le_log (by norm_num : (0:ℝ)<2) (by linarith : 2 ≤ (n:ℝ))
+  have hh := Real.log_le_log (by linarith : 0<x) (by linarith : x ≤ 2*(n:ℝ))
+  rw [Real.log_mul (by norm_num) hnpos.ne'] at hh
+  apply lt_of_lt_of_le _ h₁
+  rw [z,Real.rpow_def_of_pos (by linarith : 0<x),Real.rpow_def_of_pos hnpos,Real.exp_lt_exp]
+  unfold ν ε; linarith only [h₂,hh,hL]
+
+end
+end REAL1B.FM.GoodSupport
+#print axioms REAL1B.FM.GoodSupport.tiny_budget
+#print axioms REAL1B.FM.GoodSupport.native_factorization
+#print axioms REAL1B.FM.GoodSupport.small_prime_cancels
+#print axioms REAL1B.FM.GoodSupport.marked_zero
+#print axioms REAL1B.FM.GoodSupport.active_rough
+
+-- RequestProject/REAL1B_20261122/FMLowerLedger.lean
+/-! Gold 4.57 complete-source partition and Gold 4.58 (U9).
+All error functions below are finite sums on the same physical window. -/
+namespace REAL1B.FM.Ledger
+open Filter Vaughan Source Analytic ArithmeticFunction
+noncomputable section
+open Classical
+
+def positive (x : ℝ) (n : ℕ) : ℝ := if n ∈ interval (x/2) ∧ Squarefree n ∧ Direct.good n
+  then max (kernelH n) 0 else 0
+def calibrated (x : ℝ) (n : ℕ) : ℝ := if Squarefree n ∧ Sifted (z x) n
+  then kernelH n - kernelK (x/2) n else 0
+def omitted (rank : ℕ → Prop) (x : ℝ) (n : ℕ) : ℝ :=
+  if ¬Direct.good n ∧ rank (cardFactors n) then calibrated x n else 0
+
+/-- Pointwise geometric inputs on the actual H/K source, stated only where used. -/
+structure GeometryAt (x : ℝ) : Prop where
+  prime : ∀ n ∈ interval (x/2), n.Prime → Sifted (z x) n ∧ kernelH n - kernelK (x/2) n = 1
+  good : ∀ n ∈ interval (x/2), Squarefree n → Direct.good n →
+    kernelK (x/2) n = 0 ∧ (kernelH n ≠ 0 → Sifted (z x) n)
+
+theorem H_prime {p : ℕ} (hp : p.Prime) : kernelH p = 1 := by
+  have hp' : (1:ℝ) < p := by exact_mod_cast hp.one_lt
+  have hlt : (p:ℝ)^γ < p := by
+    simpa only [Real.rpow_one] using Real.rpow_lt_rpow_of_exponent_lt hp' (by norm_num [γ,ε] : γ < 1)
+  have hge : 1 ≤ (p:ℝ)^γ := Real.one_le_rpow hp'.le (by norm_num [γ,ε])
+  have h₁ : divisorCoefficient p 1 = 1 := by
+    simp [divisorCoefficient,profile,g0,mu,hge,show (0:ℝ) ≤ β by norm_num [β,ε]]
+  have h₂ : divisorCoefficient p p = 0 := by simp [divisorCoefficient,not_le.mpr hlt]
+  simp [kernelH,hp.divisors,Ne.symm hp.ne_one,h₁,h₂]
+
+theorem K_prime (X : ℝ) {p : ℕ} (hp : p.Prime) : kernelK X p = 0 := by
+  have hzero (d : ℕ) (hd : d ∈ p.divisors) : labels X d = 0 := by
+    unfold labels
+    apply Finset.sum_eq_zero
+    intro u hu
+    apply Finset.sum_eq_zero
+    intro v hv
+    apply Finset.sum_eq_zero
+    intro w _
+    apply if_neg
+    rintro ⟨hu',hv',_⟩
+    have hdu := (Nat.mem_divisors.mp hu).1
+    have hdp := (Nat.mem_divisors.mp hd).1
+    have hueq := (Nat.prime_dvd_prime_iff_eq hu' hp).mp (hdu.trans hdp)
+    have hdeq : d = u := Nat.le_antisymm (hueq ▸ Nat.le_of_dvd hp.pos hdp)
+      (Nat.le_of_dvd (Nat.pos_of_mem_divisors hd) hdu)
+    have hv₁ := (Nat.mem_divisors.mp hv).1
+    rw [hdeq,Nat.div_self hu'.pos] at hv₁
+    exact hv'.ne_one (Nat.dvd_one.mp hv₁)
+  unfold kernelK
+  rw [Finset.sum_eq_zero (fun d hd => by simp [hzero d hd]),mul_zero]
+
+theorem geometry_of_good
+    (hgood : ∀ᶠ x : ℝ in atTop, ∀ n ∈ interval (x/2), Squarefree n → Direct.good n →
+      kernelK (x/2) n = 0 ∧ (kernelH n ≠ 0 → Sifted (z x) n)) :
+    ∀ᶠ x : ℝ in atTop, GeometryAt x := by
+  filter_upwards [hgood,small_power (by norm_num : (1/400000000000:ℝ) ≤ 1/2)] with x hgood hz
+  refine ⟨?_,hgood⟩
+  intro p hp hprime
+  refine ⟨?_,by rw [H_prime hprime,K_prime _ hprime,sub_zero]⟩
+  intro q hq hd
+  have hlt : z x < (p:ℝ) := (hz p hp).trans_le (by exact_mod_cast Nat.sub_le p 2)
+  exact (Nat.prime_dvd_prime_iff_eq hq hprime).mp hd ▸ hlt
+
+theorem geometry : ∀ᶠ x : ℝ in atTop, GeometryAt x := by
+  apply geometry_of_good
+  filter_upwards [eventually_ge_atTop (4:ℝ)] with x hx n hn hs hg
+  exact ⟨GoodSupport.marked_zero hx hn hg,GoodSupport.active_rough hx hn hs hg⟩
+
+theorem partition {x : ℝ} (h : GeometryAt x) {n : ℕ} (hn : n ∈ interval (x/2)) :
+    calibrated x n = primeMask n + positive x n + Direct.phi x n +
+      omitted (· = 2) x n + omitted (· = 4) x n + omitted (256 ≤ ·) x n := by
+  have hn₂ := (window hn).2.2
+  by_cases hp : n.Prime
+  · obtain ⟨hz,hk⟩ := h.prime n hn hp
+    have hcard := cardFactors_eq_one_iff_prime.mpr hp
+    have hg : ¬ Direct.good n := fun hh => hh.2.1 hp
+    simp [calibrated,primeMask,hp,hp.squarefree,hz,hk,positive,Direct.phi,Direct.F,Direct.G,
+      omitted,hg,retained,hcard]
+  · have hc₀ : cardFactors n ≠ 0 := fun hc => by
+      rcases cardFactors_eq_zero_iff_eq_zero_or_one.mp hc with h | h <;> omega
+    have hc₁ : cardFactors n ≠ 1 := fun hc => hp (cardFactors_eq_one_iff_prime.mp hc)
+    by_cases hs : Squarefree n
+    · by_cases hg : Direct.good n
+      · obtain ⟨hK,hH⟩ := h.good n hn hs hg
+        by_cases hz : Sifted (z x) n
+        · simp [calibrated,primeMask,hp,positive,hn,hs,hg,hK,hz,Direct.phi,Direct.F,Direct.G,omitted]
+          simpa [sub_eq_add_neg] using (max_zero_sub_max_neg_zero_eq_self (kernelH n)).symm
+        · have hzero : kernelH n = 0 := by by_contra hne; exact hz (hH hne)
+          simp [calibrated,primeMask,hp,positive,hn,hs,hg,hz,hzero,Direct.phi,Direct.F,Direct.G,omitted]
+      · by_cases hz : Sifted (z x) n
+        · have hr : retained n ↔ cardFactors n ≠ 2 ∧ cardFactors n ≠ 4 ∧ ¬256 ≤ cardFactors n := by
+            unfold retained; omega
+          simp only [calibrated,hs,hz,and_self,if_true,primeMask,if_neg hp,positive,hn,hg,and_false,
+            if_false,Direct.phi,Direct.F,Direct.G,not_false_eq_true, true_and,omitted,hr]
+          split_ifs <;> first | omega | ring
+        · simp [calibrated,primeMask,hp,positive,hg,hz,Direct.phi,Direct.F,Direct.G,omitted]
+    · simp [calibrated,primeMask,hp,positive,hs,Direct.phi,Direct.F,Direct.G,omitted]
+
+def weighted (w : ℝ → ℕ → ℝ) (f : ℝ → ℕ → ℝ) (x : ℝ) := total (x/2) (fun n => w x n * f x n)
+def deviation (f : ℝ → ℕ → ℝ) (x : ℝ) := weighted actual f x - weighted compare f x
+def normalError (x : ℝ) := mean Direct.phi x - weighted compare Direct.phi x
+def powerError (x : ℝ) := lambdaSum (intrinsicCut x) x (Direct.phi x) - weighted actual Direct.phi x
+
+theorem exact_ledger {x : ℝ} (h : GeometryAt x) :
+    Closing.covariance x + T x + weighted actual positive x =
+    Sb x + weighted compare positive x - deviation (omitted (· = 2)) x -
+      deviation (omitted (· = 4)) x - deviation (omitted (256 ≤ ·)) x +
+      deviation calibrated x + powerError x - normalError x := by
+  have part (w : ℝ → ℕ → ℝ) : weighted w calibrated x = total (x/2) (fun n => w x n * primeMask n) +
+      weighted w positive x + weighted w Direct.phi x + weighted w (omitted (· = 2)) x +
+      weighted w (omitted (· = 4)) x + weighted w (omitted (256 ≤ ·)) x := by
+    unfold weighted total
+    simp only [← Finset.sum_add_distrib]
+    apply Finset.sum_congr rfl
+    intro n hn
+    rw [partition h hn]
+    ring
+  rw [native_covariance]
+  unfold deviation powerError normalError T Sb
+  rw [part actual,part compare]
+  ring
+
+def goodCap : ℝ := 0.0000000142500001
+def goodRational : ℝ :=
+  let a₀ := 1/5 - ε
+  ε/(a₀*(1-a₀)) + 2*ε/(β*(1-β)) + ε^2/(2*a₀^2*(3/5)) +
+    3*(5*ε)^4/((Nat.factorial 5:ℝ)*Nat.factorial 4*a₀^5)
+
+theorem good_cap_rounding : goodRational < goodCap := by
+  norm_num [goodRational,goodCap,ε,β,Nat.factorial]
+
+def pairCap : ℝ := ε / (ν*(1-ν))
+def tailCap : ℝ := 1/10^58
+def transferCap : ℝ := 9 * (400000000000:ℝ)^2 / (50 * (Nat.factorial 99:ℝ))
+
+theorem ledger_rounding : (0.999892775499:ℝ) ≤
+    1 - 3*goodCap - 3*pairCap - 0.000107163 - tailCap - transferCap := by
+  norm_num [goodCap,pairCap,tailCap,transferCap,ε,ν,Nat.factorial]
+
+def upper (f : ℝ → ℝ) (c : ℝ) : Prop := ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop, f x ≤ (c+e)*Sb x
+
+structure Estimates : Prop where
+  goodMass : ∃ Jp : ℝ, Jp ≤ goodRational ∧ negligible (fun x => weighted compare positive x - Jp*Sb x) Sb ∧
+    upper (weighted actual positive) (4*Jp)
+  pairs : upper (deviation (omitted (· = 2))) (3*pairCap)
+  four : upper (fun x => |deviation (omitted (· = 4)) x|) 0.000107163
+  tail : upper (fun x => |deviation (omitted (256 ≤ ·)) x|) tailCap
+  calibratedMean : upper (fun x => |deviation calibrated x|) transferCap
+  comparator : negligible normalError Sb
+
+/-- Output presieving is separate from the prime-power estimate on the input. -/
+def OutputSupport : Prop := ∀ᶠ x : ℝ in atTop, ∀ n ∈ interval (x/2),
+  Direct.phi x n ≠ 0 → Sifted (y x) n
+
+theorem output_support (hgeom : ∀ᶠ x : ℝ in atTop, GeometryAt x) : OutputSupport := by
+  filter_upwards [hgeom,Closing.log_power_lt_linear (a:=1/20) (b:=1/400000000000)
+    (by norm_num) (by norm_num),eventually_gt_atTop (1:ℝ)] with x hg hlog hx n hn hne
+  have hy : y x ≤ z x := by
+    unfold y z
+    rw [Real.rpow_def_of_pos (by linarith : 0<x),Real.exp_le_exp]
+    linarith only [hlog]
+  have hZ : Sifted (z x) n := by
+    by_contra hno
+    apply hne
+    unfold Direct.phi Direct.F Direct.G
+    simp only [hno,false_and,and_false,if_false,zero_sub,neg_eq_zero]
+    split_ifs with h
+    · have hzero : kernelH n = 0 := by
+        by_contra hH
+        exact hno ((hg.good n hn h.2.1 h.2.2).2 hH)
+      simp [hzero]
+    · rfl
+  exact fun p hp hd => hy.trans_lt (hZ p hp hd)
+
+theorem powerError_small (hs : ScaleLower) (hout : OutputSupport) : negligible powerError Sb := by
+  have hp := negligible_comparator (prime_replacement
+    (small_power (by norm_num : (1/800000000000:ℝ) ≤ 1/2)) native_power_mass) hs
+  intro e he
+  filter_upwards [hp e he,hout] with x h hx
+  have heq : weighted actual Direct.phi x = primeSum x (Direct.phi x) := by
+    unfold weighted primeSum total
+    apply Finset.sum_congr rfl
+    intro n hn
+    by_cases hzero : Direct.phi x n = 0
+    · simp [hzero]
+    · simp [actual,sieve,hx n hn hzero]
+  simpa only [powerError,heq,intrinsicCut] using h
+
+theorem lower_of_estimates (h : Estimates) (hs : ScaleLower) : Closing.LowerLedger := by
+  obtain ⟨j,hj,hB,hA⟩ := h.goodMass
+  intro e he
+  have ht : 0 < e/8 := by linarith
+  filter_upwards [geometry,comparator_pos hs,hB _ ht,hA _ ht,h.pairs _ ht,h.four _ ht,
+    h.tail _ ht,h.calibratedMean _ ht,powerError_small hs (output_support geometry) _ ht,h.comparator _ ht]
+    with x hg hpos hB hA hR h4 hT hW hP hC
+  have hc := mul_le_mul_of_nonneg_right ledger_rounding hpos.le
+  have hj' := mul_le_mul_of_nonneg_right (hj.trans good_cap_rounding.le) hpos.le
+  linarith only [exact_ledger hg,hc,hj',(abs_le.mp hB).1,hA,hR,(abs_le.mp h4).2,
+    (abs_le.mp hT).2,(abs_le.mp hW).1,(abs_le.mp hP).1,(abs_le.mp hC).2]
+
+end
+end REAL1B.FM.Ledger
+#print axioms REAL1B.FM.Ledger.partition
+#print axioms REAL1B.FM.Ledger.exact_ledger
+#print axioms REAL1B.FM.Ledger.ledger_rounding
+#print axioms REAL1B.FM.Ledger.powerError_small
+#print axioms REAL1B.FM.Ledger.lower_of_estimates
+#print axioms REAL1B.FM.Ledger.output_support
+#print axioms REAL1B.FM.Ledger.H_prime
+#print axioms REAL1B.FM.Ledger.K_prime
+#print axioms REAL1B.FM.Ledger.geometry_of_good
+#print axioms REAL1B.FM.Ledger.good_cap_rounding
+#print axioms REAL1B.FM.Ledger.geometry
 
 -- RequestProject/REAL1B_20261122/FMProfileTransfer.lean
 /-! Finite parts of the Gold 4.64–4.65 transfer to the fixed five-prime source. -/

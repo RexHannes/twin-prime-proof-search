@@ -4,7 +4,7 @@
 
 Earlier results include the exact weighted identities, a finite Vaughan decomposition on the physical source, a positive numerical margin, a prime-power error estimate, and the Gold 4.60 conditional implication from the signed FM complement. The H2-B implication has five hypotheses. Their precise statements and mathematical status appear in the [dependency table](DEPENDENCIES.md).
 
-Gold 4.67 verifies the original-source prime-power estimate, the finite complete Vaughan and ledger decompositions, the exact five-prime divisor formula and its $2\le\psi\le6$ bound, and the low-label source transfer. [Analytic theorem inventory and remaining estimates](FM-ANALYTIC.md)
+Gold 4.67 verifies the original-source prime-power estimate, the good-set Möbius cancellation and marked-prime exclusion, the finite Vaughan and ledger decompositions, the exact five-prime divisor formula and its $2\le\psi\le6$ bound, and the low-label source transfer. [Analytic theorem inventory and remaining estimates](FM-ANALYTIC.md)
 
 ## Check out the analytic route
 

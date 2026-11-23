@@ -7,7 +7,7 @@ open Source Analytic Vaughan ArithmeticFunction Filter
 noncomputable section
 open Classical
 
-private theorem recover {n : ℕ} {l : List ℕ} (h : l.Sublist n.primeFactorsList) :
+theorem recover {n : ℕ} {l : List ℕ} (h : l.Sublist n.primeFactorsList) :
     l.prod.primeFactorsList = l := by
   have hperm := Nat.primeFactorsList_unique (n:=l.prod) rfl (fun p hp => Nat.prime_of_mem_primeFactorsList (h.subset hp))
   exact (List.Perm.eq_of_pairwise (fun _ _ _ _ => Nat.le_antisymm)
@@ -33,13 +33,13 @@ theorem H_sublists {n : ℕ} (hs : Squarefree n) : kernelH n =
 def coord (n p : ℕ) := Real.log p / Real.log n
 def mass (n : ℕ) (l : List ℕ) := (l.map (coord n)).sum
 
-private theorem source_profile (n : ℕ) (l : List ℕ) : profile n l = l.map (coord n) := by
+theorem source_profile (n : ℕ) (l : List ℕ) : profile n l = l.map (coord n) := by
   unfold profile
   change (l.flatMap (fun p : ℕ => [(p:ℝ)])).map _ = _
   rw [← List.map_eq_flatMap,List.map_map]
   rfl
 
-private theorem log_mass {n : ℕ} {l : List ℕ} (h : l.Sublist n.primeFactorsList) :
+theorem log_mass {n : ℕ} {l : List ℕ} (h : l.Sublist n.primeFactorsList) :
     mass n l = Real.log (l.prod:ℕ) / Real.log n := by
   induction l with
   | nil => simp [mass]
@@ -52,7 +52,7 @@ private theorem log_mass {n : ℕ} {l : List ℕ} (h : l.Sublist n.primeFactorsL
     unfold coord
     ring
 
-private theorem mu_sublist {n : ℕ} (hs : Squarefree n) {l : List ℕ} (h : l.Sublist n.primeFactorsList) :
+theorem mu_sublist {n : ℕ} (hs : Squarefree n) {l : List ℕ} (h : l.Sublist n.primeFactorsList) :
     mu l.prod = (-1:ℝ)^l.length := by
   have hd : l.prod ∣ n := by simpa [Nat.prod_primeFactorsList hs.ne_zero] using h.prod_dvd_prod
   rw [mu,moebius_apply_of_squarefree (hs.squarefree_of_dvd hd),cardFactors_apply,recover h]
@@ -115,7 +115,7 @@ private theorem filter_mass (n : ℕ) (f : ℕ → Bool) (l : List ℕ) :
     have hp : 0 ≤ coord n p := div_nonneg (Real.log_natCast_nonneg _) (Real.log_natCast_nonneg _)
     by_cases hf : f p <;> simp [mass,hf] at ih ⊢ <;> linarith
 
-private theorem mass_cut {n : ℕ} (hn : 1<n) {l : List ℕ} (hl : l.Sublist n.primeFactorsList) :
+theorem mass_cut {n : ℕ} (hn : 1<n) {l : List ℕ} (hl : l.Sublist n.primeFactorsList) :
     ((l.prod:ℝ) ≤ (n:ℝ)^γ) ↔ mass n l ≤ γ := by
   have hx : (0:ℝ) < n := by exact_mod_cast (show 0<n by omega)
   have hp : l.prod ≠ 0 := fun he => (Nat.prime_of_mem_primeFactorsList (hl.subset (List.prod_eq_zero_iff.mp he))).ne_zero rfl
@@ -225,7 +225,7 @@ private theorem cell_gap {n p i : ℕ} (h : Closing.inCell n p i) (hi : i+1 ≤ 
   · have hh : (21:ℝ) ≤ i := by exact_mod_cast h₂
     right; unfold coord; linarith only [h.1,hh]
 
-private theorem cutoff_iff {n p : ℕ} (hn : 1<n) (hp : p.Prime) :
+theorem cutoff_iff {n p : ℕ} (hn : 1<n) (hp : p.Prime) :
     ((n:ℝ)^ν ≤ p) ↔ ν ≤ coord n p := by
   have hn' : (0:ℝ)<n := by exact_mod_cast (show 0<n by omega)
   rw [← Real.log_le_log_iff (Real.rpow_pos_of_pos hn' _) (by exact_mod_cast hp.pos),

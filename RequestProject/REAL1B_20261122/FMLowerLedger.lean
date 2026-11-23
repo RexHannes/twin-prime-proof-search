@@ -1,4 +1,4 @@
-import RequestProject.REAL1B_20261122.FMAnalyticTransfer
+import RequestProject.REAL1B_20261122.FMGoodSupport
 
 /-! Gold 4.57 complete-source partition and Gold 4.58 (U9).
 All error functions below are finite sums on the same physical window. -/
@@ -63,6 +63,11 @@ theorem geometry_of_good
   intro q hq hd
   have hlt : z x < (p:ℝ) := (hz p hp).trans_le (by exact_mod_cast Nat.sub_le p 2)
   exact (Nat.prime_dvd_prime_iff_eq hq hprime).mp hd ▸ hlt
+
+theorem geometry : ∀ᶠ x : ℝ in atTop, GeometryAt x := by
+  apply geometry_of_good
+  filter_upwards [eventually_ge_atTop (4:ℝ)] with x hx n hn hs hg
+  exact ⟨GoodSupport.marked_zero hx hn hg,GoodSupport.active_rough hx hn hs hg⟩
 
 theorem partition {x : ℝ} (h : GeometryAt x) {n : ℕ} (hn : n ∈ interval (x/2)) :
     calibrated x n = primeMask n + positive x n + Direct.phi x n +
@@ -138,7 +143,6 @@ theorem ledger_rounding : (0.999892775499:ℝ) ≤
 def upper (f : ℝ → ℝ) (c : ℝ) : Prop := ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop, f x ≤ (c+e)*Sb x
 
 structure Estimates : Prop where
-  geometry : ∀ᶠ x : ℝ in atTop, GeometryAt x
   goodMass : ∃ Jp : ℝ, Jp ≤ goodRational ∧ negligible (fun x => weighted compare positive x - Jp*Sb x) Sb ∧
     upper (weighted actual positive) (4*Jp)
   pairs : upper (deviation (omitted (· = 2))) (3*pairCap)
@@ -189,8 +193,8 @@ theorem lower_of_estimates (h : Estimates) (hs : ScaleLower) : Closing.LowerLedg
   obtain ⟨j,hj,hB,hA⟩ := h.goodMass
   intro e he
   have ht : 0 < e/8 := by linarith
-  filter_upwards [h.geometry,comparator_pos hs,hB _ ht,hA _ ht,h.pairs _ ht,h.four _ ht,
-    h.tail _ ht,h.calibratedMean _ ht,powerError_small hs (output_support h.geometry) _ ht,h.comparator _ ht]
+  filter_upwards [geometry,comparator_pos hs,hB _ ht,hA _ ht,h.pairs _ ht,h.four _ ht,
+    h.tail _ ht,h.calibratedMean _ ht,powerError_small hs (output_support geometry) _ ht,h.comparator _ ht]
     with x hg hpos hB hA hR h4 hT hW hP hC
   have hc := mul_le_mul_of_nonneg_right ledger_rounding hpos.le
   have hj' := mul_le_mul_of_nonneg_right (hj.trans good_cap_rounding.le) hpos.le
@@ -209,3 +213,4 @@ end REAL1B.FM.Ledger
 #print axioms REAL1B.FM.Ledger.K_prime
 #print axioms REAL1B.FM.Ledger.geometry_of_good
 #print axioms REAL1B.FM.Ledger.good_cap_rounding
+#print axioms REAL1B.FM.Ledger.geometry
