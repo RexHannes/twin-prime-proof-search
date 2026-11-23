@@ -1,0 +1,26 @@
+{
+  "source_commit": "43facedcf40b2f998aa47f7198d6b9b5feb5b792",
+  "repository": "RexHannes/twin-prime-proof-search",
+  "workflow": "REAL 1B native Lean replay",
+  "branch": "real1b-gold467-analytic",
+  "declaration": "REAL1B.FM.Analytic.infinite_of_signed_estimates",
+  "run_url": "https://github.com/RexHannes/twin-prime-proof-search/actions/runs/45198042124",
+  "job_url": "https://github.com/RexHannes/twin-prime-proof-search/actions/runs/45198042124/job/137773683526",
+  "job_finished_utc": "2026-11-23T15:43:51Z",
+  "conclusion": "success",
+  "native_declarations": 240,
+  "compact_declarations": 216,
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "lean_toolchain": "leanprover/lean4:v4.28.0",
+  "mathlib_commit": "8f9d9cff6bd728b17a24e163c9402775d9e6a365",
+  "log_extract": [
+    "2026-11-23T15:43:49.4801758Z 'REAL1B.FM.Analytic.infinite_of_signed_estimates' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "2026-11-23T15:43:49.4802515Z Native kernel verified 240 declarations including the complete integral enclosure.",
+    "2026-11-23T15:43:49.4893242Z Compact replay verified 216 declarations. SHA-256 5804d68e579d47e9bba3ba0b287179f839be765ebda9aacdcd761d7daa19f76e"
+  ],
+  "scope": "Native conditional endpoint and integral enclosure at the named base commit. This run did not check the new manuscript's analytic hypotheses or stronger inequalities."
+}

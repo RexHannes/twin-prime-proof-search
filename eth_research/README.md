@@ -58,7 +58,7 @@ python eth.py --db research.sqlite drive --minutes 60 --worker /path/to/authoris
 
 The adapter reads one UTF-8 JSON request on standard input with `protocol`, `actor`, journal `head` and `packet`. It returns a JSON object on standard output with the same `head`, an `events` list and an optional `handoff` explanation. Events carry the assigned `actor`. The adapter owns context isolation and the actual research engine. Configure it only for resources already authorised. The distribution includes no model credentials or backend. Work can directly use its built-in workers and `record` without installing an adapter.
 
-The driver dispatches separate discovery and derivation processes, presents both derivations for comparison, and issues independent named reviews on a submitted proof. During deepening it adds an alternative discovery packet approximately once per five waves. A successful reply commits atomically. An expired budget, empty response, worker failure or handoff saves the successful packets and an immediately resumable checkpoint. A budget specifies maximum elapsed time. `observed_wall_seconds` measures the actual drive run. The driver requests no progress by waiting or replaying identical events.
+After a checkpoint, blind discovery uses the most recent checkpoint task and verified commit. A named active checkpoint candidate receives the first resumed derivation alongside a fresh independent proposal. The driver dispatches separate discovery and derivation processes, presents both derivations for comparison, and issues independent named reviews on a submitted proof. During deepening it adds an alternative discovery packet approximately once per five waves. A successful reply commits atomically. An expired budget, empty response, worker failure or handoff saves the successful packets and an immediately resumable checkpoint. A budget specifies maximum elapsed time. `observed_wall_seconds` measures the actual drive run. The driver requests no progress by waiting or replaying identical events.
 
 ## Record a proof and adverse review
 
@@ -77,7 +77,10 @@ The driver dispatches separate discovery and derivation processes, presents both
 | `decision` | `candidate, actor, action, reason, next`. For a tombstone add the exact `scope` and the independent `challenge_hash` |
 | `discharge` | `candidate, actor, obligation, proof_hash` binds the exact audited statement to a premise |
 | `accept` | Independent `actor, candidate, proof_hash, goal, finding` records an explicit mathematical judgement |
+| `native_ci` | `actor, source_commit, declaration, conclusion, run_url, job_url, axioms, artifact` records native endpoint evidence on the seeded source commit |
 | `checkpoint` | `actor, status, next` with optionally `candidate` and the proof state or repository location |
+
+A `native_ci` attestation names the exact registered declaration and source SHA, sets `conclusion` to `success`, provides a GitHub Actions run URL and a job URL from that run, and lists the axioms explicitly. Its evidence must contain the full source SHA and declaration. Include provider metadata and the relevant logs so another reader can verify the attestation. The journal retains the baseline seed and exposes the new observation under `latest_verified_native_commit` and `native_ci`. A verified conditional endpoint leaves its analytic premises open. Arbitrary checkpoint metadata has no effect on that gate.
 
 This submission records an unfinished derivation.
 

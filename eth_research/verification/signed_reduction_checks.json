@@ -1,0 +1,49 @@
+{
+  "balanced_physical_tests": {
+    "rows": [
+      {
+        "k": "62029894586869164165",
+        "n": "62029894586869164167",
+        "input_primes": [
+          3,
+          5,
+          7,
+          590760900827325373
+        ],
+        "output_primes": [
+          3777013,
+          4321123,
+          3800633
+        ],
+        "small_product": 105,
+        "middle_count": 0,
+        "mobius_prefix": 1,
+        "coefficient_of_log_q": -1
+      },
+      {
+        "k": "62428386602865709349",
+        "n": "62428386602865709351",
+        "input_primes": [
+          7,
+          11,
+          810758267569684537
+        ],
+        "output_primes": [
+          3777013,
+          4321123,
+          3825049
+        ],
+        "small_product": 77,
+        "middle_count": 0,
+        "mobius_prefix": -1,
+        "coefficient_of_log_q": 1
+      }
+    ],
+    "primes_certified_by_Lucas": 44
+  },
+  "squarefree_cutoff_cases": 6076,
+  "labelled_correction_cases": {
+    "subsets": 380,
+    "homogeneous_derangements": 284
+  }
+}

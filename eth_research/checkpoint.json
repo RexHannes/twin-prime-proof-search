@@ -1200,6 +1200,516 @@
       "prev": "93ebffc44bbfea176a10b1e2ae10311287e5bcdd8715f4d4311a0e34d35c7ee1",
       "seq": 37,
       "sha256": "a58e7da9f6937d9c8dcae242a5ca98c5e4149d64756e433cda0a35c1714fc24b"
+    },
+    {
+      "at": "2026-11-23T15:51:36.947018+00:00",
+      "event": {
+        "actor": "analytic",
+        "event_id": "late-candidate-refined-full-outside-analytic--review",
+        "id": "refined-full-outside",
+        "kind": "candidate",
+        "mechanism": "Rank-specific short prime upper, exact rank-four collar integrals, and geometric box enclosure, retaining both sides of the ledger.",
+        "next": "Estimate the complete centered rank-four-and-higher expression, jointly retaining the favorable ranks and the adverse at-least-five cohort. Seek a finite term below the recorded cap or a genuine prime/composite advantage.",
+        "source": "Same signed native physical source and historic full upper",
+        "statement": "On the full original signed outside source, limsup O/S_b is at most 1.275648716845111."
+      },
+      "prev": "a58e7da9f6937d9c8dcae242a5ca98c5e4149d64756e433cda0a35c1714fc24b",
+      "seq": 38,
+      "sha256": "e809192206369de34c8da50787190bb1ae1e9e2319965858a6aebab90df6b7c3"
+    },
+    {
+      "at": "2026-11-23T15:51:36.947301+00:00",
+      "event": {
+        "actor": "analytic",
+        "candidate": "refined-full-outside",
+        "contract": {
+          "coefficient": "1.275648716845111",
+          "error_payment": "Capped components and directed rational ledger in complete_ledger.md and check_complete_ledger.py. Old held-fixed control and refined version use the identical original native population.",
+          "fixed_quantifiers": "Each fixed original 0<a<1, unbounded x, arbitrary eventual tolerance.",
+          "masks_and_cutoffs": "Original Phi−psi, all original sharp input owners, complete original box complement and its genuine prime companion.",
+          "normalization": "S_b",
+          "population": "full_fm_outside",
+          "prior": "historic-full-outside-cap",
+          "signed_companions": "Sign-specific whole upper and lower, all omitted ranks, squareful, comparator, rank tail and calibrated mean, actual box, T. Two full directions kept.",
+          "unbounded_scales": true
+        },
+        "deps": [],
+        "event_id": "late-proof-refined-full-outside-analytic--review",
+        "evidence": {
+          "name": "complete_ledger.md",
+          "sha256": "663fbbc802adc0454113a9920a5df3d9d613b9765d71cafd2085a7b172acdd7f",
+          "text": "# Two simultaneous bounds for the full signed source\n\nAll quantities refer to native commit 43facedcf40b2f998aa47f7198d6b9b5feb5b792 and window \\(x/2<n\\le x\\). All displayed liminf/limsup coefficients use the same positive \\(S_b\\sim\\mathfrak S_2x/(2\\log x)\\). Use the definitions, rank-four pointwise inequality and signed partition in collar_ledger, equations (1), (2) and (5), the four source transfers and calibrated mean in analytic_contracts, and the small-prime-slot estimate in the referee's native_rough_sieve. The integrals for each nonnegative fixed profile use ordered squarefree prime factors counted once. All ingredients below have written proofs. The native Lean consumer retains its explicit analytic premises.\n\n## A smaller absolute four-factor cost\n\nFor any retained rectangular angular cell of fixed rank \\(r\\ge3\\), all prime factors exceed a common fixed positive power of \\(x\\) and the least satisfies \\(p_1\\le x^{1/3}\\). Pascadi's Proposition 5.2 accepts \\(x^{2\\tau}\\le N\\le x^{1/3+\\tau}\\) for every sufficiently small fixed \\(\\tau>0\\). The whole two-sieve and factorization proof for the five boxes in native_rough_sieve applies to this least prime also. Take \\(\\tau\\) smaller than one fourth of the common lower exponent. The prime short coefficient satisfies Siegel–Walfisz uniformly over the fixed cells, the other \\(r-1\\) primes give a coefficient bounded by \\((r-1)!\\), and the count of dyadic cells is a fixed power of \\(\\log x\\). Cells meeting the support and their upper products preserve the exponent slack. Take \\(x\\to\\infty\\) first, then the small-sieve and \\(\\tau\\) limits. This gives \\(A(P)/S_b\\le (10/3)\\Pi(P)+o(1)\\) for any bounded nonnegative fixed-rank chamber profile \\(P\\) here. The same conclusion holds at rank two when the smaller prime is in either narrow band about \\(x^{1/5}\\). For the near-half rank-two band we retain the separate \\(32/9\\) inequality. Rank-dependent constants cause no limit exchange since the rough tail has a fixed finite rank ceiling. [Pascadi, Propositions 4.4 and 5.2](https://arxiv.org/html/2505.00653v2)\n\nFor the rank-four angular error envelope keep the dependence of each convolution on its *own* prime-sum mass. The proof in collar_ledger gives\n\n\\[\nK_h(v)\\le\\frac{h}{v}\\log^{h-1}(v/\\delta)\n\\]\n\nfor \\(v\\ge\\delta\\), since the remaining \\(h-1\\) variables range in \\([\\delta,v]\\). For the exceptional single-coordinate term of pointwise bound (2), \\(t\\in[\\nu,1/5]\\) and the other three sum to \\(1-t\\le1-\\nu\\). Its logarithmic factor is bounded by \\(C_1^2\\) with \\(C_1=26.492\\). For the half-sum term, \\(\\beta<t<1/2\\) and both groups' summed masses are at most \\(1-\\beta\\), giving the smaller \\(C_2^2\\) with \\(C_2=26.022\\). The exact rational sums \\(\\sum_{j=0}^{130}C_i^j/j!\\) exceed \\((1-\\nu)/\\delta\\) and \\((1-\\beta)/\\delta\\), respectively. Hence\n\n\\[\nE_4'=\\frac{2\\epsilon C_1^2}{\\nu(1-\\nu)}\n+\\frac{4\\epsilon C_2^2}{\\beta(1-\\beta)}\n=0.00001960713760979619438614\\ldots\n\\]\n\nupper-bounds \\(\\Pi(|W_4|)\\), including both signs. For any signed \\(W\\) with \\(A(W^\\pm)/S_b\\le c\\Pi(W^\\pm)+o(1)\\) and \\(B(W^\\pm)/S_b=\\Pi(W^\\pm)+o(1)\\), the two-sided centered bound is \\(|A(W)-B(W)|/S_b\\le(c-1)\\Pi(|W|)+o(1)\\) whenever \\(c\\ge2\\). Applying it to \\(W_4\\) gives \\(D_4=(7/3)E_4'<0.000045749987756191120235\\). At ranks \\(r\\ge256\\) use the same signed bound and the earlier envelope \\(2^{r+1}27^{r-1}/(r-1)!\\). The absolute tail cost is\n\n\\[\nD_t=\\frac73\\,\\frac{4\\cdot54^{255}}{255!(1-54/256)}\n<2.034\\cdot10^{-62}.\n\\]\n\n## Every entry in the signed partition\n\nPut \\(a_0=1/5-\\epsilon\\), \\(A_0=2\\epsilon/[\\beta(1-\\beta)]\\) and\n\n\\[\nB_0=\\frac{\\epsilon}{a_0(1-a_0)}\n+\\frac{\\epsilon^2}{2a_0^2(3/5)}\n+\\frac{3(5\\epsilon)^4}{5!\\,4!\\,a_0^5},\\qquad\nI_0=\\epsilon/[\\nu(1-\\nu)] .\n\\]\n\nHere \\(A_0\\) bounds the positive good-sector mass from near-half rank two. \\(B_0\\) bounds the positive good-sector masses from the other rank-two band, rank three, and rank five, respectively. The rank-five term uses all prime orders and the full native upper height three. Good rank four and all higher positive ranks vanish. The omitted (off-good) rank-two source is nonnegative and has ordinary mass at most \\(I_0\\). Put \\(D_m=9\\delta^{-2}/(50\\,99!)<3.086\\cdot10^{-134}\\). This is the combined signed calibration debit for the original \\(H-K_X\\), with the general \\(q\\) bank, no truncation in rank, and the squarefree filter.\n\nThe exact native identity after the \\(o(S_b)\\) prime-power, ordinary mean and Vaughan payments is\n\n\\[\n\\frac{\\mathcal U+T}{S_b}\n=1+\\frac{B(P)-A(P)-R_2-R_4-R_{\\rm tail}\n+\\operatorname{deviation}(\\mathrm{calibrated})}{S_b}+o(1).\n\\]\n\nThe good contribution lies between \\(-[(23/9)A_0+(7/3)B_0]\\) and \\(A_0+B_0\\), up to \\(o(1)\\). The sign multiplying the omitted pair is minus, so its interval is \\([-(7/3)I_0, I_0]\\). The three other contributions are bounded in absolute value by \\(D_4,D_t,D_m\\), respectively. It follows that the **complete simultaneous window** is \\(L_0-o(1)\\le(\\mathcal U+T)/S_b\\le U_0+o(1)\\), where\n\n\\[\n\\begin{aligned}\nL_0&=1-\\tfrac{23}9 A_0-\\tfrac73(B_0+I_0)-D_4-D_t-D_m\n =0.99995420040113248509504115422\\ldots,\\\\\nU_0&=1+A_0+B_0+I_0+D_4+D_t+D_m\n =1.00004577048775628226606863364\\ldots .\n\\end{aligned}\n\\]\n\nThe lower and upper use different sides of the same positive-source comparison. The rational check_complete_ledger program carries every term, including the minute rank-five, high-tail and calibrated debits.\n\n## The boxed and outside source on the same window\n\nLet \\(b=\\mathrm{primeBox}(x)/S_b\\), \\(t=T(x)/S_b\\), \\(v=\\mathcal U_{\\mathscr B^c}(x)/S_b\\). The ordinary integral \\(J\\) for the 1,566 native boxes has the rigorous enclosure \\(j_-=.27547734178065116588\\le J\\le j_+=.27560294635735393770\\) in the referee's J4 certificate. The six rough profile upper bounds and positivity give \\(0\\le b\\le (10/3)J+o(1)\\). Native Vaughan calibration gives \\(\\mathcal U_{\\mathscr B}/S_b=b-J+o(1)\\), hence its complete range is \\([-J,(7/3)J]\\) up to \\(o(1)\\). The complete outside source therefore satisfies\n\n\\[\n\\begin{aligned}\nL_0-\\tfrac73j_+-o(1)&\\le v+t\\le U_0+j_++o(1),\\\\\nL_0+j_- -o(1)&\\le v+t+b\\le U_0+j_++o(1).\n\\end{aligned}\n\\]\n\nNumerically the first interval is \\([0.35688065890063996379504\\ldots,\\,1.27564871684511021996607\\ldots]\\). Its upper end bounds \\(v\\) unconditionally by \\(t\\ge0\\). The second interval starts at \\(1.27543154218178365097504\\ldots\\). The sufficient closing condition is a strict improvement on \\(\\limsup v<L_0-(7/3)j_+\\), still unproved. The actual proven upper and the sufficient closing threshold differ by more than \\(0.9187\\). The exact matched interval with \\(b,t\\) retained does not prescribe how much each nonnegative genuine-prime population contributes.\n\nThe Gold 4.66 full proof, §6 (6.1), uses \\(J\\le.28449989344325252602\\) on the same full boxes. Its archived polynomial profile calculation at smaller cost elsewhere is for a further short-pair restriction. The pinned upper ledger \\(1.000107183501\\), when all its analytic inputs are supplied, gave the earlier same-source upper \\(1.28460707694425252602\\) by the identical nonnegativity deduction. The arithmetic above directly proves a smaller complete upper from the audited papers. Any claim that a numeric bound supersedes the entire historical research programme additionally requires checking independent archives and any alternative complete certificates.\n"
+        },
+        "kind": "proof",
+        "method": "analytic",
+        "result_type": "outside_upper",
+        "scope": "unconditional",
+        "unpaid": []
+      },
+      "prev": "e809192206369de34c8da50787190bb1ae1e9e2319965858a6aebab90df6b7c3",
+      "seq": 39,
+      "sha256": "a1b671cb4af089247224ef1888d75042f63d2eefce13b12e79b0555ef87a2a68"
+    },
+    {
+      "at": "2026-11-23T15:51:36.947680+00:00",
+      "event": {
+        "actor": "research-coordinator",
+        "candidate": "sharp-polynomial-input",
+        "contract": {},
+        "deps": [],
+        "event_id": "late-proof-sharp-polynomial-input-research-coordinator--review",
+        "evidence": {
+          "name": "sharp_polynomial_presieve.md",
+          "sha256": "5f6443e1610ddcf3895e9d2c12a5163458b4b9f6d556f86e6095a3233117386f",
+          "text": "# A polynomial input presieve for the unaltered signed FM outside coefficient\n\nSet L=log x, U=V=x^.24 and D=x^.49. Keep every prime label, strict threshold and squarefree condition in the native signed large-product coefficient B(k), with k=n−2. For h≥2 write\n\n    C_h(f) = Σ_{x/2<n≤x} f_x(n) 1_{P⁻(k)>h} μ²(k) B(k).\n\nThe bounded output f may be the native Φ, ψ, Φ−ψ, or their positive or negative parts. For large x it has bounded rank and P⁻(n)>x^ζ on its support, ζ=1/(4·10^11), and ∑|f|≪_f x/L. Its signed and unsigned profiles satisfy the primitive product progression estimate proved in uniform_native_transfer.md, including common upper endpoints. All normalized sums use S_b∼S₂x/(2L).\n\n**Theorem.** Fix 0<a<1 and w=exp(L^a). Then\n\n    lim_{ε↓0} limsup_{x→∞} |C_w(f)−C_{x^ε}(f)|/S_b = 0.\n\nIn particular, for any requested error one can keep only squarefree physical inputs with every prime above one fixed power of x and with rank at most ⌊1/ε⌋. This is collective cancellation over the actual sharp tagged sum, including all original owners. It makes no statement about the sum of absolute row weights or an independently selected tag mask. The small-power exponent is chosen before letting x grow.\n\n## Sieve cost with a fixed polynomial threshold\n\nWrite z=x^ε with fixed 0<ε<ζ. Apply the exact Vaughan identity used in uniform_native_transfer.md with the same original U,V,D. Prime inputs have weight θ(k) in either presieve. The proper powers and rough nonsquarefree inputs are negligible after the absolute divisor bound, since repeated primes now exceed z. It suffices to evaluate the same two Type I terms and the short product. Their moduli e₀≤x^.49 have no prime ≤z. The primitive progression is n≡2 mod e₀. Coefficients with the common factors log k extracted by partial summation are bounded by O(L) after grouping. For the short and Λ convolution sums this follows from Σ_{j|e₀}Λ(j)=log e₀. The positivity comparison can use the sum of the absolute ungrouped coefficients with the same O(L) bound.\n\nFor each e₀ sieve k/e₀ by the odd primes up to z, using the two dimension-one fundamental-lemma weights λ^± of level x^.002. They bracket the integer presieve pointwise. For each sign of the profile and coefficient, the total progression errors follow from the profile progression bound at level x^.492. In fact the representation e₀d is unique because primes of d are ≤z and primes of e₀ exceed z. The maximum cumulative coefficient is O(L), and the common weight log k costs one partial summation. All active n are coprime to d, so the sole remaining primitive exclusion is (n,e₀)=1. The main sum of λ^±(d)/φ(d) is g_z(1+O(E_s)) uniformly, where g_z=∏_{2<p≤z}(1−1/(p−1)), s=.002/ε, E_s≪s^(−s/2) as s→∞ with an absolute dimension-one constant. The dimension follows from the Mertens product for 1/(p−1) away from 2. The same upper and lower weights handle positive and negative coefficients.\n\nOn rough moduli, Σ_{e₀≤x^.49} R_z(e₀)/φ(e₀) ≪ 1/ε. This follows by comparing the Euler product, including all prime powers, to ∏_{z<p≤x}(1−1/p)⁻¹ with a bounded convergent correction. Also g_z L≪1/ε. Summing the majorant cost, including ∑|f|≪_f S_b, pays O_f(ε⁻² E_s) S_b+o_{ε,f}(S_b). This fixed-ε estimate is essential. A positive power of L multiplying E_s at fixed ε would invalidate the limiting argument.\n\n## The degree-zero and degree-one Möbius means\n\nFor m odd put R_z(m)=1_{P⁻(m)>z}, with R_z(1)=1. At fixed ε and bounded 0≤v≤1, define the rough harmonic Möbius prefix A_z(x^v)=Σ_{m≤x^v}μ(m)R_z(m)/φ(m). Then, writing t=v/ε,\n\n    A_z(x^v) = ρ(t) + o_ε(1),\n    (log z)⁻¹ Σ_{m≤x^v} μ(m)R_z(m)log m/φ(m)\n        = tρ(t)−∫₀ᵗρ(u)du + o_ε(1),\n\nuniformly in v. Indeed m has bounded squarefree rank at fixed ε. Expand by rank j, divide the unordered labeled counts by j!, and use Mertens' theorem separately in each normalized logarithmic prime coordinate. The reciprocal p−1 may replace p with o(1) error, and repeated prime coordinates cost o(1). For j≥1 the cumulative limit of a rank j positive measure is continuous. Common-endpoint convergence is therefore uniform on the compact interval; the mass at the unit is handled exactly. The signed limit is the finite series\n\n    Σ_{j≤t} (−1)^j/j! ∫_{u_i≥1,Σu_i≤t} du₁⋯duⱼ/(u₁⋯uⱼ).\n\nIt equals 1 on [0,1], and multiplication of its boundary derivative by t=Σu_i gives tρ′(t)=−ρ(t−1) for t>1. This specifies the Dickman function. Partial summation yields the second relation. Its standard properties give ∫₀^∞ρ(t)dt=e^γ and factorial decay. For the latter, tρ(t)=∫_{t−1}ᵗρ(t′)dt′ and monotonicity suffice. Exclusion of the at most 256 prime divisors of n or nℓ changes these prefixes by o_ε(1), with the same normalization in the log moment. The cost is O_ε(Σ_{p|nℓ}1/(p−1))=o_ε(1) where ℓ>z. For the second displayed prefix one multiplies this absolute bound by O(1/ε).\n\n## The signed transfer\n\nMertens gives g_z log z→S₂e^(−γ), with S₂=2∏_{p>2}(1−1/(p−1)²). Put t₀=.24/ε. The first Type I principal per output is g_z[A_n(U)log k−B_n(U)], with B_n now the logarithmic harmonic prefix. Its difference from S₂ has limsup bounded by a constant times ε⁻¹ρ(t₀)+∫_{t₀}^∞ρ. For the Λ subtraction the main prefix has argument U, and the factor from summing log ℓ/φ(ℓ^j) costs O(L). The exact common-prime term has an extra 1/ℓ and is negligible, since all ℓ>z and the harmonic absolute prefix is O(1/ε). For the short-product subtraction the two main arguments D/ℓ and U are at least U whenever nonempty. The monotonicity of ρ and uniform convergence bound their difference by 2ρ(t₀)+o_ε(1). Its common-prime correction is negligible for the same reason. Thus all remaining principal errors divided by S_b are bounded in limsup by\n\n    O_f( ε⁻¹ρ(.24/ε) + ∫_{.24/ε}^∞ρ + ε⁻²E_{.002/ε} ).\n\nThis expression tends to zero with ε. The original w transfer equals the same prime sum minus S₂Σf, with o(S_b) error. Subtraction proves the theorem.\n\n**Scope in the closing ledger.** After choosing ε sufficiently small one may attempt the fixed-rank, jointly polynomially rough ORIGINAL k and k+2 problem, with prescribed tolerance on its entire sharp complement. The physical semiprimes and all associated positive and negative output terms still occur. A favorable source-specific estimate for the retained core is required for a strictly positive twin reserve. A restriction on k alone inserted into f cannot invoke its original product progression bound.\n\nKoukoulopoulos, The Distribution of Prime Numbers, Theorem 19.1 (two-sided fundamental lemma): https://dms.umontreal.ca/~koukoulo/documents/publications/primes.pdf\nLiu, Park and Song, Theorem 3.2 (underlying bounded-rank prime product progression estimate): https://doi.org/10.1007/s40993-017-0089-3\nLagarias, Euler's constant: Euler's work and modern developments, Theorem 3.5.1 (Dickman integral): https://doi.org/10.1090/S0273-0979-2013-01423-X\n"
+        },
+        "kind": "proof",
+        "method": "analytic",
+        "result_type": "lemma",
+        "scope": "unconditional",
+        "unpaid": []
+      },
+      "prev": "a1b671cb4af089247224ef1888d75042f63d2eefce13b12e79b0555ef87a2a68",
+      "seq": 40,
+      "sha256": "4e45d2040afa811267528653a353d9e1442781f2d1a940e3731d0179c552d628"
+    },
+    {
+      "at": "2026-11-23T15:51:36.947983+00:00",
+      "event": {
+        "actor": "research-coordinator",
+        "candidate": "semiprime-core",
+        "event_id": "late-attempt-semiprime-core-research-coordinator--sync-core",
+        "evidence": {
+          "name": "simultaneous_core.md",
+          "sha256": "2e99eb7d3b1b3a2e7d1a743a04694d0dd0a5c6484cc2febbefaa89d75cf5ae36",
+          "text": "# An explicit higher-rank core for the complete native signed source\n\nFor f=Φ−ψ fix any 0<a<1 in the original FM outside coefficient C_w(f). Let L=log x. The following uses fixed powers and keeps both signs of f. Given any tolerance η>0, there exist first 0<t<1/12 and then 0<e<min(t,ζ) for which\n\n    limsup | C_w(f) − Σ_{x/2<n≤x} f_x(n) μ²(k) R_{x^e}(k)\n                 1_{ω(k)≥3} D_t(k) | / S_b ≤ η,        k=n−2.\n\nUse U=V=x^t, H=x^(.5−2t). For squarefree k let s be the product of its primes ≤U, let m count the prime divisors in (U,H], and define M_s(U)=Σ_{d|s,d≤U}μ(d). The explicit corrected coefficient for arbitrary squarefree k is\n\n    D_t(k) = 1_{k prime} log k + [(m−1)log k + log s] M_s(U).\n\nThus both k and n are polynomially rough with fixed, finite ranks. The prime boundary is restored before projecting to rank ≥3. The theorem pays a controlled signed perturbation and a near-half semiprime population. It supplies no favorable estimate for the remaining signed core.\n\n## Complete identity and legal correction\n\nPut D=U². In this retuned Vaughan identity the short product is empty because both factors must exceed U. Every label ℓ>U has the full complement divisor prefix M_s(U), independent of ℓ, since every divisor d≤U has only primes ≤U. For a composite squarefree k the sum over d|k/ℓ has zero untruncated Möbius sum. The original coefficient on this representation is −log(k/s)M_s(U). When k is prime, restore +log k exactly. Add the centered measurement\n\n    log k · Σ_{U<ℓ≤H,ℓ|k} Σ_{d|k/ℓ,d≤U} μ(d)\n\non the entire source, with both signs of f present. It is exactly m log k M_s(U). For the subpower input mask R_w its total is o_{t,f}(S_b). Indeed the combined modulus ℓd≤x^(.5−t) has a unique largest prime ℓ>U≥d. Fold the input presieve as in uniform_native_transfer.md, at fixed positive margin below 1/2. In the primitive principal after separating n and ℓ, the harmonic rough Möbius prefix is A_{nℓ,w}(U)=O_{B,t}(L^−B) for every B. Other factors cost at most a fixed power of L. The same retuned Vaughan principal is the native genuine prime sum minus S₂Σf+o_{t,f}(S_b), so the original sharp whole outside agrees with this retuned corrected whole outside up to o(S_b).\n\n## Changing the input mask in the presence of the added measurement\n\nAt fixed t rerun sharp_polynomial_presieve.md with z=x^e and sieve-modulus level x^{t/2}. For the original retuned Type I terms e₀≤U²=x^{2t}, and for the probe e₀≤HU=x^(.5−t); with the smooth sieve divisor included every modulus is ≤x^(.5−t/2). The actual profile satisfies the same progression estimate. Absolute costs are O_t(e^−2 E(t/(2e))) in S_b units plus o at fixed e. The harmonic Möbius prefix at U is ρ(t/e)+o_e(1). The additional principal of the probe, including the log k weight, is O_t(e^−1ρ(t/e))+o_{t,e}(1) because Σ_{U<ℓ≤H}1/(ℓ−1) is O_t(1). The omitted squareful inputs with a repeated prime >w or >z are negligible under the divisor bound. The remaining first/second Type I errors tend to zero as e↓0 for this fixed t, exactly as in the original proof. This proves a collective signed approximation of the full corrected source; it uses no claim about separate physical rows surviving a retune.\n\n## Prime, semiprime and higher-rank bookkeeping\n\nFor prime k, D_t(k)=0. If k=pq with p<q, then q>U on the dyadic range for large x. When p≤U, s=p and M_s(U)=0. When U<p≤H, s=1,m=1 for large x, since two primes ≤H cannot reach x/2−2; again D_t(k)=0. When p>H both factors exceed H and D_t(k)=−log k. For this last band bound ∣f∣ by its uniform bound and preserve the original output roughness P⁻(pq+2)>x^ζ. At fixed p the simultaneous upper sieve on q and pq+2 is ≪_ζ x/(pL²) uniformly for H<p≤√x and 0<t<1/12. For instance sieve odd primes through x^{min(ζ,.001)}, and use the ordinary upper large sieve with distribution length x/p≥x^.5. All such sieve primes are distinct from p. Multiplication by log k and summing 1/p over H<p≤√x gives O_f(log((1/2)/(1/2−2t)))S_b+o_t(S_b), with a constant independent of t. For all retained semiprimes the physical sum has now been estimated exactly or absolutely. For rank ≥3, 1<s≤U still implies M_s(U)=0. For s=1 the factor (m−1)log k can carry a substantial signed contribution through f and is retained.\n\nFor the stated η, choose t for the near-half cost and then e for the two analytic perturbations. Finally let x→∞ at these fixed parameters. This order does not allow a subpower cutoff to replace U inside this demonstration. Charges on all higher ranks, including s=1, remain inside D_t. Replacing this explicit higher-rank sum by a bound on its adverse part alone can destroy terminal capacity, as the separate subpower signed restoration calculation demonstrates.\n"
+        },
+        "kind": "attempt",
+        "missing": "Full value of the higher-rank signed source is open.",
+        "next": "Estimate the complete centered rank-four-and-higher expression, jointly retaining the favorable ranks and the adverse at-least-five cohort. Seek a finite term below the recorded cap or a genuine prime/composite advantage.",
+        "result": "For any tolerance, fix t then e and restrict to the explicit compensated signed source on simultaneous polynomially rough input/output, with input rank at least three; pay O_f(t) on semiprimes.",
+        "stage": "sync-core"
+      },
+      "prev": "4e45d2040afa811267528653a353d9e1442781f2d1a940e3731d0179c552d628",
+      "seq": 41,
+      "sha256": "551966f4d9e5707da3ee6ccfc05b935da4278492559800ec59a41b4160a1b590"
+    },
+    {
+      "at": "2026-11-23T15:51:36.948304+00:00",
+      "event": {
+        "actor": "research-coordinator",
+        "candidate": "semiprime-core",
+        "event_id": "late-attempt-semiprime-core-research-coordinator--rank-three",
+        "evidence": {
+          "name": "rank_three_and_owners.md",
+          "sha256": "ea23e20308e4fa0cc315c9ec856512e6d415a4918a78068e878efb14160f5233",
+          "text": "# Paying the adverse rank-three sources in the fixed-power representation\n\nUse the sets, parameter order and corrected coefficient of simultaneous_core.md. Write f=f₊−f₋ where both parts are nonnegative. Define the scalar B=1_prime(k)log k−log(k/s)M_s(U), the raw retuned coefficient, and the pair correction on squarefree k\n\n    P_t(k) = Σ_{p<q≤U, pq>U, pq|k} log(k/(pq))\n                 Σ_{d|k/(pq), d≤U} μ(d).\n\nAll p,q in this formula are primes, with each unordered pair used once. Use the following physical coefficient over every retained k:\n\n    Z_t(k,n) = f₊(n)[B(k)−P_t(k)] − f₋(n)D_t(k).\n\nAt subpower input roughness the total differs from the original signed O by o_t(S_b). With the polynomial mask x^e the additional absolute difference of totals in the iterated limit is arbitrarily small. The fixed-rank-three sector of Z_t is pointwise nonpositive and the adverse rank-two sector costs O_f(t)S_b in limsup. This is an upper decomposition with an explicitly retained favorable companion. No uniform smallness for the remaining ranks follows.\n\nFor the pair correction, pqd≤x^{3t}. The common log k is available by the primitive common-prefix estimate; the other weight −log(pq) is fixed for a marked pair. Multiple pairs at a given modulus cost at most O(L²) representations. In the subpower-mask case absolute squareful deletion and the small-prime fold have arbitrary log savings. After factoring primitive 1/φ(pq), the inner sum with d coprime to npq is A_{npq,w}(U); it has arbitrary log savings uniformly. If squarefreeness is first dropped, the overlap terms at p|d or q|d have an additional factor at most 1/w in the primitive main. At fixed z=x^e the same overlap costs o_e(1) per normalized source. The remaining prefix is ρ(t/e)+o_e(1). For the sieve-envelope error sum the ungrouped primitive harmonic coefficients: allowing every pair z<p,q≤x^t costs O((1+log(t/e))²); the d sum costs O(1/e), and g_z L≪1/e. Under x^{t/2} small-prime sieve level the moduli remain below x^{3.5t}<x^{1/2}. Thus the extra error in S_b units is O_{t,f}((1+log(t/e))²[ρ(t/e)/e + E(t/(2e))/e²])+o_{t,e}(1). The two other transfers are established in simultaneous_core.md.\n\nWrite k=pqr squarefree in the dyadic window for a physical rank-three input. If all factors exceed U, then B=−log k, P_t=0, and D_t=(m−1)log k≥0 since three primes >H would exceed x. If exactly one factor lies below or at U, M_s=0 and P_t=0. If two such primes p,q have pq≤U, their four divisors give M_s=0 and P_t=0. If pq>U, their two singles give M_s=−1, the remaining prime r exceeds H, and B=D_t=P_t=log r. Three small primes cannot form k. Hence f₊(B−P_t)≤0 and −f₋D_t≤0 in every case. On rank two, P_t vanishes. All remaining adverse rank-two weight lies on the same near-half band of simultaneous_core.md; f₊ may supply an additional favorable rank-two term and is retained. On primes Z_t=0. In particular an upper on Ω(k)≥4 without the favorable lower-rank terms is a valid sufficient route if it is independently small enough. Its magnitude must be established, with all constants in t recorded, before it can improve the numerical full bound.\n\n## Finite extensions and their cost\n\nFor any fixed integer J≥2 choose t<min(1/12,1/(3(J+1))). For i=2,…,J add the full-source zero-mean corrections\n\n    Q_i(k)= Σ_{S⊆{p|s}, |S|=i} Σ_{d|k/∏_{p∈S}p, d≤U} μ(d).\n\nOne can start directly from f₊B−f₋D_t and subtract log k·|f| Σ C_i Q_i. For exactly j small primes Q_j=1 and |Q_i|≤binom(j,i)2^{j−i}. The finite coefficient bound |B|,|D_t|≤2^j(2+1/t)log k follows from m≤1/t on this window. Choosing C_j=2^j(2+1/t)+1+Σ_{2≤i<j}C_i binom(j,i)2^{j−i} therefore makes every sector with 2≤j≤J nonpositive. At j=0,1 the correction vanishes and the original sign and near-half semiprime analysis applies. Each probe has modulus ≤x^{(i+1)t}, finite tag multiplicity, zero harmonic Möbius mean with R_w, and at fixed polynomial input cost bounded in S_b units by O_{t,i}((1+log(t/e))^i [ρ(t/e)/e + E(t/(2e))/e²])+o_e(1). Consequently the construction can confine all still-adverse rank ≥3 contributions to inputs with more than J small factors, while carrying every earlier negative term in the complete equality.\n\nThese finite extensions transfer a growing debt. In particular when all input primes exceed U, the favorable f₊ composite row equals −f₊log k and survives every correction unchanged. Its total has magnitude ≫_f S_b/t for small fixed t in the successive large-x limits: the two-sided sieve with spare profile level gives ∑ f₊ R_U log k ∼_{t↓0} S₂e^{−γ}Σf₊/t, ∑f₊ is a positive multiple of S_b, and the genuine prime exception is O_f(S_b) by the complete prime upper on the positive angular profile. Nonsquarefree errors are negligible. Discarding this favorable cohort before estimating the complementary positive terms destroys the scale needed for closure. The open joint inequality is for the appropriately centered, complete sum on the retained physical outputs, at scale S_b.\n"
+        },
+        "kind": "attempt",
+        "missing": "Higher-rank opposing cohorts can be much larger than S_b.",
+        "next": "Estimate the complete centered rank-four-and-higher expression, jointly retaining the favorable ranks and the adverse at-least-five cohort. Seek a finite term below the recorded cap or a genuine prime/composite advantage.",
+        "result": "Pointwise the full rank-three contribution becomes nonpositive in the sign-dependent compensated representation; exact lower-rank favorable terms retained.",
+        "stage": "rank-three"
+      },
+      "prev": "551966f4d9e5707da3ee6ccfc05b935da4278492559800ec59a41b4160a1b590",
+      "seq": 42,
+      "sha256": "3184586bf33b413335d1a25757ea321bacd1861d17df252fa171f8214dd8461a"
+    },
+    {
+      "at": "2026-11-23T15:51:36.948487+00:00",
+      "event": {
+        "actor": "analytic",
+        "candidate": "semiprime-core",
+        "event_id": "late-attempt-semiprime-core-analytic--rank-five",
+        "evidence": {
+          "name": "higher_rank_charge.md",
+          "sha256": "63bb9f9cdd4b25258660dbbfd762360980bf224c9ca7bbf08eabbb16c5347e7c",
+          "text": "# A quantitative adverse population in the fixed-power compensated source\n\nUse the root simultaneous_core representation at \\(U=V=x^t\\), \\(H=x^{1/2-2t}\\), \\(k=n-2\\), and its following rank-three correction. The output \\(f=\\Phi-\\psi\\) is the original bounded signed outside profile. Write \\(s=\\prod_{p\\mid k,\\ p\\le U}p\\) on squarefree \\(k\\), and let \\(m\\) count the primes of \\(k\\) in \\((U,H]\\). Use\n\\[\nM_s=\\sum_{d\\mid s,\\ d\\le U}\\mu(d).\n\\]\nOn composite squarefree inputs the raw coefficient is \\(B=-\\log(k/s)M_s\\) and the corrected negative-channel coefficient is \\(B^\\dagger=[(m-1)\\log k+\\log s]M_s\\). For the positive channel subtract\n\\[\nP(k)=\\sum_{\\substack{p<q\\le U,\\ pq>U\\\\p,q\\ {\\rm prime},\\ pq\\mid k}}\n\\log(k/(pq))\\sum_{\\substack{d\\mid k/(pq)\\\\ d\\le U}}\\mu(d).\n\\]\nThe signed coefficient of interest is \\(f_+(B-P)-f_-B^\\dagger\\), with squarefreeness on \\(k\\) and input mask \\(P^-(k)>x^e\\). The sum over the *entire* physical source of the added double-label probe is negligible with the subpower input mask and has arbitrarily small limiting normalized size after choosing sufficiently small \\(e>0\\) at fixed \\(t\\).\n\nIndeed its combined Type I modulus is \\(pqd\\le x^{3t}\\). The two powers of small label choice are at most logarithmic per factor when merging. At fixed \\(p,q\\) the exact primitive correction has numerator \\(\\sum_{j\\mid pq}\\mu(j) A_{npq,w}(U/j)/j\\) and denominator \\(\\varphi(pq)\\); the \\(j=1\\) term is arbitrarily small by the uniform Möbius harmonic lemma, and the \\(j>1\\) errors have at least one divisor \\(>w\\). For \\(z=x^e\\) the uniform limiting \\(j=1\\) numerator is \\(\\rho(t/e)+o_e(1)\\); shared primes now exceed \\(z\\). Factoring out the sieve logarithm \\(\\log k\\), the harmonic cost of the named rough primes is \\(O((1+\\log(t/e))^2)\\). The ordinary lower/upper fundamental sieve bracket, as in sharp_polynomial_presieve, gives an additional vanishing \\(O_t((1+\\log(t/e))^2 e^{-2}E_{t/(2e)})\\) after \\(x\\to\\infty\\) and \\(e\\downarrow0\\). Here \\(e^{-2}\\) denotes \\(1/e^2\\), where \\(e\\) is the fixed roughness exponent. The convention for the Dickman function yields a total vanishing cost in this order. The source alteration is therefore legal on the complete signed sum.\n\n## The rank-three sectors\n\nIf there are no small primes, \\(M_s=1\\). At rank three at least one prime lies below \\(H\\), since \\(H^3>x\\) for all fixed \\(t<1/12\\). Thus \\(B^\\dagger=(m-1)\\log k\\ge0,\\ B-P=-\\log k<0\\). A single small prime gives \\(M_s=0=P\\). With two smalls \\(p<q\\), the remaining \\(r=k/(pq)\\) exceeds \\(H\\). If \\(pq\\le U\\) then \\(M_s=0=P\\). Otherwise \\(M_s=-1\\), \\(P=\\log r=B\\), and \\(B^\\dagger=\\log r>0\\). Three small primes are impossible on this window. Hence all rank-three summands of both channels together are nonpositive. Rank-two and prime inputs have no pair tag. The remaining near-half semiprime error is as in simultaneous_core.\n\n## A lower bound for an adverse cohort of rank at least five\n\nFor every sufficiently small fixed \\(t>0\\) and every \\(0<e<t/4\\), consider the actual squarefree \\(k\\) in the physical window with exactly two primes \\(\\le U\\), denoted \\(p,q\\), and the following additional conditions:\n\n\\[\nU^{1/4}<p\\le U^{1/2},\\quad U^{3/4}<q\\le U,\\qquad\n\\omega_{(U^2,U^4]}(k)\\ge1,\\quad \\omega_{(U^4,U^8]}(k)\\ge1.\n\\tag{1}\n\\]\n\nAll inputs satisfy \\(P^-(k)>x^e\\), \\(s=pq>U\\), \\(M_s=-1\\), \\(P=\\log(k/(pq))=B\\), and \\(m\\ge2\\), since \\(U^8<H\\). Thus the complete signed summand gives\n\\[\nf_+(B-P)-f_-B^\\dagger\n=f_-(n)[(m-1)\\log k+\\log(pq)]\\ \\ge\\ f_-(n)\\log k\n\\tag{2}\n\\]\npointwise on this population. It has at least five prime factors: even the product of any four required primes taking their displayed maxima is \\(\\le U^{13.5}<x/2-2\\) once \\(t\\) is sufficiently small.\n\nLet \\(\\lambda=\\log2,\\ \\lambda_q=\\log(4/3)\\). If \\(\\mathcal Q(t,e)\\) denotes the sum of the full left side of (2) on (1), then\n\\[\n\\liminf_{x\\to\\infty}\\frac{\\mathcal Q(t,e)}{S_b}\n\\ \\ge\\ \\frac{e^{-\\gamma_E}}{t}\\Pi(f_-)\n  \\frac{(1-\\theta_t)^2}{1+\\theta_t}\\,\n  \\lambda\\,\\lambda_q \\left(\\frac{\\lambda}{1+\\lambda}\\right)^2\n\\ >\\ \\frac{0.021}{t}.\n\\tag{3}\n\\]\nHere \\(\\theta_t\\to0\\) as \\(t\\downarrow0\\) and all parameters are fixed before \\(x\\to\\infty\\). The factor \\(\\Pi(f_-)>1.64\\) is the genuine balanced-triple lower bound in full_certificate_comparison. Formula (3) is an adverse contribution in the compensated upper ledger.\n\nTo prove it, take the positive measure of ordinary outputs with weight \\(f_-(n)\\), restricted to these exactly two small primes \\(p,q\\) but before imposing the last two conditions in (1). Write \\(N_1,N_2\\) for the two medium band counts and \\(Y=N_1N_2\\). Let \\(V_U=\\prod_{2<r\\le U}(1-1/(r-1))\\). The first and second moments of \\(Y\\), before applying the prime-input logarithm, satisfy\n\\[\n\\begin{aligned}\n\\sum f_-\\,1_{p,q\\ \\mathrm{as\\ above}}Y\n&\\ge(1-\\theta_t+o_t(1))V_U\\sum f_-\\,\\lambda\\lambda_q\\,\\lambda^2,\\\\\n\\sum f_-\\,1_{p,q\\ \\mathrm{as\\ above}}Y^2\n&\\le(1+\\theta_t+o_t(1))V_U\\sum f_-\\,\\lambda\\lambda_q\\,(\\lambda+\\lambda^2)^2 .\n\\end{aligned}\n\\tag{4}\n\\]\n\nFor each moment expand the named prime labels, using \\(N_i^2=N_i+2\\binom{N_i}{2}\\). The product \\(d\\) includes \\(p,q\\) and up to two primes from each medium band. Require \\(d\\mid k\\) and \\(P^-(k/d)>U\\), exactly the desired absence of other small primes. This also excludes a second power of a named small prime. Deleting all other squareful inputs costs \\(O_t(x^{1-t/4}L^C)\\): on the exact population every factor exceeds \\(x^{t/4}\\), and all label multiplicities at fixed \\(t\\) are bounded. Insert fixed fundamental-lemma lower/upper divisor weights of level \\(x^{1/4}\\) on the cofactor, with odd sieve primes \\(\\le U\\), local densities \\(1/(r-1)\\), \\(s_0=1/(4t)\\). Their Euler relative error is \\(\\theta_t=O(s_0^{-s_0/2})\\). These same weights may be used for every choice of the marked \\(d\\).\n\nThe modulus \\(dc\\) in the progression for each cofactor sieve divisor \\(c\\) is at most \\(x^{1/4+25.5t}\\), hence below \\(x^{.49}\\) by a fixed margin for sufficiently small \\(t\\). It is odd and the residue of the original output is 2. Each folded modulus has at most a fixed power of \\(L\\) representations (at most six named primes). Thus the native primitive product-distribution theorem applies to the summed signed sieve errors at arbitrary logarithmic precision. Removing the primitive exclusion \\((n,dc)>1\\) costs \\(O(x^{-\\delta}L^C)\\) per output after summing harmonic weights, since each prime of an active \\(n\\) exceeds \\(x^\\delta\\) and the input ranks/label counts are bounded. Replacing \\(\\varphi(dc)\\) by \\(\\varphi(d)\\varphi(c)\\) costs \\(O_t(x^{-t/4}L^C)\\) per output: only \\(p,q\\) can occur in both \\(d\\) and \\(c\\), and the absolute reciprocal cost of a shared fixed prime is \\(O(L^C/x^{t/4})\\). The upper/lower main terms now factor. The band sums \\(\\sum_{r}1/(r-1)\\) tend to \\(\\lambda,\\lambda_q,\\lambda,\\lambda\\) respectively, uniformly integrable on these fixed exponent intervals. Distinctness in the medium-band diagonal costs \\(o_t(1)\\) as \\(\\sum 1/(r-1)^2=o_t(1)\\). This proves (4).\n\nPositive-measure Cauchy gives the weight of the event \\(Y>0\\) at least the square of the first moment divided by the second. Multiply by \\(\\log k=L+O(1)\\), and use \\(V_U\\sim\\mathfrak S_2 e^{-\\gamma_E}/(tL)\\) and \\(\\sum f_-\\sim\\Pi(f_-)x/(2L)\\). This proves the first inequality in (3). For all sufficiently small \\(t\\) the fixed sieve constant permits \\(\\theta_t\\le 1/10\\). The elementary numerical bounds \\(e^{-\\gamma_E}>.55,\\ \\log2>.69,\\ \\log(4/3)>.287\\) yield a coefficient at least\n\\[\n\\tfrac{55}{100}\\tfrac{164}{100}\\tfrac{81}{110}\n\\tfrac{69}{100}\\tfrac{287}{1000}\\left(\\tfrac{69}{169}\\right)^2\n=\\frac{313110797643}{14280500000000}>.021 .\n\\]\nFor example \\(\\log 2>.693\\) and \\(\\log(4/3)>.287\\) follow from three and two positive terms of their atanh series. Also \\(\\gamma_E\\le H_{32}-5\\log2<.594<\\log(20/11)\\), using \\(H_{32}<4.059\\) and the same two-term lower series for \\(\\log(20/11)\\).\n\nFor fixed \\(t\\), choose \\(e\\) sufficiently small that the complete signed transfers have normalized error at most one. The complete corrected source then remains \\(O_f(S_b)\\) with an upper constant independent of sufficiently small \\(t\\), because the original outside source has a uniform finite upper. Thus the complementary physical population must contain a favorable net of order \\(S_b/t\\) as \\(t\\downarrow0\\). The rank-three elimination preserves this substantial cancellation requirement. Its nonpositive discarded sectors cannot supply a positive terminal reserve when their compensating charges are omitted.\n"
+        },
+        "kind": "attempt",
+        "missing": "Full finite balance between this positive cohort and its negatively weighted complement.",
+        "next": "Estimate the complete centered rank-four-and-higher expression, jointly retaining the favorable ranks and the adverse at-least-five cohort. Seek a finite term below the recorded cap or a genuine prime/composite advantage.",
+        "result": "The actual compensated rank-at-least-five population in four prescribed prime ranges carries an adverse lower bound greater than .021 S_b/t at small fixed t.",
+        "stage": "rank-five"
+      },
+      "prev": "3184586bf33b413335d1a25757ea321bacd1861d17df252fa171f8214dd8461a",
+      "seq": 43,
+      "sha256": "b223734178a2c12701b2ec50f68d46811c9e6f1a1387067b524871beb38310a9"
+    },
+    {
+      "at": "2026-11-23T15:51:36.948985+00:00",
+      "event": {
+        "actor": "harness",
+        "candidate": "semiprime-core",
+        "event_id": "late-attempt-semiprime-core-harness--finite-tags",
+        "evidence": {
+          "name": "finite_small_factor_elimination.md",
+          "sha256": "89d749aa085d1f5fcc03e2e06b60cab8c59529389854657bdfc308c91f3caf41",
+          "text": "# Concentrating the complete signed upper on inputs with arbitrarily many small prime factors\n\nFix a positive integer $J$ and $0<t<1/[6(J+2)]$. Set $Y=x^t$, $H=x^{1/2-(J+2)t}$, and $L=\\log x$. Write $k=n-2$ and use the dyadic interval, $S_b$, $S^\\circ$, native signed outside $W(f)$, squarefree physical inputs, and $w=\\exp(L^a)$ of *Removing the true semiprime inputs from the complete signed source*. Here $f=f_+-f_-$, both unsigned parts satisfying its bounded-rank profile progression estimate. The original sharp large coefficient and output cutoffs are preserved in $W(f)$.\n\nFor actual squarefree $k$ let $S=\\{p\\mid k:p\\le Y\\}$ and $m=\\#\\{p\\mid k:Y<p\\le H\\}$. For any $T\\subseteq S$ define\n$$\n M(T)=\\sum_{A\\subseteq T,\\,\\prod A\\le Y}(-1)^{|A|},\\qquad\n h(T)=\\sum_{p\\in T}\\log p .\n$$\nFor $v=0,1$ write $D_v(T)=[(vm-1)\\log k+h(T)]M(T)$. The quantities $m,k,Y$ remain the actual ones even when the argument of $D_v$ is a proper subset. For every $1\\le|T|\\le J$ set recursively\n$$\n c_v(T)=-D_v(T)-\n   \\sum_{\\varnothing\\ne A\\subsetneq T}c_v(A)M(T\\setminus A).\n\\tag{1}\n$$\nPut\n$$\n b_{v,J}(k)=1_{\\mathbb P}(k)\\log k+D_v(S)\n   +\\sum_{\\varnothing\\ne T\\subseteq S,\\,|T|\\le J}\n           c_v(T)M(S\\setminus T).\n\\tag{2}\n$$\nFor fixed $J,t$ we have\n$$\n W(f)=\\sum_{k+2\\in I}R_w(k)\\mu^2(k)\n       [ f_+(k+2)b_{0,J}(k)-f_-(k+2)b_{1,J}(k)]+o_{J,t,f}(S_b).\n\\tag{3}\n$$\nFor $z=x^\\epsilon$ define $T_{>J,z}$ to be the right side of (3) restricted to $|S|>J$, with $R_w$ replaced by $R_z$ and the same squarefree restriction. For any $\\eta>0$ one can choose $t$ and then $\\epsilon\\ll\\min(t,\\zeta)$, both fixed before the limit, so that\n$$\n \\limsup_{x\\to\\infty}\\frac{W(f)-T_{>J,z}}{S_b}\\le\\eta .\n\\tag{4}\n$$\nEvery input in $T_{>J,z}$ is squarefree, has at most $\\lfloor1/\\epsilon\\rfloor$ prime factors, and at least $J+1$ of those lie in $(x^\\epsilon,x^t]$. The two physical signs and all of their residual terms on this set are included.\n\n## Primitive source accounting\n\nWithout the subset correction, (3) is the combination of the retuned base on $f_+$ and the single-marker retuned base on $f_-$. Both have exactly the same original prime-input term and primitive $-\\mathfrak S_2\\sum f_\\pm$. The proof in the preceding paper also applies to this smaller $H$.\n\nOn inputs with $R_w(k)=1$ each selected prime in (1) exceeds $w$. The coefficient $c_v(T)$ depends only on the displayed factors of $T$, on $\\log k$, and affinely on $m$. It is a sum of expressions $A(T)\\log k+B(T)m\\log k+E(T)$, where $|A|+|B|+|E|/L\\le C_J$ with a finite constant depending on $J$ alone. For example an inductive majorant is $C_0=0$ and\n$$\n C_j=3\\cdot2^j+\\sum_{i=1}^{j-1}\\binom ji 2^{j-i} C_i.\n$$\nThe term $h(T)\\le L$ on every physical configuration and every grouped modulus below. Constants from this recursion can grow rapidly.\n\nThe complementary prefix $M(S\\setminus T)$ expands into $e\\mid k/\\prod T$, $e\\le Y$, with coefficient $\\mu(e)$ and $(e,\\prod T)=1$. On expanding the optional $m$, a label $Y<p\\le H$ is distinct from all chosen small factors. A grouped modulus before the presieve is\n$$\n d=e\\prod_{r\\in T}r\\quad\\text{or}\\quad\n d=p e\\prod_{r\\in T}r\\le H Y^{J+1}=x^{1/2-t}.\n$$\nThe possible medium label is the unique factor of $d$ above $Y$; at most $O_J(L^J)$ identifications of $T$ share a modulus. Thus all errors of the bounded-rank primitive progression result fit with a fixed log loss at fixed $J$. Restoring subpower $R_w$ costs its usual arbitrarily accurate Bonferroni bracket, and the removal of rough nonsquarefree inputs uses Cauchy–Schwarz with the polynomial-in-$L$ multiplicity and $O(x/w)$ exceptions.\n\nIn the principal part the remaining Möbius sum $A_w(Y)$ excludes primes of $n$, $T$, and the optional $p$. The change in the full prefix caused by these exclusions is $O_J(L(1/w+x^{-\\zeta}))$. The prime harmonic of each of the $J$ chosen factors costs $O(\\log L)$, that of the optional medium factor is $O_t(1)$, and the logarithmic multiplier is at most $C_J L$. Consequently every added complete correction in (2) has mean $o_{J,t}(S_b)$ against either actual output profile. This proves (3). For ungrouped nonsquarefree majorants one can bound the number of choices of $T$ by $O_J(L^J)$ and the prefix terms by $\\tau(k)$, which suffices with the same squareful deletion.\n\n## The zero-small and nonempty strata\n\nOn true prime $k$ the medium and small sets are empty, so (2) gives zero from $\\log k-\\log k$. On composites with $1\\le|S|\\le J$, the last term with $T=S$ is $c_v(S)$, since $M(\\varnothing)=1$. Recursion (1) cancels all displayed terms of (2) exactly. No intermediate sign bound is invoked.\n\nOn composite $S=\\varnothing$, $b_{0,J}=-\\log k$, hence $f_+b_{0,J}\\le0$. For $\\omega(k)\\ge3$, $H^3>x$ ensures $m\\ge1$, hence $-f_-b_{1,J}=-f_-(m-1)\\log k\\le0$. If $k=pq$ with $p<q$, $S=\\varnothing$, and $p\\le H$, its larger factor exceeds $H$ eventually and $m=1$. The negative channel is zero. Only $p>H$ can give positive mass there. The factor-product PNT, its level below one half and the upper sieve on $n=k+2$ prove that the normalized limsup of this last adverse mass is at most\n$$\n \\|f_-\\|_\\infty e^{-\\gamma}F(\\theta/\\zeta)\\zeta^{-1}\n \\log\\frac{1/2+(J+2)t}{1/2-(J+2)t},\n$$\nfor fixed $\\zeta<\\theta<1/2$. This is $O_{f,J}(t)$. The complete zero-small pieces above are retained in the equality (3). Only the upper (4) can discard their favorable contributions.\n\n## Polynomial input presieve\n\nTo transfer the added rows to $R_z$ use the fundamental lemma with auxiliary level $x^{t/2}$, as in the preceding paper. Every pre-sieve modulus is $\\le x^{1/2-t}$. For each of the $J$ chosen variables between $z$ and $Y$ the additional absolute harmonic is $O(1+\\log(t/\\epsilon))$. The optional medium harmonic is at most $O_t(1)$. Their collective primitive per unit $S_b$ is\n$$\n O_{J,t,f}\\!\\big((1+\\log(t/\\epsilon))^J\n       [\\epsilon^{-1}\\rho(t/\\epsilon)\n                +\\epsilon^{-2}E_{t/(2\\epsilon)}]\\big)+o_{J,t,\\epsilon,f}(1).\n$$\nHere one uses the rough harmonic Möbius prefix $A_z(Y)=\\rho(t/\\epsilon)+o_\\epsilon(1)$, the absolute $e$ harmonic $O(1/\\epsilon)$, and $g_zL\\ll1/\\epsilon$. The factors removed by coprimality are now $>z$ or polynomial output primes, which cost $o_{J,t,\\epsilon}(1)$ at fixed $\\epsilon$. Marked-modulus coincidences are counted through the ungrouped absolute harmonic majorant in the main terms and through the $O_J(L^J)$ bound only for the progression discrepancies. No growing power of $L$ multiplies the fixed fundamental-lemma error. The retuned base also pays its Dickman tail as in the preceding paper. All these errors tend to zero at fixed $J,t$ as $\\epsilon\\downarrow0$. For (4) first make the true semiprime cost less than $\\eta/2$, then pay the presieve replacement with the remaining tolerance.\n\nConstants, modulus headroom and prime thresholds depend on $J$. Inequality (4) alone gives no uniform integrability of its compensated high-order terms, no bound after taking $J\\to\\infty$ with the other cutoffs fixed, and no positive advantage on a genuine-prime class. The unknown quantity is the ordinary signed physical sum $T_{>J,z}$. Any uses at terminal scale must evaluate that sum or retain its full cost.\n\nThe distribution and sieve theorem numbers and primary references are in *Removing the true semiprime inputs from the complete signed source*. The subpower moment method in *The first small-factor strata of the compensated signed source* motivates the finite-subset expansion. Here its corrected sharp coefficients, polynomial moduli, two different output channels, and fixed-accuracy order of limits are explicit.\n"
+        },
+        "kind": "attempt",
+        "missing": "The growing high-occupancy debt and favorable empty stratum cannot be discarded.",
+        "next": "Estimate the complete centered rank-four-and-higher expression, jointly retaining the favorable ranks and the adverse at-least-five cohort. Seek a finite term below the recorded cap or a genuine prime/composite advantage.",
+        "result": "Finite recursive subset corrections annihilate each nonempty low-occupancy stratum through any fixed J on the actual input.",
+        "stage": "finite-tags"
+      },
+      "prev": "b223734178a2c12701b2ec50f68d46811c9e6f1a1387067b524871beb38310a9",
+      "seq": 44,
+      "sha256": "2f8d844c65b62e4dcd579b6d4d9f72b2ddecef0f68b163747483df23260d69be"
+    },
+    {
+      "at": "2026-11-23T15:51:36.949176+00:00",
+      "event": {
+        "action": "deepen",
+        "actor": "research-coordinator",
+        "candidate": "semiprime-core",
+        "event_id": "late-decision-semiprime-core-research-coordinator--review",
+        "kind": "decision",
+        "next": "Estimate the complete centered rank-four-and-higher expression, jointly retaining the favorable ranks and the adverse at-least-five cohort. Seek a finite term below the recorded cap or a genuine prime/composite advantage.",
+        "reason": "Grade by the finite term of the signed sum after paying the large opposing terms, not by the number of removed ranks."
+      },
+      "prev": "2f8d844c65b62e4dcd579b6d4d9f72b2ddecef0f68b163747483df23260d69be",
+      "seq": 45,
+      "sha256": "1940f5080f677f0f03045b984438dd564ebed61608fd65377aa4721cd70b564d"
+    },
+    {
+      "at": "2026-11-23T15:51:36.949226+00:00",
+      "event": {
+        "action": "park",
+        "actor": "research-coordinator",
+        "candidate": "shifted-sign",
+        "event_id": "late-decision-shifted-sign-research-coordinator--review",
+        "kind": "decision",
+        "next": "Reopen upon an unmarked native rank-one source retaining a paid terminal splice.",
+        "reason": "Known and new marked projections vanish on genuine twins and on a positively populated unmarked sector with high-rank composites."
+      },
+      "prev": "1940f5080f677f0f03045b984438dd564ebed61608fd65377aa4721cd70b564d",
+      "seq": 46,
+      "sha256": "d9e6dae3084f8287b99a2eea237f247b876d3e9b6880aa48bf93a1edf9d54542"
+    },
+    {
+      "at": "2026-11-23T15:51:36.949268+00:00",
+      "event": {
+        "action": "park",
+        "actor": "research-coordinator",
+        "candidate": "scalar-prefix",
+        "event_id": "late-decision-scalar-prefix-research-coordinator--review",
+        "kind": "decision",
+        "next": "Use genuinely joint source-dependent coefficients.",
+        "reason": "Scalar rowwise positivity requires a comparator tax exceeding the current prime-side cap."
+      },
+      "prev": "d9e6dae3084f8287b99a2eea237f247b876d3e9b6880aa48bf93a1edf9d54542",
+      "seq": 47,
+      "sha256": "fd2be55d6696fd592a565a5246ca4d2f1b7eadc6677e5ade7186cd47ecde40c0"
+    },
+    {
+      "at": "2026-11-23T15:51:36.949307+00:00",
+      "event": {
+        "action": "deepen",
+        "actor": "referee",
+        "candidate": "sharp-polynomial-input",
+        "event_id": "late-decision-sharp-polynomial-input-referee--review",
+        "kind": "decision",
+        "next": "Apply its ordered limits to the complete centered higher-rank expression.",
+        "reason": "Independent signed transfer passed on the exact native coefficient and permits a fixed-rank joint target."
+      },
+      "prev": "fd2be55d6696fd592a565a5246ca4d2f1b7eadc6677e5ade7186cd47ecde40c0",
+      "seq": 48,
+      "sha256": "afb64db384afd6fc0ce1782d91e7bc6484aa42fca97ee81141633a8742abeae0"
+    },
+    {
+      "at": "2026-11-23T15:51:37.084124+00:00",
+      "event": {
+        "actor": "alternative",
+        "candidate": "refined-full-outside",
+        "event_id": "late-review-refined-full-outside-alternative-adverse-review",
+        "finding": "Re-derived rank-four collar and log bounds, rational upper and source identities, confirmed 1.275648716845111 with all errors paid.",
+        "kind": "review",
+        "proof_hash": "ea64bf151519e21020ee11519bae6949b25aa3d55e179c33067d126883fb501b",
+        "role": "adverse",
+        "verdict": "pass"
+      },
+      "prev": "afb64db384afd6fc0ce1782d91e7bc6484aa42fca97ee81141633a8742abeae0",
+      "seq": 49,
+      "sha256": "5eb65341f68e7ce6caeb0a10e78aae606e66287db887381438de6c7fbcd184f5"
+    },
+    {
+      "at": "2026-11-23T15:51:37.084335+00:00",
+      "event": {
+        "actor": "registry",
+        "candidate": "refined-full-outside",
+        "event_id": "late-review-refined-full-outside-registry-source-review",
+        "finding": "Verified historic and new complete caps are on identical native source and S_b; the smaller earlier number is only a sufficient threshold.",
+        "kind": "review",
+        "proof_hash": "ea64bf151519e21020ee11519bae6949b25aa3d55e179c33067d126883fb501b",
+        "role": "source",
+        "verdict": "pass"
+      },
+      "prev": "5eb65341f68e7ce6caeb0a10e78aae606e66287db887381438de6c7fbcd184f5",
+      "seq": 50,
+      "sha256": "0edf14151296efa697297608b9b1c4c9ce757f19058f7a5aa5d3cfd8ead4c16b"
+    },
+    {
+      "at": "2026-11-23T15:51:37.084481+00:00",
+      "event": {
+        "actor": "referee",
+        "candidate": "refined-full-outside",
+        "event_id": "late-review-refined-full-outside-referee-terminal-review",
+        "finding": "Verified two-sided ledger and actual box once. O alone is bounded above by positivity; a zero-twin solution still satisfies the inequalities.",
+        "kind": "review",
+        "proof_hash": "ea64bf151519e21020ee11519bae6949b25aa3d55e179c33067d126883fb501b",
+        "role": "terminal",
+        "verdict": "pass"
+      },
+      "prev": "0edf14151296efa697297608b9b1c4c9ce757f19058f7a5aa5d3cfd8ead4c16b",
+      "seq": 51,
+      "sha256": "b1c2a1a2d0838f93e940490d5c53a51b37d3cadbbf1492cff0be928c9c26fc70"
+    },
+    {
+      "at": "2026-11-23T15:51:37.084533+00:00",
+      "event": {
+        "actor": "alternative",
+        "candidate": "sharp-polynomial-input",
+        "event_id": "late-review-sharp-polynomial-input-alternative-adverse-review",
+        "finding": "Checked signed fundamental-lemma envelope, fixed-modulus factorization and uniform fixed-rank Dickman limit. Broad varying tests do not refute this native result.",
+        "kind": "review",
+        "proof_hash": "9c928f5738ee76aaa5ec4d5eaddcf6be031ab5a164b22749e4e355a44ab2bb00",
+        "role": "adverse",
+        "verdict": "pass"
+      },
+      "prev": "b1c2a1a2d0838f93e940490d5c53a51b37d3cadbbf1492cff0be928c9c26fc70",
+      "seq": 52,
+      "sha256": "4028242674fd55afaae01277bf1f07402954eba23dc65dc62f1b6586e06d3d52"
+    },
+    {
+      "at": "2026-11-23T15:51:37.084577+00:00",
+      "event": {
+        "actor": "outside",
+        "candidate": "sharp-polynomial-input",
+        "event_id": "late-review-sharp-polynomial-input-outside-source-review",
+        "finding": "Checked complete sharp owner source, squarefree restriction, genuine prime boundary and distinct two orders of limits.",
+        "kind": "review",
+        "proof_hash": "9c928f5738ee76aaa5ec4d5eaddcf6be031ab5a164b22749e4e355a44ab2bb00",
+        "role": "source",
+        "verdict": "pass"
+      },
+      "prev": "4028242674fd55afaae01277bf1f07402954eba23dc65dc62f1b6586e06d3d52",
+      "seq": 53,
+      "sha256": "7e460940871a25e37dceac4409b1a3395678eb45f0405f672e800e2a171b57f6"
+    },
+    {
+      "at": "2026-11-23T15:51:37.084729+00:00",
+      "event": {
+        "actor": "referee",
+        "candidate": "sharp-polynomial-input",
+        "event_id": "late-review-sharp-polynomial-input-referee-terminal-review",
+        "finding": "Scoped lemma passed. It gives a collective tolerance, no favorable constant and no claim about absolute rows.",
+        "kind": "review",
+        "proof_hash": "9c928f5738ee76aaa5ec4d5eaddcf6be031ab5a164b22749e4e355a44ab2bb00",
+        "role": "terminal",
+        "verdict": "pass"
+      },
+      "prev": "7e460940871a25e37dceac4409b1a3395678eb45f0405f672e800e2a171b57f6",
+      "seq": 54,
+      "sha256": "e8da79b0c63e0416a27852341de91e7d2d8a00497335f33cc8ba82ad15082ab0"
+    },
+    {
+      "at": "2026-11-23T15:51:37.084812+00:00",
+      "event": {
+        "actor": "research-coordinator",
+        "candidate": "refined-full-outside",
+        "event_id": "late-accept-refined-full-outside-research-coordinator--review",
+        "finding": "Strict complete native-source upper improvement upon the established comparator. The positive twin-prime reserve remains unknown.",
+        "goal": "S2",
+        "kind": "accept",
+        "proof_hash": "ea64bf151519e21020ee11519bae6949b25aa3d55e179c33067d126883fb501b"
+      },
+      "prev": "e8da79b0c63e0416a27852341de91e7d2d8a00497335f33cc8ba82ad15082ab0",
+      "seq": 55,
+      "sha256": "9067aa31a5ee291f62591533f3579f149bfb3a104c6fe511ac6b052dfed6504e"
+    },
+    {
+      "at": "2026-11-23T15:51:37.085209+00:00",
+      "event": {
+        "actor": "research-coordinator",
+        "candidate": "semiprime-core",
+        "event_id": "late-checkpoint-semiprime-core-research-coordinator--review",
+        "kind": "checkpoint",
+        "latest_paper_threshold_safe": "0.3568806589006399637950",
+        "latest_paper_upper_safe": "1.275648716845111",
+        "live_status": "S2 verified. S1 and S3 open. The actual analytic statements are paper-level; the native Lean endpoint has explicit inputs.",
+        "native_lean_threshold": "0.317014679964",
+        "next": "Estimate the complete centered rank-four-and-higher expression, jointly retaining the favorable ranks and the adverse at-least-five cohort. Seek a finite term below the recorded cap or a genuine prime/composite advantage.",
+        "status": "ACTIVE",
+        "unattended_policy": "Continue substantive in-scope research. Only independently verified S1 closes the programme."
+      },
+      "prev": "9067aa31a5ee291f62591533f3579f149bfb3a104c6fe511ac6b052dfed6504e",
+      "seq": 56,
+      "sha256": "936db091da82e1993604458cec7c7f03d1c8c2fc64f543b77ef3028d409b0b6d"
+    },
+    {
+      "at": "2026-11-23T15:59:13.843203+00:00",
+      "event": {
+        "actor": "research-coordinator",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "compact_declarations": 216,
+        "conclusion": "success",
+        "declaration": "REAL1B.FM.Analytic.infinite_of_signed_estimates",
+        "event_id": "native-ci-45198042124-kernel-success",
+        "evidence": {
+          "name": "ci.json",
+          "sha256": "bd15a75ac2a2f43d8ae4be93c35791c635a7d7fe4016bef7a0f9f5d7687f407f",
+          "text": "{\n  \"source_commit\": \"43facedcf40b2f998aa47f7198d6b9b5feb5b792\",\n  \"repository\": \"RexHannes/twin-prime-proof-search\",\n  \"workflow\": \"REAL 1B native Lean replay\",\n  \"branch\": \"real1b-gold467-analytic\",\n  \"declaration\": \"REAL1B.FM.Analytic.infinite_of_signed_estimates\",\n  \"run_url\": \"https://github.com/RexHannes/twin-prime-proof-search/actions/runs/45198042124\",\n  \"job_url\": \"https://github.com/RexHannes/twin-prime-proof-search/actions/runs/45198042124/job/137773683526\",\n  \"job_finished_utc\": \"2026-11-23T15:43:51Z\",\n  \"conclusion\": \"success\",\n  \"native_declarations\": 240,\n  \"compact_declarations\": 216,\n  \"axioms\": [\n    \"propext\",\n    \"Classical.choice\",\n    \"Quot.sound\"\n  ],\n  \"lean_toolchain\": \"leanprover/lean4:v4.28.0\",\n  \"mathlib_commit\": \"8f9d9cff6bd728b17a24e163c9402775d9e6a365\",\n  \"log_extract\": [\n    \"2026-11-23T15:43:49.4801758Z 'REAL1B.FM.Analytic.infinite_of_signed_estimates' depends on axioms: [propext, Classical.choice, Quot.sound]\",\n    \"2026-11-23T15:43:49.4802515Z Native kernel verified 240 declarations including the complete integral enclosure.\",\n    \"2026-11-23T15:43:49.4893242Z Compact replay verified 216 declarations. SHA-256 5804d68e579d47e9bba3ba0b287179f839be765ebda9aacdcd761d7daa19f76e\"\n  ],\n  \"scope\": \"Native conditional endpoint and integral enclosure at the named base commit. This run did not check the new manuscript's analytic hypotheses or stronger inequalities.\"\n}\n"
+        },
+        "job_url": "https://github.com/RexHannes/twin-prime-proof-search/actions/runs/45198042124/job/137773683526",
+        "kind": "native_ci",
+        "native_declarations": 240,
+        "run_url": "https://github.com/RexHannes/twin-prime-proof-search/actions/runs/45198042124",
+        "source_commit": "43facedcf40b2f998aa47f7198d6b9b5feb5b792"
+      },
+      "prev": "936db091da82e1993604458cec7c7f03d1c8c2fc64f543b77ef3028d409b0b6d",
+      "seq": 57,
+      "sha256": "7bff74b78cdd20e6ea455eba68f3a56cb0453557a8cef085803eeb2d8073c417"
+    },
+    {
+      "at": "2026-11-23T16:05:10.966216+00:00",
+      "event": {
+        "actor": "research-coordinator",
+        "event_id": "post-center-0",
+        "id": "empty-small-prime-boundary",
+        "kind": "candidate",
+        "mechanism": "Direct joint comparison of true prime masses on the positive and negative native output profiles after paying the entire nonempty small-factor complement.",
+        "next": "Attack the remaining unmarked prime-boundary covariance Delta_plus minus Delta_minus for actual shifted primes, preserving both angular profiles. Prove a strict independent net upper below 0.3568806589006399637950 or improve the certified complete upper. Continue until independently verified unconditional infinitude.",
+        "parents": [
+          "semiprime-core",
+          "sharp-polynomial-input"
+        ],
+        "source": "Original native f=Phi−psi on physical shifted primes, remaining after complete ordinary centering of all nonempty small-factor inputs.",
+        "statement": "Prove a genuinely stronger upper on the unmarked prime-input covariance A(f)/S_b minus Pi(f), on the same full native shifted profiles."
+      },
+      "prev": "7bff74b78cdd20e6ea455eba68f3a56cb0453557a8cef085803eeb2d8073c417",
+      "seq": 58,
+      "sha256": "5cf676fc431463ebd085d962ec1b5861f67804dde792ad74a45a935fbeb679ef"
+    },
+    {
+      "at": "2026-11-23T16:05:10.966505+00:00",
+      "event": {
+        "actor": "research-coordinator",
+        "candidate": "empty-small-prime-boundary",
+        "event_id": "post-center-1",
+        "evidence": {
+          "name": "centered_charge_payment.md",
+          "sha256": "9a1baa11c2d973a4a39b2eba7871908307e3ab19e8c8ba01e1f27e0e20d153e2",
+          "text": "# A payment at the terminal scale on the actual four-band adverse population\n\nThis result concerns the physical outside profile f=Φ−ψ and the sign-dependent representation in rank_three_and_owners.md. Write I={k:x/2<k+2≤x}, X=x/2, L=log x and S_b∼S₂X/L. For bounded native h let Π(h) be its angular profile, so Σ_{k∈I}h(k+2)∼Π(h)X/L when Π(h)>0. In particular Π(f₋)>1.64. Let 0<η<1/6, U=x^t, H=x^{1/2−η}, t small enough that 8t<min(ζ,1/2−η), and z=x^e with 0<e<t/4. Enlarging the gap below the half threshold is done in the complete sum: every added marker still has primitive product modulus below x^{1/2} by a fixed margin. The remaining semiprime band costs O_f(η)S_b with a constant independent of η; select η first and then t and e.\n\nLet E consist of squarefree k∈I with precisely two prime factors at most U, one p∈(U^{1/4},U^{1/2}] and one q∈(U^{3/4},U]. Require at least one further prime in each of (U²,U⁴] and (U⁴,U⁸]. As before let m count factors in (U,H]. On this event k has at least five prime factors, R_z(k)=1, B−P=0, and the entire corrected signed summand is\n\n    f₋(k+2) W(k),     W(k)=(m−1)log k+log(pq).\n\nIn the successive limits the genuine contribution is at least .021 S_b/t by the moment argument in higher_rank_charge.md. Bounding it by absolute value alone cannot pay it. Let d₋=S₂Π(f₋)/L. The following is a quantitative signed estimate on the same entire event, including m:\n\n    lim_{t↓0} limsup_{x→∞} |Σ_{k∈E} [f₋(k+2)−d₋] W(k)| / S_b = 0                    (1)\n\nfor each fixed η in the stated range. The analogous assertion holds for the parts with m, 1, or log(pq) separately with their corresponding log weights. No prime-pair lower bound is assumed.\n\n## Proof of (1)\n\nAt each x expand m as one extra prime ℓ∈(U,H] dividing k. Expand the two required occupancy indicators by inclusion–exclusion of the two events that a *whole* medium band is avoided. There are at most four terms. If the marked ℓ is already in a required band, that band is automatically occupied; terms asking for its avoidance are discarded. With r=pq or pqℓ fixed, the free cofactor k/r is sieved by all primes ≤U and the chosen zero, one or two forbidden medium bands. The ordinary count includes p=2 in the ≤U sieve; the native nonzero outputs impose odd k automatically. Marked p,q are uniquely specified on the exact event. When m is expanded every allowed ℓ is counted with its true multiplicity. Repeated square factors on the actual event cost O_t(x^{1−t/4}L^C); all factors of k there exceed x^{t/4} and the number of tags is bounded at fixed t.\n\nUse the two-sided fundamental lemma of level x^{η/4}, with sieved primes at most U⁸. For the shifted profile target the local primitive density at odd primes is g′(p)=1/(p−1); for the ordinary integer count it is g(p)=1/p. The folded progression modulus is at most x^{1/2−3η/4+1.5t}, below x^{1/2−η/2} when t<η/16. Distinct tag representations have multiplicity at most a fixed logarithmic power. The signed native progression errors at this level are negligible to any fixed logarithmic power and the integral common weight log k is handled by partial summation. In the ordinary integer model each progression has O(1) floor error; their aggregate, including the finite logarithmic multiplicity, is o_t(X/L^C) for arbitrary fixed C. On the native side primes of the output can be removed from the primitive main at O_t(x^{−ζ}L^C) per output. In particular the extra marked ℓ need not be coprime to every candidate output before this correction. A tag prime shared with the cofactor sieve can be accounted for at p or q with an O_t(x^{−t/4}L^C) aggregate relative error: in 1/φ(rc) the ratio against 1/[φ(r)φ(c)] is ∏_{p|(r,c)}(1−1/p), and the ordinary 1/(rc) factorization is exact. A remaining shared medium ℓ is excluded by the occupancy branch. Working with the full positive and negative fundamental-lemma weights avoids an estimate for a sharp divisor-truncation remainder.\n\nFor each resulting term the shifted local product below U, divided by the ordinary product including 2, tends to S₂. Every extra forbidden prime in a medium band exceeds U, so its local product ratio is 1+o_t(1) by Σ_{p>U}p⁻²=o(1). Each named prime has the same 1+o_t(1) ratio when its primitive weight is compared to 1/p. These comparisons hold uniformly after summation at fixed t. The harmonic sums of p and q in their two bands are bounded by absolute constants. The possible ℓ introduces at most O(1+log(1/t)). At fixed t the genuine total profile Σf₋ differs from Π(f₋)X/L by o_t(X/L), also with its common log k weight, since log k=L+O(1) and the population estimate supplies the additional factor 1/L at fixed t. The choice d₋ exactly compensates for the product ratio S₂ in the ordinary model.\n\nAfter both bracketing inequalities are summed the limsup in (1) is at most\n\n    C_f (1+log(1/t)) E(η/(32t))/t,\n\nwhere E(s)≪s^(−s/2) for s large. Here the log weight contributes at most O(L), while the complete small-prime factor is O(1/(tL)). The cost is absolute and applies to both signs of the difference. It tends to zero at fixed η, proving (1).\n\n## Payment and what still has to be estimated\n\nFor the complete representation put d_±=S₂Π(f_±)/L, W₊=B−P and W₋=D_t. One can insert f_±−d_± throughout with an arbitrarily small limiting error after e↓0 at fixed η,t. On ordinary k, the common principal of the first Vaughan term is 1 per integer, matching Σ_{I}ϑ(k)∼X. The second term and additional tagged probes have a negligible principal with the original subpower input presieve. With a polynomial z the unsigned divisor costs in sharp_polynomial_presieve.md apply, now using divisibility 1/d, the product V_z and V_z log z→e^(−γ); the exponent headroom for a probe is positive. The primitive-free rough harmonic prefixes ∑ μ(m)R_z(m)/m again converge to ρ. Thus d_± times the ordinary full corrected coefficient is negligible in S_b units in the stated ordered limits. This operation retains the ordinary model over the *entire* complementary population as well.\n\nEquation (1) now pays the specified actual rank-at-least-five cohort of the centered sum at the terminal scale, despite its uncentered physical contribution exceeding .021 S_b/t. It neither subtracts that large amount from the published complete upper nor grants a favorable sign to the other cohorts. The remaining condition is a strict estimate on the complete centered complement, including the unmarked prime boundary and all favorable contributions. In particular, a bare model-subtraction on E without the globally justified ordinary companion is insufficient.\n"
+        },
+        "kind": "attempt",
+        "missing": "The prime boundary persists on the unmarked zero-small-factor complement.",
+        "next": "Attack the remaining unmarked prime-boundary covariance Delta_plus minus Delta_minus for actual shifted primes, preserving both angular profiles. Prove a strict independent net upper below 0.3568806589006399637950 or improve the certified complete upper. Continue until independently verified unconditional infinitude.",
+        "result": "The actual adverse at-least-five cohort exceeds .021 S_b/t in the retuned representation, yet its complete physical-minus-comparison difference is arbitrarily small in S_b units. Used occupancy avoidance sieves with all medium markers and a fixed exponent gap.",
+        "stage": "cohort"
+      },
+      "prev": "5cf676fc431463ebd085d962ec1b5861f67804dde792ad74a45a935fbeb679ef",
+      "seq": 59,
+      "sha256": "a6ff6da6aad00850f63670a24685362f8d936f6e9266d220a89596cc9dbc5555"
+    },
+    {
+      "at": "2026-11-23T16:05:10.967086+00:00",
+      "event": {
+        "actor": "research-coordinator",
+        "candidate": "empty-small-prime-boundary",
+        "event_id": "post-center-2",
+        "evidence": {
+          "name": "all_nonempty_centered.md",
+          "sha256": "a4ab292fda586369b1e568334eacb7f16cd49719b72c9c1d795580c19f719531",
+          "text": "# Centering the entire nonempty small-prime sector\n\nUse the notation of centered_charge_payment.md. Fix 0<η<1/6, U=x^t, H=x^{1/2−η}, with t small compared with η and ζ, and z=x^e, 0<e<t. For squarefree k, s is its complete product of primes at most U. Set W₊=B−P_t and W₋=D_t. For σ=+ or − write h=f_σ, d_h=S₂Π(h)/log x and let W denote its respective coefficient. Then\n\n    lim_{t↓0} limsup_{e↓0} limsup_{x→∞}\n      |Σ_{k∈I, s>1} R_z(k) μ²(k) [h(k+2)−d_h] W(k)| / S_b = 0.       (1)\n\nThe assertion applies separately to the two complete signs, with all true owner multiplicities retained. The forced-label four-band payment is a nontrivial subpopulation version proved separately. Equation (1) identifies the remaining centered correlation on inputs with zero small primes. It gives neither a favorable bound on that correlation nor a saving to be added to the current upper.\n\n## Proof by short divisor sums, without assuming the missing prime correlation\n\nLet W⁰ be the explicit expression for W with its genuine-prime summand 1_prime(k)log k removed. On s>1 it equals W, since a prime input in I is always above U. On squarefree inputs,\n\n    R_z 1_{s>1} W = (R_z−R_U) W⁰.\n\nThere are only the following short divisor measurements in W⁰, including the weights log k or a log of a tagged prime:\nthe prefix Σ_{d|k,d≤U}μ(d);\nthis prefix times Σ_{p|k,p≤U}log p;\nthis prefix times the single marked count m;\nand the pair-divisor correction P_t. For products with a repeated prime tag, one may group with the true least common multiple. For a pair specified in the quotient use pqd|k before deleting rough squareful inputs. All resulting modulus factors before the roughness sieve are ≤max(U³,HU). Coefficients of a fixed modulus have at most a fixed logarithmic-power loss: the rank or rank-two prime tags are specified and d is then determined up to the few named repeated prime factors. This validates the absolute summed progression error. The squared-prime exception is paid by the original divisor bound and R_z or R_U.\n\nTo compare the shifted profile h to its ordinary model d_h on R_z, use two positive fundamental-lemma weights for the extra presieve at level x^{η/4}. Works for t small enough that HU·x^{η/4}≤x^{1/2−η/2} and U³·x^{η/4} below the same level. Split every coefficient and h by sign as necessary. Common log k factors permit partial summation. Under the outer mask every base divisor has only primes >z; remove the others before the sieve. It is disjoint from the extra small-prime sieve divisor, so each base modulus is recovered from the combined modulus. The shifted principal is g_z/φ(b) with (k+2,b)=1 and the ordinary principal is V_z/b. Here b denotes any one positive base modulus. Because all its primes exceed z, b/φ(b)=1+o_e(1) uniformly for b≤x; shared primes with the output have negligible aggregate harmonic cost at fixed e,t since its prime factors exceed x^ζ and their number is bounded. The ratio g_z/V_z→S₂ includes the ordinary factor at 2. Both coefficient families have the same leading main after using Σh∼Π(h)X/L, including a common log(k)=L+O(1) weight. The roughness density supplies the needed extra 1/L for the O(1) variation. If Π(h)=0 use Σh=o(X/L) in the same comparison.\n\nThe sum of the normalized absolute bracketing errors is bounded by a fixed power of 1/e and 1+log(t/e), times E(η/(4e)), with constants depending on η,t and the fixed profile; it tends to zero at fixed t as e↓0. For this estimate sum the harmonic Möbius divisor in absolute value over R_z to get O(1/e), the two possible small labels each cost O(1+log(t/e)), while the single medium tag costs O(1+log(1/t)). The factor g_z log x costs O(1/e). Shared tags in the log s product may be split according to whether the named prime divides d; on overlap the modulus is d and the aggregate log weight of its tagged divisors is ≤log d. Thus this term also costs only a fixed power of 1/e. The primitive common-prefix errors of level below 1/2 have arbitrary log savings at every fixed e, t. This proves the R_z half for the successive limits.\n\nOn R_U the prefix is 1, log s=0, P_t=0 and W₊⁰=−log k, W₋⁰=(m−1)log k. There is at most one marked-prime *summation*, with exact multiplicity m at each physical k. Using the same comparison with sieve level x^{η/4} and primes up to U, the absolute normalized bracketing error is O_{η,h}((1+log(1/t))E(η/(4t))/t)+o_t(1). This tends to zero with t. Subtraction proves (1). No infinite sum over factor ranks or truncated occupancy index is used.\n\n## The genuine prime term on the remaining stratum\n\nOn s=1 the expression W=W⁰+1_prime(k)log k is exact. The preceding R_U estimate pays the W⁰ terms at arbitrary terminal precision. The surviving signed term is therefore\n\n    Σ_{k prime, k∈I} log k [ f(k+2) − S₂Π(f)/L ].\n\nBy the ordinary PNT this equals A(f)−S₂Σf+o(S_b). In these formulas all original native output masks remain inside f. This matches the full native Vaughan transfer independently and is a check on the sign and location of the surviving expense. Two-sided global centering is legal because on unshifted integers the ordinary PNT and the corresponding Type I/Dickman calculation annihilate the model as in centered_charge_payment.md.\n\nConsequently a strategy concentrating exclusively on nonempty small-factor tags has zero new signed contribution at scale S_b after model payment. Returning the computed favorable mass from that sector while dropping the boundary above would use the model twice. To gain further terminal credit one needs genuinely new unmarked information on the complete covariance of the prime input and the two native output profiles, or an independent bound on the equivalent fully compensated owner expression.\n"
+        },
+        "kind": "attempt",
+        "missing": "No independent signed prime-compensated upper of the necessary strength.",
+        "next": "Attack the remaining unmarked prime-boundary covariance Delta_plus minus Delta_minus for actual shifted primes, preserving both angular profiles. Prove a strict independent net upper below 0.3568806589006399637950 or improve the certified complete upper. Continue until independently verified unconditional infinitude.",
+        "result": "Proved a termwise primitive-progression payment of the WHOLE centered nonempty-small sector. Dropped the explicit prime contribution only where compositeness is forced. On the empty stratum the authentic signed prime covariance survives exactly.",
+        "stage": "all"
+      },
+      "prev": "a6ff6da6aad00850f63670a24685362f8d936f6e9266d220a89596cc9dbc5555",
+      "seq": 60,
+      "sha256": "6c95716dc5a8ce7544ea1d1152c0d790b6c9fec6a1869b53105c5f335749e2fb"
+    },
+    {
+      "at": "2026-11-23T16:05:10.967280+00:00",
+      "event": {
+        "actor": "referee",
+        "candidate": "empty-small-prime-boundary",
+        "event_id": "post-center-3",
+        "kind": "rank",
+        "reason": "The expected covariance is compatible with the proposal. The zero-small localization re-expresses the hard prime covariance, the exact source and signs are retained, a strict bound at threshold closes the argument, and there is zero verification of this inequality itself.",
+        "scores": {
+          "novelty": 1,
+          "source": 4,
+          "terminal": 4,
+          "truth": 1,
+          "verification": 0
+        }
+      },
+      "prev": "6c95716dc5a8ce7544ea1d1152c0d790b6c9fec6a1869b53105c5f335749e2fb",
+      "seq": 61,
+      "sha256": "abf8785e66482a53df381553509f6d2ba050ca762004d6d7491fe4eed8dadfd6"
+    },
+    {
+      "at": "2026-11-23T16:05:10.967343+00:00",
+      "event": {
+        "action": "park",
+        "actor": "research-coordinator",
+        "candidate": "semiprime-core",
+        "event_id": "post-center-4",
+        "kind": "decision",
+        "next": "Reopen only for a specific estimate that supplies new information about the actual prime boundary or the coupled complementary physical sectors.",
+        "reason": "On the retained model the entire centered nonempty small-input stratum is paid. It contributes zero new terminal credit without genuine prime information. Complete outgoing costs archived."
+      },
+      "prev": "abf8785e66482a53df381553509f6d2ba050ca762004d6d7491fe4eed8dadfd6",
+      "seq": 62,
+      "sha256": "9cf0156550f6756487aec6703effbf0434f4f6238eef1cadffe427c46f66312e"
+    },
+    {
+      "at": "2026-11-23T16:05:10.967391+00:00",
+      "event": {
+        "action": "deepen",
+        "actor": "research-coordinator",
+        "candidate": "empty-small-prime-boundary",
+        "event_id": "post-center-5",
+        "kind": "decision",
+        "next": "Attack the remaining unmarked prime-boundary covariance Delta_plus minus Delta_minus for actual shifted primes, preserving both angular profiles. Prove a strict independent net upper below 0.3568806589006399637950 or improve the certified complete upper. Continue until independently verified unconditional infinitude.",
+        "reason": "Fixed-rank correction and the polynomial cutoff can be reused, but the outstanding independent information is a true prime-side joint inequality."
+      },
+      "prev": "9cf0156550f6756487aec6703effbf0434f4f6238eef1cadffe427c46f66312e",
+      "seq": 63,
+      "sha256": "83cdd79ea30307d9486fba99308bc7414104e59e06c86e8444b2637ccbeea0f4"
+    },
+    {
+      "at": "2026-11-23T16:05:10.967436+00:00",
+      "event": {
+        "S1": false,
+        "S3": false,
+        "actor": "research-coordinator",
+        "candidate": "empty-small-prime-boundary",
+        "debt_caution": "Cohort payment and zero centered nonempty sum give no subtraction from the whole upper. Preserve the genuine prime term on s=1.",
+        "event_id": "post-center-6",
+        "full_outside_certified_upper": "1.275648716845111",
+        "kind": "checkpoint",
+        "milestone": "TERMINAL_DEFICIT_REDUCED",
+        "new_paper_strict_threshold": "0.3568806589006399637950",
+        "next": "Attack the remaining unmarked prime-boundary covariance Delta_plus minus Delta_minus for actual shifted primes, preserving both angular profiles. Prove a strict independent net upper below 0.3568806589006399637950 or improve the certified complete upper. Continue until independently verified unconditional infinitude.",
+        "positive_reserve": null,
+        "programme": "ACTIVE",
+        "source_verified_commit": "43facedcf40b2f998aa47f7198d6b9b5feb5b792",
+        "status": "ACTIVE",
+        "strict_threshold_in_native_kernel": "0.317014679964"
+      },
+      "prev": "83cdd79ea30307d9486fba99308bc7414104e59e06c86e8444b2637ccbeea0f4",
+      "seq": 64,
+      "sha256": "13a637d40ce7a4ae428a74c4c68a38ab28816dfa9cb56bd38b4db8efb6147b27"
     }
   ],
   "format": "ETH-events-v1"

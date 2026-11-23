@@ -146,6 +146,57 @@ class GateTest(unittest.TestCase):
         self.review("new", "source", "source", "block")
         self.assertEqual(self.s.summary()["reviewed_full_outside_upper"], eth.exact(eth.number("1/2")))
 
+    def test_later_native_ci_pins_the_endpoint_without_discharging_any_premise(self):
+        commit, declaration = "b" * 40, "Synthetic.sample"
+        seed = {**self.seed, "source_commit": commit, "native_endpoint": declaration, "endpoint": {}}
+        self.s = eth.State()
+        self.s.apply(seed)
+        first = eth.packet(self.s, "frontier", None)
+        self.assertEqual((first["commit"], first["source_commit"], first["frontier"]),
+                         (seed["commit"], commit, seed["next"]))
+        run = "https://github.com/example/research/actions/runs/21"
+        self.proof.write_text(f"Synthetic fixture\n{commit}\n{declaration}\n")
+        evidence = eth.evidence_at(self.proof)
+        ci = {"kind": "native_ci", "actor": "verifier", "source_commit": commit, "declaration": declaration,
+              "conclusion": "success", "run_url": run, "job_url": run + "/job/34",
+              "axioms": ["propext", "Classical.choice", "Quot.sound"], "evidence": evidence}
+        self.s.apply({"kind": "checkpoint", "actor": "writer", "status": "ACTIVE", "next": "review",
+                      "native_ci": ci, "latest_verified_native_commit": commit})
+        self.assertIsNone(self.s.summary()["native_ci"])
+        self.assertEqual(self.s.summary()["latest_verified_native_commit"], seed["commit"])
+        for bad in ({"source_commit": "c" * 40}, {"declaration": "Synthetic.other"}, {"conclusion": "pending"},
+                    {"job_url": run + "9/job/34"}, {"axioms": ["sorryAx"]}, {"axioms": None}):
+            with self.assertRaises(ValueError):
+                self.s.apply(ci | bad)
+        self.candidate("O", "outside lemma")
+        self.submit("O", result_type="outside_upper", contract=self.outside("1/4"))
+        self.reviews("O")
+        self.assertTrue(any("verified endpoint" in p for p in self.s.gate("O", "S1")))
+        self.s.apply(ci)
+        summary = self.s.summary()
+        self.assertEqual(summary["commit"], "a" * 40)
+        self.assertEqual(summary["latest_verified_native_commit"], commit)
+        self.assertEqual(summary["native_ci"]["evidence_sha256"], evidence["sha256"])
+        self.s.apply({"kind": "checkpoint", "actor": "coordinator", "status": "ACTIVE", "candidate": "O",
+                      "next": "investigate the new prime boundary"})
+        blind = eth.packet(self.s, "frontier", None)
+        self.assertEqual((blind["frontier"], blind["commit"]), ("investigate the new prime boundary", commit))
+        self.assertNotIn("source_commit", blind)
+        self.assertEqual(eth.packet(self.s, "engineer", "O")["next"], blind["frontier"])
+        self.assertIn(("engineer", "proof-engineer", "O"), eth.worker_wave(self.s, 0))
+        self.assertIn(("frontier", "alternative-invention", None), eth.worker_wave(self.s, 0))
+        self.assertFalse(any("verified endpoint" in p for p in self.s.gate("O", "S1")))
+        self.assertEqual(set(summary["open_obligations"]), {"P1", "P7"})
+        self.assertEqual(summary["programme"], "ACTIVE")
+        self.assertIsNone(summary["verified_FM_reserve_lower"])
+        seed_file, event_file = self.folder / "seed.json", self.folder / "ci.json"
+        seed_file.write_text(json.dumps(seed))
+        event_file.write_text(json.dumps(ci))
+        db = self.folder / "ci.db"
+        self.run_cli(db, "init", seed_file)
+        self.run_cli(db, "record", event_file)
+        self.assertEqual(self.run_cli(db, "resume")["native_ci"]["evidence"], evidence)
+
     def test_revision_stale_reviews_cycles_and_parity(self):
         self.candidate("a")
         self.candidate("b")

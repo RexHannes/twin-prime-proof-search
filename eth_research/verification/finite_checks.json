@@ -24,6 +24,10 @@
   "kept": 1313,
   "max_fourier_error": 4.311326371230795e-15,
   "prime_boundaries": 354,
+  "product_cap": {
+    "exact_scalar_or_log_coordinate_identities": 1696,
+    "high_product_configurations_with_residual": 428
+  },
   "rank_only": 2,
   "semiprime_owners": 594,
   "small_and_rank": 231,

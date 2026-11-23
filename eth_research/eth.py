@@ -33,6 +33,7 @@ DEFAULT_OBLIGATIONS = {
 }
 DIMS = ("truth", "novelty", "source", "terminal", "verification")
 REFEREES = ("adverse", "source", "terminal")
+LEAN_AXIOMS = {"propext", "Classical.choice", "Quot.sound"}
 SCOPED_FAILURES = ("counterexample", "source_mismatch", "capacity", "information")
 ZERO_HASH = "0" * 64
 SCHEMA_VERSION = 1
@@ -137,6 +138,14 @@ class State:
         self.terminal = []
         self.comparisons = []
         self.session = None
+        self.native_ci = None
+        self.last_checkpoint = None
+
+    def verified_commit(self):
+        return self.native_ci["source_commit"] if self.native_ci else self.seed["commit"]
+
+    def frontier_task(self):
+        return self.last_checkpoint["next"] if self.last_checkpoint else self.seed["next"]
 
     def open_deps(self, candidate, stack=()):
         proof = self.claims[candidate].get("proof")
@@ -228,7 +237,8 @@ class State:
             if category == "outside_upper":
                 problems.extend(self.outside_contract(proof))
                 endpoint = self.seed.get("endpoint", {})
-                if not self.seed.get("commit") or not all(endpoint.get(k) for k in ("declaration", "evidence")):
+                if not self.native_ci and (not self.seed.get("commit") or
+                                            not all(endpoint.get(k) for k in ("declaration", "evidence"))):
                     problems.append("registered verified endpoint commit, declaration and evidence are required")
                 threshold = number(ledger["lower"]) - number(ledger["box"])
                 if number(contract["coefficient"]) >= threshold:
@@ -313,6 +323,25 @@ class State:
             self.claims[e["id"]] = {"proposal": e, "attempts": [], "scores": {}, "reviews": {},
                 "challenges": [], "answered": {}, "action": "discover", "hash": None, "next": e["next"],
                 "authors": {e["actor"]}}
+        elif kind == "native_ci":
+            required_text(e, "actor", "source_commit", "declaration", "conclusion", "run_url", "job_url")
+            target = self.seed.get("source_commit") or self.seed["commit"]
+            require(re.fullmatch(r"[0-9a-f]{40}", e["source_commit"]) and e["source_commit"] == target,
+                    "native CI must verify the registered source commit")
+            declaration = self.seed.get("native_endpoint") or self.seed.get("endpoint", {}).get("declaration")
+            require(declaration and e["declaration"] == declaration, "native CI declaration differs from the registered endpoint")
+            require(e["conclusion"] == "success", "native CI run and job must have succeeded")
+            require(re.fullmatch(r"https://[^/\s]+/[^/\s]+/[^/\s]+/actions/runs/[1-9][0-9]*", e["run_url"]),
+                    "native CI requires a specific HTTPS GitHub Actions run URL")
+            require(re.fullmatch(re.escape(e["run_url"]) + r"/job/[1-9][0-9]*", e["job_url"]),
+                    "native CI job must belong to the stated run")
+            require(strings(e.get("axioms")) and set(e["axioms"]) <= LEAN_AXIOMS,
+                    "record the explicit ordinary Lean axiom inventory")
+            validate_evidence(e.get("evidence"))
+            witness = e["evidence"]["text"]
+            require(e["source_commit"] in witness and declaration in witness,
+                    "native CI evidence must identify both the exact source commit and declaration")
+            self.native_ci = e
         elif kind in ("session", "check", "checkpoint"):
             if kind == "session":
                 require(parse_time(e["deadline"]) > parse_time(e["started"]), "nonpositive session budget")
@@ -325,6 +354,9 @@ class State:
                 required_text(e, "actor", "status", "next")
                 require(e["status"] in ("ACTIVE", "INTERRUPTED_NOT_COMPLETED"), "research success uses the acceptance gate")
                 require(e.get("candidate") is None or e["candidate"] in self.claims, "unknown checkpoint candidate")
+                self.last_checkpoint = e
+                if e.get("candidate"):
+                    self.claims[e["candidate"]]["next"] = e["next"]
         else:
             required_text(e, "candidate", "actor")
             require(e["candidate"] in self.claims, "unknown candidate")
@@ -455,7 +487,13 @@ class State:
         if not open_items and self.assigned(self.seed["outside_id"]):
             assigned_id, _ = self.discharges[self.seed["outside_id"]]
             reserve = target - number(self.claims[assigned_id]["proof"]["contract"]["coefficient"])
-        return {"commit": self.seed["commit"], "source_commit": self.seed.get("source_commit", self.seed["commit"]), "events": len(self.records),
+        native_ci = None
+        if self.native_ci:
+            native_ci = {k: self.native_ci[k] for k in
+                         ("source_commit", "declaration", "conclusion", "run_url", "job_url", "axioms", "actor")}
+            native_ci["evidence_sha256"] = self.native_ci["evidence"]["sha256"]
+        return {"commit": self.seed["commit"], "source_commit": self.seed.get("source_commit", self.seed["commit"]),
+            "latest_verified_native_commit": self.verified_commit(), "native_ci": native_ci, "events": len(self.records),
             "programme": "CLOSED" if "S1" in successes else "ACTIVE", "reviewed_success": successes,
             "conditional_outside_threshold": exact(target),
             "reviewed_full_outside_upper": exact(min(reviewed_outside)) if reviewed_outside else None,
@@ -640,7 +678,7 @@ def run_check(args, seed):
         zero = re.search(r"'" + re.escape(name) + r"' does not depend on any axioms", report)
         axioms = sorted(x.strip() for x in match.group(1).split(",") if x.strip()) if match else []
         check["axioms"] = axioms
-        passed = passed and bool(match or zero) and set(axioms) <= {"propext", "Classical.choice", "Quot.sound"}
+        passed = passed and bool(match or zero) and set(axioms) <= LEAN_AXIOMS
     return {**check, "status": "passed" if passed else "failed", "returncode": proc.returncode,
             "output_sha256": digest(blob), "output_tail": report[-16000:]}
 
@@ -654,13 +692,18 @@ def packet(state, role, candidate):
     if role == "frontier" and candidate is None:
         scopes = [{"id": k, "scope": c["challenges"][-1]["scope"]} for k, c in state.claims.items()
                   if c["action"] == "tombstone" and c["challenges"]]
-        return {"role": role, "instruction": ROLE_PROMPTS[role], "commit": state.seed["commit"],
-                "source_contracts": state.seed["sources"], "frontier": state.seed["next"], "scoped_tombstones": scopes}
+        source_commit = state.seed.get("source_commit") or state.seed["commit"]
+        packet_data = {"role": role, "instruction": ROLE_PROMPTS[role], "commit": state.verified_commit(),
+                       "source_contracts": state.seed["sources"], "frontier": state.frontier_task(),
+                       "scoped_tombstones": scopes}
+        if source_commit != state.verified_commit():
+            packet_data["source_commit"] = source_commit
+        return packet_data
     live = state.live()
     candidate = candidate or (live[0] if live else None)
     require(candidate is None or candidate in state.claims, "unknown candidate")
     if candidate is None:
-        return {"role": role, "instruction": ROLE_PROMPTS[role], "task": state.seed["next"], "candidate": None}
+        return {"role": role, "instruction": ROLE_PROMPTS[role], "task": state.frontier_task(), "candidate": None}
     c = state.claims[candidate]
     return {"role": role, "instruction": ROLE_PROMPTS[role], "candidate": candidate, "proposal": c["proposal"],
             "latest_attempt": c["attempts"][-1] if c["attempts"] else None, "proof": c.get("proof"),
@@ -671,6 +714,11 @@ def packet(state, role, candidate):
 def worker_wave(state, wave):
     """All blind proposals in a wave receive the same source-only snapshot."""
     live = state.live()
+    if wave == 0 and state.last_checkpoint:
+        focus = state.last_checkpoint.get("candidate")
+        if focus in live:
+            return [("engineer", "proof-engineer", focus), ("frontier", "alternative-invention", None)]
+        return [("frontier", "discover-1", None), ("frontier", "discover-2", None)]
     if not live:
         return [("frontier", "discover-1", None), ("frontier", "discover-2", None)]
     originals = [key for key in live if not state.claims[key]["proposal"].get("parents")]
@@ -812,8 +860,9 @@ def cli():
             if result["outcome"] != "reviewed_S1":
                 with journal.transaction(write=True):
                     live = journal.state.live()
-                    k = live[0] if live else None
-                    task = journal.state.claims[k]["next"] if k else journal.state.seed["next"]
+                    prior = (journal.state.last_checkpoint or {}).get("candidate")
+                    k = prior if prior in live else (live[0] if live else None)
+                    task = journal.state.claims[k]["next"] if k else journal.state.frontier_task()
                     journal.append({"kind": "checkpoint", "actor": "adapter-coordinator", "status": "ACTIVE",
                                     "candidate": k, "next": task, "adapter_result": result})
             print(json.dumps(result, indent=2, ensure_ascii=False))
@@ -863,12 +912,13 @@ def cli():
                 journal.append(event)
                 output = {**event, "worker": "Work coordinator must dispatch actual research workers"}
             elif args.cmd == "resume":
-                last = next((e for e in reversed(state.records) if e["kind"] == "checkpoint"), None)
+                last = state.last_checkpoint
                 remaining = None if not state.session else max(0, round((parse_time(state.session["deadline"]) -
                     dt.datetime.now(dt.timezone.utc)).total_seconds()))
                 output = {"active_session": state.session, "budget_seconds_left": remaining,
-                          "checkpoint": last, "head": journal.rows[-1]["sha256"],
-                          "status": state.summary(), "work_packet": packet(state, "engineer", last.get("candidate") if last else None)}
+                          "checkpoint": last, "head": journal.rows[-1]["sha256"], "native_ci": state.native_ci,
+                          "status": state.summary(), "work_packet": packet(state, "frontier" if last and
+                              not last.get("candidate") else "engineer", last.get("candidate") if last else None)}
             elif args.cmd == "export":
                 output = export(journal, args.path)
             elif args.cmd == "check":
