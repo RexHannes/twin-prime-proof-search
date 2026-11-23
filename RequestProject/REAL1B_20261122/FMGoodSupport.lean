@@ -95,7 +95,7 @@ private theorem complete_cancel {α : Type} (s : α → Bool) (L : List α)
         simp [signedWeight,hs]
       rw [show (signedWeight s g ∘ List.cons p) = _ from funext hn,ih htail,ih htail,zero_add]
 
-private def bigWeight (n : ℕ) (l : List ℕ) := if Box.mass n l ≤ β then g0 (l.map (coord n)) else 0
+def bigWeight (n : ℕ) (l : List ℕ) := if Box.mass n l ≤ β then g0 (l.map (coord n)) else 0
 
 theorem native_factorization {n : ℕ} (hs : Squarefree n) (hg : Direct.good n) {l : List ℕ}
     (hl : l.Sublist n.primeFactorsList) :
@@ -125,7 +125,7 @@ theorem small_prime_cancels {n : ℕ} (hs : Squarefree n) (hg : Direct.good n)
   rw [hh]
   exact complete_cancel _ _ ⟨p,(Nat.mem_primeFactorsList hs.ne_zero).mpr ⟨hp,hd⟩,decide_eq_true hsmall⟩ _
 
-private theorem gap_excluded {n p : ℕ} (hg : Direct.good n) (hp : p.Prime) (hd : p ∣ n)
+theorem gap_excluded {n p : ℕ} (hg : Direct.good n) (hp : p.Prime) (hd : p ∣ n)
     (lo : ε ≤ coord n p) (hi : coord n p ≤ Direct.lowerEdge) : False := by
   obtain ⟨hn,_,hr⟩ := hg
   obtain ⟨i,he⟩ := List.mem_iff_get.mp ((Nat.mem_primeFactorsList (by omega)).mpr ⟨hp,hd⟩)

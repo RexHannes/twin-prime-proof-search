@@ -1,4 +1,4 @@
-import RequestProject.REAL1B_20261122.FMGoodSupport
+import RequestProject.REAL1B_20261122.FMCollarIntegral
 
 /-! Gold 4.57 complete-source partition and Gold 4.58 (U9).
 All error functions below are finite sums on the same physical window. -/

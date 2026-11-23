@@ -15,7 +15,7 @@ private def upper (m : Coord) (i : Fin 4) : ℝ := (m.atFin i + 1 : ℝ)/800
 private def cell (m : Coord) := Set.Icc (lower m) (upper m)
 private def product5 (t : Fin 4 → ℝ) := (∏ i, t i) * (1-∑ i, t i)
 private def weight (m : Coord) : ℝ := height m / product5 (lower m)
-private def densityAt (t : Fin 4 → ℝ) := if boxDomain t then profileH t / product5 t else 0
+def densityAt (t : Fin 4 → ℝ) := if boxDomain t then profileH t / product5 t else 0
 
 private theorem valid_iff (p : Coord) : valid p = true ↔ Closing.admissible p.a p.b p.c p.d := by
   simp only [valid, decide_eq_true_eq, Closing.admissible]
@@ -235,9 +235,47 @@ private theorem mesh_total : ((bins.flatMap subcells).map upperNumerator).sum = 
   simp only [flatten_sum, bins]
   rfl
 
+theorem domain_measurable : MeasurableSet {t | boxDomain t} := by
+  change MeasurableSet {t : Fin 4 → ℝ | ∃ b : Fin 4 → ℕ, Closing.admissible (b 0) (b 1) (b 2) (b 3) ∧
+    ∀ i, (b i : ℝ)/100 < t i ∧ t i < ((b i : ℝ)+1)/100}
+  rw [Set.setOf_exists]
+  apply MeasurableSet.iUnion
+  intro b
+  apply MeasurableSet.inter (MeasurableSet.const _)
+  change MeasurableSet {t : Fin 4 → ℝ | ∀ i, (b i : ℝ)/100 < t i ∧ t i < ((b i:ℝ)+1)/100}
+  rw [Set.setOf_forall]
+  apply MeasurableSet.iInter
+  intro i
+  exact (measurableSet_lt measurable_const (measurable_pi_apply i)).inter
+    (measurableSet_lt (measurable_pi_apply i) measurable_const)
+
+theorem measurable_profileH : Measurable profileH := by
+  have mf {v s : (Fin 4 → ℝ) → ℝ} (hv : Measurable v) (hs : Measurable s) :
+      Measurable (fun t => face (v t) (s t)) := by
+    have hcut : Measurable (fun t => if (1:ℝ)/5 < v t then (2:ℝ) else 1) :=
+      Measurable.ite (measurableSet_lt measurable_const hv) measurable_const measurable_const
+    have hface : Measurable (fun t => (1:ℝ)/2 + (if (1:ℝ)/5 < v t then (2:ℝ) else 1)*ε) :=
+      measurable_const.add (hcut.mul measurable_const)
+    exact (Measurable.ite (measurableSet_le hface hs) measurable_const measurable_const).add
+      (Measurable.ite (measurableSet_lt measurable_const hs) measurable_const measurable_const)
+  have ha := mf (measurable_pi_apply (2 : Fin 4)) (s:=fun t => t 0+t 1+t 3) (by fun_prop)
+  have hb := mf (measurable_pi_apply (3 : Fin 4)) (s:=fun t => t 0+t 1+t 2) (by fun_prop)
+  exact (measurable_const.add ha).add hb
+
+theorem measurable_densityAt : Measurable densityAt := by
+  unfold densityAt
+  exact Measurable.ite domain_measurable (measurable_profileH.div (by unfold product5; fun_prop)) measurable_const
+
+theorem densityAt_nonneg (t : Fin 4 → ℝ) : 0 ≤ densityAt t := by
+  unfold densityAt
+  split_ifs with h
+  · obtain ⟨p,hp,m,hm,ht⟩ := cover h
+    exact div_nonneg (height_nonneg t) ((prod_pos hp hm).trans_le (inside_denom hp hm ht)).le
+  · rfl
+
 /-- The actual integral is bounded by a closed expression over natural numbers.
 Every retained centile box is subdivided in each of its four free coordinates. -/
-theorem integral_le_mesh : J ≤ (totalUpper : ℝ)/scale := by
+private theorem density_certificate : Integrable densityAt ∧ J ≤ (totalUpper : ℝ)/scale := by
   let L := bins.flatMap subcells
   let f := fun t => (L.map (fun m => value m t)).sum
   have hm {m} (h : m ∈ L) : ∃ p ∈ bins, m ∈ subcells p := List.mem_flatMap.mp h
@@ -269,11 +307,71 @@ theorem integral_le_mesh : J ≤ (totalUpper : ℝ)/scale := by
         rw [integral_add (integrable_value m) hg]
         exact add_le_add (integral_value hp hc) hs⟩
   obtain ⟨hg,hs⟩ := sumBound L (fun _ => id)
+  have hd : Integrable densityAt := hg.mono' measurable_densityAt.aestronglyMeasurable
+    (Filter.Eventually.of_forall (fun t => by
+      rw [Real.norm_eq_abs,abs_of_nonneg (hbound t).1]
+      exact (hbound t).2))
+  refine ⟨hd,?_⟩
   change (∫ t, densityAt t) ≤ _
   rw [← mesh_total]
-  exact (integral_mono_of_nonneg (Filter.Eventually.of_forall (fun t => (hbound t).1)) hg
-    (Filter.Eventually.of_forall (fun t => (hbound t).2))).trans hs
+  exact (integral_mono hd hg (fun t => (hbound t).2)).trans hs
+
+theorem integrable_densityAt : Integrable densityAt := density_certificate.1
+
+theorem integral_le_mesh : J ≤ (totalUpper : ℝ)/scale := density_certificate.2
+
+private def witness : Fin 4 → ℕ := ![4,5,8,39]
+private def leftCorner (i : Fin 4) : ℝ := (witness i : ℝ)/100 + 1/400
+private def rightCorner (i : Fin 4) : ℝ := (witness i : ℝ)/100 + 3/400
+
+/-- A closed interior rectangle of side 1/200 in the admissible (4,5,8,39) box. -/
+theorem integral_lower_witness : (1/200:ℝ)^4 ≤ J := by
+  let W := Set.Icc leftCorner rightCorner
+  have hrect : leftCorner ≤ rightCorner := fun i => by dsimp [leftCorner,rightCorner]; linarith
+  have hdom {t} (ht : t ∈ W) : boxDomain t := by
+    refine ⟨witness,?_,fun i => ?_⟩
+    · change Closing.admissible 4 5 8 39
+      norm_num [Closing.admissible]
+    · have hl := ht.1 i
+      have hu := ht.2 i
+      dsimp [leftCorner,rightCorner] at hl hu
+      constructor <;> linarith
+  have hp {t} (h : boxDomain t) : 0 < product5 t := by
+    obtain ⟨p,hp,m,hm,ht⟩ := cover h
+    exact (prod_pos hp hm).trans_le (inside_denom hp hm ht)
+  have hbound (t) : W.indicator (fun _ => (1:ℝ)) t ≤ densityAt t := by
+    by_cases ht : t ∈ W
+    · rw [Set.indicator_of_mem ht,densityAt,if_pos (hdom ht)]
+      have hmin (i) : 0 ≤ t i := by
+        have h := ht.1 i
+        exact (show 0 ≤ leftCorner i by unfold leftCorner; positivity).trans h
+      have hmax (i) : t i ≤ 1 := (ht.2 i).trans (by fin_cases i <;> change (_:ℝ)/100+3/400 ≤ 1 <;> norm_num [witness,Matrix.cons_val_fin_one,Matrix.cons_val_succ])
+      have h1 : (∏ i, t i) ≤ 1 := Finset.prod_le_one (fun i _ => hmin i) (fun i _ => hmax i)
+      have h2 : 1 - ∑ i, t i ≤ 1 := by linarith only [Finset.sum_nonneg (fun i (_ : i ∈ Finset.univ) => hmin i)]
+      have h3 : product5 t ≤ 1 := (mul_le_mul_of_nonneg_left h2 (Finset.prod_nonneg (fun i _ => hmin i))).trans (by simpa using h1)
+      have hh : 2 ≤ profileH t := by unfold profileH face; split_ifs <;> norm_num
+      exact (one_le_div (hp (hdom ht))).mpr (by linarith)
+    · rw [Set.indicator_of_notMem ht,densityAt]
+      split_ifs with h
+      · exact div_nonneg (height_nonneg t) (hp h).le
+      · rfl
+  have hw : Integrable (W.indicator (fun _ => (1:ℝ))) :=
+    (integrable_indicator_iff measurableSet_Icc).mpr (integrableOn_const measure_Icc_lt_top.ne)
+  have hh := integral_mono hw integrable_densityAt hbound
+  change _ ≤ ∫ t, densityAt t
+  rw [integral_indicator_const _ (show MeasurableSet W from measurableSet_Icc),smul_eq_mul,mul_one,
+    Measure.real,Real.volume_Icc_pi_toReal hrect] at hh
+  simp [leftCorner,rightCorner] at hh
+  norm_num at hh ⊢
+  exact hh
+
+theorem integral_pos : 0 < J := lt_of_lt_of_le (by norm_num : 0 < (1/200:ℝ)^4) integral_lower_witness
 
 end
 end REAL1B.FM.Grid
+#print axioms REAL1B.FM.Grid.domain_measurable
+#print axioms REAL1B.FM.Grid.measurable_densityAt
+#print axioms REAL1B.FM.Grid.integrable_densityAt
+#print axioms REAL1B.FM.Grid.integral_lower_witness
+#print axioms REAL1B.FM.Grid.integral_pos
 #print axioms REAL1B.FM.Grid.integral_le_mesh

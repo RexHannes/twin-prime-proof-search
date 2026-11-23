@@ -8,6 +8,9 @@ import RequestProject.REAL1B_20261122.FMOwners
 import RequestProject.REAL1B_20261122.FMSemantics
 import RequestProject.REAL1B_20261122.FMCompleteLabel
 import RequestProject.REAL1B_20261122.FMIntegral
+import RequestProject.REAL1B_20261122.FMPresieveAP
+import RequestProject.REAL1B_20261122.FMNormalization
+import RequestProject.REAL1B_20261122.FMProfileSlices
 import RequestProject.REAL1B_20261122.FMLowPrefix
 
 /-! Entry point for the REAL 1B proofs of 22–23 November 2026.

@@ -24,7 +24,7 @@ def generate_replay():
     bodies, seen = [], set()
 
     def visit(module):
-        if module in seen or module in {"Mathlib", "Std"}:
+        if module in seen or module in {"Mathlib", "Std", "Init"}:
             return
         seen.add(module)
         path = Path(*module.split(".")).with_suffix(".lean")
