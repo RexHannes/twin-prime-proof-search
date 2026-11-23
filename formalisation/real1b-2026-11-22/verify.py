@@ -1,6 +1,7 @@
 """Reproduce the REAL 1B replay from the repository and check every audited theorem."""
 import argparse
 import hashlib
+from http.client import RemoteDisconnected
 import json
 import os
 from pathlib import Path
@@ -57,8 +58,15 @@ def online(source, names):
     system_roots = Path("/etc/ssl/cert.pem")
     if sys.platform == "darwin" and system_roots.is_file():
         tls.load_verify_locations(cafile=str(system_roots))
-    with urllib.request.urlopen(req, timeout=270, context=tls) as response:
-        result = json.load(response)
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(req, timeout=270, context=tls) as response:
+                result = json.load(response)
+            break
+        except (RemoteDisconnected, ConnectionResetError, TimeoutError):
+            if attempt == 2:
+                raise
+            print("AXLE connection interrupted. Retrying the identical replay.", flush=True)
     for key in ("lean_messages", "tool_messages"):
         messages = result[key]
         if messages["errors"] or messages["warnings"]:
@@ -81,25 +89,36 @@ def native_audit(module, names):
     print(output.rstrip(), flush=True)
 
 
-def native(names):
+def certificate_files():
+    base = ROOT / "RequestProject/REAL1B_20261122"
+    return sorted((base / "GridColumns").glob("C*.lean")) + [base / "FMGridExact.lean"]
+
+
+def certificate_manifest():
+    paths = certificate_files()
+    return {
+        "sources": {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+                    for p in paths},
+        "audited_declarations": [name for p in paths for name in
+                                 re.findall(r"^#print axioms ([\w.]+)$", p.read_text(), re.MULTILINE)]
+    }
+
+
+def native(names, certificate_names):
     subprocess.run(["lake", "exe", "cache", "get"], cwd=ROOT, check=True)
     subprocess.run(["lake", "build", ENTRY], cwd=ROOT, check=True)
     native_audit(ENTRY, names)
     # Each numeral proof is reduced by the kernel. Limit concurrent column
     # builds to keep peak memory bounded on the hosted runner.
     module = ENTRY + ".FMGridExact"
-    column_dir = ROOT / "RequestProject/REAL1B_20261122/GridColumns"
-    columns = sorted(column_dir.glob("C*.lean"), key=lambda p: -p.stat().st_size)
+    columns = sorted(certificate_files()[:-1], key=lambda p: -p.stat().st_size)
     env = dict(os.environ, LEAN_NUM_THREADS="1")
     for i in range(0, len(columns), 2):
         targets = [ENTRY + ".GridColumns." + p.stem for p in columns[i:i+2]]
         subprocess.run(["lake", "--wfail", "build", *targets], cwd=ROOT, env=env, check=True)
     subprocess.run(["lake", "--wfail", "build", module], cwd=ROOT, env=env, check=True)
-    exact_paths = columns + [column_dir.parent / "FMGridExact.lean"]
-    exact_names = [name for path in exact_paths for name in
-                   re.findall(r"^#print axioms ([\w.]+)$", path.read_text(), re.MULTILINE)]
-    native_audit(module, exact_names)
-    print(f"Native kernel verified {len(names) + len(exact_names)} declarations including the complete integral enclosure.", flush=True)
+    native_audit(module, certificate_names)
+    print(f"Native kernel verified {len(names) + len(certificate_names)} declarations including the complete integral enclosure.", flush=True)
 
 
 def main():
@@ -121,6 +140,9 @@ def main():
     names = re.findall(r"^#print axioms ([\w.]+)$", source, re.MULTILINE)
     if not names or len(names) != len(set(names)) or set(names) != set(record["audited_declarations"]):
         raise ValueError("Audited theorem list differs from the verification record")
+    certificate = certificate_manifest()
+    if certificate != record.get("native_certificate"):
+        raise ValueError("Native cubature sources or audited declarations differ from the record")
     paper_source = HERE / "REAL1B_Gold4_59_FM_Joint_Signed_Verify_20261123.py"
     if hashlib.sha256(paper_source.read_bytes()).hexdigest() != record["joint_verifier"]["source_sha256"]:
         raise ValueError("Gold 4.59 verifier differs from its recorded source")
@@ -134,8 +156,8 @@ def main():
     if args.online:
         online(source, names)
     else:
-        native(names)
-    print(f"Verified {len(names)} declarations. SHA-256 {digest}")
+        native(names, certificate["audited_declarations"])
+    print(f"Compact replay verified {len(names)} declarations. SHA-256 {digest}")
 
 
 if __name__ == "__main__":
