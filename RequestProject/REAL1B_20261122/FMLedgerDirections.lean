@@ -1,4 +1,4 @@
-import RequestProject.REAL1B_20261122.FMLowerLedger
+import RequestProject.REAL1B_20261122.FMRankTwo
 
 namespace REAL1B.FM.Ledger
 open Filter Vaughan Source Analytic
@@ -67,6 +67,11 @@ theorem upper_of_estimates {a : ℝ} (hs : ScaleLower) (h : Estimates)
     (abs_le.mp hfour).1,(abs_le.mp htail).1,(abs_le.mp hmean).2,(abs_le.mp hpow).2,
     (abs_le.mp hcomp).1,(abs_le.mp hred).1]
 
+theorem upper_of_pair_comparator {a : ℝ} (hs : ScaleLower) (h : Estimates)
+    (hpair : upper (weighted compare (omitted (·=2))) pairCap) (hr : Closing.Reduction a) :
+    UpperLedger a 1.000107183501 :=
+  upper_of_estimates hs h (lower_pair_of_comparator hpair) hr
+
 end
 end REAL1B.FM.Ledger
 #print axioms REAL1B.FM.Ledger.reserve_of_outside
@@ -75,3 +80,4 @@ end REAL1B.FM.Ledger
 #print axioms REAL1B.FM.Ledger.upper_box_insufficient
 #print axioms REAL1B.FM.Ledger.upper_rounding
 #print axioms REAL1B.FM.Ledger.upper_of_estimates
+#print axioms REAL1B.FM.Ledger.upper_of_pair_comparator

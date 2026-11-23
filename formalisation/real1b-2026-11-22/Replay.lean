@@ -4398,6 +4398,176 @@ end REAL1B.FM.Collar
 #print axioms REAL1B.FM.Collar.two_bands
 #print axioms REAL1B.FM.Collar.triple_band
 
+-- RequestProject/REAL1B_20261122/FMSimplex.lean
+/-! Gold 4.58, Part V §9. The four projected coordinates of an active
+five-prime output occupy a translated simplex. The change of variables preserves
+Lebesgue measure and the fifth coordinate is determined by the other four. -/
+namespace REAL1B.FM.Collar
+open MeasureTheory Finset
+noncomputable section
+open Classical
+
+def slackSimplex (n : ℕ) (h : ℝ) : Set (Fin n → ℝ) := {t | (∀ i, 0 ≤ t i) ∧ ∑ i, t i ≤ h}
+
+private theorem simplex_measurable (n : ℕ) (h : ℝ) : MeasurableSet (slackSimplex n h) := by
+  change MeasurableSet ({t : Fin n → ℝ | ∀ i, 0 ≤ t i} ∩ {t | ∑ i, t i ≤ h})
+  apply MeasurableSet.inter _ (measurableSet_le (by fun_prop) measurable_const)
+  change MeasurableSet {t : Fin n → ℝ | ∀ i, 0 ≤ t i}
+  rw [Set.setOf_forall]
+  exact MeasurableSet.iInter (fun i => measurableSet_le measurable_const (measurable_pi_apply i))
+
+private theorem simplex_sub (n : ℕ) (h : ℝ) : slackSimplex n h ⊆ Set.Icc (fun _ => (0:ℝ)) (fun _ => h) := by
+  intro t ht
+  exact ⟨ht.1,fun i => (single_le_sum (f:=t) (fun i _ => ht.1 i) (mem_univ i)).trans ht.2⟩
+
+private theorem simplex_finite (n : ℕ) (h : ℝ) : volume (slackSimplex n h) < ⊤ :=
+  (measure_mono (simplex_sub n h)).trans_lt measure_Icc_lt_top
+
+/-- Lebesgue volume of the nonnegative coordinate simplex of side length h. -/
+theorem simplex_volume (n : ℕ) {h : ℝ} (hh : 0≤h) :
+    volume.real (slackSimplex n h) = h^n/(n.factorial:ℝ) := by
+  induction n generalizing h with
+  | zero =>
+    have he : slackSimplex 0 h = Set.Icc (fun _ => (0:ℝ)) (fun _ => h) := by
+      apply Set.Subset.antisymm (simplex_sub _ _)
+      intro t ht
+      exact ⟨ht.1,by simpa using hh⟩
+    rw [he,Measure.real,Real.volume_Icc_pi_toReal (fun _ => hh)]
+    simp
+  | succ n ih =>
+    let E := MeasurableEquiv.piFinSuccAbove (fun _ : Fin (n+1) => ℝ) 0
+    have mp : MeasurePreserving E volume volume := volume_preserving_piFinSuccAbove (fun _ : Fin (n+1) => ℝ) 0
+    let F := (slackSimplex (n+1) h).indicator (fun _ => (1:ℝ))
+    let G : ℝ × (Fin n → ℝ) → ℝ := fun p => if p.1 ∈ Set.Icc 0 h then
+      (slackSimplex n (h-p.1)).indicator (fun _ => (1:ℝ)) p.2 else 0
+    have heq (t : Fin (n+1) → ℝ) : G (E t) = F t := by
+      have hsplit : t ∈ slackSimplex (n+1) h ↔ t 0 ∈ Set.Icc 0 h ∧ (fun i : Fin n => t i.succ) ∈ slackSimplex n (h-t 0) := by
+        constructor
+        · intro ht
+          have hl := ht.2
+          rw [Fin.sum_univ_succ] at hl
+          exact ⟨⟨ht.1 0,(simplex_sub _ _ ht).2 0⟩,fun i => ht.1 i.succ,by linarith⟩
+        · rintro ⟨ht,htail⟩
+          refine ⟨fun i => Fin.cases ht.1 (fun j => htail.1 j) i,?_⟩
+          rw [Fin.sum_univ_succ]
+          linarith only [htail.2]
+      change (if t 0 ∈ Set.Icc 0 h then (slackSimplex n (h-t 0)).indicator (fun _ => (1:ℝ)) _ else 0) = _
+      simp only [Set.indicator,F,hsplit]
+      have htail : (E t).2 = (fun j : Fin n => t j.succ) := by
+        funext j
+        change t ((0 : Fin (n+1)).succAbove j) = t j.succ
+        simp
+      rw [htail]
+      split_ifs <;> tauto
+    have hf : Integrable F := (integrable_indicator_iff (simplex_measurable _ _)).mpr (integrableOn_const (simplex_finite _ _).ne)
+    have hg : Integrable G := (mp.integrable_comp_emb E.measurableEmbedding).mp (by simpa only [Function.comp_def,heq] using hf)
+    have hsection (x : ℝ) : (∫ t, G (x,t)) = (Set.Icc 0 h).indicator (fun x => (h-x)^n/(n.factorial:ℝ)) x := by
+      by_cases hx : x ∈ Set.Icc 0 h
+      · simp only [G,hx,if_true,Set.indicator_of_mem hx]
+        rw [integral_indicator_const _ (simplex_measurable _ _),smul_eq_mul,mul_one,ih (sub_nonneg.mpr hx.2)]
+      · simp only [G,if_neg hx,Set.indicator_of_notMem hx,integral_zero]
+    calc
+      _ = ∫ t, F t := by rw [show (∫ t, F t) = _ from integral_indicator_const _ (simplex_measurable _ _),smul_eq_mul,mul_one]
+      _ = ∫ p, G p := by simpa only [heq] using mp.integral_comp' G
+      _ = ∫ x, ∫ t, G (x,t) := integral_prod _ hg
+      _ = ∫ x in (0:ℝ)..h, (h-x)^n/(n.factorial:ℝ) := by
+        simp_rw [hsection]
+        rw [integral_indicator measurableSet_Icc,integral_Icc_eq_integral_Ioc,intervalIntegral.integral_of_le hh]
+      _ = _ := by
+        rw [intervalIntegral.integral_div,intervalIntegral.integral_comp_sub_left (fun x => x^n) h,sub_self,sub_zero,integral_pow]
+        rw [Nat.factorial_succ,Nat.cast_mul,Nat.cast_succ]
+        simp only [zero_pow (Nat.succ_ne_zero _),sub_zero]
+        field_simp
+
+def fiveDomain : Set (Fin 4 → ℝ) :=
+  {t | (∀ i, Direct.lowerEdge ≤ t i) ∧ ∑ i, t i ≤ 1-Direct.lowerEdge}
+
+def fifthProduct (t : Fin 4 → ℝ) := (∏ i, t i)*(1-∑ i, t i)
+
+/-- The original ordered prime coordinates satisfy the projected collar inequalities. -/
+theorem native_five_domain {n : ℕ} (hs : Squarefree n) (hg : Direct.good n)
+    (hh : Source.kernelH n ≠ 0) {t : Fin 4 → ℝ} {f : ℝ}
+    (hf : n.primeFactorsList.map (Box.coord n) = [t 0, t 1, t 2, t 3, f]) :
+    t ∈ fiveDomain ∧ f = 1 - ∑ i, t i ∧ max (Source.kernelH n) 0 ≤ 3 := by
+  obtain ⟨hl, hheight, _⟩ := rank_five_simplex hs hg hh hf
+  have hsum := coordinate_sum hg.1
+  rw [hf] at hsum
+  simp only [List.sum_cons, List.sum_nil, add_zero] at hsum
+  have hf' : Direct.lowerEdge < f := hl f (by simp)
+  have heq : f = 1 - ∑ i, t i := by
+    simp [Fin.sum_univ_succ]
+    linarith
+  refine ⟨⟨?_, by linarith only [hf', heq]⟩, heq, hheight⟩
+  intro i
+  exact (hl (t i) (by fin_cases i <;> simp)).le
+
+private theorem five_measurable : MeasurableSet fiveDomain := by
+  change MeasurableSet ({t : Fin 4 → ℝ | ∀ i, Direct.lowerEdge ≤ t i} ∩ {t | ∑ i, t i ≤ 1-Direct.lowerEdge})
+  apply MeasurableSet.inter _ (measurableSet_le (by fun_prop) measurable_const)
+  rw [Set.setOf_forall]
+  exact MeasurableSet.iInter (fun i => measurableSet_le measurable_const (measurable_pi_apply i))
+
+/-- Translation by the lower edge preserves four-dimensional Lebesgue volume. -/
+theorem rank_five_volume : volume.real fiveDomain = (5*Source.ε)^4/(Nat.factorial 4:ℝ) := by
+  let A : Fin 4 → ℝ := fun _ => Direct.lowerEdge
+  have hpre : (fun t => t+A) ⁻¹' fiveDomain = slackSimplex 4 (5*Source.ε) := by
+    ext t
+    have hsum : ∑ i, (t+A) i = (∑ i, t i)+4*Direct.lowerEdge := by
+      simp [Pi.add_apply,A,Finset.sum_add_distrib]
+    change ((∀ i, Direct.lowerEdge ≤ t i+Direct.lowerEdge) ∧ ∑ i, (t+A) i ≤ 1-Direct.lowerEdge) ↔
+      (∀ i, 0≤t i) ∧ ∑ i, t i ≤ 5*Source.ε
+    rw [hsum]
+    simp only [le_add_iff_nonneg_left,and_congr_right_iff]
+    intro _
+    unfold Direct.lowerEdge
+    constructor <;> intro <;> linarith
+  have hp := (measurePreserving_add_right volume A).measure_preimage five_measurable.nullMeasurableSet
+  rw [hpre] at hp
+  exact (congrArg ENNReal.toReal hp).symm.trans (simplex_volume 4 (by norm_num [Source.ε]))
+
+theorem rank_five_integral :
+    IntegrableOn (fun t => 3/fifthProduct t) fiveDomain ∧
+    (∫ t in fiveDomain, 3/fifthProduct t)/(Nat.factorial 5:ℝ) ≤
+      3*(5*Source.ε)^4/((Nat.factorial 5:ℝ)*Nat.factorial 4*Direct.lowerEdge^5) := by
+  let a := Direct.lowerEdge
+  have ha : 0<a := by norm_num [a,Direct.lowerEdge,Source.ε]
+  have hprod (t) (ht : t ∈ fiveDomain) : a^5 ≤ fifthProduct t := by
+    have h₁ : a^4 ≤ ∏ i, t i := by
+      calc
+        _ = ∏ _ : Fin 4, a := by simp
+        _ ≤ _ := Finset.prod_le_prod (fun _ _ => ha.le) (fun i _ => ht.1 i)
+    rw [pow_succ]
+    exact mul_le_mul h₁ (by linarith only [ht.2]) ha.le (Finset.prod_nonneg (fun i _ => ha.le.trans (ht.1 i)))
+  have hb : 0<a^5 := pow_pos ha _
+  have hfinite : volume fiveDomain ≠ ⊤ := by
+    have hsub : fiveDomain ⊆ Set.Icc (fun _ => (0:ℝ)) (fun _ => (1:ℝ)) := by
+      intro t ht
+      have nonneg (i) := ha.le.trans (ht.1 i)
+      exact ⟨nonneg,fun i => (single_le_sum (f:=t) (fun j _ => nonneg j) (mem_univ i)).trans
+        (by linarith only [ht.2,ha] : (∑ j, t j) ≤ 1)⟩
+    exact ((measure_mono hsub).trans_lt measure_Icc_lt_top).ne
+  have hm (t) (ht : t∈fiveDomain) : 3/fifthProduct t ≤ 3/a^5 :=
+    div_le_div_of_nonneg_left (by norm_num) hb (hprod t ht)
+  have hi : IntegrableOn (fun t => 3/fifthProduct t) fiveDomain := by
+    apply (integrableOn_const (C:=3/a^5) hfinite).mono'
+    · exact (show Measurable (fun t => (3:ℝ)/fifthProduct t) by unfold fifthProduct; fun_prop).aestronglyMeasurable
+    filter_upwards [ae_restrict_mem five_measurable] with t ht
+    rw [Real.norm_eq_abs,abs_of_nonneg (div_nonneg (by norm_num) (hb.le.trans (hprod t ht)))]
+    exact hm t ht
+  have hh := setIntegral_mono_on hi (integrableOn_const hfinite) five_measurable hm
+  rw [setIntegral_const,rank_five_volume,smul_eq_mul] at hh
+  refine ⟨hi,?_⟩
+  calc
+    _ ≤ _ := div_le_div_of_nonneg_right hh (show (0:ℝ)≤Nat.factorial 5 by positivity)
+    _ = _ := by dsimp [a]; ring
+
+end
+end REAL1B.FM.Collar
+#print axioms REAL1B.FM.Collar.simplex_volume
+#print axioms REAL1B.FM.Collar.native_five_domain
+#print axioms REAL1B.FM.Collar.rank_five_volume
+#print axioms REAL1B.FM.Collar.rank_five_integral
+
 -- RequestProject/REAL1B_20261122/FMLowerLedger.lean
 /-! Gold 4.57 complete-source partition and Gold 4.58 (U9).
 All error functions below are finite sums on the same physical window. -/
@@ -4528,6 +4698,17 @@ def goodRational : ℝ :=
   ε/(a₀*(1-a₀)) + 2*ε/(β*(1-β)) + ε^2/(2*a₀^2*(3/5)) +
     3*(5*ε)^4/((Nat.factorial 5:ℝ)*Nat.factorial 4*a₀^5)
 
+/-- Sum of the two interval majorants, the rank-three rectangle, and
+the unordered rank-five simplex with its original symmetry factor. -/
+def collarReference : ℝ :=
+  Collar.pairIntegral Direct.lowerEdge (1/5) + Collar.pairIntegral β (1/2) +
+  (∫ t in Collar.tripleRect, Collar.tripleDensity t)/2 +
+  (∫ t in Collar.fiveDomain, 3/Collar.fifthProduct t)/(Nat.factorial 5 : ℝ)
+
+theorem collar_reference_bound : collarReference ≤ goodRational := by
+  unfold collarReference goodRational
+  exact add_le_add (add_le_add Collar.two_bands Collar.triple_band.2) Collar.rank_five_integral.2
+
 theorem good_cap_rounding : goodRational < goodCap := by
   norm_num [goodRational,goodCap,ε,β,Nat.factorial]
 
@@ -4613,6 +4794,7 @@ end REAL1B.FM.Ledger
 #print axioms REAL1B.FM.Ledger.geometry_of_good
 #print axioms REAL1B.FM.Ledger.good_cap_rounding
 #print axioms REAL1B.FM.Ledger.geometry
+#print axioms REAL1B.FM.Ledger.collar_reference_bound
 
 -- RequestProject/REAL1B_20261122/FMPresieveAP.lean
 /-! The growing odd-prime presieve in Gold 4.58 B1/B3. The truncation is taken
@@ -4942,6 +5124,215 @@ end REAL1B.FM.Squareful
 #print axioms REAL1B.FM.Squareful.native_squareful
 #print axioms REAL1B.FM.Squareful.box_squareful
 
+-- RequestProject/REAL1B_20261122/FMRankTwo.lean
+/-! Gold 4.48 Appendix H and Gold 4.58 Part V §2. A marked divisor on the
+physical window has three prime marks, a nontrivial general-integer cofactor,
+and at least one more prime factor from its complementary divisor. -/
+namespace REAL1B.FM.Ledger
+open Source ArithmeticFunction Vaughan Filter
+noncomputable section
+open Classical
+
+private theorem marked_rank {X : ℝ} (hX : 1<X) {n d u v w : ℕ}
+    (hn : X < n) (hd : d ∣ n) (hu : u ∣ d) (hv : v ∣ d/u) (hw : w ∣ d/u/v)
+    (pu : u.Prime) (pv : v.Prime) (pw : w.Prime)
+    (bu : inBank X 0.0265 0.028 u) (bv : inBank X 0.0105 0.0115 v)
+    (bw : inBank X 0.0115 0.0125 w) (bq : inBank X 0.463 0.465 (d/u/v/w)) :
+    5 ≤ cardFactors n := by
+  let q := d/u/v/w
+  have hq : 1 < q := by
+    exact_mod_cast (Real.one_lt_rpow hX (by norm_num : (0:ℝ)<0.463)).trans bq.1
+  have deq : d = q*w*v*u := by
+    dsimp [q]
+    rw [Nat.div_mul_cancel hw,Nat.div_mul_cancel hv,Nat.div_mul_cancel hu]
+  have hprod : (q:ℝ)*w*v*u ≤ X^((0.465:ℝ)+0.0125+0.0115+0.028) := by
+    have hx : 0<X := by linarith
+    simp only [Real.rpow_add hx]
+    gcongr
+    · exact bq.2
+    · exact bw.2
+    · exact bv.2
+    · exact bu.2
+  have hlt : d < n := by
+    have hupper := Real.rpow_lt_rpow_of_exponent_lt hX
+      (by norm_num : (0.465:ℝ)+0.0125+0.0115+0.028 < 1)
+    rw [Real.rpow_one] at hupper
+    rw [deq]
+    exact_mod_cast (hprod.trans_lt hupper).trans hn
+  obtain ⟨r, hr⟩ := hd
+  have hrest : 1<r := by
+    by_contra! h
+    interval_cases r <;> simp_all
+  have he : n=q*w*v*u*r := by rw [hr,← deq]
+  have hu0 := pu.ne_zero
+  have hv0 := pv.ne_zero
+  have hw0 := pw.ne_zero
+  have hq0 : q ≠ 0 := by omega
+  rw [he,cardFactors_mul (by simp [hu0,hv0,hw0,hq0]) (by omega),cardFactors_mul (by simp [hv0,hw0,hq0]) pu.ne_zero,
+    cardFactors_mul (by simp [hw0,hq0]) pv.ne_zero,cardFactors_mul (by omega) pw.ne_zero,
+    cardFactors_apply_prime pu,cardFactors_apply_prime pv,cardFactors_apply_prime pw]
+  have hqr := cardFactors_pos_iff_one_lt.mpr hq
+  have hrr := cardFactors_pos_iff_one_lt.mpr hrest
+  omega
+
+/-- For every physical rank up to four, every marked contribution vanishes. -/
+theorem low_rank_K_zero {X : ℝ} (hX : 1<X) {n : ℕ} (hn : X < n)
+    (hr : cardFactors n ≤ 4) : kernelK X n = 0 := by
+  have hz (d : ℕ) (hd : d ∈ n.divisors) : labels X d = 0 := by
+    unfold labels
+    apply Finset.sum_eq_zero
+    intro u hu
+    apply Finset.sum_eq_zero
+    intro v hv
+    apply Finset.sum_eq_zero
+    intro w hw
+    apply if_neg
+    rintro ⟨pu,pv,pw,bu,bv,bw,bq⟩
+    have hc := marked_rank hX hn (Nat.mem_divisors.mp hd).1 (Nat.mem_divisors.mp hu).1
+      (Nat.mem_divisors.mp hv).1 (Nat.mem_divisors.mp hw).1 pu pv pw bu bv bw bq
+    omega
+  unfold kernelK
+  rw [Finset.sum_eq_zero (fun d hd => by simp [hz d hd]),mul_zero]
+
+/-- Above the lower edge the two prime coordinates admit the paper's rank
+assignment (1,2). Both tiny costs are zero. -/
+private theorem pair_good {n p q : ℕ} (hn : 1<n) (hf : n.primeFactorsList=[p,q])
+    (hp : Direct.lowerEdge < Box.coord n p) (ho : Box.coord n p ≤ Box.coord n q)
+    (hsum : Box.coord n p + Box.coord n q = 1) : Direct.good n := by
+  have hnp : ¬n.Prime := by
+    intro h
+    have he := Nat.primeFactorsList_prime h
+    rw [hf] at he
+    simp at he
+  refine ⟨hn,hnp,?_⟩
+  change Direct.rankTest (fun i : Fin n.primeFactorsList.length => Box.coord n (n.primeFactorsList.get i))
+  rw [hf]
+  let r : Fin 2 → ℕ := ![1,2]
+  have ha : (1:ℝ)/5 - Source.ε < Box.coord n p := hp
+  have hε : 0<Source.ε := by norm_num [Source.ε]
+  refine ⟨r, by change (∑ i : Fin 2, r i) ≤ 5; norm_num [r, Fin.sum_univ_two], ?_, ?_⟩
+  · intro i _
+    fin_cases i <;>
+      norm_num [r,Direct.lowerEdge,Matrix.cons_val_zero,Matrix.cons_val_one] <;> linarith
+  · change (∑ i : Fin 2, Direct.tinyCost (Box.coord n ([p,q].get i)) (r i)) < ε
+    rw [Fin.sum_univ_two]
+    have hz (t : ℝ) (k : ℕ) (hk : k ≠ 0) (h : t ≤ k * Direct.upperEdge) :
+        Direct.tinyCost t k = 0 := by
+      simp only [Direct.tinyCost, if_neg hk, max_eq_right (sub_nonpos.mpr h)]
+    change Direct.tinyCost (Box.coord n p) 1 + Direct.tinyCost (Box.coord n q) 2 < ε
+    rw [hz _ 1 (by decide) (by norm_num [Direct.upperEdge]; linarith),
+        hz _ 2 (by decide) (by norm_num [Direct.upperEdge]; linarith)]
+    simpa using hε
+
+/-- At an off-good squarefree semiprime the native kernel equals the strip
+indicator, including its lower and upper boundary conventions. -/
+theorem pair_strip {n p q : ℕ} (hn : 1<n) (hs : Squarefree n)
+    (hf : n.primeFactorsList=[p,q]) (hg : ¬ Direct.good n) :
+    Source.kernelH n = if Source.ν ≤ Box.coord n p ∧ Box.coord n p ≤ Direct.lowerEdge then 1 else 0 := by
+  have pp := Nat.prime_of_mem_primeFactorsList (n:=n) (p:=p) (by simp [hf])
+  have pq := Nat.prime_of_mem_primeFactorsList (n:=n) (p:=q) (by simp [hf])
+  have hsum := Collar.coordinate_sum hn
+  simp [hf] at hsum
+  have hpq : p≤q := by
+    have hh := (Nat.primeFactorsList_sorted n).pairwise
+    simpa [hf] using hh
+  have ho : Box.coord n p ≤ Box.coord n q :=
+    div_le_div_of_nonneg_right (Real.log_le_log (by exact_mod_cast pp.pos) (by exact_mod_cast hpq)) (Real.log_natCast_nonneg _)
+  have hlow : Box.coord n p ≤ Direct.lowerEdge := le_of_not_gt (fun h => hg (pair_good hn hf h ho hsum))
+  have lq : [q].Sublist n.primeFactorsList := by rw [hf]; exact List.sublist_cons_self _ _
+  have lp : [p].Sublist n.primeFactorsList := by rw [hf]; exact List.Sublist.cons₂ _ (List.nil_sublist _)
+  have lall : [p,q].Sublist n.primeFactorsList := by rw [hf]
+  have hq : ¬ ((q:ℝ) ≤ (n:ℝ)^γ) := by
+    intro h
+    have hh := (Box.mass_cut hn lq).mp (by simpa using h)
+    simp [Box.mass] at hh
+    unfold γ ε at hh
+    linarith
+  have hfull : ¬ (((p*q:ℕ):ℝ) ≤ (n:ℝ)^γ) := by
+    intro h
+    have hh := (Box.mass_cut hn lall).mp (by simpa using h)
+    simp [Box.mass,hsum] at hh
+    norm_num [γ,ε] at hh
+  have hp_cut : (p:ℝ) ≤ (n:ℝ)^γ := by
+    have h : Box.mass n [p] ≤ γ := by
+      simp [Box.mass]; unfold Direct.lowerEdge at hlow; unfold γ; linarith
+    simpa using (Box.mass_cut hn lp).mpr h
+  have h1 : divisorCoefficient n 1 = 1 := by
+    have hp1 : (1:ℝ) ≤ (n:ℝ)^γ := Real.one_le_rpow (by exact_mod_cast (show 1≤n by omega)) (by norm_num [γ,ε])
+    simp [divisorCoefficient,profile,g0,REAL1B.mu,hp1,show 0≤β by norm_num [β,ε]]
+  have hq0 : divisorCoefficient n q = 0 := by simp [divisorCoefficient,hq]
+  have hfull0 : divisorCoefficient n (p*q) = 0 := by simp only [divisorCoefficient, hfull, false_and, if_false]
+  have hpeq : divisorCoefficient n p = if ν ≤ Box.coord n p then 0 else -1 := by
+    have hnot : ¬((5:ℝ)⁻¹ < Box.coord n p) := by unfold Direct.lowerEdge ε at hlow; linarith
+    by_cases hb : ν ≤ Box.coord n p
+    · have h := (Box.cutoff_iff hn pp).mpr hb
+      simp [divisorCoefficient,Nat.primeFactorsList_prime pp,not_lt.mpr h,h,Box.source_profile,g0,hnot,hb]
+    · have h := lt_of_not_ge (fun hh => hb ((Box.cutoff_iff hn pp).mp hh))
+      simp [divisorCoefficient,Nat.primeFactorsList_prime pp,not_le.mpr h,h,profile,g0,REAL1B.mu,
+        ArithmeticFunction.moebius_apply_prime pp,hp_cut,hb,show 0≤β by norm_num [β,ε]]
+  rw [Box.H_sublists hs,hf]
+  simp [List.sublists'_cons,h1,hq0,hfull0,hpeq,hlow]
+  split_ifs <;> norm_num
+
+/-- Exact omitted two-prime weight on its physical window, with the output
+presieve and both strip endpoints retained. -/
+theorem omitted_pair_eq {x : ℝ} (hx : 4≤x) {n p q : ℕ} (hn : n ∈ interval (x/2))
+    (hs : Squarefree n) (hf : n.primeFactorsList=[p,q]) :
+    omitted (·=2) x n = if Sifted (z x) n ∧ ν ≤ Box.coord n p ∧ Box.coord n p ≤ Direct.lowerEdge
+      then 1 else 0 := by
+  have hwin := Analytic.window hn
+  have hc : cardFactors n = 2 := by simp [cardFactors_apply,hf]
+  have hK := low_rank_K_zero (by linarith : 1<x/2) hwin.1 (by omega : cardFactors n ≤ 4)
+  by_cases hg : Direct.good n
+  · have hmem : p ∈ n.primeFactorsList := by simp [hf]
+    obtain ⟨hp,hd⟩ := (Nat.mem_primeFactorsList hs.ne_zero).mp hmem
+    have hfalse : ¬(Sifted (z x) n ∧ ν ≤ Box.coord n p ∧ Box.coord n p ≤ Direct.lowerEdge) :=
+      fun h => GoodSupport.gap_excluded hg hp hd
+        ((by norm_num [ε,ν] : ε ≤ ν).trans h.2.1) h.2.2
+    simp [omitted,hg,hfalse]
+  · have hh := pair_strip (show 1<n from hwin.2.2) hs hf hg
+    by_cases hz : Sifted (z x) n <;> simp [omitted,calibrated,hg,hc,hs,hz,hK,hh]
+
+theorem pair_reference_bound : Collar.pairIntegral ν Direct.lowerEdge ≤ pairCap := by
+  have h := (Collar.pair_band (l:=ν) (u:=Direct.lowerEdge)
+    (by norm_num [ν,ε]) (by norm_num [ν,ε,Direct.lowerEdge]) (by norm_num [Direct.lowerEdge,ε])).2
+  rwa [show Direct.lowerEdge-ν=ε by unfold Direct.lowerEdge ν; ring] at h
+
+theorem pair_actual_nonneg {x : ℝ} (hx : 4≤x) : 0 ≤ weighted actual (omitted (·=2)) x := by
+  unfold weighted total
+  apply Finset.sum_nonneg
+  intro n hn
+  have ht : 0 ≤ theta (n-2) := by unfold theta; split_ifs <;> first | exact Real.log_natCast_nonneg _ | rfl
+  apply mul_nonneg (show 0 ≤ actual x n by unfold actual sieve; split_ifs <;> positivity)
+  by_cases hc : cardFactors n = 2
+  · by_cases hs : Squarefree n
+    · have hl : n.primeFactorsList.length=2 := hc
+      obtain ⟨p,q,hf⟩ : ∃ p q, n.primeFactorsList=[p,q] := by
+        rcases he : n.primeFactorsList with _ | ⟨p,l⟩ <;> simp [he] at hl
+        rcases l with _ | ⟨q,l⟩ <;> simp_all
+      rw [omitted_pair_eq hx hn hs hf]
+      split_ifs <;> norm_num
+    · simp [omitted,calibrated,hs]
+  · simp [omitted,hc]
+
+/-- The lower side of the signed pair estimate follows from the comparator
+upper alone because the original actual pair weight is nonnegative. -/
+theorem lower_pair_of_comparator (h : upper (weighted compare (omitted (·=2))) pairCap) :
+    upper (fun x => -deviation (omitted (·=2)) x) pairCap := by
+  intro e he
+  filter_upwards [Filter.eventually_ge_atTop (4:ℝ), h e he] with x hx hc
+  dsimp [deviation]
+  linarith only [pair_actual_nonneg hx,hc]
+
+end
+end REAL1B.FM.Ledger
+#print axioms REAL1B.FM.Ledger.low_rank_K_zero
+#print axioms REAL1B.FM.Ledger.pair_strip
+#print axioms REAL1B.FM.Ledger.omitted_pair_eq
+#print axioms REAL1B.FM.Ledger.pair_reference_bound
+#print axioms REAL1B.FM.Ledger.pair_actual_nonneg
+#print axioms REAL1B.FM.Ledger.lower_pair_of_comparator
+
 -- RequestProject/REAL1B_20261122/FMLedgerDirections.lean
 namespace REAL1B.FM.Ledger
 open Filter Vaughan Source Analytic
@@ -5010,6 +5401,11 @@ theorem upper_of_estimates {a : ℝ} (hs : ScaleLower) (h : Estimates)
     (abs_le.mp hfour).1,(abs_le.mp htail).1,(abs_le.mp hmean).2,(abs_le.mp hpow).2,
     (abs_le.mp hcomp).1,(abs_le.mp hred).1]
 
+theorem upper_of_pair_comparator {a : ℝ} (hs : ScaleLower) (h : Estimates)
+    (hpair : upper (weighted compare (omitted (·=2))) pairCap) (hr : Closing.Reduction a) :
+    UpperLedger a 1.000107183501 :=
+  upper_of_estimates hs h (lower_pair_of_comparator hpair) hr
+
 end
 end REAL1B.FM.Ledger
 #print axioms REAL1B.FM.Ledger.reserve_of_outside
@@ -5018,6 +5414,7 @@ end REAL1B.FM.Ledger
 #print axioms REAL1B.FM.Ledger.upper_box_insufficient
 #print axioms REAL1B.FM.Ledger.upper_rounding
 #print axioms REAL1B.FM.Ledger.upper_of_estimates
+#print axioms REAL1B.FM.Ledger.upper_of_pair_comparator
 
 -- RequestProject/REAL1B_20261122/FMProfileTransfer.lean
 /-! Finite parts of the Gold 4.64–4.65 transfer to the fixed five-prime source. -/

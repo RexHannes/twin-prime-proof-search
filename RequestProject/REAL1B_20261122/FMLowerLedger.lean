@@ -1,4 +1,4 @@
-import RequestProject.REAL1B_20261122.FMCollarIntegral
+import RequestProject.REAL1B_20261122.FMSimplex
 
 /-! Gold 4.57 complete-source partition and Gold 4.58 (U9).
 All error functions below are finite sums on the same physical window. -/
@@ -129,6 +129,17 @@ def goodRational : ℝ :=
   ε/(a₀*(1-a₀)) + 2*ε/(β*(1-β)) + ε^2/(2*a₀^2*(3/5)) +
     3*(5*ε)^4/((Nat.factorial 5:ℝ)*Nat.factorial 4*a₀^5)
 
+/-- Sum of the two interval majorants, the rank-three rectangle, and
+the unordered rank-five simplex with its original symmetry factor. -/
+def collarReference : ℝ :=
+  Collar.pairIntegral Direct.lowerEdge (1/5) + Collar.pairIntegral β (1/2) +
+  (∫ t in Collar.tripleRect, Collar.tripleDensity t)/2 +
+  (∫ t in Collar.fiveDomain, 3/Collar.fifthProduct t)/(Nat.factorial 5 : ℝ)
+
+theorem collar_reference_bound : collarReference ≤ goodRational := by
+  unfold collarReference goodRational
+  exact add_le_add (add_le_add Collar.two_bands Collar.triple_band.2) Collar.rank_five_integral.2
+
 theorem good_cap_rounding : goodRational < goodCap := by
   norm_num [goodRational,goodCap,ε,β,Nat.factorial]
 
@@ -214,3 +225,4 @@ end REAL1B.FM.Ledger
 #print axioms REAL1B.FM.Ledger.geometry_of_good
 #print axioms REAL1B.FM.Ledger.good_cap_rounding
 #print axioms REAL1B.FM.Ledger.geometry
+#print axioms REAL1B.FM.Ledger.collar_reference_bound

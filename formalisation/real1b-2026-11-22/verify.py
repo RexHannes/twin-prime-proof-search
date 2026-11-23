@@ -52,20 +52,23 @@ def check_audits(output, names):
 
 def online(source, names):
     data = {"content": source, "environment": ENVIRONMENT, "ignore_imports": False,
-            "timeout_seconds": 180}
+            "timeout_seconds": 240}
     req = urllib.request.Request(SERVICE, data=json.dumps(data).encode(),
                                  headers={"Content-Type": "application/json"})
     tls = ssl.create_default_context()
     system_roots = Path("/etc/ssl/cert.pem")
     if sys.platform == "darwin" and system_roots.is_file():
         tls.load_verify_locations(cafile=str(system_roots))
-    for attempt in range(3):
+    # A proxy may close the client connection before the kernel finishes.
+    # Repeating the identical request can retrieve the completed result.
+    attempts = 6
+    for attempt in range(attempts):
         try:
-            with urllib.request.urlopen(req, timeout=270, context=tls) as response:
+            with urllib.request.urlopen(req, timeout=300, context=tls) as response:
                 result = json.load(response)
             break
         except (RemoteDisconnected, ConnectionResetError, TimeoutError):
-            if attempt == 2:
+            if attempt + 1 == attempts:
                 raise
             print("AXLE connection interrupted. Retrying the identical replay.", flush=True)
     for key in ("lean_messages", "tool_messages"):

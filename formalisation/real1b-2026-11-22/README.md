@@ -4,7 +4,7 @@
 
 Earlier results include the exact weighted identities, a finite Vaughan decomposition on the physical source, a positive numerical margin, a prime-power error estimate, and the Gold 4.60 conditional implication from the signed FM complement. The H2-B implication has five hypotheses. Their precise statements and mathematical status appear in the [dependency table](DEPENDENCIES.md).
 
-Gold 4.67 verifies the original-source prime-power and squareful-input estimates, good-set support and positive collars, the signed Vaughan and ledger decompositions, the exact five-prime divisor formula, integrability and strict positivity of its integral, and the six unweighted profile counts. [Analytic theorem inventory and remaining estimates](FM-ANALYTIC.md)
+Gold 4.67 verifies the original-source prime-power and squareful-input estimates, good-set support, all four continuous positive-collar integrals, the exact omitted semiprime strip, the signed Vaughan and ledger decompositions, the exact five-prime divisor formula, integrability and strict positivity of its integral, and the six unweighted profile counts. [Analytic theorem inventory and remaining estimates](FM-ANALYTIC.md)
 
 ## Check out the analytic route
 
@@ -38,6 +38,8 @@ To check the analytic modules, integral proof, and closing theorem together with
 ```sh
 python3 formalisation/real1b-2026-11-22/verify.py --lake
 ```
+
+The native build at `43faced` checked 240 declarations, including the full grid and the signed endpoint. [Archived axiom output](native-audits/43faced.txt) · [Complete native build log](https://github.com/RexHannes/twin-prime-proof-search/actions/runs/45198042124)
 
 The original Gold 4.67 native build at `af6872f` checked 193 declarations. [Archived axiom output](native-audits/af6872f.txt) · [Complete native build log](https://github.com/RexHannes/twin-prime-proof-search/actions/runs/45178500376)
 
