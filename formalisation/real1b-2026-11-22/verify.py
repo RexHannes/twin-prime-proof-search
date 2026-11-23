@@ -134,14 +134,14 @@ def native(names, certificate_names):
     subprocess.run(["lake", "exe", "cache", "get"], cwd=ROOT, check=True)
     subprocess.run(["lake", "build", ENTRY], cwd=ROOT, check=True)
     native_audit(ENTRY, names)
-    # Each numeral proof is reduced by the kernel. Limit concurrent column
-    # builds to keep peak memory bounded on the hosted runner.
+    # Each numeral proof is reduced by the kernel. Build one column at a time
+    # so the largest two columns never compete for runner memory.
     module = ENTRY + ".FMAnalyticEndpoint"
     columns = sorted((p for p in certificate_files() if p.parent.name == "GridColumns"), key=lambda p: -p.stat().st_size)
-    env = dict(os.environ, LEAN_NUM_THREADS="2")
-    for i in range(0, len(columns), 2):
-        targets = [ENTRY + ".GridColumns." + p.stem for p in columns[i:i+2]]
-        subprocess.run(["lake", "--wfail", "build", *targets], cwd=ROOT, env=env, check=True)
+    env = dict(os.environ, LEAN_NUM_THREADS="1")
+    for column in columns:
+        target = ENTRY + ".GridColumns." + column.stem
+        subprocess.run(["lake", "--wfail", "build", target], cwd=ROOT, env=env, check=True)
     subprocess.run(["lake", "--wfail", "build", module], cwd=ROOT, env=env, check=True)
     native_audit(module, certificate_names)
     print(f"Native kernel verified {len(names) + len(certificate_names)} declarations including the complete integral enclosure.", flush=True)
