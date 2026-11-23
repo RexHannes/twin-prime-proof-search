@@ -1710,6 +1710,133 @@
       "prev": "83cdd79ea30307d9486fba99308bc7414104e59e06c86e8444b2637ccbeea0f4",
       "seq": 64,
       "sha256": "13a637d40ce7a4ae428a74c4c68a38ab28816dfa9cb56bd38b4db8efb6147b27"
+    },
+    {
+      "at": "2026-11-23T18:48:45.169512+00:00",
+      "event": {
+        "at": "2026-11-23T18:48:45.112308+00:00",
+        "file": "check_signed_rank_four.py",
+        "id": "resumed-rank4-signed-rational-01",
+        "kind": "check",
+        "method": "finite",
+        "output_sha256": "45947d0a5ea87fc17253ba8ea4688d83ac90b3495cefc9786714dc22f2bc98da",
+        "output_tail": "old 0.000045749987756191120234329212671306475599366755922863\nsigned_only 0.000038527113260191120118763220735306473750310884946863\nboth 0.000018677605997448714987753888204701803055476860025499\ngain 0.000027072381758742405246575324466604672543889895897364\nwhole_low 0.99998127278289122750028772954753772034293958605774\nwhole_high 1.0000186981059975398608220583205055685023907310381\noutside_plus_T_lower 0.35690773128239870620028772954753772034293958605774\noutside_upper 1.2756216444633514775608220583205055685023907310381\n\n",
+        "returncode": 0,
+        "sha256": "c9d23de3b65c5c33b5d010dd2c99106bc5775b4bca1b9579994116a4ccdf39cb",
+        "status": "passed"
+      },
+      "prev": "13a637d40ce7a4ae428a74c4c68a38ab28816dfa9cb56bd38b4db8efb6147b27",
+      "seq": 65,
+      "sha256": "2cd52f603334f5db380df64d2a51fa862dfe38dcca07e14a5136cba2d1b3594d"
+    },
+    {
+      "at": "2026-11-23T18:48:45.921655+00:00",
+      "event": {
+        "at": "2026-11-23T18:48:45.348250+00:00",
+        "file": "check_subset_signs.py",
+        "id": "resumed-rank4-subset-signs-01",
+        "kind": "check",
+        "method": "finite",
+        "output_sha256": "1626a9d6158fc3e1e5b7169611dabd5a3bac7296906ea739cc3d773908c04dba",
+        "output_tail": "13942 positive profiles checked away from half-equality\n\n",
+        "returncode": 0,
+        "sha256": "5a1c97ff3a999569558e901489d262e2cdeecabbbc9d8577c07e7a400098cbc1",
+        "status": "passed"
+      },
+      "prev": "2cd52f603334f5db380df64d2a51fa862dfe38dcca07e14a5136cba2d1b3594d",
+      "seq": 66,
+      "sha256": "031d7c5271186e34a3cce7599671c10af6a1d5a31db32315374f8fbacdf0c9ef"
+    },
+    {
+      "at": "2026-11-23T18:49:08.518027+00:00",
+      "event": {
+        "actor": "transport",
+        "id": "rank-four-signed-faces",
+        "kind": "candidate",
+        "mechanism": "Separate omitted odd/even subsets and pair the presence/absence of a surviving tiny companion during each exceptional-coordinate deletion.",
+        "next": "On the complete original O with k=n−2 and both signed output profiles, test a rank-changing split or merge of a cofactor into two primes. Define an ownership rule, the source-preserving compensators and the terminal covariance residual; prove a favorable independent signed bound, or isolate its exact uncompensated joint term. Continue on verified progress until independently audited unconditional twin-prime infinitude.",
+        "parents": [
+          "refined-full-outside"
+        ],
+        "source": "Pinned ETH manuscript 528f762ac6a5f921ca0335ef52a7e94aa565c02d. Native off-good rough squarefree rank four, and original 1,566 box partition.",
+        "statement": "Bound the original full outside by 1.275621644463351478 in limsup O/S_b using the signed rank-four collar."
+      },
+      "prev": "031d7c5271186e34a3cce7599671c10af6a1d5a31db32315374f8fbacdf0c9ef",
+      "seq": 67,
+      "sha256": "ccbcfdaa1b202675486ed0c3c69a96a80dbb2af9bcfd9c1733e8e96f52fd79ae"
+    },
+    {
+      "at": "2026-11-23T18:49:08.518281+00:00",
+      "event": {
+        "actor": "transport",
+        "candidate": "rank-four-signed-faces",
+        "contract": {
+          "coefficient": "1.275621644463351478",
+          "error_payment": "Use established positive profile actual/comparator transfers in the pinned paper. The new pointwise bound integrates against the same ordinary angular measure. Numeric replay includes all baseline absolute debits.",
+          "fixed_quantifiers": "Inherit fixed 0<a<1, dyadic x/2<n≤x, and baseline ordered limits. The fixed collar proof takes rho=.01.",
+          "masks_and_cutoffs": "All original output masks and outside five-box complement, shifted input k=n−2, native calibrated rank-four off-good mask, squarefreeness and roughness.",
+          "new_sufficient_strict_threshold": "0.356907731282398706",
+          "normalization": "S_b",
+          "population": "full_fm_outside",
+          "prior": "refined-full-outside",
+          "signed_companions": "Estimate both signs of rank-four R. Every other debit and the J4 interval is inherited; true nonnegative T and A_psi enter the outside splice exactly once."
+        },
+        "deps": [
+          "refined-full-outside"
+        ],
+        "evidence": {
+          "name": "signed_rank_four.md",
+          "sha256": "c597496ea39e422865ee7995ca8fd19f9f85aa29f14798d9d817711378ed2b08",
+          "text": "# Signed rank-four face bounds on the native ledger\n\nUse the complete paper ledger on the 1,566 native boxes of branch commit\n`528f762ac6a5f921ca0335ef52a7e94aa565c02d`. Its analytic inputs, limits,\nbox mass, and masks are unchanged. This note bounds the **omitted rank-four\nremainder** before it enters the global identity. Rank four is a companion\nin that identity; claiming the same amount a second time as a direct saving\nfrom the outside prime covariance would double count.\n\nSet λ=7/3, ε=10⁻⁹, δ=ε/400, ν=1/5−2ε, β=1/2−2ε, and ρ=1/100.\nWrite H for the native rank-four kernel and W for H multiplied by the original\noff-good mask and physical roughness mask. The marked kernel K is zero here\nby the four-factor size inequality in `collar_ledger.md`. The physical\ncomparator satisfies B(W±)/S_b→Π(W±), and the actual shifted prime sum\nA(W±)/S_b has limsup at most (10/3)Π(W±) as proved in\n`complete_ledger.md`. Throughout, inequalities for normalized physical sums\nare asymptotic up to o(1) or, equivalently, bounds on their limsup.\nIf R=A(W)−B(W), these estimates give separate upper bounds for ±R/S_b\nby Π(q(±W)), with q(v)=λ max(v,0)+max(−v,0). Indeed for +R charge\nthe positive actual term, drop the subtracted nonnegative actual term,\nand retain both ordinary terms. Apply the same argument to −W for −R.\nThe convex piecewise linear q is positively homogeneous and subadditive,\nand q(±v)≤λ|v|. The off-good mask can be dropped **after** majorization\nby nonnegative functions for either sign.\n\nOn the simplex of four labeled exponents t_i≥δ with sum one, write\ns_A=Σ_{i∈A}t_i. Physical exponents above the moving rough threshold\nlog(x^δ)/log n satisfy this lower bound as n≤x. Let E consist of the\ncoordinates in [ν,1/5]. For any coordinate set J define\nF(J)=Σ_{A⊆J, s_A<1/2}(−1)^|A|. For an actual squarefree n of rank four,\nthe subset-product half equality cannot occur (it would make n a square),\nso complementary subsets have equal parity and F([4])=0. Angular equality\nfaces have zero measure independently.\n\nRemove E from [4] one coordinate at a time, keeping every physical coordinate\nin the sum-to-one relation. The total change is a sum of D_i, where deleting\nt=t_i from the currently available set {i}∪J gives exactly\nD_i=Σ_{A⊆J, s_A<1/2−t}(−1)^|A|. Every subset meeting E is annihilated\nby the native kernel: an exceptional selected factor is designated big but\nhas exponent ≤1/5. On subsets avoiding E, the actual kernel coefficient\nis either its reference Möbius sign or zero. All terms with s_A≤β\nare accepted (including the large-factor-sum test since that sum is ≤s_A);\nno term with s_A≥1/2 is accepted. Indeed the surviving big exponents all\nexceed 1/5 and the native big-part cap is β, so at most two such\nexponents occur, and g0 then has the required sign. Consequently H is the\nsum of the D_i, a **positive** count of certain omitted odd subsets, and a\n**negative** count of certain omitted even subsets. Omitted subsets in these\ntwo counts each satisfy β<s_A<1/2 and contain no exceptional coordinates.\nFor each count its own unrestricted narrow-subset count is a valid upper\nbound. This identity, including the parity of omissions, precedes taking\nabsolute values or integrating.\n\n## 1. The two narrow boundary costs have equal upper envelopes\n\nLet C=26.022 and Q=4ε C²/[β(1−β)]. For h=1,2,3 the density for the\nsum of h exponents at v is at most (h/v)log^(h−1)(v/δ). This follows by\nmultiplying the reciprocal-product density by v=Σt_j and integrating the\nother h−1 coordinates over [δ,v]. Both v∈(β,1/2) and 1−v are at most\n1−β, and log((1−β)/δ)<C by the baseline rational certificate.\nAfter dropping the masks and dividing by 4! on the labeled simplex,\nthe multiplier for h is binom(4,h)h(4−h)/24, namely 1/2, 1, 1/2.\nThus the odd and even omitted counts **separately** have Π-mass at most\nQ/2, using the width 2ε and v(1−v)≥β(1−β).\nEven if the masks give unequal actual masses, q applied to their signed\nsum costs at most λ times one bound plus the other. The same upper holds\nwith reversed signs. The resulting term is (λ+1)Q/2=(5/3)Q.\n\nThe preceding step alone gives |R|/S_b at most λE_old+(5/3)Q, with\nE_old=2ε(26.492)²/[ν(1−ν)] from the original exceptional bound.\nIt saves (2/3)Q in each ledger direction.\n\n## 2. Cancellation from a small companion exponent in the exceptional sector\n\nFor each exceptional deletion, |D_i|≤2. To check this with ≤3 remaining\ncoordinates, a downward family containing the triple is the entire cube\nand its alternating sum vanishes. Otherwise the sum is 1−j+k for j permitted\nsingletons and k permitted pairs. For j≤3 and 0≤k≤binom(j,2) its modulus\nis ≤2. When **all three physical** companions are >ρ, the preceding\nconvolution density with lower cutoff ρ and log(1/ρ)<4.606 gives\nan integrated bound for Σ_i |D_i| on these rows of\n\n    E_big = 2ε (4.606)²/[ν(1−ν)].\n\nThe coefficient 4·2·3/24=1 counts the four possible exceptional coordinates,\nthe height two and the three-variable convolution. This bound can be applied\nusing symmetric majorants regardless of the order of deletion.\n\nOn any remaining row choose a physical companion u≤ρ. Because ρ<ν,\nthis coordinate is still available in J, including after earlier deletions.\nPair the subsets in D_i with and without u. Their difference per pair is\nsupported on 1/2−t−u ≤ s_A < 1/2−t. Among subsets of the other two\nphysical coordinates, neither the empty subset nor the full pair can lie\nin this interval, since the two sum to 1−t−u. Every contribution must\ntherefore come from a singleton v in this interval. All allowable subsets,\nincluding when earlier deletions suppress one or both, are covered by\ncounting every possible ordered choice of u and v. The fourth physical\ncoordinate is r=1−t−u−v. Then v≥.29 and r≥.49. The interval for v has\nlength ≤u. Summing over the possible exceptional, short and singleton\nlabels and integrating with measure dt du dv/(tuvr) gives\n\n    E_tiny ≤ (4·3·2/24)·(2ε/ν)·∫₀^ρ (du/u) u/(.29·.49)\n           = 2ερ/[ν·.29·.49].\n\nThe absolute majorant counts every deletion even when E has multiple\ncoordinates and every tiny owner when there are several (an upper bound).\nNo pullback to a different input sequence, assumption of independence,\nor unweighted replacement of an actual prime population is used.\n\nCombining both directions with the signs in part 1 proves\n\n    limsup |R|/S_b ≤ D_new = (7/3)(E_big+E_tiny)+(5/3)Q\n                   < 0.000018677605997449.\n\nFor the signed sum before division by S_b, the limsup statement means\nlimsup_x |R(x)|/S_b(x). The former debit was D_old=(7/3)(E_old+Q).\nThe improvement D_old−D_new exceeds 0.0000270723817587424. The complete\nledger subtracts or adds the absolute debit once, so its whole upper\ndecreases by this amount and the whole lower increases by the same amount.\nCombining with unchanged box calibration and nonnegativity gives a\nstrictly smaller upper for the complete native outside, not just this\nfactor population. The accompanying rational replay uses the original\nJ4 enclosure. Separate tighter enclosures can be substituted for the same\nJ. The certificate does not yield a strictly positive twin-prime reserve.\n\nAll dependencies for the actual and comparator arithmetic sums are the\nexisting written analytic arguments. The new parts are the signed\nsubset partition, the cancellation on the exceptional face and the\nelementary bounds. No formalization of the new inequalities is asserted.\n"
+        },
+        "kind": "proof",
+        "method": "analytic",
+        "result_type": "complete_upper",
+        "scope": "unconditional",
+        "unpaid": []
+      },
+      "prev": "ccbcfdaa1b202675486ed0c3c69a96a80dbb2af9bcfd9c1733e8e96f52fd79ae",
+      "seq": 68,
+      "sha256": "0accebbf81f9e239e34d92b433d264eedd251a9ac53d52531d9c49c83bb2d467"
+    },
+    {
+      "at": "2026-11-23T18:49:08.518617+00:00",
+      "event": {
+        "S1": false,
+        "S3": false,
+        "actor": "research-coordinator",
+        "candidate": "empty-small-prime-boundary",
+        "kind": "checkpoint",
+        "next": "On the complete original O with k=n−2 and both signed output profiles, test a rank-changing split or merge of a cofactor into two primes. Define an ownership rule, the source-preserving compensators and the terminal covariance residual; prove a favorable independent signed bound, or isolate its exact uncompensated joint term. Continue on verified progress until independently audited unconditional twin-prime infinitude.",
+        "paper_complete_upper": "1.275621644463351478",
+        "paper_gain_lower_bound": "0.0000270723817587424",
+        "paper_sufficient_strict_threshold": "0.356907731282398706",
+        "positive_reserve": null,
+        "proof_statement_id": "rank-four-signed-faces",
+        "scope": "Independent rank-four sign and small-coordinate checks completed; software gate acceptance for this specific candidate remains unrecorded.",
+        "signed_covariance": "limsup(Delta_plus−Delta_minus) strictly below the sufficient threshold",
+        "source_commit": "528f762ac6a5f921ca0335ef52a7e94aa565c02d",
+        "status": "ACTIVE"
+      },
+      "prev": "0accebbf81f9e239e34d92b433d264eedd251a9ac53d52531d9c49c83bb2d467",
+      "seq": 69,
+      "sha256": "9f593a00b78bc66afaffec4f20755010387b37253b61cf503c0341f5d0718558"
+    },
+    {
+      "at": "2026-11-23T18:54:21.462361+00:00",
+      "event": {
+        "actor": "research-coordinator",
+        "analytic_scope": "Paper proof reviewed separately for signs, multiplicities, BV remainder, total variation and rough sieve. The paper does not give a signed advantage on the restricted target. Formal and program acceptance status distinct.",
+        "candidate": "empty-small-prime-boundary",
+        "kind": "checkpoint",
+        "next": "Read proofs/rank_changing_prime_switch.md equations (1)–(3) and proofs/signed_rank_four.md. The 3↔5 source switch matches true shifted-prime mass over polynomially rough outer M in successive limits; isolate the outer two-prime selector M=pq or pay the signed complement over other rough M and the unpaired H1 term. Seek an independent signed net gain on the full physical source, enlarging or combining chambers only with disjoint ownership and all companions. Strict paper threshold 0.356907731282398706. Stop only at independently audited unconditional twin-prime infinitude.",
+        "paper_complete_upper": "1.275621644463351478",
+        "rank_switch_sha256": "60b1218a0b5a2d989ac351b93d161ff98963950458c2311b8d6344e206b5117d",
+        "status": "ACTIVE"
+      },
+      "prev": "9f593a00b78bc66afaffec4f20755010387b37253b61cf503c0341f5d0718558",
+      "seq": 70,
+      "sha256": "50310a4d6b51987d80296026a3a89cb1040c7f0e435741b51747ee3fa3b05150"
     }
   ],
   "format": "ETH-events-v1"
