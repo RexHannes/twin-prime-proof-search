@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import ssl
@@ -68,10 +69,8 @@ def online(source, names):
     print("AXLE request", result["info"]["request_id"])
 
 
-def native(names):
-    subprocess.run(["lake", "exe", "cache", "get"], cwd=ROOT, check=True)
-    subprocess.run(["lake", "build", ENTRY], cwd=ROOT, check=True)
-    commands = f"import {ENTRY}\n" + "\n".join(
+def native_audit(module, names):
+    commands = f"import {module}\n" + "\n".join(
         f"#check @{name}\n#print axioms {name}" for name in names)
     result = subprocess.run(["lake", "env", "lean", "--stdin"], cwd=ROOT, input=commands,
                             text=True, capture_output=True)
@@ -79,7 +78,28 @@ def native(names):
     if result.returncode or "warning:" in output or "error:" in output:
         raise ValueError(output)
     check_audits(output, names)
-    print(output.rstrip())
+    print(output.rstrip(), flush=True)
+
+
+def native(names):
+    subprocess.run(["lake", "exe", "cache", "get"], cwd=ROOT, check=True)
+    subprocess.run(["lake", "build", ENTRY], cwd=ROOT, check=True)
+    native_audit(ENTRY, names)
+    # Each numeral proof is reduced by the kernel. Limit concurrent column
+    # builds to keep peak memory bounded on the hosted runner.
+    module = ENTRY + ".FMGridExact"
+    column_dir = ROOT / "RequestProject/REAL1B_20261122/GridColumns"
+    columns = sorted(column_dir.glob("C*.lean"), key=lambda p: -p.stat().st_size)
+    env = dict(os.environ, LEAN_NUM_THREADS="1")
+    for i in range(0, len(columns), 2):
+        targets = [ENTRY + ".GridColumns." + p.stem for p in columns[i:i+2]]
+        subprocess.run(["lake", "--wfail", "build", *targets], cwd=ROOT, env=env, check=True)
+    subprocess.run(["lake", "--wfail", "build", module], cwd=ROOT, env=env, check=True)
+    exact_paths = columns + [column_dir.parent / "FMGridExact.lean"]
+    exact_names = [name for path in exact_paths for name in
+                   re.findall(r"^#print axioms ([\w.]+)$", path.read_text(), re.MULTILINE)]
+    native_audit(module, exact_names)
+    print(f"Native kernel verified {len(names) + len(exact_names)} declarations including the complete integral enclosure.", flush=True)
 
 
 def main():

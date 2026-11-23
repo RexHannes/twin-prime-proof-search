@@ -30,17 +30,19 @@ In Gold 4.59 the selected joint source also restricts the input. Gold 4.65 Part 
 | PAPER_PROVED_NOT_FORMALIZED | Eventual $S_b>0$ | The manuscript uses the prime distribution and fundamental sieve normalization for $S_b$. |
 | PAPER_PROVED_NOT_FORMALIZED | `Calibration` | Gold 4.60 restricted, entire-box identity $\mathcal U_{\mathscr B}=A(\psi)-J_\psi S_b+o(S_b)$. |
 | UNVERIFIED_TRANSFER | `ProfileUpper` | Gold 4.64–4.65 adapt Lichtman's distribution and sieve inputs to this specific fixed nonnegative five-prime profile, including collar and normalization issues. The paper gives an argument. The exact source-specific transfer is an explicit Lean hypothesis. |
-| PAPER_PROVED_NOT_FORMALIZED | $J\le\texttt{enclosure}$ | $J$ is the four-dimensional Lebesgue integral of (B7). The integer replay reconstructs the lower and upper sums. The integral-to-mesh comparison is a separate proof obligation at the Lean endpoint. |
+| LEAN_PROVED | `Grid.integral_le_mesh`, `Grid.total_upper_exact`, `Grid.integral_enclosure` | The Lebesgue integral of (B7) is bounded by the rounded mesh sum. The native certificate reduces the actual contributions of every cell in the kernel and proves the numerical upper bound. Identifying this fixed-profile integral with the physical box payment still uses the preceding calibration and profile hypotheses. |
 | LEAN_PROVED | `splice_arithmetic`, `five_factor_rounding`, `box_payment` | Given the preceding box inputs, derive the entire-box cap $0.682878095535$. |
 | PAPER_PROVED_NOT_FORMALIZED | `LowLabelEstimate` | Optional Gold 4.66 Part III route. This uses the clean output identity and unique ownership, Fouvry distribution with the stated multiplier, presieve and squarefree restoration, and the Möbius PNT. |
 | LEAN_PROVED | `outside_label_split`, `outside_iff_unpaid` | The optional low-label payment leaves every high label on the clean class and all remaining outputs. The exact split retains the native outside profile throughout. |
 | OPEN_ARITHMETIC | `OutsideBound a κ` for fixed $\kappa>0$ | Independent favorable upper for the entire remaining signed source. The reported near-half DRZ row and genuine-prime recovery family each leave companions. Neither supplies this bound. |
 | LEAN_PROVED | `reserve`, `eventual_positive`, `infinite_of_direct` | Lower ledger, box payment, outside bound and eventual comparator positivity imply positive physical twin mass and infinitude. Each error tolerance is fixed before the scale tends to infinity. |
-| LEAN_PROVED | `infinite_of_profile_and_outside` | Expanded endpoint exposes both historical ledger premises, box calibration, profile transfer, integral enclosure, the strict outside bound and comparator positivity. |
+| LEAN_PROVED | `Grid.infinite_of_certified_profile` | Expanded native endpoint supplies the integral enclosure internally. The historical lower ledger and reduction, box calibration, profile transfer, strict outside bound and comparator positivity are its arithmetic hypotheses. |
 
 ## Numerical replay
 
 Run `python3 formalisation/real1b-2026-11-22/full_box.py` to enumerate 1,566 ordered boxes and all $1,566\cdot8^4=6,414,336$ cells using integers. On each cell the fifth coordinate stays above each independent coordinate, so the product denominator increases in each independent coordinate. The verifier uses the opposite corners for the two density bounds and preserves both strict and weak faces of (B7). It rounds every cell outward on denominator $10^{20}$. The endpoint numerators are **26697968067675082204** and **28449989344325252602**.
+
+The native proof first covers the open boxes by closed mesh cells and proves that the product denominator increases between the lower corner and each point. It bounds the two indicator faces with their distinct endpoint conventions, integrates a finite sum of cell majorants, then evaluates the outward-rounded integer bound. The files in `GridColumns/` split the calculation by fourth index so the kernel can check one box at a time. The Python replay also checks the lower enclosure; the Lean closing theorem uses the upper enclosure.
 
 Lean checks $(17/5)1.000081=3.4002754$, the exact upper product $0.682878095534460334193665908$, outward rounding, and the exact difference $0.999892775499-0.682878095535=0.317014679964$. The local analytic payments are used once each.
 

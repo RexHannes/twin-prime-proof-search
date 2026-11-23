@@ -25,15 +25,17 @@ From the repository root, the following command regenerates the expected replay 
 python3 formalisation/real1b-2026-11-22/verify.py --online
 ```
 
-To use the repository's pinned toolchain and your own Lean kernel, run the following command with Lake available. It obtains the Mathlib cache, builds the actual imported modules, and prints every exported theorem type and its axiom dependencies from a fresh Lean process. Running both modes checks both forms of the program.
+To use the repository's pinned toolchain and your own Lean kernel, run the following command with Lake available. It obtains the Mathlib cache, builds the actual imported modules, and prints every exported theorem type and its axiom dependencies from a fresh Lean process. The native run also builds the complete 6,414,336-cell integer certificate and audits the final endpoint in `FMGridExact`.
 
 ```sh
 python3 formalisation/real1b-2026-11-22/verify.py --lake
 ```
 
-The Lake build target is `RequestProject.REAL1B_20261122`. For a repeatable review, use the **Copy permalink** action on this file and check out the corresponding commit. The [verification record](Verification.json) contains the replay digest, environment, request ID, declaration list and compiler output. It records the online run. Standard axioms allowed by the reviewer script are `propext`, `Classical.choice` and `Quot.sound`.
+The compact build target is `RequestProject.REAL1B_20261122`. For the fully certified numerical endpoint, import `RequestProject.REAL1B_20261122.FMGridExact` and inspect `#check @REAL1B.FM.Grid.infinite_of_certified_profile`. The online replay checks the integral-to-mesh bound with Lean and recomputes the numerical endpoints in Python. The native command checks the integer upper endpoint with the Lean kernel as well. For a repeatable review, use the **Copy permalink** action on this file and check out the corresponding commit. The [verification record](Verification.json) contains the replay digest, environment, request ID, declaration list and compiler output. It records the online run. Standard axioms allowed by the reviewer script are `propext`, `Classical.choice` and `Quot.sound`.
 
 ## Read the mathematical endpoints
+
+- **Gold 4.66 direct FM.** The proof establishes the good-set equivalence and the five-prime integral upper enclosure. Its final mathematical hypothesis specific to the unpaid source is an independent outside-box upper with a fixed positive saving. [Direct route and dependency graph](FM-DIRECT.md)
 
 - **Gold 4.60 joint signed FM.** Two endpoints preserve the original 0.00048 margin and the boxwise 0.00207 variant. Both derive a positive twin mass from an independent bound on the complete signed complement and their stated analytic inputs. [Proof obligations and exact semiprime balance](FM-CLOSING.md)
 

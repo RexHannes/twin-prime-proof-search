@@ -1,10 +1,10 @@
 {
   "source": "Replay.lean",
-  "sha256": "832c60f9ad7e42eb69964826ebbc4c8f3d5a3539dd35e54b7c19ac691065627a",
+  "sha256": "ad9385508287bedb571ff605b6c8234eb244e690b94fe28c525798485fb1afbd",
   "checker": "https://axle.axiommath.ai/api/v1/check",
   "environment": "lean-4.28.0",
   "ignore_imports": false,
-  "request_id": "ca8525cb-2021-4a1e-b2b0-5dad093333d9",
+  "request_id": "1aae9ad5-62c2-4824-8756-17fb2175f4ee",
   "audited_declarations": [
     "REAL1B.rough_iff",
     "REAL1B.rough_rank",
@@ -108,6 +108,8 @@
     "REAL1B.FM.Direct.infinite_of_profile_and_outside",
     "REAL1B.FM.Direct.outside_label_split",
     "REAL1B.FM.Direct.outside_iff_unpaid",
+    "REAL1B.FM.Grid.boxUpper_eq_fast",
+    "REAL1B.FM.Grid.integral_le_mesh",
     "REAL1B.infinite_of_h2_bounds"
   ],
   "okay": true,
@@ -217,7 +219,9 @@
       "-:2287:0-2287:6: info: 'REAL1B.FM.Direct.infinite_of_profile_and_outside' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
       "-:2350:0-2350:6: info: 'REAL1B.FM.Direct.outside_label_split' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
       "-:2351:0-2351:6: info: 'REAL1B.FM.Direct.outside_iff_unpaid' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
-      "-:2379:0-2379:6: info: 'REAL1B.infinite_of_h2_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      "-:2414:0-2414:6: info: 'REAL1B.FM.Grid.boxUpper_eq_fast' depends on axioms: [propext, Quot.sound]\n",
+      "-:2690:0-2690:6: info: 'REAL1B.FM.Grid.integral_le_mesh' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "-:2718:0-2718:6: info: 'REAL1B.infinite_of_h2_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
     ],
     "warnings": []
   },
