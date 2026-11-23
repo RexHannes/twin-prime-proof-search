@@ -9,6 +9,7 @@ import re
 import ssl
 import subprocess
 import sys
+import tempfile
 import urllib.request
 
 HERE = Path(__file__).resolve().parent
@@ -23,7 +24,7 @@ def generate_replay():
     bodies, seen = [], set()
 
     def visit(module):
-        if module in seen or module == "Mathlib":
+        if module in seen or module in {"Mathlib", "Std"}:
             return
         seen.add(module)
         path = Path(*module.split(".")).with_suffix(".lean")
@@ -77,10 +78,10 @@ def online(source, names):
     print("AXLE request", result["info"]["request_id"])
 
 
-def native_audit(module, names):
+def native_audit(module, names, root=ROOT):
     commands = f"import {module}\n" + "\n".join(
         f"#check @{name}\n#print axioms {name}" for name in names)
-    result = subprocess.run(["lake", "env", "lean", "--stdin"], cwd=ROOT, input=commands,
+    result = subprocess.run(["lake", "env", "lean", "--stdin"], cwd=root, input=commands,
                             text=True, capture_output=True)
     output = result.stdout + result.stderr
     if result.returncode or "warning:" in output or "error:" in output:
@@ -91,7 +92,7 @@ def native_audit(module, names):
 
 def certificate_files():
     base = ROOT / "RequestProject/REAL1B_20261122"
-    return sorted((base / "GridColumns").glob("C*.lean")) + [base / "FMGridExact.lean", base / "FMAnalyticEndpoint.lean"]
+    return sorted((base / "GridColumns").glob("C*.lean")) + [base / "FMGridNumerals.lean", base / "FMGridExact.lean", base / "FMAnalyticEndpoint.lean"]
 
 
 def certificate_manifest():
@@ -104,6 +105,31 @@ def certificate_manifest():
     }
 
 
+def local_grid():
+    """Build the exact integer certificate with the pinned Lean standard library."""
+    columns = sorted((p for p in certificate_files() if p.parent.name == "GridColumns"),
+                     key=lambda p: -p.stat().st_size)
+    source_dir = ROOT / "RequestProject/REAL1B_20261122"
+    paths = [source_dir / "FMGridData.lean", *columns, source_dir / "FMGridNumerals.lean"]
+    with tempfile.TemporaryDirectory(prefix="real1b-grid-") as scratch:
+        project = Path(scratch)
+        (project / "lean-toolchain").write_bytes((ROOT / "lean-toolchain").read_bytes())
+        (project / "lakefile.toml").write_text(
+            'name = "real1b_grid"\n[[lean_lib]]\nname = "RequestProject"\n')
+        for source in paths:
+            target = project / source.relative_to(ROOT)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.symlink_to(source)
+        env = dict(os.environ, LEAN_NUM_THREADS="1")
+        for source in [*columns, paths[-1]]:
+            module = ".".join(source.relative_to(ROOT).with_suffix("").parts)
+            subprocess.run(["lake", "--wfail", "build", module], cwd=project, env=env, check=True)
+        names = [name for source in paths for name in
+                 re.findall(r"^#print axioms ([\w.]+)$", source.read_text(), re.MULTILINE)]
+        native_audit(ENTRY + ".FMGridNumerals", names, project)
+        print(f"Local Lean kernel verified {len(names)} mesh declarations.", flush=True)
+
+
 def native(names, certificate_names):
     subprocess.run(["lake", "exe", "cache", "get"], cwd=ROOT, check=True)
     subprocess.run(["lake", "build", ENTRY], cwd=ROOT, check=True)
@@ -112,7 +138,7 @@ def native(names, certificate_names):
     # builds to keep peak memory bounded on the hosted runner.
     module = ENTRY + ".FMAnalyticEndpoint"
     columns = sorted((p for p in certificate_files() if p.parent.name == "GridColumns"), key=lambda p: -p.stat().st_size)
-    env = dict(os.environ, LEAN_NUM_THREADS="1")
+    env = dict(os.environ, LEAN_NUM_THREADS="2")
     for i in range(0, len(columns), 2):
         targets = [ENTRY + ".GridColumns." + p.stem for p in columns[i:i+2]]
         subprocess.run(["lake", "--wfail", "build", *targets], cwd=ROOT, env=env, check=True)
@@ -125,6 +151,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument("--online", action="store_true", help="check the single file on AXLE")
+    mode.add_argument("--local-grid", action="store_true", help="use only the installed Lean standard library for the integer mesh")
     mode.add_argument("--lake", action="store_true", help="build and audit the pinned Lake modules")
     mode.add_argument("--write-replay", action="store_true", help="regenerate Replay.lean from imports")
     args = parser.parse_args()
@@ -153,6 +180,9 @@ def main():
     print("Gold 4.59 finite checks match the original registry.", flush=True)
     subprocess.run([sys.executable, str(HERE / "boxwise.py")], check=True)
     subprocess.run([sys.executable, str(HERE / "full_box.py")], check=True)
+    if args.local_grid:
+        local_grid()
+        return
     if args.online:
         online(source, names)
     else:

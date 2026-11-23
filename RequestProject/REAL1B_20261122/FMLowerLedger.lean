@@ -119,6 +119,14 @@ theorem exact_ledger {x : ℝ} (h : GeometryAt x) :
   ring
 
 def goodCap : ℝ := 0.0000000142500001
+def goodRational : ℝ :=
+  let a₀ := 1/5 - ε
+  ε/(a₀*(1-a₀)) + 2*ε/(β*(1-β)) + ε^2/(2*a₀^2*(3/5)) +
+    3*(5*ε)^4/((Nat.factorial 5:ℝ)*Nat.factorial 4*a₀^5)
+
+theorem good_cap_rounding : goodRational < goodCap := by
+  norm_num [goodRational,goodCap,ε,β,Nat.factorial]
+
 def pairCap : ℝ := ε / (ν*(1-ν))
 def tailCap : ℝ := 1/10^58
 def transferCap : ℝ := 9 * (400000000000:ℝ)^2 / (50 * (Nat.factorial 99:ℝ))
@@ -131,7 +139,7 @@ def upper (f : ℝ → ℝ) (c : ℝ) : Prop := ∀ e : ℝ, 0 < e → ∀ᶠ x 
 
 structure Estimates : Prop where
   geometry : ∀ᶠ x : ℝ in atTop, GeometryAt x
-  goodMass : ∃ Jp : ℝ, Jp ≤ goodCap ∧ negligible (fun x => weighted compare positive x - Jp*Sb x) Sb ∧
+  goodMass : ∃ Jp : ℝ, Jp ≤ goodRational ∧ negligible (fun x => weighted compare positive x - Jp*Sb x) Sb ∧
     upper (weighted actual positive) (4*Jp)
   pairs : upper (deviation (omitted (· = 2))) (3*pairCap)
   four : upper (fun x => |deviation (omitted (· = 4)) x|) 0.000107163
@@ -185,7 +193,7 @@ theorem lower_of_estimates (h : Estimates) (hs : ScaleLower) : Closing.LowerLedg
     h.tail _ ht,h.calibratedMean _ ht,powerError_small hs (output_support h.geometry) _ ht,h.comparator _ ht]
     with x hg hpos hB hA hR h4 hT hW hP hC
   have hc := mul_le_mul_of_nonneg_right ledger_rounding hpos.le
-  have hj' := mul_le_mul_of_nonneg_right hj hpos.le
+  have hj' := mul_le_mul_of_nonneg_right (hj.trans good_cap_rounding.le) hpos.le
   linarith only [exact_ledger hg,hc,hj',(abs_le.mp hB).1,hA,hR,(abs_le.mp h4).2,
     (abs_le.mp hT).2,(abs_le.mp hW).1,(abs_le.mp hP).1,(abs_le.mp hC).2]
 
@@ -200,3 +208,4 @@ end REAL1B.FM.Ledger
 #print axioms REAL1B.FM.Ledger.H_prime
 #print axioms REAL1B.FM.Ledger.K_prime
 #print axioms REAL1B.FM.Ledger.geometry_of_good
+#print axioms REAL1B.FM.Ledger.good_cap_rounding

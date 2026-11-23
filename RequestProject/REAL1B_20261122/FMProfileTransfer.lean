@@ -1,5 +1,5 @@
 import RequestProject.REAL1B_20261122.FMLowerLedger
-import RequestProject.REAL1B_20261122.FMBoxGeometry
+import RequestProject.REAL1B_20261122.FMBoxDivisors
 
 /-! Finite parts of the Gold 4.64–4.65 transfer to the fixed five-prime source. -/
 namespace REAL1B.FM.Profile
@@ -107,6 +107,50 @@ theorem profile_upper (hn : Normalization)
   change _ ≤ C*reference x + _ at hr
   linarith only [hp,hr,(abs_le.mp hbound).2]
 
+/-- Fixed-profile distribution on the original physical window. These two
+analytic estimates use the independent singular-series reference scale. -/
+def profileMean (x : ℝ) := H2.series * total (x/2) Box.profileWeight
+def profileRough (x : ℝ) := total (x/2) (fun n =>
+  sieve (cutU x) (n-2) * Real.log (n-2:ℕ) * Box.profileWeight n)
+def MeanDensity : Prop := negligible (fun x => profileMean x - Direct.J * reference x) scale
+def RoughDensity : Prop := ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop,
+  profileRough x ≤ (Direct.cStar*Direct.J + e) * reference x
+
+theorem mean_source {x : ℝ} (hx : 4 ≤ x) : mean Direct.psi x = profileMean x := by
+  unfold mean profileMean total
+  congr 1
+  exact Finset.sum_congr rfl (fun n hn => Box.psi_profile hx hn)
+
+theorem rough_source {x : ℝ} (hx : 4 ≤ x) : roughProfile x = profileRough x :=
+  Box.source_profile_sum hx _
+
+theorem mean_transfer (hn : Normalization) (hm : MeanDensity) :
+    negligible (fun x => mean Direct.psi x - Direct.J*Sb x) Sb := by
+  have hs := scale_lower hn
+  intro e he
+  have hJ : 0 < |Direct.J|+1 := by positivity
+  have ht : 0 < e/(2*(|Direct.J|+1)) := by positivity
+  filter_upwards [negligible_comparator hm hs (e/2) (by linarith),negligible_comparator hn hs _ ht,
+    eventually_ge_atTop (4:ℝ)] with x h₁ h₂ hx
+  rw [mean_source hx]
+  have hmul : |Direct.J*(Sb x-reference x)| ≤ e/2*Sb x := by
+    rw [abs_mul]
+    calc
+      _ ≤ (|Direct.J|+1) * |Sb x-reference x| := mul_le_mul_of_nonneg_right (by linarith) (abs_nonneg _)
+      _ ≤ (|Direct.J|+1)*(e/(2*(|Direct.J|+1))*Sb x) := mul_le_mul_of_nonneg_left h₂ hJ.le
+      _ = _ := by field_simp [hJ.ne']
+  apply abs_le.mpr
+  constructor <;> linarith only [(abs_le.mp h₁).1,(abs_le.mp h₁).2,(abs_le.mp hmul).1,(abs_le.mp hmul).2]
+
+theorem upper_of_rough_density (hn : Normalization) (hr : RoughDensity) : Direct.ProfileUpper := by
+  apply profile_upper hn Box.psi_nonneg
+  intro e he
+  have hd := negligible_comparator hn (scale_lower hn) 1 one_pos
+  filter_upwards [hd,hr (e/2) (by linarith),eventually_ge_atTop (4:ℝ)] with x hx hu h₄
+  rw [rough_source h₄]
+  have hv : reference x ≤ 2*Sb x := by linarith only [(abs_le.mp hx).1]
+  linarith only [hu,mul_le_mul_of_nonneg_left hv (le_of_lt (show 0<e/2 by linarith))]
+
 end
 end REAL1B.FM.Profile
 #print axioms REAL1B.FM.Profile.smooth_convolution
@@ -116,3 +160,7 @@ end REAL1B.FM.Profile
 #print axioms REAL1B.FM.Profile.prime_le_rough
 #print axioms REAL1B.FM.Profile.scale_lower
 #print axioms REAL1B.FM.Profile.profile_upper
+#print axioms REAL1B.FM.Profile.mean_source
+#print axioms REAL1B.FM.Profile.rough_source
+#print axioms REAL1B.FM.Profile.mean_transfer
+#print axioms REAL1B.FM.Profile.upper_of_rough_density

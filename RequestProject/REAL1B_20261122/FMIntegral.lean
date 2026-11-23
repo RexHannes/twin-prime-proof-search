@@ -8,6 +8,8 @@ open Direct Source MeasureTheory
 noncomputable section
 open Classical
 
+def Coord.atFin (p : Coord) : Fin 4 → ℕ := ![p.a, p.b, p.c, p.d]
+
 private def lower (m : Coord) (i : Fin 4) : ℝ := m.atFin i / 800
 private def upper (m : Coord) (i : Fin 4) : ℝ := (m.atFin i + 1 : ℝ)/800
 private def cell (m : Coord) := Set.Icc (lower m) (upper m)

@@ -4,7 +4,7 @@
 
 Earlier results include the exact weighted identities, a finite Vaughan decomposition on the physical source, a positive numerical margin, a prime-power error estimate, and the Gold 4.60 conditional implication from the signed FM complement. The H2-B implication has five hypotheses. Their precise statements and mathematical status appear in the [dependency table](DEPENDENCIES.md).
 
-Gold 4.67 verifies the original-source prime-power estimate, the finite complete Vaughan and ledger decompositions, and the five-prime and low-label source transfers. [Analytic theorem inventory and remaining estimates](FM-ANALYTIC.md)
+Gold 4.67 verifies the original-source prime-power estimate, the finite complete Vaughan and ledger decompositions, the exact five-prime divisor formula and its $2\le\psi\le6$ bound, and the low-label source transfer. [Analytic theorem inventory and remaining estimates](FM-ANALYTIC.md)
 
 ## Check out the analytic route
 
@@ -27,7 +27,13 @@ From the repository root, the following command regenerates the expected replay 
 python3 formalisation/real1b-2026-11-22/verify.py --online
 ```
 
-To use the repository's pinned toolchain and your own Lean kernel, run the following command with Lake available. It obtains the Mathlib cache, builds the actual imported modules, and prints every exported theorem type and its axiom dependencies from a fresh Lean process. The native run also builds the complete 6,414,336-cell integer certificate and audits the analytic endpoint in `FMAnalyticEndpoint`.
+To check all 6,414,336 integer cells on a computer with the pinned Lean toolchain already installed, run the following command. It builds the same column proofs sequentially against Lean’s standard library in a temporary Lake project. It removes its temporary build files when it exits.
+
+```sh
+python3 formalisation/real1b-2026-11-22/verify.py --local-grid
+```
+
+To check the analytic modules, integral proof, and closing theorem together with your own Lean kernel, run the following command with Lake available. It obtains the Mathlib cache, builds the actual imported modules, and prints every exported theorem type and its axiom dependencies from a fresh Lean process. The native run also builds the complete 6,414,336-cell integer certificate and audits the analytic endpoint in `FMAnalyticEndpoint`.
 
 ```sh
 python3 formalisation/real1b-2026-11-22/verify.py --lake
