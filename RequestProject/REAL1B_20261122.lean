@@ -3,10 +3,13 @@ import RequestProject.REAL1B_20261122.FMResidual
 import RequestProject.REAL1B_20261122.WeightedDecomposition
 import RequestProject.REAL1B_20261122.SourceBridge
 import RequestProject.REAL1B_20261122.SieveInputs
-import RequestProject.REAL1B_20261122.FMClosing
+import RequestProject.REAL1B_20261122.FMDirect
+import RequestProject.REAL1B_20261122.FMOwners
+import RequestProject.REAL1B_20261122.FMSemantics
+import RequestProject.REAL1B_20261122.FMCompleteLabel
 
 /-! Entry point for the REAL 1B proofs of 22–23 November 2026.
-The primary FM endpoints are Closing.infinite_of_joint_complement and
+The Gold 4.66 endpoint is Direct.infinite_of_direct. The joint FM endpoints are Closing.infinite_of_joint_complement and
 Closing.infinite_of_boxwise_complement inside REAL1B.FM.
 The earlier FM residual and H2 reductions remain separately callable.
 The scalar theorem below consumes both H2 source estimates on one unbounded

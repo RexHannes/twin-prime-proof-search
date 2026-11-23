@@ -110,6 +110,7 @@ def main():
         raise ValueError("Gold 4.59 finite checks differ from the source registry")
     print("Gold 4.59 finite checks match the original registry.", flush=True)
     subprocess.run([sys.executable, str(HERE / "boxwise.py")], check=True)
+    subprocess.run([sys.executable, str(HERE / "full_box.py")], check=True)
     if args.online:
         online(source, names)
     else:

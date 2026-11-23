@@ -1,7 +1,7 @@
 # Twin Prime Proof Search — Public Research Archive
 
 **Current public manuscript:** Draft 16 (27 August 2026)  
-**Latest research-status overlay:** 23 November 2026 — Gold 4.60 Ford–Maynard joint signed complement. G5 remains open.
+**Latest research-status overlay:** 23 November 2026 — Gold 4.66 direct Ford–Maynard reduction. The complete outside-box estimate is open.
 
 This repository is an exploratory fixed-shift / Ford–Maynard / Twin-Prime research archive. It does **not** claim a proof of the Twin Prime Conjecture.
 
@@ -9,7 +9,9 @@ Historical reports remain available as records of their own runs. The living cur
 
 ## Latest research checkpoint
 
-The Gold 4.60 FM route now has a runnable conditional Lean endpoint for the Gold 4.57–4.59 joint signed chain. It includes the original joint margin of 0.00048 and the stronger conditional boxwise margin of 0.00207. Both require an independent bound on the literal complement together with its prime companion. [Exact source, remaining assumptions and theorem ledger](formalisation/real1b-2026-11-22/FM-CLOSING.md)
+The Gold 4.66 direct route proves the good-set equivalence, full native source partition, exact owner identities and conditional closing theorem. [Gold 4.66 source and dependency audit](formalisation/real1b-2026-11-22/FM-DIRECT.md)
+
+The Gold 4.60 FM route has a runnable conditional Lean endpoint for the Gold 4.57–4.59 joint signed chain. It includes the original joint margin of 0.00048 and the stronger conditional boxwise margin of 0.00207. Both require an independent bound on the literal complement together with its prime companion. [Exact source, remaining assumptions and theorem ledger](formalisation/real1b-2026-11-22/FM-CLOSING.md)
 
 ### Earlier checkpoints
 

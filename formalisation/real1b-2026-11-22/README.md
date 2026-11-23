@@ -1,16 +1,25 @@
 # REAL 1B · independent Lean replay
 
-**Twin-prime infinitude is open.** This replay checks 81 named results, including the exact weighted identities, a finite Vaughan decomposition on the physical source, a positive numerical margin, a prime-power error estimate, and the Gold 4.60 conditional implication from the signed FM complement. The H2-B implication has five hypotheses. Their precise statements and mathematical status appear in the [dependency table](DEPENDENCIES.md).
+**Twin-prime infinitude is open.** The Gold 4.66 direct route now includes a proof that the two good-set definitions are equivalent, exact large-owner accounting and a conditional implication from the whole outside-box bound. [Gold 4.66 source dictionary, constants and open premises](FM-DIRECT.md)
+
+Earlier results include the exact weighted identities, a finite Vaughan decomposition on the physical source, a positive numerical margin, a prime-power error estimate, and the Gold 4.60 conditional implication from the signed FM complement. The H2-B implication has five hypotheses. Their precise statements and mathematical status appear in the [dependency table](DEPENDENCIES.md).
+
+## Check out the direct route
+
+```sh
+git clone --depth 1 --branch real1b-gold466-direct https://github.com/RexHannes/twin-prime-proof-search.git
+cd twin-prime-proof-search
+```
 
 ## Run it in a browser
 
-The 23 November replay is pinned to commit `6e6c65e`. The GitHub-hosted Lake job starts from a clean checkout, builds the imported modules, runs both finite verifiers and prints all 81 theorem types and axiom lists. [Open this replay in Chromium](https://live.lean-lang.org/#project=mathlib-v4.28.0&url=https%3A%2F%2Fraw.githubusercontent.com%2FRexHannes%2Ftwin-prime-proof-search%2F6e6c65e00d89861180516b85bbefa9f26935581d%2Fformalisation%2Freal1b-2026-11-22%2FReplay.lean) · [Native Lake run and log](https://github.com/RexHannes/twin-prime-proof-search/actions/runs/45055431579)
+The historical Gold 4.60 replay is pinned to commit `6e6c65e`. The GitHub-hosted Lake job starts from a clean checkout, builds the imported modules, runs both finite verifiers and prints all 81 theorem types and axiom lists. [Open this replay in Chromium](https://live.lean-lang.org/#project=mathlib-v4.28.0&url=https%3A%2F%2Fraw.githubusercontent.com%2FRexHannes%2Ftwin-prime-proof-search%2F6e6c65e00d89861180516b85bbefa9f26935581d%2Fformalisation%2Freal1b-2026-11-22%2FReplay.lean) · [Native Lake run and log](https://github.com/RexHannes/twin-prime-proof-search/actions/runs/45055431579)
 
 [Open the combined source in Live Lean](https://live.lean-lang.org/#project=mathlib-v4.28.0&url=https%3A%2F%2Fraw.githubusercontent.com%2FRexHannes%2Ftwin-prime-proof-search%2Fmain%2Fformalisation%2Freal1b-2026-11-22%2FReplay.lean). The replay includes every project definition it uses and imports Mathlib. To use the environment recorded in the verification file, paste the [single Lean file](Replay.lean) into [AXLE](https://axle.axiommath.ai/check), select `lean-4.28.0`, clear **ignore_imports**, and select **RUN**. Inspect the theorem types as well as the `#print axioms` output.
 
 ## Independently verify a checkout
 
-From the repository root, the following command regenerates the expected replay in memory, compares it byte for byte with the committed file, checks its SHA-256, reruns the original Gold 4.59 finite verifier against its registry and recalculates the Gold 4.60 boxwise margin using exact fractions, and submits a new AXLE request. It checks the returned source, diagnostics, and axiom dependencies of all 81 named results. Python 3.9+ and network access are sufficient.
+From the repository root, the following command regenerates the expected replay in memory, compares it byte for byte with the committed file, checks its SHA-256, reruns the original Gold 4.59 finite verifier against its registry, recalculates the Gold 4.60 boxwise margin, checks both Gold 4.65 full-box numerators and submits a new AXLE request. It checks the returned source, diagnostics, and axiom dependencies of every audited result. Python 3.9+ and network access are sufficient.
 
 ```sh
 python3 formalisation/real1b-2026-11-22/verify.py --online

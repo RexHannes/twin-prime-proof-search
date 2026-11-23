@@ -1680,9 +1680,679 @@ end REAL1B.FM.Closing
 #print axioms REAL1B.FM.Closing.fixed_level_certificate
 #print axioms REAL1B.FM.Closing.joint59_of_source_estimates
 
+-- RequestProject/REAL1B_20261122/FMDirect.lean
+/-! Gold 4.65 Parts I–II and Gold 4.66 Part I. Fixed parameters precede the limit.
+The good set is the paper's strict assignment on actual ordered prime factors. -/
+namespace REAL1B.FM.Direct
+open Filter Vaughan Source
+noncomputable section
+open Classical
+
+def lowerEdge : ℝ := 1/5 - ε
+def upperEdge : ℝ := 1/2 + ε
+
+def tinyCost (t : ℝ) (r : ℕ) : ℝ :=
+  if r = 0 then t else max (t - r * upperEdge) 0
+
+def rankTest {N : ℕ} (t : Fin N → ℝ) : Prop :=
+  ∃ r : Fin N → ℕ, ∑ i, r i ≤ 5 ∧
+    (∀ i, 0 < r i → r i * lowerEdge < t i) ∧ ∑ i, tinyCost (t i) (r i) < ε
+
+def good (n : ℕ) : Prop := 1 < n ∧ ¬ n.Prime ∧
+  rankTest (fun i : Fin n.primeFactorsList.length =>
+    Real.log (n.primeFactorsList.get i) / Real.log n)
+
+def F (x : ℝ) (n : ℕ) : ℝ :=
+  if n ∈ interval (x/2) ∧ Squarefree n ∧ ¬ Direct.good n ∧ Sifted (z x) n ∧ retained n
+  then kernelH n - kernelK (x/2) n else 0
+def G (x : ℝ) (n : ℕ) : ℝ :=
+  if n ∈ interval (x/2) ∧ Squarefree n ∧ Direct.good n then max (-kernelH n) 0 else 0
+def phi (x : ℝ) (n : ℕ) := F x n - G x n
+def psi (x : ℝ) (n : ℕ) := if Closing.boxes n then phi x n else 0
+def outsideProfile (x : ℝ) (n : ℕ) := phi x n - psi x n
+
+def largeSum (a x : ℝ) (f : ℕ → ℝ) := total (x/2) (fun n =>
+  sieve (Closing.roughW a x) (n-2) * mu (n-2)^2 *
+    Closing.coeff (Closing.cutU x) (Closing.cutD x) (n-2) * f n)
+def whole (a x : ℝ) := largeSum a x (phi x)
+def box (a x : ℝ) := largeSum a x (psi x)
+def outside (a x : ℝ) := largeSum a x (outsideProfile x)
+def primeBox (x : ℝ) := total (x/2) (fun n => actual x n * psi x n)
+
+theorem source_split (a x : ℝ) : whole a x = box a x + outside a x := by
+  unfold whole box outside largeSum total outsideProfile
+  rw [← Finset.sum_add_distrib]
+  exact Finset.sum_congr rfl (fun _ _ => by ring)
+
+theorem outside_eq_mask (x : ℝ) (n : ℕ) :
+    outsideProfile x n = if Closing.boxes n then 0 else phi x n := by
+  by_cases h : Closing.boxes n <;> simp [outsideProfile, psi, h]
+
+/- Ordered four-dimensional integral of (B7); the fifth coordinate is dependent. -/
+def boxDomain (t : Fin 4 → ℝ) : Prop :=
+  ∃ b : Fin 4 → ℕ, Closing.admissible (b 0) (b 1) (b 2) (b 3) ∧
+    ∀ i, (b i : ℝ)/100 < t i ∧ t i < ((b i : ℝ)+1)/100
+
+def face (t s : ℝ) : ℝ :=
+  (if 1/2 + (if 1/5 < t then 2 else 1) * ε ≤ s then 1 else 0) +
+    (if 1/2 - ε < s then 1 else 0)
+
+def profileH (t : Fin 4 → ℝ) : ℝ :=
+  2 + face (t 2) (t 0 + t 1 + t 3) + face (t 3) (t 0 + t 1 + t 2)
+
+def J : ℝ := ∫ t : Fin 4 → ℝ, if boxDomain t then
+  profileH t / ((∏ i, t i) * (1 - ∑ i, t i)) else 0
+
+def cStar : ℝ := 17/5 * 1.000081
+def enclosure : ℝ := 28449989344325252602 / 10^20
+
+theorem splice_arithmetic :
+    cStar = 3.4002754 ∧ (cStar-1)*enclosure = 0.682878095534460334193665908 ∧
+    (0.682878095534460334193665908 : ℝ) < 0.682878095535 ∧
+    (0.999892775499 : ℝ) - 0.682878095535 = 0.317014679964 := by
+  norm_num [cStar, enclosure]
+
+theorem five_factor_rounding (h : J ≤ enclosure) :
+    (cStar-1)*J ≤ 0.682878095534460334193665908 := by
+  rw [← splice_arithmetic.2.1]
+  exact mul_le_mul_of_nonneg_left h (by norm_num [cStar])
+
+def Calibration (a : ℝ) : Prop := ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop,
+  |box a x - (primeBox x - J * Sb x)| ≤ e * Sb x
+def ProfileUpper : Prop := ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop,
+  primeBox x ≤ (cStar*J + e) * Sb x
+def BoxPayment (a : ℝ) : Prop := ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop,
+  box a x ≤ (0.682878095535 + e) * Sb x
+def LowerLedger (a : ℝ) : Prop := ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop,
+  (0.999892775499-e) * Sb x ≤ whole a x + T x
+def OutsideBound (a κ : ℝ) : Prop := ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop,
+  outside a x ≤ (0.317014679964-κ+e) * Sb x
+
+theorem box_payment {a : ℝ} (hc : Calibration a) (hp : ProfileUpper)
+    (hj : J ≤ enclosure) (hs : ∀ᶠ x : ℝ in atTop, 0 < Sb x) : BoxPayment a := by
+  intro e he
+  have h : 0 < e/2 := by linarith
+  filter_upwards [hc _ h, hp _ h, hs] with x hC hP hS
+  have hbound := mul_le_mul_of_nonneg_right
+    ((five_factor_rounding hj).trans splice_arithmetic.2.2.1.le) hS.le
+  linarith only [(abs_le.mp hC).2, hP, hbound]
+
+theorem reserve {a κ : ℝ} (hl : LowerLedger a) (hb : BoxPayment a)
+    (ho : OutsideBound a κ) :
+    ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop, (κ-e)*Sb x ≤ T x := by
+  intro e he
+  have h : 0 < e/3 := by linarith
+  filter_upwards [hl _ h, hb _ h, ho _ h] with x hL hB hO
+  rw [source_split] at hL
+  linarith only [hL, hB, hO]
+
+theorem eventual_positive {a κ : ℝ} (hk : 0 < κ) (hl : LowerLedger a)
+    (hb : BoxPayment a) (ho : OutsideBound a κ) (hs : ∀ᶠ x : ℝ in atTop, 0 < Sb x) :
+    ∀ᶠ x : ℝ in atTop, 0 < T x := by
+  filter_upwards [reserve hl hb ho (κ/2) (by linarith), hs] with x ht hS
+  exact (mul_pos (by linarith : 0 < κ-κ/2) hS).trans_le ht
+
+theorem infinite_of_direct {a : Set.Ioo (0:ℝ) 1} {κ : ℝ} (hk : 0 < κ)
+    (hl : LowerLedger a) (hb : BoxPayment a) (ho : OutsideBound a κ)
+    (hs : ∀ᶠ x : ℝ in atTop, 0 < Sb x) :
+    Set.Infinite {p : ℕ | p.Prime ∧ (p+2).Prime} := by
+  apply infinite_of_unbounded_mass
+  intro M
+  obtain ⟨x,hx,hT⟩ := ((eventually_gt_atTop (2*(M:ℝ))).and
+    (eventual_positive hk hl hb ho hs)).exists
+  exact ⟨x/2, by linarith, hT.trans_le (T_le_native x)⟩
+
+end
+end REAL1B.FM.Direct
+
+#print axioms REAL1B.FM.Direct.source_split
+#print axioms REAL1B.FM.Direct.outside_eq_mask
+#print axioms REAL1B.FM.Direct.splice_arithmetic
+#print axioms REAL1B.FM.Direct.five_factor_rounding
+#print axioms REAL1B.FM.Direct.box_payment
+#print axioms REAL1B.FM.Direct.reserve
+#print axioms REAL1B.FM.Direct.eventual_positive
+#print axioms REAL1B.FM.Direct.infinite_of_direct
+
+-- RequestProject/REAL1B_20261122/FMOwners.lean
+/-! Gold 4.66. Complete the Möbius sum before regrouping prime owners. -/
+namespace REAL1B.FM.Owners
+open ArithmeticFunction Vaughan Closing
+noncomputable section
+open Classical
+
+theorem total_mu (r : ℕ) : ∑ m ∈ r.divisors, mu m = if r = 1 then 1 else 0 := by
+  calc
+    _ = (mob * zetaR) r := (coe_mul_zeta_apply (f := mob) (x := r)).symm
+    _ = _ := by rw [show mob * zetaR = 1 from coe_moebius_mul_coe_zeta, one_apply]
+
+def truncated (E : ℝ) (r : ℕ) := ∑ m ∈ r.divisors, if (m:ℝ) ≤ E then mu m else 0
+
+theorem divisor_complement (r : ℕ) (E : ℝ) :
+    (∑ m ∈ r.divisors, if E < (m:ℝ) then mu m else 0) =
+      (if r = 1 then 1 else 0) - truncated E r := by
+  rw [eq_sub_iff_add_eq, ← total_mu, truncated, ← Finset.sum_add_distrib]
+  exact Finset.sum_congr rfl (fun m _ => by
+    by_cases h : E < (m:ℝ) <;> simp [h, le_of_not_gt, not_le.mpr])
+
+def edge (u d : ℝ) (l : ℕ) := max u (d/l)
+def boundary (u : ℝ) (k : ℕ) : ℝ := if k.Prime ∧ u < (k:ℝ) then Real.log k else 0
+def debt (u d : ℝ) (k : ℕ) := ∑ l ∈ k.primeFactors,
+  if u < (l:ℝ) then Real.log l * truncated (edge u d l) (k/l) else 0
+
+theorem owner_row {u d : ℝ} {k l : ℕ} (hl : l.Prime) :
+    primeRow u d k l = Real.log l *
+      ((if k/l = 1 then 1 else 0) - truncated (edge u d l) (k/l)) := by
+  rw [← divisor_complement]
+  unfold primeRow
+  congr 1
+  apply Finset.sum_congr rfl
+  intro m _
+  have hpos : (0:ℝ) < l := by exact_mod_cast hl.pos
+  simp [edge, div_lt_iff₀ hpos, Nat.cast_mul]
+
+private theorem coeff_over_factors (u d : ℝ) (k : ℕ) :
+    coeff u d k = ∑ l ∈ k.primeFactors, if u < (l:ℝ) then primeRow u d k l else 0 := by
+  have hf : k.divisors.filter Nat.Prime = k.primeFactors := by
+    ext l
+    simp [Nat.mem_divisors, and_comm, and_left_comm]
+  rw [← hf, Finset.sum_filter]
+  unfold coeff
+  exact Finset.sum_congr rfl (fun l _ => by by_cases h : l.Prime <;> simp [h])
+
+/-- The all-owner boundary occurs exactly at a genuine prime input. Strict
+cutoffs are dual to the weak cutoff in each omitted truncated. -/
+theorem coeff_complement (u d : ℝ) (k : ℕ) : coeff u d k = boundary u k - debt u d k := by
+  have rowBoundary : (∑ l ∈ k.primeFactors, if l = k then boundary u k else 0) =
+      boundary u k := by
+    by_cases h : k.Prime
+    · simp [h.mem_primeFactors (dvd_refl k) h.ne_zero]
+    · simp [boundary, h]
+  rw [eq_sub_iff_add_eq, coeff_over_factors, debt, ← Finset.sum_add_distrib, ← rowBoundary]
+  apply Finset.sum_congr rfl
+  intro l hl
+  obtain ⟨hp, hd, _⟩ := Nat.mem_primeFactors.mp hl
+  have he : k/l = 1 ↔ l = k := by
+    constructor
+    · intro h
+      simpa [h] using Nat.div_mul_cancel hd
+    · rintro rfl
+      exact Nat.div_self hp.pos
+  rw [owner_row hp]
+  by_cases hk : l = k
+  · subst k
+    by_cases h : u < (l:ℝ) <;> simp [he, h, boundary, hp]
+    ring
+  · by_cases h : u < (l:ℝ) <;> simp [he, h, hk]
+
+/-- Large extra factors cannot occur in a divisor at or below E. -/
+private theorem truncated_large_factor {N r : ℕ} {E : ℝ} (hN : 0 < N) (hr : 0 < r)
+    (hlarge : ∀ p ∈ N.primeFactors, E < (p:ℝ)) :
+    truncated E (N*r) = truncated E r := by
+  have hsets : (N*r).divisors.filter (fun m : ℕ => (m:ℝ) ≤ E) =
+      r.divisors.filter (fun m : ℕ => (m:ℝ) ≤ E) := by
+    ext m
+    simp only [Finset.mem_filter, Nat.mem_divisors]
+    constructor
+    · rintro ⟨⟨hd,_⟩, hcut⟩
+      have hm := Nat.pos_of_dvd_of_pos hd (Nat.mul_pos hN hr)
+      have hc : m.Coprime N := by
+        by_contra hn
+        obtain ⟨p,hp,hm',hN'⟩ := Nat.Prime.not_coprime_iff_dvd.mp hn
+        have hpm : (p:ℝ) ≤ m := by exact_mod_cast Nat.le_of_dvd hm hm'
+        exact (not_lt_of_ge (hpm.trans hcut)) (hlarge p (hp.mem_primeFactors hN' hN.ne'))
+      exact ⟨⟨hc.dvd_of_dvd_mul_left hd, hr.ne'⟩, hcut⟩
+    · rintro ⟨⟨hd,_⟩, hcut⟩
+      exact ⟨⟨dvd_mul_of_dvd_right hd N, (Nat.mul_pos hN hr).ne'⟩, hcut⟩
+  simpa only [truncated, ← Finset.sum_filter] using congrArg
+    (fun s : Finset ℕ => ∑ m ∈ s, mu m) hsets
+
+/-- Gold 4.66 Part V (2.2). M has at least one owner; M=P gives (2.1).
+The quotient r need not be squarefree for this finite identity. -/
+theorem large_owners {M r : ℕ} {u d : ℝ} (hu : 0 < u)
+    (hM : 1 < M) (hr : 1 < r) (hs : Squarefree M) (hc : M.Coprime r)
+    (hlarge : ∀ p ∈ M.primeFactors, max u (d/u) < (p:ℝ)) :
+    coeff u d (M*r) = -Real.log M * truncated u r + coeff u d r - boundary u r := by
+  have hMp : 0 < M := by omega
+  have hrp : 0 < r := by omega
+  have cuts (p : ℕ) (hp : p ∈ M.primeFactors) :
+      u < (p:ℝ) ∧ d < (p:ℝ)*u := by
+    obtain ⟨h₁,h₂⟩ := max_lt_iff.mp (hlarge p hp)
+    exact ⟨h₁, (div_lt_iff₀ hu).mp h₂⟩
+  let cost (k l : ℕ) : ℝ := if u < (l:ℝ) then Real.log l * truncated (edge u d l) (k/l) else 0
+  have owner (l : ℕ) (hl : l ∈ M.primeFactors) :
+      cost (M*r) l = Real.log l * truncated u r := by
+    obtain ⟨hlp,hld,_⟩ := Nat.mem_primeFactors.mp hl
+    obtain ⟨hlu,hldu⟩ := cuts l hl
+    have hpos : (0:ℝ) < l := hu.trans hlu
+    have he : edge u d l = u := max_eq_left ((div_le_iff₀ hpos).mpr (by linarith))
+    have hq : (M*r)/l = (M/l)*r := by rw [Nat.mul_comm M r, Nat.mul_div_assoc _ hld, Nat.mul_comm]
+    have hdiv : M/l ∣ M := Nat.div_dvd_of_dvd hld
+    have hqpos := Nat.div_pos (Nat.le_of_dvd hMp hld) hlp.pos
+    simp only [cost, if_pos hlu, he, hq]
+    rw [truncated_large_factor hqpos hrp (fun p hp =>
+      (cuts p (Nat.primeFactors_mono hdiv hMp.ne' hp)).1)]
+  have cofactor (l : ℕ) (hl : l ∈ r.primeFactors) : cost (M*r) l = cost r l := by
+    obtain ⟨hlp,hld,_⟩ := Nat.mem_primeFactors.mp hl
+    by_cases h : u < (l:ℝ)
+    · simp only [cost, if_pos h, Nat.mul_div_assoc M hld]
+      congr 1
+      apply truncated_large_factor hMp (Nat.div_pos (Nat.le_of_dvd hrp hld) hlp.pos)
+      intro p hp
+      obtain ⟨hpu,hpd⟩ := cuts p hp
+      exact max_lt_iff.mpr ⟨hpu, (div_lt_iff₀ (hu.trans h)).mpr
+        (hpd.trans (mul_lt_mul_of_pos_left h (hu.trans hpu)))⟩
+    · simp [cost, h]
+  have hlog : ∑ p ∈ M.primeFactors, Real.log p = Real.log M := by
+    rw [← Real.log_prod (s := M.primeFactors) (f := fun p : ℕ => (p:ℝ)) (fun p hp => (by exact_mod_cast (Nat.prime_of_mem_primeFactors hp).ne_zero :
+      (p : ℝ) ≠ 0)), ← Nat.cast_prod, Nat.prod_primeFactors_of_squarefree hs]
+  have debt_eq : debt u d (M*r) = Real.log M * truncated u r + debt u d r := by
+    change ∑ l ∈ (M*r).primeFactors, cost (M*r) l = _ + ∑ l ∈ r.primeFactors, cost r l
+    rw [hc.primeFactors_mul, Finset.sum_union hc.disjoint_primeFactors,
+      Finset.sum_congr rfl owner, Finset.sum_congr rfl cofactor, ← Finset.sum_mul, hlog]
+  have hb : boundary u (M*r) = 0 := by simp [boundary, Nat.not_prime_mul hM.ne' hr.ne']
+  rw [coeff_complement u d (M*r), hb, debt_eq, coeff_complement u d r]
+  ring
+
+end
+end REAL1B.FM.Owners
+
+#print axioms REAL1B.FM.Owners.total_mu
+#print axioms REAL1B.FM.Owners.divisor_complement
+#print axioms REAL1B.FM.Owners.owner_row
+#print axioms REAL1B.FM.Owners.coeff_complement
+#print axioms REAL1B.FM.Owners.large_owners
+
+-- RequestProject/REAL1B_20261122/FMSemantics.lean
+/-! Compare the fundamental-vector and strict rank-assignment presentations. -/
+namespace REAL1B.FM.Direct
+open Source Filter
+noncomputable section
+open Classical
+
+private def tiny (v : List ℝ) := (v.map (fun t => if t < ε then t else 0)).sum
+private def countBig (v : List ℝ) := (v.map (fun t => if t < ε then (0:ℕ) else 1)).sum
+
+private theorem edges : 0 < ε ∧ 2*ε < lowerEdge ∧ lowerEdge < upperEdge ∧
+    upperEdge < 1 ∧ 1 < 6*lowerEdge := by norm_num [lowerEdge, upperEdge, ε]
+
+private theorem tiny_mono {u v : List ℝ} (h : u.Sublist v) (hp : ∀ t ∈ v, 0 ≤ t) :
+    tiny u ≤ tiny v := by
+  induction h with
+  | slnil => rfl
+  | cons x h ih =>
+    have h' := ih (fun t ht => hp t (by simp [ht]))
+    have h0 := hp x (by simp)
+    simp only [tiny, List.map_cons, List.sum_cons] at *
+    split_ifs <;> linarith
+  | cons₂ x h ih =>
+    simpa [tiny] using ih (fun t ht => hp t (by simp [ht]))
+
+private theorem fundamental_shape (v : List ℝ) :
+    fundamental v ↔ v.sum = 1 ∧ (∀ t ∈ v, 0 < t ∧ t < upperEdge ∧ (t < ε ∨ lowerEdge < t)) ∧
+      tiny v < ε := by
+  have h₁ : ε + ν = lowerEdge := by unfold ν lowerEdge; ring
+  have h₂ : 1-γ = upperEdge := by unfold γ upperEdge; ring
+  constructor
+  · rintro ⟨hs, ht, hsub⟩
+    have gap (w : List ℝ) (hw : w.Sublist v) : w.sum < ε ∨ lowerEdge < w.sum := by
+      by_cases he : w = []
+      · simpa [he] using Or.inl edges.1
+      by_cases hlt : w.length < v.length
+      · simpa [h₁] using hsub w hw he hlt
+      · rw [hw.eq_of_length_le (le_of_not_gt hlt), hs]
+        exact Or.inr (edges.2.2.1.trans edges.2.2.2.1)
+    refine ⟨hs, fun t h => ⟨(ht t h).1, h₂ ▸ (ht t h).2, ?_⟩, ?_⟩
+    · simpa using gap [t] (List.singleton_sublist.mpr h)
+    · have small (w : List ℝ) (hw : w.Sublist v) (htiny : ∀ t ∈ w, t < ε) : w.sum < ε := by
+        induction w with
+        | nil => simpa using edges.1
+        | cons t w ih =>
+          have hh := htiny t (by simp)
+          have hsum := ih ((List.sublist_cons_self t w).trans hw) (fun q hq => htiny q (by simp [hq]))
+          rcases gap (t::w) hw with h | h
+          · exact h
+          · simp only [List.sum_cons] at *
+            linarith only [hh, hsum, h, edges.2.1]
+      have eqv (w : List ℝ) : tiny w = (w.filter (fun t => decide (t < ε))).sum := by
+        induction w with
+        | nil => rfl
+        | cons t w ih => by_cases h : t < ε <;> simp_all [tiny]
+      rw [eqv]
+      exact small _ List.filter_sublist (fun t h => of_decide_eq_true (List.mem_filter.mp h).2)
+  · rintro ⟨hs, ht, hcost⟩
+    refine ⟨hs, fun t h => ⟨(ht t h).1, h₂.symm ▸ (ht t h).2.1⟩, ?_⟩
+    intro w hsub _ _
+    rw [h₁]
+    by_cases h : ∀ t ∈ w, t < ε
+    · have he : tiny w = w.sum := by
+        unfold tiny
+        congr 1
+        exact (List.map_congr_left (g := id) (fun t ht => if_pos (h t ht))).trans (List.map_id w)
+      exact Or.inl (he ▸ (tiny_mono hsub (fun t h => (ht t h).1.le)).trans_lt hcost)
+    · push_neg at h
+      obtain ⟨t, htw, hte⟩ := h
+      have hbig := ((ht t (hsub.subset htw)).2.2).resolve_left (not_lt.mpr hte)
+      exact Or.inr (hbig.trans_le (List.single_le_sum (fun y hy => (ht y (hsub.subset hy)).1.le) _ htw))
+
+/-- Explicit positive tiny allocations and strictly interior equal macro pieces.
+This formulation makes the strict upper face of a fundamental coordinate visible. -/
+def allocations {N : ℕ} (t : Fin N → ℝ) : Prop :=
+  ∃ (r : Fin N → ℕ) (d : Fin N → ℝ), ∑ i, r i ≤ 5 ∧ ∑ i, d i < ε ∧
+    ∀ i, 0 < d i ∧ (if r i = 0 then d i = t i else
+      r i * lowerEdge < t i - d i ∧ t i - d i < r i * upperEdge)
+
+theorem rank_iff_allocations {N : ℕ} {t : Fin N → ℝ} (ht : ∀ i, 0 < t i) :
+    rankTest t ↔ allocations t := by
+  constructor
+  · rintro ⟨r,hr,hl,hc⟩
+    let c := fun i => tinyCost (t i) (r i)
+    let η := (ε - ∑ i, c i) / ((N:ℝ)+1)
+    have hden : 0 < (N:ℝ)+1 := by positivity
+    have hη : 0 < η := div_pos (sub_pos.mpr hc) hden
+    let bonus := fun i => if r i = 0 then 0 else min η ((t i - c i - r i * lowerEdge)/2)
+    have room (i) (hi : r i ≠ 0) : r i * lowerEdge < t i - c i := by
+      have h₁ := hl i (Nat.pos_of_ne_zero hi)
+      have h₂ := mul_lt_mul_of_pos_left edges.2.2.1 (by exact_mod_cast Nat.pos_of_ne_zero hi : 0 < (r i:ℝ))
+      simp only [c, tinyCost, if_neg hi]
+      rcases le_total (t i - r i * upperEdge) 0 with h|h
+      · rw [max_eq_right h]; linarith
+      · rw [max_eq_left h]; linarith
+    refine ⟨r, fun i => c i + bonus i, hr, ?_, ?_⟩
+    · have hb : ∑ i, bonus i ≤ ∑ _ : Fin N, η := Finset.sum_le_sum (fun i _ => by
+        by_cases h : r i = 0 <;> simp [bonus, h, hη.le])
+      have heta : η*((N:ℝ)+1) = ε - ∑ i, c i := div_mul_cancel₀ _ hden.ne'
+      simp only [Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul] at hb
+      rw [Finset.sum_add_distrib]
+      linarith only [hb, heta, hη]
+    · intro i
+      by_cases hi : r i = 0
+      · simp [bonus, c, tinyCost, hi, ht i]
+      · have hroom := room i hi
+        have hb : 0 < bonus i := by simp [bonus, hi, hη, show 0 < (t i-c i-r i*lowerEdge)/2 by linarith]
+        have hb' : bonus i ≤ (t i-c i-r i*lowerEdge)/2 := by simp [bonus, hi]
+        have hc₀ : 0 ≤ c i := by simp [c, tinyCost, hi]
+        have hc₁ : t i - r i*upperEdge ≤ c i := by simp [c, tinyCost, hi]
+        simp only [if_neg hi]
+        exact ⟨by linarith, by linarith, by linarith⟩
+  · rintro ⟨r,d,hr,hd,h⟩
+    refine ⟨r, hr, fun i hi => ?_, lt_of_le_of_lt (Finset.sum_le_sum (fun i _ => ?_)) hd⟩
+    · have hh := (h i).2
+      rw [if_neg (Nat.ne_of_gt hi)] at hh
+      linarith only [(h i).1, hh.1]
+    · have hh := (h i).2
+      by_cases hi : r i = 0
+      · rw [if_pos hi] at hh
+        simpa [tinyCost, hi] using hh.symm.le
+      · rw [if_neg hi] at hh
+        simp only [tinyCost, if_neg hi, max_le_iff]
+        exact ⟨by linarith only [hh.2], (h i).1.le⟩
+
+private def Shape (v : List ℝ) : Prop := ∀ t ∈ v, 0 < t ∧ t < upperEdge ∧ (t < ε ∨ lowerEdge < t)
+
+private theorem block_stats (v : List ℝ) (h : Shape v) :
+    0 ≤ tiny v ∧ countBig v * lowerEdge ≤ v.sum - tiny v ∧
+    (countBig v = 0 ∨ countBig v * lowerEdge < v.sum - tiny v) ∧
+    v.sum - tiny v ≤ countBig v * upperEdge := by
+  induction v with
+  | nil => simp [tiny, countBig]
+  | cons t v ih =>
+    obtain ⟨hpos,hupper,hgap⟩ := h t (by simp)
+    obtain ⟨ht,hl,hs,hu⟩ := ih (fun y hy => h y (by simp [hy]))
+    by_cases he : t < ε
+    · have a : tiny (t::v) = t + tiny v := by simp [tiny, he]
+      have b : countBig (t::v) = countBig v := by simp [countBig, he]
+      rw [a,b,List.sum_cons]
+      exact ⟨by linarith, by linarith, hs.imp_right (by intro; linarith), by linarith⟩
+    · have a : tiny (t::v) = tiny v := by simp [tiny, he]
+      have b : countBig (t::v) = 1 + countBig v := by simp [countBig, he]
+      have hg := hgap.resolve_left he
+      rw [a,b,List.sum_cons,Nat.cast_add,Nat.cast_one]
+      exact ⟨ht, by linarith, Or.inr (by linarith), by linarith⟩
+
+private theorem tiny_flat (v : List (List ℝ)) : tiny v.flatten = (v.map tiny).sum := by
+  induction v with
+  | nil => rfl
+  | cons b v ih => simpa [tiny, List.sum_append] using congrArg (fun s => tiny b + s) ih
+
+private theorem sum_blocks {N : ℕ} (B : Fin N → List ℝ) :
+    (List.ofFn B).flatten.sum = ∑ i, (B i).sum := by
+  simp [List.sum_flatten, List.map_ofFn, Function.comp_def, List.sum_ofFn]
+
+private theorem cost_blocks {N : ℕ} (B : Fin N → List ℝ) :
+    tiny (List.ofFn B).flatten = ∑ i, tiny (B i) := by
+  simp [tiny_flat, List.map_ofFn, Function.comp_def, List.sum_ofFn]
+
+private theorem rank_of_blocks {N : ℕ} {t : Fin N → ℝ} (B : Fin N → List ℝ)
+    (hB : fundamental (List.ofFn B).flatten) (he : ∀ i, (B i).sum = t i) : rankTest t := by
+  obtain ⟨ht,hs,hc⟩ := (fundamental_shape _).mp hB
+  have stats i := block_stats (B i) (fun y hy => hs y (List.mem_flatten.mpr
+    ⟨B i, List.mem_ofFn.mpr ⟨i,rfl⟩, hy⟩))
+  have hbudget : (∑ i, (countBig (B i):ℝ)) * lowerEdge ≤ 1 := by
+    rw [← ht, sum_blocks, Finset.sum_mul]
+    apply Finset.sum_le_sum
+    intro i _
+    linarith only [(stats i).2.1, (stats i).1]
+  refine ⟨fun i => countBig (B i), ?_, ?_, ?_⟩
+  · by_contra! h
+    have h6 : 6 ≤ ∑ i, (countBig (B i):ℝ) := by exact_mod_cast h
+    have hpos : 0 < lowerEdge := by linarith only [edges.1, edges.2.1]
+    linarith only [mul_le_mul_of_nonneg_right h6 hpos.le, edges.2.2.2.2, hbudget]
+  · intro i hi
+    rw [← he i]
+    linarith only [((stats i).2.2.1.resolve_left hi.ne'), (stats i).1]
+  · rw [cost_blocks] at hc
+    refine lt_of_le_of_lt (Finset.sum_le_sum (fun i _ => ?_)) hc
+    rw [← he i]
+    by_cases h : countBig (B i) = 0
+    · have h' := (stats i).2.2.2
+      simpa [tinyCost, h] using (show (B i).sum ≤ tiny (B i) by simpa [h] using h')
+    · simpa [tinyCost, h] using And.intro
+        (show (B i).sum - (countBig (B i):ℝ)*upperEdge ≤ tiny (B i) by linarith only [(stats i).2.2.2])
+        (stats i).1
+
+private theorem blocks_of_rank {N : ℕ} {t : Fin N → ℝ} (ht : ∀ i, 0 < t i)
+    (htot : ∑ i, t i = 1) (h : rankTest t) :
+    ∃ B : Fin N → List ℝ, (∀ i, B i ≠ []) ∧ fundamental (List.ofFn B).flatten ∧
+      ∀ i, (B i).sum = t i := by
+  obtain ⟨r, d, _, hd, hw⟩ := (rank_iff_allocations ht).mp h
+  let v := fun i => (t i - d i) / r i
+  let B := fun i => List.replicate (r i) (v i) ++ [d i]
+  have hsmall i : d i < ε :=
+    (Finset.single_le_sum (fun j _ => (hw j).1.le) (Finset.mem_univ i)).trans_lt hd
+  have hmacro i (hi : r i ≠ 0) : lowerEdge < v i ∧ v i < upperEdge := by
+    have hp : (0:ℝ) < r i := by exact_mod_cast Nat.pos_of_ne_zero hi
+    have hh := (hw i).2
+    rw [if_neg hi] at hh
+    exact ⟨(lt_div_iff₀ hp).mpr (by linarith only [hh.1]), (div_lt_iff₀ hp).mpr (by linarith only [hh.2])⟩
+  have hsum i : (B i).sum = t i := by
+    by_cases hi : r i = 0
+    · simpa [B, hi] using (show d i = t i by simpa [hi] using (hw i).2)
+    · simp [B, v, List.sum_replicate, nsmul_eq_mul, mul_div_cancel₀, hi]
+  have hshape i : Shape (B i) := by
+    intro y hy
+    simp only [B, List.mem_append, List.mem_replicate, List.mem_singleton] at hy
+    rcases hy with ⟨hi,rfl⟩ | rfl
+    · have hh := hmacro i hi
+      exact ⟨by linarith only [edges.1, edges.2.1, hh.1], hh.2, Or.inr hh.1⟩
+    · exact ⟨(hw i).1, by linarith only [hsmall i, edges.1, edges.2.1, edges.2.2.1], Or.inl (hsmall i)⟩
+  have hcost i : tiny (B i) = d i := by
+    by_cases hi : r i = 0
+    · simp [B, tiny, hi, hsmall]
+    · have hm : ¬ v i < ε := by linarith only [(hmacro i hi).1, edges.1, edges.2.1]
+      simp [B, tiny, List.sum_replicate, hm, hsmall]
+  refine ⟨B, fun i => by simp [B], (fundamental_shape _).mpr ⟨?_, ?_, ?_⟩, hsum⟩
+  · simpa only [sum_blocks, hsum] using htot
+  · intro y hy
+    obtain ⟨b, hb, hy⟩ := List.mem_flatten.mp hy
+    obtain ⟨i,rfl⟩ := List.mem_ofFn.mp hb
+    exact hshape i y hy
+  · simpa only [cost_blocks, hcost] using hd
+
+/-- For a positive normalized vector, the older existential block test is
+equivalent to the strict per-coordinate rank test, including both endpoints. -/
+theorem coagulation_iff_rank {N : ℕ} {t : Fin N → ℝ} (ht : ∀ i, 0 < t i)
+    (hsum : ∑ i, t i = 1) :
+    (∃ b : List (List ℝ), (∀ w ∈ b, w ≠ []) ∧ fundamental b.flatten ∧
+      (b.map List.sum).Perm (List.ofFn t)) ↔ rankTest t := by
+  constructor
+  · rintro ⟨b, _, hf, hp⟩
+    have order : ∃ w : List (List ℝ), List.ofFn t = w.map List.sum ∧ w.Perm b := by
+      change Relation.Comp (fun x y => x = List.map List.sum y) List.Perm (List.ofFn t) b
+      rw [List.eq_map_comp_perm]
+      exact hp.symm
+    obtain ⟨w, hw, hp'⟩ := order
+    have hflat : w.flatten.Perm b.flatten := by simpa only [List.flatMap_id] using hp'.flatMap_right id
+    obtain ⟨hs, hshape, hc⟩ := (fundamental_shape _).mp hf
+    have hwf : fundamental w.flatten := (fundamental_shape _).mpr
+      ⟨hflat.sum_eq.trans hs, fun x hx => hshape x (hflat.mem_iff.mp hx),
+        (hflat.map (fun y => if y < ε then y else 0)).sum_eq.trans_lt hc⟩
+    obtain ⟨K, B, rfl⟩ : ∃ K, ∃ B : Fin K → List ℝ, List.ofFn B = w :=
+      ⟨w.length, w.get, List.ofFn_get w⟩
+    have hn : N = K := by simpa using congrArg List.length hw
+    subst K
+    apply rank_of_blocks B hwf
+    intro i
+    have hmap : List.ofFn t = List.ofFn (fun j => (B j).sum) := by simpa [List.map_ofFn, Function.comp_def] using hw
+    exact (congrFun (List.ofFn_injective hmap) i).symm
+  · intro h
+    obtain ⟨B, hn, hf, he⟩ := blocks_of_rank ht hsum h
+    refine ⟨List.ofFn B, ?_, hf, ?_⟩
+    · exact List.forall_mem_ofFn_iff.mpr hn
+    · simp [List.map_ofFn, Function.comp_def, he]
+
+private theorem normalized {n : ℕ} (hn : 1 < n) :
+    ∑ i : Fin n.primeFactorsList.length, Real.log (n.primeFactorsList.get i) / Real.log n = 1 := by
+  have hlog : 0 < Real.log n := Real.log_pos (by exact_mod_cast hn)
+  rw [← Finset.sum_div, div_eq_one_iff_eq hlog.ne']
+  have h : ∀ x ∈ n.primeFactorsList.map (fun p : ℕ => (p:ℝ)), x ≠ 0 := by
+    intro x hx
+    obtain ⟨p,hp,rfl⟩ := List.mem_map.mp hx
+    exact_mod_cast (Nat.prime_of_mem_primeFactorsList hp).ne_zero
+  have hh := Real.log_list_prod h
+  rw [← Nat.cast_list_prod, Nat.prod_primeFactorsList (by omega)] at hh
+  rw [← List.sum_ofFn, hh, List.map_map]
+  exact congrArg List.sum ((List.map_ofFn n.primeFactorsList.get (fun p : ℕ => Real.log p)).symm.trans
+    (by rw [List.ofFn_get]; rfl))
+
+theorem good_iff_rank_good (n : ℕ) : Source.good n ↔ Direct.good n := by
+  unfold Source.good Direct.good
+  refine and_congr_right (fun hn => and_congr_right (fun _ => ?_))
+  let t := fun i : Fin n.primeFactorsList.length => Real.log (n.primeFactorsList.get i) / Real.log n
+  have hp i : 0 < t i := div_pos (Real.log_pos (by exact_mod_cast
+    (Nat.prime_of_mem_primeFactorsList (List.get_mem n.primeFactorsList i)).one_lt))
+    (Real.log_pos (by exact_mod_cast hn))
+  have hd : List.ofFn t = profile n n.primeFactorsList := by
+    unfold profile
+    change List.ofFn t = (n.primeFactorsList.flatMap (fun p : ℕ => [(p:ℝ)])).map _
+    rw [← List.map_eq_flatMap, List.map_map]
+    exact (List.map_ofFn n.primeFactorsList.get (fun p : ℕ => Real.log p / Real.log n)).symm.trans
+      (by rw [List.ofFn_get]; rfl)
+  rw [← hd]
+  exact coagulation_iff_rank hp (normalized hn)
+
+theorem phi_eq_legacy {n : ℕ} {x : ℝ} (hn : n ∈ Vaughan.interval (x/2)) :
+    phi x n = Closing.phi x n := by
+  simp [phi, Closing.phi, F, G, Closing.F, Closing.G, hn, good_iff_rank_good]
+
+theorem whole_eq_legacy (a x : ℝ) : whole a x = Closing.largeProduct a x := by
+  unfold whole largeSum Closing.largeProduct Vaughan.total
+  apply Finset.sum_congr rfl
+  intro n hn
+  simp only [Closing.term, phi_eq_legacy hn]
+
+theorem lower_of_covariance {a : ℝ} (hl : Closing.LowerLedger) (hr : Closing.Reduction a) :
+    LowerLedger a := by
+  intro e he
+  have h : 0 < e/2 := by linarith
+  filter_upwards [hl _ h, hr _ h] with x hL hR
+  rw [whole_eq_legacy]
+  linarith only [hL, (abs_le.mp hR).2]
+
+theorem infinite_of_profile_and_outside {a : Set.Ioo (0:ℝ) 1} {κ : ℝ} (hk : 0 < κ)
+    (hl : Closing.LowerLedger) (hr : Closing.Reduction a)
+    (hc : Calibration a) (hp : ProfileUpper) (hj : J ≤ enclosure)
+    (ho : OutsideBound a κ) (hs : ∀ᶠ x : ℝ in Filter.atTop, 0 < Sb x) :
+    Set.Infinite {p : ℕ | p.Prime ∧ (p+2).Prime} :=
+  infinite_of_direct hk (lower_of_covariance hl hr) (box_payment hc hp hj hs) ho hs
+
+end
+end REAL1B.FM.Direct
+#print axioms REAL1B.FM.Direct.rank_iff_allocations
+#print axioms REAL1B.FM.Direct.coagulation_iff_rank
+#print axioms REAL1B.FM.Direct.good_iff_rank_good
+#print axioms REAL1B.FM.Direct.phi_eq_legacy
+#print axioms REAL1B.FM.Direct.whole_eq_legacy
+#print axioms REAL1B.FM.Direct.lower_of_covariance
+#print axioms REAL1B.FM.Direct.infinite_of_profile_and_outside
+
+-- RequestProject/REAL1B_20261122/FMCompleteLabel.lean
+/-! Gold 4.66 Part III, (2), (4), (15). Keep the native outside profile on
+both label ranges so that no pointwise output theorem is silently assumed. -/
+namespace REAL1B.FM.Direct
+open Filter Vaughan Source Closing
+noncomputable section
+open Classical
+
+def clean (x : ℝ) (n : ℕ) : Prop :=
+  n ∈ interval (x/2) ∧ ∃ q h s : ℕ, n = q*h*s ∧ q.Prime ∧ h.Prime ∧ Squarefree s ∧
+    inBank x 0.4899 0.490 q ∧ inBank x 0.0199 0.020 h ∧ inBank x 0.4901 0.4902 s ∧
+    Sifted (x^(0.031:ℝ)) s ∧ ∀ p : ℕ, p.Prime → p ∣ s →
+      (p:ℝ) < x^(0.19999:ℝ) ∨ x^(0.20001:ℝ) < (p:ℝ)
+
+def labelSum (x : ℝ) (k : ℕ) (pick : ℕ → Prop) : ℝ := ∑ l ∈ k.divisors,
+  if l.Prime ∧ cutU x < (l:ℝ) ∧ pick l then primeRow (cutU x) (cutD x) k l else 0
+
+def cleanSum (a x : ℝ) (pick : ℕ → Prop) := total (x/2) (fun n =>
+  if clean x n then sieve (roughW a x) (n-2) * mu (n-2)^2 * labelSum x (n-2) pick *
+    outsideProfile x n else 0)
+def lowLabel (a x : ℝ) := cleanSum a x (fun l => (l:ℝ) ≤ x^(0.2697:ℝ))
+def unpaid (a x : ℝ) := largeSum a x (fun n => if clean x n then 0 else outsideProfile x n) +
+  cleanSum a x (fun l => x^(0.2697:ℝ) < (l:ℝ))
+
+theorem outside_label_split (a x : ℝ) : outside a x = unpaid a x + lowLabel a x := by
+  have split (k : ℕ) : coeff (cutU x) (cutD x) k =
+      labelSum x k (fun l => x^(0.2697:ℝ) < (l:ℝ)) +
+      labelSum x k (fun l => (l:ℝ) ≤ x^(0.2697:ℝ)) := by
+    unfold coeff labelSum
+    rw [← Finset.sum_add_distrib]
+    apply Finset.sum_congr rfl
+    intro l _
+    by_cases hp : l.Prime <;> by_cases hu : cutU x < (l:ℝ) <;>
+      by_cases h : x^(0.2697:ℝ) < (l:ℝ) <;> simp [hp, hu, h, not_le.mpr, le_of_not_gt]
+  unfold outside unpaid lowLabel cleanSum largeSum total
+  rw [← Finset.sum_add_distrib, ← Finset.sum_add_distrib]
+  apply Finset.sum_congr rfl
+  intro n _
+  by_cases h : clean x n
+  · simp only [if_pos h, mul_zero, zero_add, split]
+    ring
+  · simp [h]
+
+def LowLabelEstimate (a : ℝ) : Prop := ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop,
+  |lowLabel a x| ≤ e * Sb x
+
+theorem outside_iff_unpaid {a κ : ℝ} (hlo : LowLabelEstimate a) :
+    OutsideBound a κ ↔ ∀ e : ℝ, 0 < e → ∀ᶠ x : ℝ in atTop,
+      unpaid a x ≤ (0.317014679964-κ+e)*Sb x := by
+  constructor <;> intro h e he
+  · have hε : 0 < e/2 := by linarith
+    filter_upwards [h _ hε, hlo _ hε] with x hO hL
+    rw [outside_label_split] at hO
+    linarith only [hO,(abs_le.mp hL).1]
+  · have hε : 0 < e/2 := by linarith
+    filter_upwards [h _ hε, hlo _ hε] with x hU hL
+    rw [outside_label_split]
+    linarith only [hU,(abs_le.mp hL).2]
+
+end
+end REAL1B.FM.Direct
+#print axioms REAL1B.FM.Direct.outside_label_split
+#print axioms REAL1B.FM.Direct.outside_iff_unpaid
+
 -- RequestProject/REAL1B_20261122.lean
 /-! Entry point for the REAL 1B proofs of 22–23 November 2026.
-The primary FM endpoints are Closing.infinite_of_joint_complement and
+The Gold 4.66 endpoint is Direct.infinite_of_direct. The joint FM endpoints are Closing.infinite_of_joint_complement and
 Closing.infinite_of_boxwise_complement inside REAL1B.FM.
 The earlier FM residual and H2 reductions remain separately callable.
 The scalar theorem below consumes both H2 source estimates on one unbounded
