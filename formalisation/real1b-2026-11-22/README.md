@@ -39,6 +39,8 @@ To check the analytic modules, integral proof, and closing theorem together with
 python3 formalisation/real1b-2026-11-22/verify.py --lake
 ```
 
+The native build at `9410dd6` checked all 252 declarations, including the complete mesh, the analytic endpoint, the rank-five collar integral and the exact omitted semiprime strip. [Archived axiom output](native-audits/9410dd6.txt) · [Complete native build log](https://github.com/RexHannes/twin-prime-proof-search/actions/runs/45217795816)
+
 The native build at `43faced` checked 240 declarations, including the full grid and the signed endpoint. [Archived axiom output](native-audits/43faced.txt) · [Complete native build log](https://github.com/RexHannes/twin-prime-proof-search/actions/runs/45198042124)
 
 The original Gold 4.67 native build at `af6872f` checked 193 declarations. [Archived axiom output](native-audits/af6872f.txt) · [Complete native build log](https://github.com/RexHannes/twin-prime-proof-search/actions/runs/45178500376)
