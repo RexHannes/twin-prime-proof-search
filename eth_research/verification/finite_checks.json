@@ -1,0 +1,34 @@
+{
+  "adverse_example": {
+    "input_factors": [
+      11,
+      157
+    ],
+    "output_factors": [
+      7,
+      13,
+      19
+    ],
+    "profile": -2,
+    "signed_contribution": "2 log(1727)",
+    "x": 1729
+  },
+  "compensation": {
+    "factor_profiles": 12321,
+    "nearhalf_semiprime": 12,
+    "nonpositive_for_both_channels": 11173,
+    "two_small_adverse": 1136
+  },
+  "fourier_products": 7626,
+  "high_output_rational_bounds": "passed",
+  "kept": 1313,
+  "max_fourier_error": 4.311326371230795e-15,
+  "prime_boundaries": 354,
+  "rank_only": 2,
+  "semiprime_owners": 594,
+  "small_and_rank": 231,
+  "small_only": 996,
+  "squarefree_rows": 2542,
+  "status": "finite algebra checks passed",
+  "universal_cutoff_slope_times_width": "at least 21/10"
+}

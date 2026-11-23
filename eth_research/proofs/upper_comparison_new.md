@@ -1,0 +1,11 @@
+# A strictly smaller upper on the same complete outside source
+
+Use exactly the fixed a, physical sum O, masks, dyadic windows, nonnegative terms and S_b in upper_comparison_prior.md. For every fixed 0<a<1,
+
+    limsup O/S_b ≤ 1.27571012985835393770.
+
+In fact the same upper holds for (O+T+Aψ)/S_b. The old fully reconstructed upper is 1.28460707694425252602. The fixed strict difference of the two certificates is 0.00889694708589858832, in the same normalization.
+
+Proof. Retain the signed identity, whole-source upper and actual prime box from the older comparator proof verbatim. Its applicable analytic inputs are established in the accompanying source-matched proofs. The normalized ordinary angular integrals are integrated on the same five-prime boxes and linear face weights. One may integrate the positive affine face weights and their first moments exactly on each subbox. The reciprocal coordinate product is convex (use log-convexity) and separately convex, including the last coordinate 1−Σt_i. Weighted Jensen provides the lower enclosure. Iterating linear interpolation supplies an upper bound on each cell, and its polynomial moments may be integrated exactly. The proof and directed-rounding implementation in integral_proof.md and face_integral.py establish, by a reproducible certificate over 400,896 cells, J≤0.27560294635735393770. The definitions in moments_crosscheck.py independently check the face moments against symbolic polynomial integrals. Substitution into the prior full inequality gives the claimed result. The old and new caps each dominate the unmodified full O, including every outside owner, both signs of Φ−ψ, the genuine prime input, squareful removal and a common o(S_b) error.
+
+This improvement is on a complete upper in the literal sense of S2, including the fully signed left side in the preceding paragraph. Its utility for proving T positive is limited: T and Aψ entered this upper with positive sign, and dropping both supplies no independent prime lower bound. Pairing the inequality in which T was retained with its own algebraic companion a second time cannot remove this limitation. A nonnegative-profile competing route gives a right side at least 1.64 by the full balanced-triple computation in full_certificate_comparison.md. The actual positive terminal reserve remains undetermined.

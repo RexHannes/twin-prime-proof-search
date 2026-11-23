@@ -1,0 +1,222 @@
+{
+  "commit": "af6872f72f26f9e55892458d09c8855b8f8f0eea",
+  "source_commit": "43facedcf40b2f998aa47f7198d6b9b5feb5b792",
+  "baseline_note": "At intake native CI 45178500376 succeeded at af6872f. CI 45198042124 on 43faced was in progress. Successive CI observations are kept in verification/ci.json.",
+  "native_endpoint": "REAL1B.FM.Analytic.infinite_of_signed_estimates",
+  "branch": "eth-gold-work-20261123",
+  "normalization": "S_b",
+  "goal_statement": "For every natural number N there is a prime p >= N such that p+2 is prime.",
+  "objective": "Only independently verified unconditional infinitude ends this programme. S2 and S3 are milestones.",
+  "outside_population": "full_fm_outside",
+  "outside_id": "P7",
+  "ledger": {
+    "lower": "0.999892775499",
+    "box": "0.682878095535",
+    "status": "Both inequalities require their analytic premises. No accepted numerical deficit or full outside signed upper is supplied by this subtraction."
+  },
+  "obligations": {
+    "P1": "Normalization.ShiftedPrimeEstimate",
+    "P2.goodMass": "Ledger.Estimates.goodMass",
+    "P2.pairs": "Ledger.Estimates.pairs",
+    "P2.four": "Ledger.Estimates.four",
+    "P2.tail": "Ledger.Estimates.tail",
+    "P2.calibratedMean": "Ledger.Estimates.calibratedMean",
+    "P2.comparator": "Ledger.Estimates.comparator",
+    "P3.typeI": "negligible (fun x => typeI a x (phi x) - mean phi x) scale",
+    "P3.short": "negligible (fun x => shortProduct a x (phi x)) scale",
+    "P4.typeI": "negligible (fun x => typeI a x (psi x) - mean psi x) scale",
+    "P4.short": "negligible (fun x => shortProduct a x (psi x)) scale",
+    "P5": "For all j : Fin 6, the ordinary Profile.countTest has the Profile.sliceIntegral main term with o(scale).",
+    "P6": "For all j : Fin 6, the shifted roughTest has the stated cStar times sliceIntegral upper on reference scale.",
+    "P7": "For one fixed a in (0,1) and kappa>0, the complete native signed outside is at most (0.317014679964-kappa+o(1)) S_b."
+  },
+  "next": "Deepen the full signed owner estimate after cutoff smoothing. Prove or falsify a joint upper accounting for the balanced semiprime-input positive debt, the entire output complement and the prime boundary.",
+  "research_os": {
+    "canonical": "v0.13",
+    "last_integrated": "2026-11-15",
+    "proposals_through": "Gold 4.68",
+    "integrated": false
+  },
+  "sources": [
+    {
+      "path": "RequestProject/REAL1B_20261122/FMAnalyticEndpoint.lean",
+      "sha256": "f6d03eff95062974821d36423176dd513eea9f91d9858113347d5f7f99971762"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMAnalyticReduction.lean",
+      "sha256": "66dec8ae0ed8219d0da1697e9d508d3201503c887d49efd0e9c5cf159264a095"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMAnalyticTransfer.lean",
+      "sha256": "32ff018d4068be129ec2e5dc2034d3b0d77cd3149309c2f98f22ef2bd677ad08"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMAnalyticWeights.lean",
+      "sha256": "dd32b785cf151f9308f0c5285db777fd9e530536d699c38ab03e7d6adb9ed413"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMBoxDivisors.lean",
+      "sha256": "e1fe80cf2a8242d4526fa83d79ae86225dfa804ec1723da9db7668e43504301a"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMBoxGeometry.lean",
+      "sha256": "1fe8cd20c1bdf05ddb5b803ab1f8928c1914bbb222cc9f1568be46f397665938"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMClosing.lean",
+      "sha256": "6cb7ddc79d6d37b662f0d2eb1964b459cebafab70d10294c348f3079b3e21cd7"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMCollar.lean",
+      "sha256": "d6593ed62badbf05598404823efe8ffee187fb3cf1deead4a51a2b18d5a0ffc6"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMCollarIntegral.lean",
+      "sha256": "8260fb1722daae4cab122301b5b063c3b2e968601e4c9d9c4182de31acc61dd1"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMCompleteLabel.lean",
+      "sha256": "96fd82d052edb029713bf7de90ab1fc7371e4bea87a63fa2457fef33af70cd9b"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMDirect.lean",
+      "sha256": "74fd39241aa73e8ec691f0612961ce47da95146dce20efcd73566f177be7a45f"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMGoodSupport.lean",
+      "sha256": "bc9e92ad964ee301fcfe2139f7200505d62f93bdde1150a72bd35c87a2954388"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMGridData.lean",
+      "sha256": "967e1661b668bd0c66a3ca846ba22069de3c30487dda77d7c929474ba100db39"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMGridExact.lean",
+      "sha256": "4cc8b7bdb86e5097cefe567fe1c094a55be5e2ab226475355bf0371651cd4e90"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMGridNumerals.lean",
+      "sha256": "c57948b261e60571b67fad59a12d24ba98cdb5b3fd14e3836b4114ada6996bd0"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMIntegral.lean",
+      "sha256": "a9bb61b525d99167ae4c09ba2a02a7ac1484c83f57e950496fc18dd747498fdb"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMLedgerDirections.lean",
+      "sha256": "137c04e219d07e3bb1b419d17bcef91338b7623833be49ebe2fede21536659d1"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMLowPrefix.lean",
+      "sha256": "8575779cb52122aa9816d13300cdb06255af4d5177fa855752445706e30f26b4"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMLowerLedger.lean",
+      "sha256": "f7468ad59f106bcaef952ebff32d7c0dbc127b120501d50db13bff448e013ce0"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMNormalization.lean",
+      "sha256": "20ebfc619e59c230ab5f7a0ee3903ab750cfc144245b5a8519673e3b2504b9f5"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMOwners.lean",
+      "sha256": "19cdc1e100569763f9e1cf7afc0ea045117eed9dd23ec01d5338ee7e7562fdec"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMPresieveAP.lean",
+      "sha256": "4805ade46de85923462ec50e318b98c00d9b0cb3bcee85f6003d021b40a3afaa"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMPrimePower.lean",
+      "sha256": "6b2bbc59aad2a690ff157fae752419fc7d3e706729f2af5b6d92d841d06bf48e"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMProfileSlices.lean",
+      "sha256": "c1e5e2903119cffb5b67a76dcda53db64bd0bff2f31bead97f4964193b250f28"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMProfileTransfer.lean",
+      "sha256": "124b0acf68ce9cfaee7740a6cb2030a98d99fd84f31fdc5b1c4c3a83b4c2b107"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMResidual.lean",
+      "sha256": "ba038f9e885c9e194df632c77cb355e77bbad9a3932c03eab424df6eaba11901"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMSemantics.lean",
+      "sha256": "e05ea8e19d00e0619c33def43aac65f6b99825e5b09b114e782175ee37e6cf52"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMSource.lean",
+      "sha256": "ab28201b3e23c812172aa89889abc17e492b06e4be7258598472c71aa223901a"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMSquareful.lean",
+      "sha256": "413b06e0c69df531687b51778ea0bba68443be08b236440fc8398f1596ee215c"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/FMUniform.lean",
+      "sha256": "8312d20975558816b12da17e0d090f20411f62584ad7dbfb9357d4e4ec3475ee"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/H2Source.lean",
+      "sha256": "a5a08f429de860961e8218fdde9addc5ab0707d3da5f344e78bee92ccf265455"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/Margin.lean",
+      "sha256": "32df3c1d733261540630e95ee578069160a66dc4333751168f05acc83211d1d7"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/OutputErrors.lean",
+      "sha256": "5b4c2c6824a4fda34a2dd9d4c3a9eb54f5ac8aabb8ee4a654705b5c9766d816b"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/QuarterRough.lean",
+      "sha256": "de2c8f7408a053446e0fc7ad102cfa03fe857b6984ffd881f7fa3014514e461a"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/SieveInputs.lean",
+      "sha256": "96ab22316b149b54ac96cb0534ac15d25bb2acf1fda9780c3c087acd42126749"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/SourceBridge.lean",
+      "sha256": "add5c43605f6cc97a847dda8abfe186c07576faed85d44d5b3e423a55bf1a7e3"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/Vaughan.lean",
+      "sha256": "ab8b970d011290ce48e0cac817674e8b4851ad5f4e9ab3897d2df738104d2aca"
+    },
+    {
+      "path": "RequestProject/REAL1B_20261122/WeightedDecomposition.lean",
+      "sha256": "5908546bf5484975579d3cf2a1db74a92c6e8703bf2cc05b5f325db630601825"
+    },
+    {
+      "path": "formalisation/real1b-2026-11-22/FM-ANALYTIC.md",
+      "sha256": "f7b673adafa27a8610db5c5e5e36e821f16001261cd69880976fdc8f12973941"
+    },
+    {
+      "path": "formalisation/real1b-2026-11-22/FM-DIRECT.md",
+      "sha256": "4137219267c3a6ea7e39b24465928abc4f181b13b4455547465fd9188f4535f2"
+    },
+    {
+      "path": "formalisation/real1b-2026-11-22/Replay.lean",
+      "sha256": "5804d68e579d47e9bba3ba0b287179f839be765ebda9aacdcd761d7daa19f76e"
+    },
+    {
+      "path": "formalisation/real1b-2026-11-22/Verification.json",
+      "sha256": "0750ec38b3b2a64813b0a100fede8aed5845c96625ebdc68ec1a12b345d5bf9d"
+    },
+    {
+      "path": "formalisation/real1b-2026-11-22/full_box.py",
+      "sha256": "9034648953a54942342e7202898be55d0bdd01785b737f28a5989016443b9e74"
+    },
+    {
+      "path": "lake-manifest.json",
+      "sha256": "116c6ef00aa899fb38c08c5e4c92c0e434d0e7f9d574fcb5d4d42cc90ffb07cb"
+    },
+    {
+      "path": "lean-toolchain",
+      "sha256": "db7bb24b756d745bbde83fe92718b51bd3625dae3701ba0f598d0eedcd3f3028"
+    }
+  ]
+}

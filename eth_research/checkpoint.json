@@ -1,0 +1,1206 @@
+{
+  "events": [
+    {
+      "at": "2026-11-23T15:06:54.360551+00:00",
+      "event": {
+        "baseline_note": "At intake native CI 45178500376 succeeded at af6872f. CI 45198042124 on 43faced was in progress. Successive CI observations are kept in verification/ci.json.",
+        "branch": "eth-gold-work-20261123",
+        "commit": "af6872f72f26f9e55892458d09c8855b8f8f0eea",
+        "goal_statement": "For every natural number N there is a prime p >= N such that p+2 is prime.",
+        "kind": "seed",
+        "ledger": {
+          "box": "0.682878095535",
+          "lower": "0.999892775499",
+          "status": "Both inequalities require their analytic premises. No accepted numerical deficit or full outside signed upper is supplied by this subtraction."
+        },
+        "native_endpoint": "REAL1B.FM.Analytic.infinite_of_signed_estimates",
+        "next": "Deepen the full signed owner estimate after cutoff smoothing. Prove or falsify a joint upper accounting for the balanced semiprime-input positive debt, the entire output complement and the prime boundary.",
+        "normalization": "S_b",
+        "objective": "Only independently verified unconditional infinitude ends this programme. S2 and S3 are milestones.",
+        "obligations": {
+          "P1": "Normalization.ShiftedPrimeEstimate",
+          "P2.calibratedMean": "Ledger.Estimates.calibratedMean",
+          "P2.comparator": "Ledger.Estimates.comparator",
+          "P2.four": "Ledger.Estimates.four",
+          "P2.goodMass": "Ledger.Estimates.goodMass",
+          "P2.pairs": "Ledger.Estimates.pairs",
+          "P2.tail": "Ledger.Estimates.tail",
+          "P3.short": "negligible (fun x => shortProduct a x (phi x)) scale",
+          "P3.typeI": "negligible (fun x => typeI a x (phi x) - mean phi x) scale",
+          "P4.short": "negligible (fun x => shortProduct a x (psi x)) scale",
+          "P4.typeI": "negligible (fun x => typeI a x (psi x) - mean psi x) scale",
+          "P5": "For all j : Fin 6, the ordinary Profile.countTest has the Profile.sliceIntegral main term with o(scale).",
+          "P6": "For all j : Fin 6, the shifted roughTest has the stated cStar times sliceIntegral upper on reference scale.",
+          "P7": "For one fixed a in (0,1) and kappa>0, the complete native signed outside is at most (0.317014679964-kappa+o(1)) S_b."
+        },
+        "outside_id": "P7",
+        "outside_population": "full_fm_outside",
+        "research_os": {
+          "canonical": "v0.13",
+          "integrated": false,
+          "last_integrated": "2026-11-15",
+          "proposals_through": "Gold 4.68"
+        },
+        "source_commit": "43facedcf40b2f998aa47f7198d6b9b5feb5b792",
+        "sources": [
+          {
+            "path": "RequestProject/REAL1B_20261122/FMAnalyticEndpoint.lean",
+            "sha256": "f6d03eff95062974821d36423176dd513eea9f91d9858113347d5f7f99971762"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMAnalyticReduction.lean",
+            "sha256": "66dec8ae0ed8219d0da1697e9d508d3201503c887d49efd0e9c5cf159264a095"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMAnalyticTransfer.lean",
+            "sha256": "32ff018d4068be129ec2e5dc2034d3b0d77cd3149309c2f98f22ef2bd677ad08"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMAnalyticWeights.lean",
+            "sha256": "dd32b785cf151f9308f0c5285db777fd9e530536d699c38ab03e7d6adb9ed413"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMBoxDivisors.lean",
+            "sha256": "e1fe80cf2a8242d4526fa83d79ae86225dfa804ec1723da9db7668e43504301a"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMBoxGeometry.lean",
+            "sha256": "1fe8cd20c1bdf05ddb5b803ab1f8928c1914bbb222cc9f1568be46f397665938"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMClosing.lean",
+            "sha256": "6cb7ddc79d6d37b662f0d2eb1964b459cebafab70d10294c348f3079b3e21cd7"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMCollar.lean",
+            "sha256": "d6593ed62badbf05598404823efe8ffee187fb3cf1deead4a51a2b18d5a0ffc6"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMCollarIntegral.lean",
+            "sha256": "8260fb1722daae4cab122301b5b063c3b2e968601e4c9d9c4182de31acc61dd1"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMCompleteLabel.lean",
+            "sha256": "96fd82d052edb029713bf7de90ab1fc7371e4bea87a63fa2457fef33af70cd9b"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMDirect.lean",
+            "sha256": "74fd39241aa73e8ec691f0612961ce47da95146dce20efcd73566f177be7a45f"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMGoodSupport.lean",
+            "sha256": "bc9e92ad964ee301fcfe2139f7200505d62f93bdde1150a72bd35c87a2954388"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMGridData.lean",
+            "sha256": "967e1661b668bd0c66a3ca846ba22069de3c30487dda77d7c929474ba100db39"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMGridExact.lean",
+            "sha256": "4cc8b7bdb86e5097cefe567fe1c094a55be5e2ab226475355bf0371651cd4e90"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMGridNumerals.lean",
+            "sha256": "c57948b261e60571b67fad59a12d24ba98cdb5b3fd14e3836b4114ada6996bd0"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMIntegral.lean",
+            "sha256": "a9bb61b525d99167ae4c09ba2a02a7ac1484c83f57e950496fc18dd747498fdb"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMLedgerDirections.lean",
+            "sha256": "137c04e219d07e3bb1b419d17bcef91338b7623833be49ebe2fede21536659d1"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMLowPrefix.lean",
+            "sha256": "8575779cb52122aa9816d13300cdb06255af4d5177fa855752445706e30f26b4"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMLowerLedger.lean",
+            "sha256": "f7468ad59f106bcaef952ebff32d7c0dbc127b120501d50db13bff448e013ce0"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMNormalization.lean",
+            "sha256": "20ebfc619e59c230ab5f7a0ee3903ab750cfc144245b5a8519673e3b2504b9f5"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMOwners.lean",
+            "sha256": "19cdc1e100569763f9e1cf7afc0ea045117eed9dd23ec01d5338ee7e7562fdec"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMPresieveAP.lean",
+            "sha256": "4805ade46de85923462ec50e318b98c00d9b0cb3bcee85f6003d021b40a3afaa"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMPrimePower.lean",
+            "sha256": "6b2bbc59aad2a690ff157fae752419fc7d3e706729f2af5b6d92d841d06bf48e"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMProfileSlices.lean",
+            "sha256": "c1e5e2903119cffb5b67a76dcda53db64bd0bff2f31bead97f4964193b250f28"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMProfileTransfer.lean",
+            "sha256": "124b0acf68ce9cfaee7740a6cb2030a98d99fd84f31fdc5b1c4c3a83b4c2b107"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMResidual.lean",
+            "sha256": "ba038f9e885c9e194df632c77cb355e77bbad9a3932c03eab424df6eaba11901"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMSemantics.lean",
+            "sha256": "e05ea8e19d00e0619c33def43aac65f6b99825e5b09b114e782175ee37e6cf52"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMSource.lean",
+            "sha256": "ab28201b3e23c812172aa89889abc17e492b06e4be7258598472c71aa223901a"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMSquareful.lean",
+            "sha256": "413b06e0c69df531687b51778ea0bba68443be08b236440fc8398f1596ee215c"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/FMUniform.lean",
+            "sha256": "8312d20975558816b12da17e0d090f20411f62584ad7dbfb9357d4e4ec3475ee"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/H2Source.lean",
+            "sha256": "a5a08f429de860961e8218fdde9addc5ab0707d3da5f344e78bee92ccf265455"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/Margin.lean",
+            "sha256": "32df3c1d733261540630e95ee578069160a66dc4333751168f05acc83211d1d7"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/OutputErrors.lean",
+            "sha256": "5b4c2c6824a4fda34a2dd9d4c3a9eb54f5ac8aabb8ee4a654705b5c9766d816b"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/QuarterRough.lean",
+            "sha256": "de2c8f7408a053446e0fc7ad102cfa03fe857b6984ffd881f7fa3014514e461a"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/SieveInputs.lean",
+            "sha256": "96ab22316b149b54ac96cb0534ac15d25bb2acf1fda9780c3c087acd42126749"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/SourceBridge.lean",
+            "sha256": "add5c43605f6cc97a847dda8abfe186c07576faed85d44d5b3e423a55bf1a7e3"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/Vaughan.lean",
+            "sha256": "ab8b970d011290ce48e0cac817674e8b4851ad5f4e9ab3897d2df738104d2aca"
+          },
+          {
+            "path": "RequestProject/REAL1B_20261122/WeightedDecomposition.lean",
+            "sha256": "5908546bf5484975579d3cf2a1db74a92c6e8703bf2cc05b5f325db630601825"
+          },
+          {
+            "path": "formalisation/real1b-2026-11-22/FM-ANALYTIC.md",
+            "sha256": "f7b673adafa27a8610db5c5e5e36e821f16001261cd69880976fdc8f12973941"
+          },
+          {
+            "path": "formalisation/real1b-2026-11-22/FM-DIRECT.md",
+            "sha256": "4137219267c3a6ea7e39b24465928abc4f181b13b4455547465fd9188f4535f2"
+          },
+          {
+            "path": "formalisation/real1b-2026-11-22/Replay.lean",
+            "sha256": "5804d68e579d47e9bba3ba0b287179f839be765ebda9aacdcd761d7daa19f76e"
+          },
+          {
+            "path": "formalisation/real1b-2026-11-22/Verification.json",
+            "sha256": "0750ec38b3b2a64813b0a100fede8aed5845c96625ebdc68ec1a12b345d5bf9d"
+          },
+          {
+            "path": "formalisation/real1b-2026-11-22/full_box.py",
+            "sha256": "9034648953a54942342e7202898be55d0bdd01785b737f28a5989016443b9e74"
+          },
+          {
+            "path": "lake-manifest.json",
+            "sha256": "116c6ef00aa899fb38c08c5e4c92c0e434d0e7f9d574fcb5d4d42cc90ffb07cb"
+          },
+          {
+            "path": "lean-toolchain",
+            "sha256": "db7bb24b756d745bbde83fe92718b51bd3625dae3701ba0f598d0eedcd3f3028"
+          }
+        ],
+        "version": 1
+      },
+      "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+      "seq": 1,
+      "sha256": "2841a581e703480930233f03657327c1c5ca51bc8782a9b474873d06d5ca8311"
+    },
+    {
+      "at": "2026-11-23T15:06:54.519393+00:00",
+      "event": {
+        "actor": "work-coordinator",
+        "deadline": "2026-11-23T16:06:54.519376+00:00",
+        "kind": "session",
+        "started": "2026-11-23T15:06:54.519376+00:00"
+      },
+      "prev": "2841a581e703480930233f03657327c1c5ca51bc8782a9b474873d06d5ca8311",
+      "seq": 2,
+      "sha256": "b2c44305b761cf5a271e723ce2239bd840bfb043e784781cc7d5bd47f85433df"
+    },
+    {
+      "at": "2026-11-23T15:06:54.752010+00:00",
+      "event": {
+        "at": "2026-11-23T15:06:54.746333+00:00",
+        "files": [
+          {
+            "actual": "43facedcf40b2f998aa47f7198d6b9b5feb5b792",
+            "expected": "43facedcf40b2f998aa47f7198d6b9b5feb5b792",
+            "match": true,
+            "type": "git"
+          },
+          {
+            "actual": "f6d03eff95062974821d36423176dd513eea9f91d9858113347d5f7f99971762",
+            "expected": "f6d03eff95062974821d36423176dd513eea9f91d9858113347d5f7f99971762",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMAnalyticEndpoint.lean",
+            "type": "file"
+          },
+          {
+            "actual": "66dec8ae0ed8219d0da1697e9d508d3201503c887d49efd0e9c5cf159264a095",
+            "expected": "66dec8ae0ed8219d0da1697e9d508d3201503c887d49efd0e9c5cf159264a095",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMAnalyticReduction.lean",
+            "type": "file"
+          },
+          {
+            "actual": "32ff018d4068be129ec2e5dc2034d3b0d77cd3149309c2f98f22ef2bd677ad08",
+            "expected": "32ff018d4068be129ec2e5dc2034d3b0d77cd3149309c2f98f22ef2bd677ad08",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMAnalyticTransfer.lean",
+            "type": "file"
+          },
+          {
+            "actual": "dd32b785cf151f9308f0c5285db777fd9e530536d699c38ab03e7d6adb9ed413",
+            "expected": "dd32b785cf151f9308f0c5285db777fd9e530536d699c38ab03e7d6adb9ed413",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMAnalyticWeights.lean",
+            "type": "file"
+          },
+          {
+            "actual": "e1fe80cf2a8242d4526fa83d79ae86225dfa804ec1723da9db7668e43504301a",
+            "expected": "e1fe80cf2a8242d4526fa83d79ae86225dfa804ec1723da9db7668e43504301a",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMBoxDivisors.lean",
+            "type": "file"
+          },
+          {
+            "actual": "1fe8cd20c1bdf05ddb5b803ab1f8928c1914bbb222cc9f1568be46f397665938",
+            "expected": "1fe8cd20c1bdf05ddb5b803ab1f8928c1914bbb222cc9f1568be46f397665938",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMBoxGeometry.lean",
+            "type": "file"
+          },
+          {
+            "actual": "6cb7ddc79d6d37b662f0d2eb1964b459cebafab70d10294c348f3079b3e21cd7",
+            "expected": "6cb7ddc79d6d37b662f0d2eb1964b459cebafab70d10294c348f3079b3e21cd7",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMClosing.lean",
+            "type": "file"
+          },
+          {
+            "actual": "d6593ed62badbf05598404823efe8ffee187fb3cf1deead4a51a2b18d5a0ffc6",
+            "expected": "d6593ed62badbf05598404823efe8ffee187fb3cf1deead4a51a2b18d5a0ffc6",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMCollar.lean",
+            "type": "file"
+          },
+          {
+            "actual": "8260fb1722daae4cab122301b5b063c3b2e968601e4c9d9c4182de31acc61dd1",
+            "expected": "8260fb1722daae4cab122301b5b063c3b2e968601e4c9d9c4182de31acc61dd1",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMCollarIntegral.lean",
+            "type": "file"
+          },
+          {
+            "actual": "96fd82d052edb029713bf7de90ab1fc7371e4bea87a63fa2457fef33af70cd9b",
+            "expected": "96fd82d052edb029713bf7de90ab1fc7371e4bea87a63fa2457fef33af70cd9b",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMCompleteLabel.lean",
+            "type": "file"
+          },
+          {
+            "actual": "74fd39241aa73e8ec691f0612961ce47da95146dce20efcd73566f177be7a45f",
+            "expected": "74fd39241aa73e8ec691f0612961ce47da95146dce20efcd73566f177be7a45f",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMDirect.lean",
+            "type": "file"
+          },
+          {
+            "actual": "bc9e92ad964ee301fcfe2139f7200505d62f93bdde1150a72bd35c87a2954388",
+            "expected": "bc9e92ad964ee301fcfe2139f7200505d62f93bdde1150a72bd35c87a2954388",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMGoodSupport.lean",
+            "type": "file"
+          },
+          {
+            "actual": "967e1661b668bd0c66a3ca846ba22069de3c30487dda77d7c929474ba100db39",
+            "expected": "967e1661b668bd0c66a3ca846ba22069de3c30487dda77d7c929474ba100db39",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMGridData.lean",
+            "type": "file"
+          },
+          {
+            "actual": "4cc8b7bdb86e5097cefe567fe1c094a55be5e2ab226475355bf0371651cd4e90",
+            "expected": "4cc8b7bdb86e5097cefe567fe1c094a55be5e2ab226475355bf0371651cd4e90",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMGridExact.lean",
+            "type": "file"
+          },
+          {
+            "actual": "c57948b261e60571b67fad59a12d24ba98cdb5b3fd14e3836b4114ada6996bd0",
+            "expected": "c57948b261e60571b67fad59a12d24ba98cdb5b3fd14e3836b4114ada6996bd0",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMGridNumerals.lean",
+            "type": "file"
+          },
+          {
+            "actual": "a9bb61b525d99167ae4c09ba2a02a7ac1484c83f57e950496fc18dd747498fdb",
+            "expected": "a9bb61b525d99167ae4c09ba2a02a7ac1484c83f57e950496fc18dd747498fdb",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMIntegral.lean",
+            "type": "file"
+          },
+          {
+            "actual": "137c04e219d07e3bb1b419d17bcef91338b7623833be49ebe2fede21536659d1",
+            "expected": "137c04e219d07e3bb1b419d17bcef91338b7623833be49ebe2fede21536659d1",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMLedgerDirections.lean",
+            "type": "file"
+          },
+          {
+            "actual": "8575779cb52122aa9816d13300cdb06255af4d5177fa855752445706e30f26b4",
+            "expected": "8575779cb52122aa9816d13300cdb06255af4d5177fa855752445706e30f26b4",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMLowPrefix.lean",
+            "type": "file"
+          },
+          {
+            "actual": "f7468ad59f106bcaef952ebff32d7c0dbc127b120501d50db13bff448e013ce0",
+            "expected": "f7468ad59f106bcaef952ebff32d7c0dbc127b120501d50db13bff448e013ce0",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMLowerLedger.lean",
+            "type": "file"
+          },
+          {
+            "actual": "20ebfc619e59c230ab5f7a0ee3903ab750cfc144245b5a8519673e3b2504b9f5",
+            "expected": "20ebfc619e59c230ab5f7a0ee3903ab750cfc144245b5a8519673e3b2504b9f5",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMNormalization.lean",
+            "type": "file"
+          },
+          {
+            "actual": "19cdc1e100569763f9e1cf7afc0ea045117eed9dd23ec01d5338ee7e7562fdec",
+            "expected": "19cdc1e100569763f9e1cf7afc0ea045117eed9dd23ec01d5338ee7e7562fdec",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMOwners.lean",
+            "type": "file"
+          },
+          {
+            "actual": "4805ade46de85923462ec50e318b98c00d9b0cb3bcee85f6003d021b40a3afaa",
+            "expected": "4805ade46de85923462ec50e318b98c00d9b0cb3bcee85f6003d021b40a3afaa",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMPresieveAP.lean",
+            "type": "file"
+          },
+          {
+            "actual": "6b2bbc59aad2a690ff157fae752419fc7d3e706729f2af5b6d92d841d06bf48e",
+            "expected": "6b2bbc59aad2a690ff157fae752419fc7d3e706729f2af5b6d92d841d06bf48e",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMPrimePower.lean",
+            "type": "file"
+          },
+          {
+            "actual": "c1e5e2903119cffb5b67a76dcda53db64bd0bff2f31bead97f4964193b250f28",
+            "expected": "c1e5e2903119cffb5b67a76dcda53db64bd0bff2f31bead97f4964193b250f28",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMProfileSlices.lean",
+            "type": "file"
+          },
+          {
+            "actual": "124b0acf68ce9cfaee7740a6cb2030a98d99fd84f31fdc5b1c4c3a83b4c2b107",
+            "expected": "124b0acf68ce9cfaee7740a6cb2030a98d99fd84f31fdc5b1c4c3a83b4c2b107",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMProfileTransfer.lean",
+            "type": "file"
+          },
+          {
+            "actual": "ba038f9e885c9e194df632c77cb355e77bbad9a3932c03eab424df6eaba11901",
+            "expected": "ba038f9e885c9e194df632c77cb355e77bbad9a3932c03eab424df6eaba11901",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMResidual.lean",
+            "type": "file"
+          },
+          {
+            "actual": "e05ea8e19d00e0619c33def43aac65f6b99825e5b09b114e782175ee37e6cf52",
+            "expected": "e05ea8e19d00e0619c33def43aac65f6b99825e5b09b114e782175ee37e6cf52",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMSemantics.lean",
+            "type": "file"
+          },
+          {
+            "actual": "ab28201b3e23c812172aa89889abc17e492b06e4be7258598472c71aa223901a",
+            "expected": "ab28201b3e23c812172aa89889abc17e492b06e4be7258598472c71aa223901a",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMSource.lean",
+            "type": "file"
+          },
+          {
+            "actual": "413b06e0c69df531687b51778ea0bba68443be08b236440fc8398f1596ee215c",
+            "expected": "413b06e0c69df531687b51778ea0bba68443be08b236440fc8398f1596ee215c",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMSquareful.lean",
+            "type": "file"
+          },
+          {
+            "actual": "8312d20975558816b12da17e0d090f20411f62584ad7dbfb9357d4e4ec3475ee",
+            "expected": "8312d20975558816b12da17e0d090f20411f62584ad7dbfb9357d4e4ec3475ee",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/FMUniform.lean",
+            "type": "file"
+          },
+          {
+            "actual": "a5a08f429de860961e8218fdde9addc5ab0707d3da5f344e78bee92ccf265455",
+            "expected": "a5a08f429de860961e8218fdde9addc5ab0707d3da5f344e78bee92ccf265455",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/H2Source.lean",
+            "type": "file"
+          },
+          {
+            "actual": "32df3c1d733261540630e95ee578069160a66dc4333751168f05acc83211d1d7",
+            "expected": "32df3c1d733261540630e95ee578069160a66dc4333751168f05acc83211d1d7",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/Margin.lean",
+            "type": "file"
+          },
+          {
+            "actual": "5b4c2c6824a4fda34a2dd9d4c3a9eb54f5ac8aabb8ee4a654705b5c9766d816b",
+            "expected": "5b4c2c6824a4fda34a2dd9d4c3a9eb54f5ac8aabb8ee4a654705b5c9766d816b",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/OutputErrors.lean",
+            "type": "file"
+          },
+          {
+            "actual": "de2c8f7408a053446e0fc7ad102cfa03fe857b6984ffd881f7fa3014514e461a",
+            "expected": "de2c8f7408a053446e0fc7ad102cfa03fe857b6984ffd881f7fa3014514e461a",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/QuarterRough.lean",
+            "type": "file"
+          },
+          {
+            "actual": "96ab22316b149b54ac96cb0534ac15d25bb2acf1fda9780c3c087acd42126749",
+            "expected": "96ab22316b149b54ac96cb0534ac15d25bb2acf1fda9780c3c087acd42126749",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/SieveInputs.lean",
+            "type": "file"
+          },
+          {
+            "actual": "add5c43605f6cc97a847dda8abfe186c07576faed85d44d5b3e423a55bf1a7e3",
+            "expected": "add5c43605f6cc97a847dda8abfe186c07576faed85d44d5b3e423a55bf1a7e3",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/SourceBridge.lean",
+            "type": "file"
+          },
+          {
+            "actual": "ab8b970d011290ce48e0cac817674e8b4851ad5f4e9ab3897d2df738104d2aca",
+            "expected": "ab8b970d011290ce48e0cac817674e8b4851ad5f4e9ab3897d2df738104d2aca",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/Vaughan.lean",
+            "type": "file"
+          },
+          {
+            "actual": "5908546bf5484975579d3cf2a1db74a92c6e8703bf2cc05b5f325db630601825",
+            "expected": "5908546bf5484975579d3cf2a1db74a92c6e8703bf2cc05b5f325db630601825",
+            "match": true,
+            "path": "RequestProject/REAL1B_20261122/WeightedDecomposition.lean",
+            "type": "file"
+          },
+          {
+            "actual": "f7b673adafa27a8610db5c5e5e36e821f16001261cd69880976fdc8f12973941",
+            "expected": "f7b673adafa27a8610db5c5e5e36e821f16001261cd69880976fdc8f12973941",
+            "match": true,
+            "path": "formalisation/real1b-2026-11-22/FM-ANALYTIC.md",
+            "type": "file"
+          },
+          {
+            "actual": "4137219267c3a6ea7e39b24465928abc4f181b13b4455547465fd9188f4535f2",
+            "expected": "4137219267c3a6ea7e39b24465928abc4f181b13b4455547465fd9188f4535f2",
+            "match": true,
+            "path": "formalisation/real1b-2026-11-22/FM-DIRECT.md",
+            "type": "file"
+          },
+          {
+            "actual": "5804d68e579d47e9bba3ba0b287179f839be765ebda9aacdcd761d7daa19f76e",
+            "expected": "5804d68e579d47e9bba3ba0b287179f839be765ebda9aacdcd761d7daa19f76e",
+            "match": true,
+            "path": "formalisation/real1b-2026-11-22/Replay.lean",
+            "type": "file"
+          },
+          {
+            "actual": "0750ec38b3b2a64813b0a100fede8aed5845c96625ebdc68ec1a12b345d5bf9d",
+            "expected": "0750ec38b3b2a64813b0a100fede8aed5845c96625ebdc68ec1a12b345d5bf9d",
+            "match": true,
+            "path": "formalisation/real1b-2026-11-22/Verification.json",
+            "type": "file"
+          },
+          {
+            "actual": "9034648953a54942342e7202898be55d0bdd01785b737f28a5989016443b9e74",
+            "expected": "9034648953a54942342e7202898be55d0bdd01785b737f28a5989016443b9e74",
+            "match": true,
+            "path": "formalisation/real1b-2026-11-22/full_box.py",
+            "type": "file"
+          },
+          {
+            "actual": "116c6ef00aa899fb38c08c5e4c92c0e434d0e7f9d574fcb5d4d42cc90ffb07cb",
+            "expected": "116c6ef00aa899fb38c08c5e4c92c0e434d0e7f9d574fcb5d4d42cc90ffb07cb",
+            "match": true,
+            "path": "lake-manifest.json",
+            "type": "file"
+          },
+          {
+            "actual": "db7bb24b756d745bbde83fe92718b51bd3625dae3701ba0f598d0eedcd3f3028",
+            "expected": "db7bb24b756d745bbde83fe92718b51bd3625dae3701ba0f598d0eedcd3f3028",
+            "match": true,
+            "path": "lean-toolchain",
+            "type": "file"
+          }
+        ],
+        "id": "native-source-pin",
+        "kind": "check",
+        "method": "sources",
+        "status": "passed"
+      },
+      "prev": "b2c44305b761cf5a271e723ce2239bd840bfb043e784781cc7d5bd47f85433df",
+      "seq": 3,
+      "sha256": "4cd9b2600a5ee4804b5f10e46c91067b4f1378eac495470af4c0914603e31b77"
+    },
+    {
+      "at": "2026-11-23T15:14:37.920129+00:00",
+      "event": {
+        "actor": "owner-researcher",
+        "event_id": "intake-smooth-owner",
+        "id": "smooth-owner",
+        "kind": "candidate",
+        "mechanism": "Average the inner cutoff exponents; Fourier inversion factors the squarefree Mobius divisor sum.",
+        "next": "Derive a signed upper on the resulting unique large-prime-owner source.",
+        "source": "FM.Direct.outside, physical n=k+2, squarefree k, both native profiles",
+        "statement": "Approximate the full sharp outside contribution by a smooth finite-rank prime-owner source with a quantified two-sided error."
+      },
+      "prev": "4cd9b2600a5ee4804b5f10e46c91067b4f1378eac495470af4c0914603e31b77",
+      "seq": 4,
+      "sha256": "107401ab916db3f0dd811e3a8dc60e015cf92c888183a16f7a06c95c4410cf49"
+    },
+    {
+      "at": "2026-11-23T15:14:37.920689+00:00",
+      "event": {
+        "actor": "owner-researcher",
+        "candidate": "smooth-owner",
+        "event_id": "attempt-01-smooth-owner",
+        "kind": "attempt",
+        "missing": "Need a signed upper strictly below the terminal tolerance on the residual.",
+        "next": "Price the positive semiprime-input times negative-output sectors together with all other ranks.",
+        "result": "Fourier/Euler tails pay small factors and high ranks on the smoothed source. Native full calibration transfers the unrestricted value across the averaging."
+      },
+      "prev": "107401ab916db3f0dd811e3a8dc60e015cf92c888183a16f7a06c95c4410cf49",
+      "seq": 5,
+      "sha256": "8b3a21d02148ed65217d7243fc7c4075c820e186eced12e3a6bc6a5fad8f3d98"
+    },
+    {
+      "at": "2026-11-23T15:14:37.920944+00:00",
+      "event": {
+        "actor": "research-coordinator",
+        "candidate": "smooth-owner",
+        "event_id": "rank-01-smooth-owner",
+        "kind": "rank",
+        "reason": "Targets the physical signed supply. The independent sharp-tail counterexample forces use of whole-source transfer.",
+        "scores": {
+          "novelty": 4,
+          "source": 4,
+          "terminal": 4,
+          "truth": 4,
+          "verification": 3
+        }
+      },
+      "prev": "8b3a21d02148ed65217d7243fc7c4075c820e186eced12e3a6bc6a5fad8f3d98",
+      "seq": 6,
+      "sha256": "5942bf8bb724167e94e3816e845cb5f49c59181c259b02c33135750cf14e17d0"
+    },
+    {
+      "at": "2026-11-23T15:14:37.921090+00:00",
+      "event": {
+        "actor": "transfer-author",
+        "event_id": "intake-source-transfer",
+        "id": "source-transfer",
+        "kind": "candidate",
+        "mechanism": "Factor profile cells; fixed-shift divisor-weighted collars; unique rough/smooth folding; uniform primitive Euler sums.",
+        "next": "Submit proof for adverse review and use the complete-source transfer in a signed bound.",
+        "source": "FM.Direct.phi, psi, phi-psi and the fixed residue 2 for distinct output-prime products",
+        "statement": "Uniform migration of both native whole and boxed Vaughan cutoffs before averaging, including Type I and short products."
+      },
+      "prev": "5942bf8bb724167e94e3816e845cb5f49c59181c259b02c33135750cf14e17d0",
+      "seq": 7,
+      "sha256": "7d3fec353e026bc2bdf7c058768067078706748de7da1747fc744268ec860d5f"
+    },
+    {
+      "at": "2026-11-23T15:14:37.921146+00:00",
+      "event": {
+        "actor": "transfer-author",
+        "candidate": "source-transfer",
+        "event_id": "attempt-01-source-transfer",
+        "kind": "attempt",
+        "missing": "This calibration contains the actual shifted-prime term.",
+        "next": "Apply to the full outside sum and adversarially check auxiliary restrictions.",
+        "result": "Paper proof establishes the four native Type I / short charges with arbitrary log savings and independent moving exponents."
+      },
+      "prev": "7d3fec353e026bc2bdf7c058768067078706748de7da1747fc744268ec860d5f",
+      "seq": 8,
+      "sha256": "c5354afcf13923990a15ff4ed8b9568ce38806601e3535bc0dd9390450e2e6d7"
+    },
+    {
+      "at": "2026-11-23T15:14:37.921186+00:00",
+      "event": {
+        "actor": "sieve-researcher",
+        "event_id": "intake-box-sieve",
+        "id": "box-sieve",
+        "kind": "candidate",
+        "mechanism": "Use the smallest actual prime in the short Siegel-Walfisz slot, then split two Rosser sieve factors and price their product-modulus errors.",
+        "next": "Extend the argument to all outside positive-profile ranks.",
+        "source": "All 1566 physical five-prime regions and six original unit tests",
+        "statement": "Improve upper rough-density coefficient on the native five-prime tests to 10/3."
+      },
+      "prev": "c5354afcf13923990a15ff4ed8b9568ce38806601e3535bc0dd9390450e2e6d7",
+      "seq": 9,
+      "sha256": "6ae37e2eb57aa7628657924aa0636e8801f6f78e15aba69a996ed32315338979"
+    },
+    {
+      "at": "2026-11-23T15:14:37.921228+00:00",
+      "event": {
+        "actor": "sieve-researcher",
+        "candidate": "box-sieve",
+        "event_id": "attempt-01-box-sieve",
+        "kind": "attempt",
+        "missing": "Remaining signed outside source and lower-ledger assumptions govern infinitude.",
+        "next": "Combine with whole-source cutoff transfer and strict native f+ witness.",
+        "result": "Six ordinary tests and six rough tests have source-matched paper estimates. Rational cubature gives J<=0.27560294635735393770."
+      },
+      "prev": "6ae37e2eb57aa7628657924aa0636e8801f6f78e15aba69a996ed32315338979",
+      "seq": 10,
+      "sha256": "7d1012aa29f43625837884178fab3b89e388fbf3ca6da0a4592ee0f212da286a"
+    },
+    {
+      "at": "2026-11-23T15:14:37.921285+00:00",
+      "event": {
+        "actor": "research-coordinator",
+        "candidate": "box-sieve",
+        "event_id": "rank-01-box-sieve",
+        "kind": "rank",
+        "reason": "Physical improvement has independently checkable geometry, sieve hypotheses and signed companion.",
+        "scores": {
+          "novelty": 3,
+          "source": 4,
+          "terminal": 3,
+          "truth": 4,
+          "verification": 4
+        }
+      },
+      "prev": "7d1012aa29f43625837884178fab3b89e388fbf3ca6da0a4592ee0f212da286a",
+      "seq": 11,
+      "sha256": "26e995c29dbe0b8c0325e4fd52ef780d82a940883cdf1a16b8c10d2c8b2a3326"
+    },
+    {
+      "at": "2026-11-23T15:14:37.921348+00:00",
+      "event": {
+        "actor": "shifted-prime-researcher",
+        "event_id": "intake-shifted-sign",
+        "id": "shifted-sign",
+        "kind": "candidate",
+        "mechanism": "Keep roughness inside the complementary Type II integer and reprove Type I and relative unweighting.",
+        "next": "Test polynomial roughness versus gap in prime containment.",
+        "source": "LWW v2 helper-band estimates, genuine shift p+2",
+        "statement": "Control the Mobius sign on genuine shifted primes subjected to an unmarked thin roughness condition."
+      },
+      "prev": "26e995c29dbe0b8c0325e4fd52ef780d82a940883cdf1a16b8c10d2c8b2a3326",
+      "seq": 12,
+      "sha256": "d15c24aae1b0f7ddc30dec75ff14609dc6a6012c57b3cc17b802a2554b1d0e29"
+    },
+    {
+      "at": "2026-11-23T15:14:37.921395+00:00",
+      "event": {
+        "actor": "shifted-prime-researcher",
+        "candidate": "shifted-sign",
+        "event_id": "attempt-01-shifted-sign",
+        "kind": "attempt",
+        "missing": "No rank-one separation inside the squarefree odd class.",
+        "next": "Try pre-sieving the helper-prime gaps with the correct relative scale.",
+        "result": "Established a proposed relative subpower rough HLC estimate under the arXiv v2 source; checked the actual equation (5.33)."
+      },
+      "prev": "d15c24aae1b0f7ddc30dec75ff14609dc6a6012c57b3cc17b802a2554b1d0e29",
+      "seq": 13,
+      "sha256": "5987e4d605d04317b9f947b2ad8979e0f388e9d75d4f2a5dca31a9a4d7697c65"
+    },
+    {
+      "at": "2026-11-23T15:14:37.921445+00:00",
+      "event": {
+        "actor": "semiprime-researcher",
+        "event_id": "intake-semiprime-core",
+        "id": "semiprime-core",
+        "kind": "candidate",
+        "mechanism": "Place a genuine large-prime factor in a bilinear progression estimate and track the negative f companion.",
+        "next": "Derive all other-rank and profile contributions.",
+        "source": "Squarefree k=pq and native f(k+2), unsigned calibration insufficient",
+        "statement": "Obtain a joint signed upper over the exact balanced semiprime-input residual."
+      },
+      "prev": "5987e4d605d04317b9f947b2ad8979e0f388e9d75d4f2a5dca31a9a4d7697c65",
+      "seq": 14,
+      "sha256": "033ae613c92574f8ba2e25dc20511b1771ef184b0f62887c381b199ae3bb8c32"
+    },
+    {
+      "at": "2026-11-23T15:14:37.921628+00:00",
+      "event": {
+        "actor": "semiprime-researcher",
+        "candidate": "semiprime-core",
+        "event_id": "attempt-01-semiprime-core",
+        "kind": "attempt",
+        "missing": "No complete signed upper or explicit paid complement.",
+        "next": "Compare against the source-specific positive-semiprime budget before any terminal claim.",
+        "result": "A finite physical witness gives strictly positive raw outside contribution at k=1727. A near-half semiprime interval admits an improved local upper."
+      },
+      "prev": "033ae613c92574f8ba2e25dc20511b1771ef184b0f62887c381b199ae3bb8c32",
+      "seq": 15,
+      "sha256": "71bec37c2f5ad9df9e38caae723128606b18911a649eeda8b80ee72601cefaf4"
+    },
+    {
+      "at": "2026-11-23T15:14:37.921822+00:00",
+      "event": {
+        "actor": "research-coordinator",
+        "candidate": "semiprime-core",
+        "event_id": "rank-01-semiprime-core",
+        "kind": "rank",
+        "reason": "Balanced adverse owners survive the physical model; the positive comparison requires a signed payment.",
+        "scores": {
+          "novelty": 3,
+          "source": 4,
+          "terminal": 4,
+          "truth": 3,
+          "verification": 2
+        }
+      },
+      "prev": "71bec37c2f5ad9df9e38caae723128606b18911a649eeda8b80ee72601cefaf4",
+      "seq": 16,
+      "sha256": "53446517666f0148793bcd6a5b36c99afb39378714f1114735e9eed8b8725b85"
+    },
+    {
+      "at": "2026-11-23T15:37:56.070111+00:00",
+      "event": {
+        "actor": "research-coordinator",
+        "event_id": "candidate-historic-full-outside-cap-research-coordinator---wave2",
+        "id": "historic-full-outside-cap",
+        "kind": "candidate",
+        "mechanism": "Retain actual T and primeBox before using positivity",
+        "next": "Preserve every signed companion on the simultaneous polynomially rough fixed-rank k and k+2 source.",
+        "source": "Native upper_of_estimates and original J certificate",
+        "statement": "Reconstruct the prior complete upper on the original native outside sum."
+      },
+      "prev": "53446517666f0148793bcd6a5b36c99afb39378714f1114735e9eed8b8725b85",
+      "seq": 17,
+      "sha256": "0425d5ff387bccfbe06f4de9e9596adda5432220eb658920fc1c010878fbb9e7"
+    },
+    {
+      "at": "2026-11-23T15:37:56.070534+00:00",
+      "event": {
+        "actor": "research-coordinator",
+        "event_id": "candidate-full-outside-cap-research-coordinator---wave2",
+        "id": "full-outside-cap",
+        "kind": "candidate",
+        "mechanism": "Integrate actual affine face test moments and use a convex vertex upper",
+        "next": "Preserve every signed companion on the simultaneous polynomially rough fixed-rank k and k+2 source.",
+        "source": "Same original masks, normalization and limiting quantifiers",
+        "statement": "Tighten the same prior upper by an independently certified fixed amount on its complete native population."
+      },
+      "prev": "0425d5ff387bccfbe06f4de9e9596adda5432220eb658920fc1c010878fbb9e7",
+      "seq": 18,
+      "sha256": "f861fa1b66963b318527e8d8fd98ff70b379e48a7234bdeaeb17f87912848c00"
+    },
+    {
+      "at": "2026-11-23T15:37:56.070781+00:00",
+      "event": {
+        "actor": "research-coordinator",
+        "candidate": "historic-full-outside-cap",
+        "contract": {
+          "coefficient": "1.28460707694425252602",
+          "error_payment": "Native analytic contracts, upper-direction proof and rigorous cell enclosure. See the attached artifact and referenced complete derivations.",
+          "fixed_quantifiers": "Every fixed 0<a<1, x tending to infinity, original dyadic physical source and eventual arbitrary tolerances.",
+          "masks_and_cutoffs": "Original squarefree inputs R_w mu^2(k), U=V=x^.24, D=x^.49, native Phi minus psi, six slice integrals across 1566 boxes.",
+          "normalization": "S_b",
+          "population": "full_fm_outside",
+          "signed_companions": "Entire signed Uout, T and Apsi on stronger left side, A(P) on the whole upper dropped only once, both Rank4/tail and physical error directions.",
+          "unbounded_scales": true
+        },
+        "deps": [],
+        "event_id": "proof-historic-full-outside-cap-research-coordinator---wave2",
+        "evidence": {
+          "name": "upper_comparison_prior.md",
+          "sha256": "e1942de22263f6ce4a2427469e69baeb3487959db47217a7159e89d28237a956",
+          "text": "# Historical full outside comparator, reconstructed on its physical source\n\nFix a real 0<a<1. At each real x tending to infinity take the original squarefree input k=n−2 with P⁻(k)>exp((log x)^a) and the native large-product Vaughan coefficient at U=V=x^.24, D=x^.49. Use the dyadic window (x/2,x]. Let U, U_B and O denote its whole, five-box and outside sums on Φ, ψ and Φ−ψ. Thus O=U−U_B, with no restriction on unmarked output ranks or input owners. T denotes the original nonnegative log-weighted prime pair count. Let Aψ denote the actual log-weighted prime-input mass on the native nonnegative box profile. The normalization is the same native comparator S_b in all three sums and tends to infinity.\n\nThe inherited two-sided ledger and box calibration imply, uniformly in the sense of eventual inequalities for every tolerance, for this fixed a,\n    \n    (O+T+Aψ)/S_b ≤ 1.000107183501 + J + o(1).\n\nTo see this, the original exact signed ledger after estimating its errors gives (U+T)/S_b ≤ 1.000107183501+o(1). The native upper-direction proof includes the omitted rank-two comparator, both signs of the rank-four and rank-tail errors, the calibrated-mean payment, prime powers, comparator and closing errors. On the good-positive part dropping its nonnegative actual mass is allowable only on this upper side. The additional omitted rank-two inequality holds because its weight is a nonnegative indicator with comparator mass at most pairCap. Scale normalization, calibrated mean, retained profile transfer, rank and comparator estimates on this physical sequence are established in the accompanying papers (analytic_contracts, analytic_packet, collar_ledger, integral_proof, native_rough_sieve and uniform_native_transfer). These are written analytic dependencies, not discharged hypotheses inside Lean. The native box calibration is U_B/S_b=Aψ/S_b−J+o(1), where J is the SAME weighted sum of the six angular integrals under the same 1,566 masks. Subtract exactly once. Since T,Aψ≥0, the displayed inequality also bounds O alone.\n\nThe older auditable upper enclosure of J is 0.28449989344325252602, computed in integer arithmetic by the original 6,414,336-cell verifier and recorded in Gold 4.66 Part II §6. This proves the historical-comparator inequality\n\n    limsup O/S_b ≤ 1.28460707694425252602.\n\nThe number here is a reconstruction of an actual named upper and its original enclosure. No historical approval of a new claim is inferred from the canonical OS. No positive reserve for T follows. See the pinned FMLedgerDirections.lean upper_of_estimates, FMDirect.lean, FMAnalyticEndpoint.lean and the newly revalidated analytical inputs.\n"
+        },
+        "kind": "proof",
+        "method": "analytic",
+        "result_type": "outside_upper",
+        "scope": "unconditional",
+        "unpaid": []
+      },
+      "prev": "f861fa1b66963b318527e8d8fd98ff70b379e48a7234bdeaeb17f87912848c00",
+      "seq": 19,
+      "sha256": "19a3029fa473013a2508f415878196fa826c4c37c20ed81685401cc79e4bb7dd"
+    },
+    {
+      "at": "2026-11-23T15:37:56.071483+00:00",
+      "event": {
+        "actor": "research-coordinator",
+        "candidate": "full-outside-cap",
+        "contract": {
+          "coefficient": "1.27571012985835393770",
+          "error_payment": "Native analytic contracts, upper-direction proof and rigorous cell enclosure. See the attached artifact and referenced complete derivations.",
+          "fixed_quantifiers": "Every fixed 0<a<1, x tending to infinity, original dyadic physical source and eventual arbitrary tolerances.",
+          "masks_and_cutoffs": "Original squarefree inputs R_w mu^2(k), U=V=x^.24, D=x^.49, native Phi minus psi, six slice integrals across 1566 boxes.",
+          "normalization": "S_b",
+          "population": "full_fm_outside",
+          "prior": "historic-full-outside-cap",
+          "signed_companions": "Entire signed Uout, T and Apsi on stronger left side, A(P) on the whole upper dropped only once, both Rank4/tail and physical error directions.",
+          "unbounded_scales": true
+        },
+        "deps": [],
+        "event_id": "proof-full-outside-cap-research-coordinator---wave2",
+        "evidence": {
+          "name": "upper_comparison_new.md",
+          "sha256": "f88cd63910851fc08a56364f592b17747906da3ded08bc5055258a6a7d96e7a7",
+          "text": "# A strictly smaller upper on the same complete outside source\n\nUse exactly the fixed a, physical sum O, masks, dyadic windows, nonnegative terms and S_b in upper_comparison_prior.md. For every fixed 0<a<1,\n\n    limsup O/S_b ≤ 1.27571012985835393770.\n\nIn fact the same upper holds for (O+T+Aψ)/S_b. The old fully reconstructed upper is 1.28460707694425252602. The fixed strict difference of the two certificates is 0.00889694708589858832, in the same normalization.\n\nProof. Retain the signed identity, whole-source upper and actual prime box from the older comparator proof verbatim. Its applicable analytic inputs are established in the accompanying source-matched proofs. The normalized ordinary angular integrals are integrated on the same five-prime boxes and linear face weights. One may integrate the positive affine face weights and their first moments exactly on each subbox. The reciprocal coordinate product is convex (use log-convexity) and separately convex, including the last coordinate 1−Σt_i. Weighted Jensen provides the lower enclosure. Iterating linear interpolation supplies an upper bound on each cell, and its polynomial moments may be integrated exactly. The proof and directed-rounding implementation in integral_proof.md and face_integral.py establish, by a reproducible certificate over 400,896 cells, J≤0.27560294635735393770. The definitions in moments_crosscheck.py independently check the face moments against symbolic polynomial integrals. Substitution into the prior full inequality gives the claimed result. The old and new caps each dominate the unmodified full O, including every outside owner, both signs of Φ−ψ, the genuine prime input, squareful removal and a common o(S_b) error.\n\nThis improvement is on a complete upper in the literal sense of S2, including the fully signed left side in the preceding paragraph. Its utility for proving T positive is limited: T and Aψ entered this upper with positive sign, and dropping both supplies no independent prime lower bound. Pairing the inequality in which T was retained with its own algebraic companion a second time cannot remove this limitation. A nonnegative-profile competing route gives a right side at least 1.64 by the full balanced-triple computation in full_certificate_comparison.md. The actual positive terminal reserve remains undetermined.\n"
+        },
+        "kind": "proof",
+        "method": "analytic",
+        "result_type": "outside_upper",
+        "scope": "unconditional",
+        "unpaid": []
+      },
+      "prev": "19a3029fa473013a2508f415878196fa826c4c37c20ed81685401cc79e4bb7dd",
+      "seq": 20,
+      "sha256": "d6575575f31799d3bae7c2a5509d0fe0f51db04965d466da43cae270d8c3d798"
+    },
+    {
+      "at": "2026-11-23T15:37:56.071654+00:00",
+      "event": {
+        "actor": "research-coordinator",
+        "event_id": "candidate-sharp-polynomial-input-research-coordinator---wave2",
+        "id": "sharp-polynomial-input",
+        "kind": "candidate",
+        "mechanism": "Dimension-one fundamental lemma and signed Dickman-Mertens means",
+        "next": "Preserve every signed companion on the simultaneous polynomially rough fixed-rank k and k+2 source.",
+        "source": "Original native outside with its exact sharp owner and both output signs",
+        "statement": "For every chosen tolerance, restrict the complete original sharp coefficient to inputs rough at one fixed power of x."
+      },
+      "prev": "d6575575f31799d3bae7c2a5509d0fe0f51db04965d466da43cae270d8c3d798",
+      "seq": 21,
+      "sha256": "0c7c9b799652f4f8403a3677102874ca350d63fb0de44f72017cb5d1f2e46bed"
+    },
+    {
+      "at": "2026-11-23T15:37:56.071843+00:00",
+      "event": {
+        "actor": "research-coordinator",
+        "candidate": "sharp-polynomial-input",
+        "event_id": "attempt-sharp-polynomial-input-research-coordinator---dickman",
+        "evidence": {
+          "name": "sharp_polynomial_presieve.md",
+          "sha256": "5f6443e1610ddcf3895e9d2c12a5163458b4b9f6d556f86e6095a3233117386f",
+          "text": "# A polynomial input presieve for the unaltered signed FM outside coefficient\n\nSet L=log x, U=V=x^.24 and D=x^.49. Keep every prime label, strict threshold and squarefree condition in the native signed large-product coefficient B(k), with k=n−2. For h≥2 write\n\n    C_h(f) = Σ_{x/2<n≤x} f_x(n) 1_{P⁻(k)>h} μ²(k) B(k).\n\nThe bounded output f may be the native Φ, ψ, Φ−ψ, or their positive or negative parts. For large x it has bounded rank and P⁻(n)>x^ζ on its support, ζ=1/(4·10^11), and ∑|f|≪_f x/L. Its signed and unsigned profiles satisfy the primitive product progression estimate proved in uniform_native_transfer.md, including common upper endpoints. All normalized sums use S_b∼S₂x/(2L).\n\n**Theorem.** Fix 0<a<1 and w=exp(L^a). Then\n\n    lim_{ε↓0} limsup_{x→∞} |C_w(f)−C_{x^ε}(f)|/S_b = 0.\n\nIn particular, for any requested error one can keep only squarefree physical inputs with every prime above one fixed power of x and with rank at most ⌊1/ε⌋. This is collective cancellation over the actual sharp tagged sum, including all original owners. It makes no statement about the sum of absolute row weights or an independently selected tag mask. The small-power exponent is chosen before letting x grow.\n\n## Sieve cost with a fixed polynomial threshold\n\nWrite z=x^ε with fixed 0<ε<ζ. Apply the exact Vaughan identity used in uniform_native_transfer.md with the same original U,V,D. Prime inputs have weight θ(k) in either presieve. The proper powers and rough nonsquarefree inputs are negligible after the absolute divisor bound, since repeated primes now exceed z. It suffices to evaluate the same two Type I terms and the short product. Their moduli e₀≤x^.49 have no prime ≤z. The primitive progression is n≡2 mod e₀. Coefficients with the common factors log k extracted by partial summation are bounded by O(L) after grouping. For the short and Λ convolution sums this follows from Σ_{j|e₀}Λ(j)=log e₀. The positivity comparison can use the sum of the absolute ungrouped coefficients with the same O(L) bound.\n\nFor each e₀ sieve k/e₀ by the odd primes up to z, using the two dimension-one fundamental-lemma weights λ^± of level x^.002. They bracket the integer presieve pointwise. For each sign of the profile and coefficient, the total progression errors follow from the profile progression bound at level x^.492. In fact the representation e₀d is unique because primes of d are ≤z and primes of e₀ exceed z. The maximum cumulative coefficient is O(L), and the common weight log k costs one partial summation. All active n are coprime to d, so the sole remaining primitive exclusion is (n,e₀)=1. The main sum of λ^±(d)/φ(d) is g_z(1+O(E_s)) uniformly, where g_z=∏_{2<p≤z}(1−1/(p−1)), s=.002/ε, E_s≪s^(−s/2) as s→∞ with an absolute dimension-one constant. The dimension follows from the Mertens product for 1/(p−1) away from 2. The same upper and lower weights handle positive and negative coefficients.\n\nOn rough moduli, Σ_{e₀≤x^.49} R_z(e₀)/φ(e₀) ≪ 1/ε. This follows by comparing the Euler product, including all prime powers, to ∏_{z<p≤x}(1−1/p)⁻¹ with a bounded convergent correction. Also g_z L≪1/ε. Summing the majorant cost, including ∑|f|≪_f S_b, pays O_f(ε⁻² E_s) S_b+o_{ε,f}(S_b). This fixed-ε estimate is essential. A positive power of L multiplying E_s at fixed ε would invalidate the limiting argument.\n\n## The degree-zero and degree-one Möbius means\n\nFor m odd put R_z(m)=1_{P⁻(m)>z}, with R_z(1)=1. At fixed ε and bounded 0≤v≤1, define the rough harmonic Möbius prefix A_z(x^v)=Σ_{m≤x^v}μ(m)R_z(m)/φ(m). Then, writing t=v/ε,\n\n    A_z(x^v) = ρ(t) + o_ε(1),\n    (log z)⁻¹ Σ_{m≤x^v} μ(m)R_z(m)log m/φ(m)\n        = tρ(t)−∫₀ᵗρ(u)du + o_ε(1),\n\nuniformly in v. Indeed m has bounded squarefree rank at fixed ε. Expand by rank j, divide the unordered labeled counts by j!, and use Mertens' theorem separately in each normalized logarithmic prime coordinate. The reciprocal p−1 may replace p with o(1) error, and repeated prime coordinates cost o(1). For j≥1 the cumulative limit of a rank j positive measure is continuous. Common-endpoint convergence is therefore uniform on the compact interval; the mass at the unit is handled exactly. The signed limit is the finite series\n\n    Σ_{j≤t} (−1)^j/j! ∫_{u_i≥1,Σu_i≤t} du₁⋯duⱼ/(u₁⋯uⱼ).\n\nIt equals 1 on [0,1], and multiplication of its boundary derivative by t=Σu_i gives tρ′(t)=−ρ(t−1) for t>1. This specifies the Dickman function. Partial summation yields the second relation. Its standard properties give ∫₀^∞ρ(t)dt=e^γ and factorial decay. For the latter, tρ(t)=∫_{t−1}ᵗρ(t′)dt′ and monotonicity suffice. Exclusion of the at most 256 prime divisors of n or nℓ changes these prefixes by o_ε(1), with the same normalization in the log moment. The cost is O_ε(Σ_{p|nℓ}1/(p−1))=o_ε(1) where ℓ>z. For the second displayed prefix one multiplies this absolute bound by O(1/ε).\n\n## The signed transfer\n\nMertens gives g_z log z→S₂e^(−γ), with S₂=2∏_{p>2}(1−1/(p−1)²). Put t₀=.24/ε. The first Type I principal per output is g_z[A_n(U)log k−B_n(U)], with B_n now the logarithmic harmonic prefix. Its difference from S₂ has limsup bounded by a constant times ε⁻¹ρ(t₀)+∫_{t₀}^∞ρ. For the Λ subtraction the main prefix has argument U, and the factor from summing log ℓ/φ(ℓ^j) costs O(L). The exact common-prime term has an extra 1/ℓ and is negligible, since all ℓ>z and the harmonic absolute prefix is O(1/ε). For the short-product subtraction the two main arguments D/ℓ and U are at least U whenever nonempty. The monotonicity of ρ and uniform convergence bound their difference by 2ρ(t₀)+o_ε(1). Its common-prime correction is negligible for the same reason. Thus all remaining principal errors divided by S_b are bounded in limsup by\n\n    O_f( ε⁻¹ρ(.24/ε) + ∫_{.24/ε}^∞ρ + ε⁻²E_{.002/ε} ).\n\nThis expression tends to zero with ε. The original w transfer equals the same prime sum minus S₂Σf, with o(S_b) error. Subtraction proves the theorem.\n\n**Scope in the closing ledger.** After choosing ε sufficiently small one may attempt the fixed-rank, jointly polynomially rough ORIGINAL k and k+2 problem, with prescribed tolerance on its entire sharp complement. The physical semiprimes and all associated positive and negative output terms still occur. A favorable source-specific estimate for the retained core is required for a strictly positive twin reserve. A restriction on k alone inserted into f cannot invoke its original product progression bound.\n\nKoukoulopoulos, The Distribution of Prime Numbers, Theorem 19.1 (two-sided fundamental lemma): https://dms.umontreal.ca/~koukoulo/documents/publications/primes.pdf\nLiu, Park and Song, Theorem 3.2 (underlying bounded-rank prime product progression estimate): https://doi.org/10.1007/s40993-017-0089-3\nLagarias, Euler's constant: Euler's work and modern developments, Theorem 3.5.1 (Dickman integral): https://doi.org/10.1090/S0273-0979-2013-01423-X\n"
+        },
+        "kind": "attempt",
+        "missing": "Fixed-rank signed simultaneous factorizations remain unestimated.",
+        "next": "Preserve every signed companion on the simultaneous polynomially rough fixed-rank k and k+2 source.",
+        "result": "Proved an iterated-limit estimate for the complete original sharp sum at a fixed polynomial input presieve.",
+        "stage": "dickman"
+      },
+      "prev": "0c7c9b799652f4f8403a3677102874ca350d63fb0de44f72017cb5d1f2e46bed",
+      "seq": 22,
+      "sha256": "cc3725349c6c0b933d030336c1e62aaa1bf7b541054af651146ea4e673d07cf3"
+    },
+    {
+      "at": "2026-11-23T15:37:56.072139+00:00",
+      "event": {
+        "actor": "outside",
+        "candidate": "semiprime-core",
+        "event_id": "attempt-semiprime-core-outside---comp",
+        "evidence": {
+          "name": "SMALL_INPUT_COMPENSATION.md",
+          "sha256": "0ada97d4ca337b97eda777845bcbd03b85bc7a7253d1dbd3cf4ea62cadd38b8c",
+          "text": "# Signed compensation of semiprime input and localization at two small prime factors\n\nFor fixed $0<c<1/400$ set $L=\\log x$, $V=x^c$, $U=x^{c\\tau}$ with a fixed smooth probability density supported in $1<\\tau<2$, and $D=x^c$. The product cutoff is automatic on the retained rows. Write $F(y)=\\mathbb P(U<y)$, $T=x^{2c}$, and $H=x^{1/2-3c}$. Retain $R_w(k)\\mu^2(k)$, $k=n-2$, and the original physical window throughout. Denote the averaged complete coefficient by $B(k)$. The original sharp complete outside sum against $f=\\Phi-\\psi$ equals the sum against $B$ up to $o_c(x/L)$ under the fixed-profile calibration proved in the first packet: $UV\\le x^{3c}$, the lower Euler range is $U\\ge x^c$, and the short-product block is empty. Apply the same calibration separately to $f_+=\\max(f,0)$ and $f_-=\\max(-f,0)$, fixed bounded piecewise profiles on the same output support.\n\nDefine the smooth prefix $M(r)=\\sum_{d\\mid r}\\mu(d)(1-F(d))$. On every squarefree composite $k$ the physical $\\ell$-row for $\\ell>V$ equals $b_\\ell(k)=-(\\log\\ell)M(k/\\ell)$. On prime $k$ the true row is zero because the unit boundary cancels it. Introduce the explicit correction\n$$\n W(\\ell,k)=1+F(\\ell)\\frac{\\log(k/\\ell)}{\\log\\ell},\\qquad\n B'(k)=B(k)-\\sum_{\\ell\\mid k,\\ V<\\ell\\le H,\\ \\ell\\text{ prime}} W(\\ell,k)b_\\ell(k).\n$$\nAt large $x$ the low rows in the sum have composite input, since $k\\ge x/2-2>H$.\n\n**Low-row identity.** For any fixed bounded-profile test $g$ satisfying the physical primitive progression bounds (PC) both for $g$ and its absolute envelope as in the first packet,\n$$\n \\sum_{n\\in I_x}R_w(k)\\mu^2(k)g(n)\n       \\sum_{\\ell\\mid k,\\ V<\\ell\\le H} W(\\ell,k)b_\\ell(k)=o_{c,a,g}(x/L),\n$$\nwhere the sum is over prime labels. The proof retains all divisors in the prefix, including the unit. Write\n$$\n W(\\ell,k)\\log\\ell=(1-F(\\ell))\\log\\ell+F(\\ell)\\log k.\n$$\nThus both parts have scalar $\\ell$ coefficients, and the second uses a smooth physical prefix via partial summation. After writing the prefix as its integral of sharp cutoffs, the modulus is $\\ell m\\le Hx^{2c}=x^{1/2-c}$. The $w$-smooth Bonferroni factor multiplies this by $x^{o(1)}$, leaving level below $x^{1/2-c/2}$. Each folded modulus has $O_c(1)$ possibilities for the distinguished prime since $\\ell>x^c$; its smaller-prime factors determine the presieve fold uniquely. Replacing squarefree inputs before this calculation costs $o_c(x/L)$ by the divisor moment proof in the first packet: $W\\le1+1/c$ and the corresponding absolute coefficients are $O_c(\\tau(k)L)$. The formula $m\\mid k/\\ell$ becomes $\\ell m\\mid k$ even allowing a shared prime. Its primitive main per $\\ell$ uses\n$$\n \\frac{g_w}{\\ell-1}\n [ A_{n\\ell,w}(U)-\\ell^{-1} A_{n\\ell,w}(U/\\ell)].\n$$\nThe first term has arbitrary logarithmic cancellation uniformly in $\\tau$ since $U\\ge x^c$. The second has the factor $\\ell^{-1}\\le x^{-c}$. These conclusions persist after multiplying by the indicated $\\ell$ coefficients and summing their harmonic weights. This proves the low-row identity solely at the complete signed level.\n\nAccordingly the following full *signed* expression has the same total as the native outside sum up to $o_c(x/L)$:\n$$\n \\sum_{n\\in I_x} R_w(k)\\mu^2(k)\n  [ f_+(n)B(k)-f_-(n)B'(k)].\n$$\nAll original higher-rank companions and their new multipliers are included. The correction is applied only to the negative output channel.\n\n**Physical sectors.** The contribution of the prime input itself is zero. On a distinct semiprime $k=pq$ with $p<q$, if $p\\le V$ the raw and corrected totals are zero. If $V<p\\le H$, the two raw rows are $-\\log p$ and $-F(p)\\log q$. Since $q>H$ for large $x$, the $W$-weighted low $p$-row equals their entire sum. Hence $B'=0$ and $B\\le0$. If $p>H$ both primes lie in the band $[x^{1/2-3c},x^{1/2+3c}]$. Its absolute contribution is $O_{f,\\zeta}((c+1/L)x/L)$ uniformly in $c$: for fixed $p$ upper-sieve $q$ and $pq+2$ as in the first packet and sum $\\sigma(p)/p$ over that band. Here, in all cases, two primes both $\\le H$ cannot produce an input $k\\in(x/2-2,x]$, since $H^2=x^{1-6c}$.\n\nIf $k$ is squarefree composite with no prime factor $\\le T$, all its row prefixes are 1, $B=-\\log k$, and $B'=(j-1)\\log k$, where $j$ counts all its primes $\\le H$. At rank at least three, $j\\ge1$ since three primes above $H$ cannot divide $k\\le x$. Hence $f_+B-f_-B'\\le0$ on this entire sector.\n\nSuppose $k$ has exactly one prime factor $s\\le T$ and at least one other factor. Every row for a prime exceeding $T$ has prefix $F(s)$, since its divisor subsets of size at most $T$ can only be $1,s$. If $s\\le V$ no eligible small label exists and all rows vanish. If $V<s\\le T$, the small owner's quotient has prefix 1. Consequently\n$$\n B=-\\log s-F(s)\\log(k/s)\\le0.\n$$\nIts $W$-weighted small row equals this expression. Each other low label $p>T$ adds $F(s)\\log k$ to the corrected coefficient. Thus $B'\\ge0$ and the total is nonpositive. When *all* factors of $k$ are $\\le T$ and there is just one, $k$ is prime and was already covered.\n\nIf the nontrivial product of *all* the primes of $k$ at most $T$ is $\\le V$, none of these small primes is an eligible label. For each large owner the prefix is the complete divisor Möbius sum of this nontrivial product, hence all rows vanish. This argument is exact, including the weak face at $V$.\n\n**One-sided complete localization.** Define $\\mathcal E_{c,\\delta,K}$ to consist of squarefree $k$ with $3\\le\\omega(k)\\le K$, $P^-(k)>x^\\delta$, at least two distinct prime divisors at most $x^{2c}$, and the product of all its prime divisors at most $x^{2c}$ greater than $x^c$. For $0<\\delta<c$, the whole outside source has the upper bound\n$$\n \\begin{aligned}\n \\mathcal U_{\\mathscr B^c}(x)\n &\\le\\sum_{\\substack{n\\in I_x\\\\k=n-2\\in\\mathcal E_{c,\\delta,K}}}\n R_w(k)\\mu^2(k)[f_+(n)B(k)-f_-(n)B'(k)]\\\\\n &\\quad +O_{f,\\zeta}(c x/L)\n   +O_{c,f,\\zeta,\\mathrm{density}}((\\delta+2^{-K})x/L)\n   +o_{c,a,f}(x/L).\n \\end{aligned}\n$$\nTo trim the small-prime and large-rank tails, apply the smooth Fourier–Euler proof to every raw and corrected row before restricting: the prime owner is now $\\ell>x^c$, so the two-form sieve can use $z=x^{\\min(\\zeta,c/100)}$; $W\\le1+1/c$; and the uniformly smooth cutoff has scale $cL$. A prime $p\\le x^\\delta$ in $k$ must belong to the quotient because $\\delta<c$. For $\\omega(k)>K$, every owner's quotient has rank at least $K$. This proves the displayed error. Constants in the second error may grow as $c$ shrinks; choose $c$ first and then $\\delta,K$. No uniform limit in all three variables is asserted. The first error has a constant independent of $c$ for every sufficiently large $x$ after fixing $c$.\n\nBound the last residual with its full original $f_+$ and $f_-$ and a fixed margin to prove the desired outside estimate, after paying the indicated errors. This paper reduction supplies no favorable bound for that residual and credits zero net terminal saving. In particular, the fact that its inputs have two small primes does not imply the residual is negligible: their allowed range and the signed coefficients both depend on $c$. The same statement holds for the balanced output triple sector alone by multiplying $f_\\pm$ by its exact fixed-profile indicator.\n"
+        },
+        "kind": "attempt",
+        "missing": "Higher-rank signed source and prime boundary persist.",
+        "next": "Keep positive and negative portions coupled after retuning.",
+        "result": "Exact low-owner compensation removes semiprimes except a near-half positive cost tending to zero as the band narrows.",
+        "stage": "comp"
+      },
+      "prev": "cc3725349c6c0b933d030336c1e62aaa1bf7b541054af651146ea4e673d07cf3",
+      "seq": 23,
+      "sha256": "6861ea41c19618dd1a6715ec6c899fc0d9c19463e7153966a8b2a4fd2fc37410"
+    },
+    {
+      "at": "2026-11-23T15:37:56.072378+00:00",
+      "event": {
+        "actor": "outside",
+        "candidate": "semiprime-core",
+        "event_id": "attempt-semiprime-core-outside---restoration",
+        "evidence": {
+          "name": "SUBPOWER_SIGNED_RESTORATION.md",
+          "sha256": "5cd8dafd5c2da85b588792bf35e38df0356ff7b5760c292ddd26e6cb9c6d0af5",
+          "text": "# A subpower version and the signed mass one recovers when omitted sectors are restored\n\nFix $0<a<b<1$, $0<\\eta<.1$, and let\n$$\n w=e^{L^a},\\quad V=e^{L^b},\\quad U=e^{\\tau L^b},\\quad T=e^{2L^b},\n \\quad H=x^{1/2-\\eta},\\quad D=V.\n$$\nKeep the fixed smooth law of $\\tau$ on $(1,2)$ and the definitions of $B,B',F,f_\\pm$ from the small-input compensation packet. In particular $\\mathcal W$ denotes the sum of $f_+B-f_-B'$ against $R_w\\mu^2$; prime-input coefficients are evaluated in the original owner formula and are zero.\n\n## 1. Bounds at these cutoffs\n\nThe folded Type-I and low-label moduli after inserting at most $R=O(\\log L)$ presieve primes are at most $HTw^R=x^{1/2-\\eta+o(1)}$. Thus the same *fixed* progression level $1/2-\\eta/2$ suffices. All coefficient growth is polynomial in $L$: $W\\ll L^{1-b}$ and a folded modulus has $O(L^{1-b})$ possible prime labels above $V$. The uniform presieved Möbius prime-number-theorem estimate holds already at $t\\ge\\exp(L^b/2)$ by the same Euler correction proof, with Rankin tail at most a fixed power of $L$ times $\\exp(-c_1L^{b-a})$. The unpresieved PNT log savings at $t^{1/2}$ are arbitrary powers of $L$ since $\\log t\\gg L^b$. There is no product-subtraction block. Therefore\n$$\n \\mathcal U_{\\mathscr B^c}=\\mathcal W+o_{a,b,\\eta,f}(x/L)\n =A(f)-\\mathfrak S_2\\sum_n f_x(n)+o_{a,b,\\eta,f}(x/L).\n$$\nThis is a fresh parameter derivation. The asymptotic in the first packet with *fixed* polynomial parameters would not by itself give the same conclusion.\n\nThe pointwise signs from the small-input compensation packet now show that every adverse summand, apart from the $O_{f,\\zeta}((\\eta+1/L)x/L)$ near-half semiprime class, has at least two distinct prime factors in $(e^{L^a},e^{2L^b}]$. The product of all its factors in that range must exceed $V$. For these cutoffs two small factors cannot form the whole input, since $T^2=o(x)$. The small-factor/Radon-rank approximation with constants depending on fixed $c$ is not invoked.\n\n## 2. Exact restoration on zero small factors\n\nPut\n$$\n g_T=\\prod_{2<p\\le T}(1-1/(p-1)),\\qquad\n P_T=\\sum_{T<p\\le H}\\frac1{p-1},\\qquad\n J(k)=\\#\\{T<p\\le H:p\\mid k\\}.\n$$\nWrite $\\mathcal W_i$ for the above corrected source on inputs with exactly $i$ primes in $(w,T]$, and $\\mathcal W_{\\ge i}$ for the corresponding tail. On squarefree $R_T(k)=1$ all the prefixes on composite rows equal 1. Including the prime boundary, for every such $k$ in the physical window,\n$$\n B(k)=-(1-1_{k\\ {\\rm prime}})\\log k,\\qquad\n B'(k)=[J(k)-1+1_{k\\ {\\rm prime}}]\\log k.\n$$\nA prime in the window has $J(k)=0$. Therefore\n$$\n \\mathcal W_0=A(f)-\n \\sum_{n\\in I_x} R_T(k)\\mu^2(k)(\\log k)\n        [f_x(n)+J(k)f_{-,x}(n)].\n$$\nThis identity keeps the true prime-input mass, including its sign on the negative output wall.\n\nThe two required remaining prime-free populations are elementary consequences of (PC):\n$$\n \\sum_n R_T(k)\\mu^2(k)g(n)=g_T\\sum_n g(n)+O_A(xL^{-A}),\n$$\n$$\n \\sum_n R_T(k)\\mu^2(k)J(k)g(n)\n  =g_T P_T\\sum_n g(n)+O_A(xL^{-A})\n$$\nfor $g=f,f_-$ and their positive envelopes (the implied constants depend on $a,b,\\eta,f,A$). To see this, use Bonferroni for odd primes through $T$ at truncation $C_A\\log L$. Every output prime exceeds $T$ for large $x$. In the first principal all small coprime factors are thus present. In the second, mark one $p\\in(T,H]$, so $q=p e$ has a unique split into its one large-prime factor and a $T$-smooth factor. Its level is $\\le HT^{O(\\log L)}<x^{1/2-\\eta/2}$. Exclusions $p\\mid n$ cost at most $O_f(x^{-\\zeta})$ per output by its bounded rank. The elementary symmetric principal tail from small primes is bounded by a factorial tail with mean $O(\\log L)$; the extra prime sum costs $O(\\log L)$. Taking the Bonferroni truncation constant and the discrepancy accuracy large enough pays any fixed log power. For squareful $R_T$-rough inputs the population is $O(x/T)$; the test $J(k)$ is at most $O(L)$, so removing them is harmless. The same facts with the absolute profiles show that replacing $\\log k$ by $L$ here costs $O_f(xg_T(1+P_T)/L)=o(x/L)$, because $\\sum_n |f_x(n)|\\ll_f x/L$.\n\nSubtracting from the complete sum yields\n$$\n \\boxed{\\begin{aligned}\n \\mathcal W_0&=A(f)-L g_T\\bigg[\\sum_n f_x(n)+P_T\\sum_n f_{-,x}(n)\\bigg]+o(S_b),\\\\\n \\mathcal W_{\\ge1}\n &=L g_T\\bigg[\\sum_n f_x(n)+P_T\\sum_n f_{-,x}(n)\\bigg]\n                   -\\mathfrak S_2\\sum_n f_x(n)+o(S_b).\n \\end{aligned}}\n$$\nThe calibrated complete signed mass on *all* inputs with at least one small prime is therefore explicit. Recovering its favorable zero-small counterpart restores the still unknown $A(f)$. This is the arithmetic content of the representation.\n\n## 3. Obstruction to using the small-factor residual alone\n\nThe exactly-one sector satisfies $\\mathcal W_1\\le0$ by the pointwise calculation. Thus $\\mathcal W_{\\ge2}\\ge\\mathcal W_{\\ge1}$. By Mertens,\n$$\n g_T\\sim e^{-\\gamma}\\mathfrak S_2/\\log T,\\qquad\n P_T=(1-b)\\log L+O(1).\n$$\nIf $\\Pi(f_-)=\\lim (2L/x)\\sum_n f_{-,x}(n)>0$, the main term in the preceding box has normalized size\n$$\n \\frac{\\mathcal W_{\\ge1}}{S_b}\n \\sim \\tfrac12 e^{-\\gamma}(1-b)\\Pi(f_-)\\,L^{1-b}\\log L .\n$$\nOnly the leading asymptotic is asserted here. The exact $g_T,P_T$ formula above gives the stronger absolute $o(S_b)$ error. Positivity of the fixed-profile mean follows without the full historical computation: restrict the three distinct output primes to fixed disjoint logarithmic bands near $(.30,.33,.37)$ whose sum equals one, staying away from all nontrivial cuts. Each factor has coordinate in $(1/4,9/20)$; $H=1-3=-2$, the output is good, and its outside profile equals $-2$. PNT partial summation gives positive mass on such a small open ordered region. No claim about primality of the shift is needed.\n\nConsequently the one-sided shortcut which discards the entire complement of the at-least-two-small-prime source has a divergent positive right-hand side, even though the full physical source is on scale $S_b$. A joint estimate retaining the negative zero-small mass is essential. This is a scoped obstruction to the subpower truncation under the verified signs. It assigns no fixed advantage to the original endpoint. For the *positive* part alone, the omitted zero-small composites also have normalized mass asymptotic to $\\tfrac12 e^{-\\gamma}\\Pi(f_+)L^{1-b}$, provided $\\Pi(f_+)>0$, with the prime exception contributing $O_f(S_b)$ by a two-linear-form upper sieve on the prime and its shifted rough output.\n\nThe exponents $a,b$ may in particular be chosen inside $(.1,.2)$. Two small input labels in one broad band and a weight on $n=k+2$ do not match an external theorem requiring many prescribed distinct subpower bands or a different prime-output test.\n"
+        },
+        "kind": "attempt",
+        "missing": "Dropping all favorable terms makes the adverse residual too large.",
+        "next": "Test a signed centered joint recovery on the fixed-power original source.",
+        "result": "An explicit subpower restoration evaluates nonempty cohorts jointly. The favorable zero-small cohort has a divergent contribution and contains the genuine prime boundary.",
+        "stage": "restoration"
+      },
+      "prev": "6861ea41c19618dd1a6715ec6c899fc0d9c19463e7153966a8b2a4fd2fc37410",
+      "seq": 24,
+      "sha256": "2d5e3b74ab6f5cce66be2c4778bd077146d61de3827755effabe92b83aea1c45"
+    },
+    {
+      "at": "2026-11-23T15:37:56.072724+00:00",
+      "event": {
+        "actor": "harness",
+        "candidate": "semiprime-core",
+        "event_id": "attempt-semiprime-core-harness---slab",
+        "evidence": {
+          "name": "semiprime_slab.md",
+          "sha256": "88de684eed532e3e9089fe0f2384d854d601b2ffaa51f37dde5659ec1658d657",
+          "text": "# Complete semiprime-input slab for the native outside source\n\nLet $x/2<n\\le x$, $k=n-2$, $L=\\log x$, $\\epsilon=10^{-9}$ and $S^\\circ=\\mathfrak S_2 x/(2L)$. Put $f=\\Phi-\\psi$ as in `REAL1B.FM.Direct.outsideProfile` at `43facedcf40b2f998aa47f7198d6b9b5feb5b792`. Let $E$ denote $k=pq$, both factors prime, $x^{.492}<p\\le x^{.494}$. Both factors exceed $x^{.24}$, $p<q$, $k>x^{.49}$, and for every fixed $0<a<1$ the subpower input presieve is one eventually. The native owner coefficient is exactly $-\\log k$. Define $U_E$ to be the contribution of these inputs and $P^-(n)>x^{.21}$. Define $U_{E,4}$ to include just the rank-four outputs within this same population. With $a_E=\\log(31369/31119)$,\n\n$$\n0\\le\\limsup U_{E,4}/S^\\circ < 2.3\\cdot10^{-8},\\qquad\n0\\le\\limsup U_E/S^\\circ \\le (4/.504)a_E+(2.3\\cdot10^{-8})/3 < .063504604 .\n$$\n\nThis controls a true positive contribution to the outside upper bound. The remaining triples in this slab and the unsieved complement of the slab still enter the full calculation. $S^\\circ\\sim S_b$ by the independent shifted-prime normalization argument.\n\n## Physical signs\n\nA nonsquarefree output has zero weight. On a squarefree output with the stated roughness all prime coordinates $t_i=\\log p_i/\\log n$ exceed $.21$. There are at most four. For a composite assign $r_i=1$ to each coordinate at most $1/2+\\epsilon$ and $r_i=2$ to a larger coordinate. The latter can occur at most once, exceeds $2(1/5-\\epsilon)$, and every assigned coordinate has zero tiny cost. The witness sum is at most five. Thus every such composite is good. The box selector needs five factors, so $f=-\\max(-H,0)$. The prime itself has zero native weight. A semiprime has at most the smaller singleton in $H$ and hence $H\\ge0$. On three primes $H\\ge 1-3=-2$ since pair coefficients are nonnegative and the full product exceeds the cutoff.\n\nOn four primes every singleton enters and all three-prime products exceed the cutoff. Each pair contributes precisely when $t_i+t_j\\le1/2-2\\epsilon$. Within each of the three complementary pair partitions exactly one pair contributes unless its sums have distance strictly less than $2\\epsilon$ from $1/2$. In that case neither contributes. Hence $-f$ equals the number of these exceptional partitions. Each is counted twice by the semiprime divisors on its two sides. Its largest value is three. On the whole slab the pointwise cost is at most two times the rough-output weight plus one third of the rank-four cost.\n\n## Distribution for the specific input primes\n\nElementary prime partial summation gives the mass of the unweighted $E$ in the interval as $(a_E+o(1))x/(2L)$, using $a_E=\\int_{.492}^{.494}dt/[t(1-t)]$. The logarithmic weight on every row may be bounded above by $L$.\n\nFor divisor moduli $h$, the relevant residue is $k=-2\\pmod h$. In dyadic product rectangles, $X_0=MN\\asymp x$ and the longer prime factor has $\\log N/\\log X_0\\in[.506-o(1),.508+o(1)]$. Fouvry–Radziwiłł Theorem 1.1 supplies an absolute mean of the primitive discrepancy in the range $N^{56/23}X_0^{-17/23+\\eta}\\le Q\\le NX_0^{-\\eta}$. Since $(56\\cdot .508-17)/23<.498$ and $.504<.506$, every dyadic block between $x^{.499}$ and $x^{.504}$ is covered with a fixed margin. The two prime coefficients are bounded by one. The longer one satisfies Siegel–Walfisz, including the auxiliary coprimality parameter, by the prime theorem in small progressions and the divisor bound for primes dividing that parameter. Below $x^{.499}$ use fixed prime product Bombieri–Vinogradov, for example Liu–Park–Song Theorem 3.2 for the two disjoint prime intervals.\n\nFor positive upper bounds, use disjoint short rectangles with coordinate mesh ratio $1+\\eta_0$ and retain every rectangle meeting the dyadic hyperbolic interval. Their union lies in the original interval enlarged by $O(\\eta_0 x)$ at its two ends. The longer prime identifier has uniform Siegel–Walfisz on intervals by subtracting prefix estimates. Across rectangles and dyadic modulus blocks the logarithmic losses are bounded powers for each fixed $\\eta_0>0$. The primitive discrepancies sum to $O_A(x L^{-A})$. The PNT mass of the enlarged union is at most $(a_E+O(\\eta_0)+o(1))x/(2L)$. Take $x\\to\\infty$ before $\\eta_0\\downarrow0$. This supplies the two positive sieve applications without a modulus-dependent boundary loss.\n\nAll primes of the sieve moduli actually used are less than $x^{.291}$, hence none can divide the semiprime input. The primitive main on odd moduli is exactly $1/\\varphi(h)$ times the total mass. Even moduli have no incidence on these odd inputs for the sieve of $k+2$. The dimension-one local product is $V(z)=\\prod_{2<r<z}(1-1/(r-1))\\sim \\mathfrak S_2e^{-\\gamma}/\\log z$. The linear upper sieve has $F(s)=2e^\\gamma/s$ for $1\\le s\\le3$.\n\nApply it first to $P^-(k+2)>x^{.21}$ with level $x^{.504}$. The sieve parameter is $2.4$. Multiplication by $L$ gives normalized mass at most $(2/.504)a_E+o(1)$.\n\n## The complementary pairs\n\nEvery exceptional divisor $M=rs$ is a product of distinct primes exceeding $x^{.21}$. For all sufficiently large $x$ its logarithm divided by $L$ lies in $[.5-3\\epsilon,.5+3\\epsilon]$. Its two factors each have exponent in $[.21,.291]$. Over all such $M$, Mertens' theorem applied to both variables bounds\n\n$$\n\\limsup\\sum_M\\frac1{\\varphi(M)}\\le\n\\frac{(.291-.21)6\\epsilon}{2(.21)^2}.\n$$\n\nThe denominator two accounts for ordering. The strip has the displayed width for each fixed first exponent. Divide by two again at the final counting step, since the two complementary products represent one failed partition.\n\nFor each $M$ impose $M\\mid k+2$ and remove small prime factors of $k+2$ at threshold $x^{.001}$ using an upper linear sieve of level $x^{.002}$. All original rough outputs survive. For every sieve divisor $d$, $(M,d)=1$ and $Md< x^{.504}$. The two prime factors of $M$ exceed $x^{.21}$ and the factors of $d$ are at most $x^{.002}$. Thus $Md$ recovers both parts uniquely. The full sum of sieve remainders is bounded by a single mean of the absolute discrepancies. Equivalently apply the linear sieve once to the nonnegative aggregate weight counting the permitted divisors $M$ of each $k+2$. All unrestricted $d\\le x^{.002}$ also satisfy the same recovery. With $s=2$ the normalized upper is $(2/.002)a_E\\sum_M1/\\varphi(M)+o(1)$. Including the complementary-pair factor yields\n\n$$\n\\limsup U_{E,4}/S^\\circ\\le\n500 a_E\\frac{.081\\cdot6\\epsilon}{2(.21)^2}\n=2.2045166596\\ldots\\cdot10^{-8}.\n$$\n\nCombining the two bounds proves the assertions above. No upper for another source is allocated to this slab.\n\n## Sources\n\n- Theorem 1.1 and its overlap following the theorem. [Fouvry and Radziwiłł](https://arxiv.org/html/1812.00562v2)\n- Theorem 3.2 on products of distinct primes. [Liu, Park and Song](https://people.math.harvard.edu/~pspark/boundedgaps.pdf)\n- Lemma 2.5, upper and lower linear sieve. [Matomäki and Zuniga-Alterman](https://www.utupub.fi/bitstream/handle/10024/185534/Matom%C3%A4ki_and_zuniga_weighted_sieves_2025.pdf?sequence=1)\n"
+        },
+        "kind": "attempt",
+        "missing": "This upper cannot be deducted from the whole bound.",
+        "next": "Retain the full higher-rank remainder via sign-dependent compensation.",
+        "result": "Complete near-half semiprime-input slab is bounded by 0.063504604 S_b with genuine masks and every output rank.",
+        "stage": "slab"
+      },
+      "prev": "2d5e3b74ab6f5cce66be2c4778bd077146d61de3827755effabe92b83aea1c45",
+      "seq": 25,
+      "sha256": "0310b766ac9735350ba5eb26e2d764347380b3e621492fc86ad5016f77a93b0f"
+    },
+    {
+      "at": "2026-11-23T15:37:56.074025+00:00",
+      "event": {
+        "actor": "harness",
+        "candidate": "semiprime-core",
+        "event_id": "attempt-semiprime-core-harness---pairboundary",
+        "evidence": {
+          "name": "balanced_owner_and_rank4.md",
+          "sha256": "0125bebae4ff3bf559d1575d4464754405730642507170280e68f50021f48e31",
+          "text": "# Reweighting every near-threshold input owner on the balanced triple source\n\nUse $L=\\log x$, $U=x^\\alpha$, $D=x^d$, $\\alpha=.24$, $d=.49$, $b=d-\\alpha=.25$, $w=\\exp(L^a)$ for fixed $0<a<1$, and $I=(x/2,x]$. Let $g(n)=2$ on the squarefree three-prime outputs in the original Gold 4.63 family, all coordinates $\\log r/\\log n\\in(.2001,.4999)$, and zero elsewhere. Its native outside coefficient is $-g$. Write $J_C$ for its ordinary mass in units $x/(2L)$. The source-level inequality below uses $S^\\circ=\\mathfrak S_2x/(2L)\\sim S_b$.\n\nFor $n=k+2\\in I$, restrict to $w$-rough squarefree $k$ and use this restriction on every displayed physical sum. Put $P=\\{p\\mid k:U<p\\le x^b,\\ p\\ \\mathrm{prime}\\}$, $m=|P|$, let $Q$ be the product of the prime divisors of $k$ greater than $x^b$, and $s$ the product of those at most $U$. Write $M_s(v)=\\sum_{e\\mid s,\\ e\\le v}\\mu(e)$ and take this as zero for $v<1$. Define\n\n$$\n b^*(k)=-\\log Q\\,M_s(U)+\\sum_{p\\in P}(\\log k-\\log p)M_s(D/p)\n                  +1_{\\mathbb P}(k)\\log k.\n$$\n\nThe complete native contribution $W_C=-\\sum g(k+2)B_\\sigma(k)$ satisfies\n\n$$\n\\frac{W_C}{S^\\circ}\n=\\underbrace{\\frac{2-d}{d}\\log\\frac{d-\\alpha}{\\alpha}}_{0.12579839127670\\ldots}\\,J_C\n -\\frac{1}{S^\\circ}\\sum g(k+2)b^*(k)+o(1).\n\\tag{1}\n$$\n\nThis includes every input rank and prime boundary. For $1<s\\le U$ the residual $b^*$ vanishes on every configuration. For $s=1$ it equals $(m-1)\\log k+1_{\\mathbb P}(k)\\log k$. In particular every input with one near-threshold prime and $s\\le U$, including genuine semiprimes of this shape, disappears from the residual. Reweighting creates the *positive* surface debit in (1). Outputs on other chambers retain their original contribution. Only the net right-hand side can enter a terminal bound.\n\n## Exact divisor accounting\n\nFor an eligible label $p$ write $C_p$ for its complete native inner divisor sum without $\\log p$. When $k$ is composite, summing all divisors of $k/p$ gives zero. Thus $C_p$ is the negative of the sum with divisor at most $a_p=\\max(U,D/p)$. For $p\\in P$, any such divisor uses zero or one other prime in $P$, and none in $Q$. If it uses $p'\\in P$ then its remaining divisor is at most $D/(pp')\\le x^{.01}$. It follows that\n\n$$\n C_p=-M_s(D/p)+\\sum_{j\\in P\\setminus\\{p\\}} M_s(D/(pj)),\\qquad\n C_q=-M_s(U)\\quad(q\\mid Q).\n$$\n\nFor a genuine prime $k$ the original row is zero. It has $s=1,m=0,Q=k$ and the explicit prime term in $b^*$ supplies the required correction. Addition over all original labels gives the finite identity\n\n$$\n B_\\sigma(k)-\\sum_{p\\in P}\\log k\\,C_p\n = b^*(k)-\\sum_{\\{p,j\\}\\subset P}(2\\log k-\\log(pj)) M_s(D/(pj)).\n\\tag{2}\n$$\n\nWhen $s>1$ and $s\\le U$, $M_s(v)=0$ for every $v\\ge U$. When $s=1$ these terms equal one. The residual evaluations follow.\n\n## Small moduli and the boundary principal\n\nOn the actual balanced output family the absolute sum of progression discrepancies in the reduced residue $2$ over odd moduli $h\\le x^{.495}$ is $O_A(xL^{-A})$ for every $A$, also with an interval prefix. This follows from Liu–Park–Song Theorem 3.2 on boxes in three distinct primes. One can cut the prime exponents $\\log r_i/L$ at mesh $L^{-K}$. All faces comparing $\\log r_i$ and $\\log n$ are linear. Dyadic ends of the product are handled by the product cutoff or interval collars. The PNT estimate in intervals with polynomial prime size, after partial summation in two variables, bounds the crossing collars by $O_B(xL^{-B})$ on taking $K$ large. Under the discrepancy sum their actual incidence is at most $(\\#\\mathrm{collar})^{1/2}(\\sum_{k\\le x}\\tau(k)^2)^{1/2}$ and the primitive term costs $O(L)$ times the collar population. The fixed power of $L$ boxes is absorbed in the log precision. This is the same bounded-profile transfer as Gold 4.66 at a fixed gap below one half.\n\nUse this estimate after expanding $R_w(k)$. Truncate Bonferroni at $O_A(\\log L)$ factors and apply its two adjacent orders to the absolute unsigned remainder. A sieve divisor of primes at most $w$ has size $x^{o(1)}$ at these orders. The presieve factor and the $w$-rough part of a modulus are uniquely recovered. The unsieved incidence in the first sum of (2) has modulus $pe\\le D$, with $p\\in P$ and $e\\le D/p$; there are at most two eligible labels in a modulus of this size. In the pair term the modulus is $pje\\le D$ with $e\\le x^{.01}$ and the two larger primes are uniquely recovered as an unordered pair. For physical rows $e$ may be recovered inside the squarefree integers. Removing or restoring the squarefree restriction on $w$-rough integers costs $O_A(xL^{-A})$ by Cauchy–Schwarz from $O(x/w)$ squareful integers, $\\sum\\tau(k)^2\\ll xL^3$, and the bounded number of prime divisors greater than $x^{.24}$. The squareful deletion also permits using ordinary product moduli in place of an incidence defined only on squarefree inputs. In the first sum explicitly restrict $(p,e)=1$, which is exact on squarefree $k$. The factorial Bonferroni tail is smaller than any prescribed inverse log power after allowing for the fixed powers of $L$ in the coefficient sums. Prefix partial summation supplies $\\log k$.\n\nPut $g_w=\\prod_{2<r\\le w}(1-1/(r-1))$ and let $A_w(T)=\\sum_{u\\le T,\\ u\\ \\mathrm{odd}}\\mu(u)R_w(u)/\\varphi(u)$. For a modulus containing $p$ or another prime forbidden by primitive coprimality with the output or the selected label, deleting terms of $A_w$ containing that prime costs $O(Lx^{-.19})$ per excluded factor. There are at most four such factors. The corresponding deletion in the prime sums costs the same type of power saving. The excluded factors of the output exceed $x^{.19}$ and the pair cutoff for $e$ is less than $x^{.01}$.\n\nFor the first sum in (2), complementary divisors produce the primitive inner factor $A_w(D/p)$, up to the preceding exclusions. Its argument is at least $x^{.24}$. The Möbius PNT and subpower convolution give $A_w(D/p)=O_A(L^{-A})$ uniformly here. Hence the average of the entire first sum against $g$ is $o(S^\\circ)$. In this application the replacing logarithm is $\\log k$, which depends only on the product endpoint. Input ownership remains complete.\n\nFor the pair term the corresponding primitive factor is $A_w(D/(pj))$. Its argument can be one. That boundary contributes at leading order. The signed measures\n$$\n d\\mu_x(v)=g_w L A_w(x^v)\\,dv,\\qquad v\\ge0,\n$$\nhave uniformly bounded total variation and converge weakly to $\\mathfrak S_2\\delta_0$. To see this let $A$ omit the presieve in $A_w$. The Euler series for $\\mu(u)/\\varphi(u)$ on odd integers is $G(z)/\\zeta(1+z)$, with $G(0)=\\mathfrak S_2$ and an absolutely summable correction with some positive power moment. The classical Möbius prime number theorem implies $A(e^v)=O_B((1+v)^{-B})$ for all fixed $B$. Its integral over $v\\ge0$ is $\\mathfrak S_2$, by taking $z\\downarrow0$ in the Laplace transform $G(z)/(z\\zeta(1+z))$. The inverse Euler factors for $2<p\\le w$ form a positive Dirichlet series $h_w$ of total mass $g_w^{-1}$. The normalized law of $\\log d$ with weight $g_w h_w(d)$ has tail $O(\\exp(-cL/\\log w))$ above each fixed $cL$, because $g_w\\sum_d h_w(d)d^{1/\\log w}\\ll1$. Indeed $\\sum_{p\\le w}(p^{1/\\log w}-1)/p\\ll1$, and the finitely many small-prime factors are uniformly bounded for large $w$. Convolution with the integrable signed kernel $A(e^v)$ proves the assertion, including total variation outside each fixed neighborhood of zero.\n\nUse the PNT twice to replace $\\sum_{p,j}$ by $dt\\,du/(tu)$, where $t=\\log p/L$, $u=\\log j/L$. For a fully uniform replacement first expand $A_w(D/(pj))$ over $e\\le x^{.01}$. The remaining moving upper endpoint $pj\\le D/e$ and the bounded polynomial in $\\log(pj)/L$ permit ordinary partial summation, with arbitrary log precision uniformly in $e$. The sum of the absolute $e$ coefficients is $O(L)$. Removing the diagonal and changing $1/(p-1)$ to $1/p$ cost a power saving. Divide by two for unordered pairs. For fixed $n$ the primitive sum is consequently\n$$\n\\frac12\\int_0^{d-2\\alpha}\n\\left(2\\frac{\\log k}{L}-d+v\\right)\n\\left(\\int_{\\alpha}^{d-v-\\alpha}\\frac{dt}{t(d-v-t)}\\right)d\\mu_x(v)+o(1).\n$$\nThe inner integral is continuous at zero. The bounded variation estimate pays $\\log k/L=1+O(1/L)$ uniformly on the dyadic interval. In the limit this equals $\\mathfrak S_2(2-d)d^{-1}\\log((d-\\alpha)/\\alpha)$. Summing against $g$ and using its PNT mass proves (1).\n\n## Direct adversarial test and the first unpaid term\n\nAt $x=10^9$ the following actual balanced outputs certify both residual signs when $s>U$. For example take the fixed presieve exponent $a=1/20$, for which $w<5$ at this $x$.\n\n| $k$ | $s$ | $Q$ | $n=k+2$ | $b^*(k)$ |\n| --- | --- | --- | --- | --- |\n| $500253215$ | $5\\cdot7\\cdot11$ | $1299359$ | $359\\cdot409\\cdot3407$ | $-\\log Q$ |\n| $500237699$ | $13\\cdot17$ | $2263519$ | $463\\cdot929\\cdot1163$ | $+\\log Q$ |\n\nThese are finite tests of signs. They also disprove a uniform pointwise completion claiming $b^*\\ge0$ on this class of inputs. They do not give a density on an infinite sequence of scales. To close this approach one still needs a signed mean for $s>U$ and the $s=1,m=0$ composite inputs. Estimating the computable low-divisor pieces of $b^*$ eventually exposes $1_{\\mathbb P}(k)\\log k$ on the balanced three-prime output. Its independent favorable lower bound is precisely prime-sensitive information not supplied by (1).\n\n## Independent rival bound for the whole rank-four semiprime-input row\n\nFor rank-four outputs the retained part $F$ is zero. A nonzero $f$ requires a squarefree good output and $H\\ne0$. The exact native small-prime cancellation and good-set gap imply every output coordinate $t_i>1/5-\\epsilon$ (`FMGoodSupport.lean`, `small_prime_cancels` and `gap_excluded`). All four coordinates are below $.401$. If each $t_i>1/5$, then $-f$ equals the complementary-pair count of the first packet. If a coordinate falls in $(1/5-\\epsilon,1/5]$, the native lower $H\\ge-3$ bounds $-f\\le3$. The signs and the degree-two kernel follow directly from the native divisor sum. No omitted off-good rank-four residual is added.\n\nThe angular mass $J_4^-$ of the complete nonnegative function $-f$ on rank four is therefore at most $10\\epsilon$. Here is an explicit volume bound. For a chosen singleton collar coordinate, its interval has width $\\epsilon$, the other three have exponents at least $.199$, and the area of the remaining positive simplex is at most $(1-(.2-\\epsilon)-3(.199))^2/2$. Divide by $4! (.199)^4$ and multiply by 12 for the four choices and weight three. If there is no singleton collar, for each of three pair partitions two coordinates can be integrated in intervals of length $.101$ and the third in an interval of width $4\\epsilon$. Divide by $4! (.2)^4$ and multiply by three. The two coefficients of $\\epsilon$ are less than 6.57 and 3.19 respectively.\n\nNow reverse the source and sieve $k=n-2$ for every prime factor at most $x^{.24}$. On the complete semiprime-input contribution, both factors of $k$ must exceed $x^{.24}$ for the physical coefficient to be nonzero, and each such coefficient is $-\\log k$. Count the larger rough population with the same nonnegative output envelope. It is an angular profile of four polynomially large primes with fixed polyhedral boundaries, so the same source version of Liu–Park–Song gives fixed level $\\theta<1/2$. Primitive coprimality with an output prime of size $>x^{.19}$ costs $o(x/L^A)$ in the summed main term by $\\sum_{d\\le D,p\\mid d}1/\\varphi(d)\\ll L/(p-1)$. Letting $\\theta\\uparrow1/2$ in the upper linear sieve gives\n$$\n0\\le\\limsup \\frac{U_{\\mathrm{semiprime},4}}{S^\\circ}\\le4J_4^-<4\\cdot10^{-8}.\n$$\nThis bound covers all semiprime inputs and all native rank-four outputs. It can coexist with the stronger direct slab estimate by taking disjoint pieces or the smaller valid upper on their intersection. Adding the two bounds for the same inputs would double count. A crude unconditional result for the whole unrestricted balanced triple on semiprime inputs from the same reverse sieve is $4J_C$. Formula (1) identifies a different signed charge, but does not establish the full outside upper.\n\n## Reproducibility and source trail\n\nThe independent rerun of the exact four-way box integral reproduced the two endpoint integers in `J4_replay.json` over 400,896 subcubes. In the original integrand $1/\\prod t_i$ is jointly convex, because its logarithm is a sum of convex negative logarithms of positive affine factors. Jensen gives the lower bound and coordinate-by-coordinate chord interpolation the upper. Tests of the four indicator faces preserved the two distinct displacements. This confirms the reported geometric enclosure at the level of exact arithmetic. Its transfer to an outside bound uses analytic premises.\n\n- The ordinary three-prime chamber and archived small-label treatment are documented in `REAL1B_Gold463-466_FULL_PAPERS.md`, Gold 4.63 and 4.66. The physical ledger and cutoffs are those of the repository at `43facedcf40b2f998aa47f7198d6b9b5feb5b792`.\n- Theorem 3.2. [Liu, Park and Song](https://people.math.harvard.edu/~pspark/boundedgaps.pdf)\n- Theorem 1.1 and its continuously bridged range. [Fouvry and Radziwiłł](https://arxiv.org/html/1812.00562v2)\n- Lemma 2.5. [Matomäki and Zuniga-Alterman](https://www.utupub.fi/bitstream/handle/10024/185534/Matom%C3%A4ki_and_zuniga_weighted_sieves_2025.pdf?sequence=1)\n"
+        },
+        "kind": "attempt",
+        "missing": "Higher-rank residuals have both physical signs.",
+        "next": "Test the independent retuned cutoff that avoids the explicit pair boundary.",
+        "result": "A second compensation gives the pair-collision boundary coefficient with its adverse sign.",
+        "stage": "pairboundary"
+      },
+      "prev": "0310b766ac9735350ba5eb26e2d764347380b3e621492fc86ad5016f77a93b0f",
+      "seq": 26,
+      "sha256": "437230312f18c1cb36e5025af71bd956f32e8b118ceacc4cfaf5d907718ace22"
+    },
+    {
+      "at": "2026-11-23T15:37:56.074686+00:00",
+      "event": {
+        "actor": "alternative",
+        "candidate": "shifted-sign",
+        "event_id": "attempt-shifted-sign-alternative---ranklift",
+        "evidence": {
+          "name": "no_hole_rank_lift.md",
+          "sha256": "790e707e7443fa075f6e08bcf78c10b02763b2043bcf9185e8cbfeb001becafb",
+          "text": "# Unmarked rough companions and the rank-one gap\n\nThe estimates below apply to the actual primes \\(x<p\\le 2x\\). They quantify the part of the perforated polynomial sieve on which every Lü–Wang–Wu auxiliary product vanishes. They also give a lower bound there for companions having at least three distinct prime factors.\n\nWrite \\(L=\\log x\\), \\(M(F)=\\sum_{x<p\\le 2x}(\\log p)F(p+2)\\), \\(R_0(n)=1_{P^-(n)>x^\\beta}\\), and\n\\[\n V_0=\\prod_{2<q\\le x^\\beta}\\left(1-\\frac1{q-1}\\right)\n \\sim \\frac{2e^{-\\gamma}C_2}{\\beta L}.\n\\]\nThe products here and below range over primes. Take \\(D=x^{.001}\\), \\(s=.001/\\beta\\) large and fixed. Let \\(R\\) be the sieve with the \\(H\\) fixed exceptional subpower bands in ETH-PERF-01 and \\(V\\) its local product. Write \\(\\theta_s=C s^{-s/2}\\) with an absolute sieve constant, enlarging \\(C\\) a fixed number of times if necessary.\n\n## Mass invisible to the marks\n\nThe fundamental lemma in Koukoulopoulos, *The Distribution of Prime Numbers*, Theorem 19.1(a)–(c), gives upper and lower divisor polynomials supported on squarefree odd \\(d\\le D\\), with coefficients of absolute value at most one. The local density is \\(1/(q-1)\\). The inverse dimension-one product condition on all prime intervals holds uniformly for either choice of omitted bands. Ordinary prime Bombieri–Vinogradov on the reduced progression \\(-2\\bmod d\\) gives\n\\[\n (1-\\theta_s+o(1))xV_0\\le M(R_0)\\le(1+\\theta_s+o(1))xV_0.\n\\]\nThe same applies to \\(R,V\\). Each omitted band contributes a factor \\(2+o(1)\\) to \\(V/V_0\\) by Mertens' theorem. Consequently,\n\\[\n \\frac{M(R_0)}{M(R)}\n     =2^{-H}\\big(1+O(\\theta_s)+o(1)\\big).\n\\]\nAll estimates take \\(x\\) to infinity after fixing \\(H,\\beta\\). With \\(s\\) fixed the bracket in this display cannot be replaced by an established \\(1+o(1)\\).\n\nOn every input selected by \\(R_0\\), all exceptional band counts vanish for large \\(x\\), and hence every marked product \\(W_j\\) vanishes pointwise. Every linear combination \\(G\\) of functions \\(W_jS_j\\), with arbitrary finite divisor-polynomial tests \\(S_j\\), obeys\n\\[\n \\frac{M(R|G-1|^2)}{M(R)}\\ \\ge\\ \\frac{M(R_0)}{M(R)}.\n\\]\nThe observation holds for any function of the marked products that vanishes when its arguments are all zero. Thus normalization by the much larger perforated sieve mass can make the missing fraction small, while the absolute error on the unmarked set still has size \\(xV_0\\).\n\n## Actual high-rank supply on the unmarked set\n\nFor the three exponent intervals \\((2,4],(5,10],(11,22]\\) let \\(\\mathcal B_j\\) consist of the primes whose \\(\\log q/(\\beta L)\\) belongs to the respective interval. Set \\(t_j(n)=\\#\\{q\\in\\mathcal B_j:q\\mid n\\}\\), \\(Y=t_1t_2t_3\\), and \\(m=\\log 2\\). For \\(h=1,2\\) write\n\\[\n F_1=m^3,\\qquad F_2=(m+m^2)^3.\n\\]\nThen\n\\[\n (1-\\theta_s)F_h+o(1)\n \\le \\frac{M(R_0Y^h)}{xV_0}\n \\le(1+\\theta_s)F_h+o(1).\n\\]\n\nTo prove these inequalities, multiply the two fundamental-lemma divisor polynomials for \\(R_0\\) by the nonnegative \\(Y^h\\) and expand. Each \\(t_j^2=t_j+2\\binom{t_j}{2}\\). The squarefree prime product specifying the selected primes in the three bands determines all three unordered subsets. The remaining sieve divisor has primes at most \\(x^\\beta\\), so the folded modulus has one representation with coefficient bounded by eight. All moduli are \\(\\le x^{.001+72\\beta}\\), where \\(72=2(4+10+22)\\). This lies within ordinary prime Bombieri–Vinogradov for our choice \\(\\beta<.001\\). Its absolute error is \\(O_A(xL^{-A})\\). In the local model the disjoint primes divide independently with probabilities \\(v_q=1/(q-1)\\). For each band \\(\\sum v_q=m+o(1)\\) and \\(\\sum v_q^2=o(1)\\). The first two raw local moments of \\(t_j\\) converge to \\(m\\) and \\(m+m^2\\). Products across the disjoint bands factor, which proves the displayed estimates.\n\nA squareful \\(p+2\\) in \\(R_0\\) has \\(q^2\\mid p+2\\) with \\(q>x^\\beta\\); an integer count bounds its prime log mass by \\(O(L(x^{1-\\beta}+\\sqrt{x}))\\). As \\(Y^2\\) is bounded in terms of fixed \\(\\beta\\) on \\(n\\le 3x\\), deleting this part costs \\(o(xV_0)\\) in both moments. Cauchy's inequality on the positive squarefree measure now gives\n\\[\n \\liminf_{x\\to\\infty}\n \\frac{M(R_0\\mu^2\\,1_{Y>0})}{xV_0}\n \\ \\ge\\\n \\frac{(1-\\theta_s)^2}{1+\\theta_s}\n \\left(\\frac{m}{1+m}\\right)^3 .\n\\]\nFor sufficiently small \\(\\beta\\) we have \\(\\theta_s\\le 1/10\\). Since \\(\\log 2>2/3\\), the right side exceeds\n\\[\n \\frac{(9/10)^2}{11/10}(2/5)^3=\\frac{324}{6875}>\\frac1{25}.\n\\]\nEvery counted companion has at least three distinct polynomial-sized prime factors and has no prime below \\(x^\\beta\\). All these companions lie in the zero set of every \\(W_j\\).\n\n## Consequences for the attempted lift\n\nThe elementary dimension-two upper-bound sieve on \\(p(p+2)\\) bounds the actual twin log mass by \\(C_0 x/L\\) with an absolute \\(C_0\\). In the last inequality \\(1/25\\) is independent of \\(\\beta\\), while \\(xV_0\\sim 2e^{-\\gamma}C_2 x/(\\beta L)\\). Decreasing fixed \\(\\beta\\) makes the lower bound for the genuine undifferentiated high-rank population exceed any fixed multiple of this upper bound for twins. The argument gives no allocation between odd and even rank within this population.\n\nFor a precise information bound, keep the actual prime log weights, masks, ranks, and every unsigned observation fixed. Consider the two *comparison signs* that agree with arithmetic \\(\\mu\\) elsewhere and take the respective constant values \\(+1,-1\\) on \\(R_0\\mu^2\\,1_{Y>0}\\). Every observed signed quantity of the form \\(M(\\mu\\,W_jS_j)\\) has exactly the same value for the two choices. Their unmarked signed composite totals differ by more than \\((2/25+o(1))xV_0\\). This construction diagnoses the information carried by these particular marked statistics. Only the original Möbius sign is asserted to be arithmetic.\n\nOn the actual integers the missing rank-sensitive inequality has a direct expression. With \\(T\\) the genuine twin log mass on \\((x,2x]\\) and \\(\\Omega\\) counting prime factors with multiplicity,\n\\[\n T=M(R_0\\,1_{\\mu=-1})-M(R_0\\,1_{\\mu=-1,\\ \\Omega\\ge3}).\n\\]\nThe second term includes all squarefree odd-rank composites, while nonsquarefree companions make zero contribution to both terms on the right. All twins survive \\(R_0\\) for large \\(x\\). A positive lower bound for this difference on an unbounded sequence would supply the terminal theorem. Neither the marked cancellation estimate nor the positive high-rank estimate gives that lower bound.\n\n### Forcing the missing prime labels by multiplication\n\nOne possible way to make a marker nonzero on the blind sector is to multiply \\(p+2\\) by selected marking primes before evaluating its Möbius and occupancy weights. On the actual no-hole sector this has an exact formula, including for a weighted average over multipliers. For each \\(x\\), take any finite family \\(\\mathcal A_x\\) of squarefree integers whose prime factors are \\(\\le x^\\beta\\) and complex scalars \\(c_a\\). Write \\(\\boldsymbol\\omega_E\\) for the vector of the \\(H\\) exceptional band occupancies. Let \\(F\\) be any function of this vector, and let \\(Z(n)\\) be any bounded arithmetic test on the original companion. Then\n\\[\n \\sum_{a\\in\\mathcal A_x}c_a\\!\n \\sum_{x<p\\le2x}(\\log p)R_0(p+2)Z(p+2)\\,\n      \\mu\\big(a(p+2)\\big)F\\big(\\boldsymbol\\omega_E(a(p+2))\\big)\n =\n \\left[\\sum_{a\\in\\mathcal A_x}c_a\\mu(a)F(\\boldsymbol\\omega_E(a))\\right]\n M(R_0Z\\mu).\n\\]\nIndeed \\(R_0(n)\\) implies \\((a,n)=1\\), and all the selected bands lie below \\(x^\\beta\\) for large \\(x\\). Hence multiplication contributes exactly the external prime labels, leaving the original companion with none. The argument holds also with an \\(a\\)-dependent \\(F_a\\). It is an exact identity at each sufficiently large scale, with no growth restriction on the number of multipliers or their coefficients. Zero bracket gives the identity \\(0=0\\). A nonzero bracket gives precisely the original unmarked signed statistic upon division. Thus forced multiplicative labels create no independent equation on the missing object, even if one forces one label in every group and makes all auxiliary products nonzero.\n\nThe reason the published marked correlation cannot estimate this new left side is also visible before averaging. Its shift-two prime source is \\(p+2\\) with input \\(p\\). Replacing the argument by \\(a(p+2)=ap+2a\\) replaces the corresponding input at shift \\(2a\\) by \\(ap\\), composite for \\(a>1\\). In the label-extraction step the forced divisibility \\(a\\mid a(p+2)\\) puts no congruence condition on \\(p+2\\). The independent labels in LWW (4.5)–(4.8), used in the mean-square estimate, are not supplied by these repetitions.\n\nThe comparison-sign changes above also preserve any unmarked bounded signed test known only up to \\(o(x/L^\\alpha)\\) for fixed \\(\\alpha<1\\). Their effect is \\(O_\\beta(x/L)=o(x/L^\\alpha)\\). This remains true uniformly over all divisor polynomials \\(S(n)=\\sum_{d\\mid n}l_d\\) with \\(\\lvert l_d\\rvert\\le1\\) in absolute value. On the perturbed squarefree \\(n\\le3x\\) every prime factor is above \\(x^\\beta\\), hence \\(\\tau(n)\\le 2^{2/\\beta}\\) for large \\(x\\). The total variation argument is at fixed \\(\\beta\\). It covers the coarse precision of the global HLC estimate but does not claim invariance for unknown unmarked estimates of terminal precision.\n\n**Primary sources.** The upper and lower sieve weights and their dimension bound come from Koukoulopoulos, Theorem 19.1. The auxiliary weights and their pointwise marked factors come from Lü–Wang–Wu (2.6)–(2.14). [Sieve text](https://dms.umontreal.ca/~koukoulo/documents/publications/primes.pdf) and [Lü–Wang–Wu, v2](https://arxiv.org/html/2610.20242v2).\n"
+        },
+        "kind": "attempt",
+        "missing": "Rank-one and composite on the no-helper band have identical marked observations.",
+        "next": "Restrict future use to genuinely unmarked shifted sources.",
+        "result": "Positive lower population of actual high-rank composites survives all helper-band marks in the no-hole chamber.",
+        "stage": "ranklift"
+      },
+      "prev": "437230312f18c1cb36e5025af71bd956f32e8b118ceacc4cfaf5d907718ace22",
+      "seq": 27,
+      "sha256": "4ad415732e49808ffac26510c84c3e9f5c5bdbc32c5b8f7bb557ac09ede6f005"
+    },
+    {
+      "at": "2026-11-23T15:37:56.075108+00:00",
+      "event": {
+        "actor": "analytic",
+        "candidate": "box-sieve",
+        "event_id": "attempt-box-sieve-analytic---ledger",
+        "evidence": {
+          "name": "complete_ledger.md",
+          "sha256": "663fbbc802adc0454113a9920a5df3d9d613b9765d71cafd2085a7b172acdd7f",
+          "text": "# Two simultaneous bounds for the full signed source\n\nAll quantities refer to native commit 43facedcf40b2f998aa47f7198d6b9b5feb5b792 and window \\(x/2<n\\le x\\). All displayed liminf/limsup coefficients use the same positive \\(S_b\\sim\\mathfrak S_2x/(2\\log x)\\). Use the definitions, rank-four pointwise inequality and signed partition in collar_ledger, equations (1), (2) and (5), the four source transfers and calibrated mean in analytic_contracts, and the small-prime-slot estimate in the referee's native_rough_sieve. The integrals for each nonnegative fixed profile use ordered squarefree prime factors counted once. All ingredients below have written proofs. The native Lean consumer retains its explicit analytic premises.\n\n## A smaller absolute four-factor cost\n\nFor any retained rectangular angular cell of fixed rank \\(r\\ge3\\), all prime factors exceed a common fixed positive power of \\(x\\) and the least satisfies \\(p_1\\le x^{1/3}\\). Pascadi's Proposition 5.2 accepts \\(x^{2\\tau}\\le N\\le x^{1/3+\\tau}\\) for every sufficiently small fixed \\(\\tau>0\\). The whole two-sieve and factorization proof for the five boxes in native_rough_sieve applies to this least prime also. Take \\(\\tau\\) smaller than one fourth of the common lower exponent. The prime short coefficient satisfies Siegel–Walfisz uniformly over the fixed cells, the other \\(r-1\\) primes give a coefficient bounded by \\((r-1)!\\), and the count of dyadic cells is a fixed power of \\(\\log x\\). Cells meeting the support and their upper products preserve the exponent slack. Take \\(x\\to\\infty\\) first, then the small-sieve and \\(\\tau\\) limits. This gives \\(A(P)/S_b\\le (10/3)\\Pi(P)+o(1)\\) for any bounded nonnegative fixed-rank chamber profile \\(P\\) here. The same conclusion holds at rank two when the smaller prime is in either narrow band about \\(x^{1/5}\\). For the near-half rank-two band we retain the separate \\(32/9\\) inequality. Rank-dependent constants cause no limit exchange since the rough tail has a fixed finite rank ceiling. [Pascadi, Propositions 4.4 and 5.2](https://arxiv.org/html/2505.00653v2)\n\nFor the rank-four angular error envelope keep the dependence of each convolution on its *own* prime-sum mass. The proof in collar_ledger gives\n\n\\[\nK_h(v)\\le\\frac{h}{v}\\log^{h-1}(v/\\delta)\n\\]\n\nfor \\(v\\ge\\delta\\), since the remaining \\(h-1\\) variables range in \\([\\delta,v]\\). For the exceptional single-coordinate term of pointwise bound (2), \\(t\\in[\\nu,1/5]\\) and the other three sum to \\(1-t\\le1-\\nu\\). Its logarithmic factor is bounded by \\(C_1^2\\) with \\(C_1=26.492\\). For the half-sum term, \\(\\beta<t<1/2\\) and both groups' summed masses are at most \\(1-\\beta\\), giving the smaller \\(C_2^2\\) with \\(C_2=26.022\\). The exact rational sums \\(\\sum_{j=0}^{130}C_i^j/j!\\) exceed \\((1-\\nu)/\\delta\\) and \\((1-\\beta)/\\delta\\), respectively. Hence\n\n\\[\nE_4'=\\frac{2\\epsilon C_1^2}{\\nu(1-\\nu)}\n+\\frac{4\\epsilon C_2^2}{\\beta(1-\\beta)}\n=0.00001960713760979619438614\\ldots\n\\]\n\nupper-bounds \\(\\Pi(|W_4|)\\), including both signs. For any signed \\(W\\) with \\(A(W^\\pm)/S_b\\le c\\Pi(W^\\pm)+o(1)\\) and \\(B(W^\\pm)/S_b=\\Pi(W^\\pm)+o(1)\\), the two-sided centered bound is \\(|A(W)-B(W)|/S_b\\le(c-1)\\Pi(|W|)+o(1)\\) whenever \\(c\\ge2\\). Applying it to \\(W_4\\) gives \\(D_4=(7/3)E_4'<0.000045749987756191120235\\). At ranks \\(r\\ge256\\) use the same signed bound and the earlier envelope \\(2^{r+1}27^{r-1}/(r-1)!\\). The absolute tail cost is\n\n\\[\nD_t=\\frac73\\,\\frac{4\\cdot54^{255}}{255!(1-54/256)}\n<2.034\\cdot10^{-62}.\n\\]\n\n## Every entry in the signed partition\n\nPut \\(a_0=1/5-\\epsilon\\), \\(A_0=2\\epsilon/[\\beta(1-\\beta)]\\) and\n\n\\[\nB_0=\\frac{\\epsilon}{a_0(1-a_0)}\n+\\frac{\\epsilon^2}{2a_0^2(3/5)}\n+\\frac{3(5\\epsilon)^4}{5!\\,4!\\,a_0^5},\\qquad\nI_0=\\epsilon/[\\nu(1-\\nu)] .\n\\]\n\nHere \\(A_0\\) bounds the positive good-sector mass from near-half rank two. \\(B_0\\) bounds the positive good-sector masses from the other rank-two band, rank three, and rank five, respectively. The rank-five term uses all prime orders and the full native upper height three. Good rank four and all higher positive ranks vanish. The omitted (off-good) rank-two source is nonnegative and has ordinary mass at most \\(I_0\\). Put \\(D_m=9\\delta^{-2}/(50\\,99!)<3.086\\cdot10^{-134}\\). This is the combined signed calibration debit for the original \\(H-K_X\\), with the general \\(q\\) bank, no truncation in rank, and the squarefree filter.\n\nThe exact native identity after the \\(o(S_b)\\) prime-power, ordinary mean and Vaughan payments is\n\n\\[\n\\frac{\\mathcal U+T}{S_b}\n=1+\\frac{B(P)-A(P)-R_2-R_4-R_{\\rm tail}\n+\\operatorname{deviation}(\\mathrm{calibrated})}{S_b}+o(1).\n\\]\n\nThe good contribution lies between \\(-[(23/9)A_0+(7/3)B_0]\\) and \\(A_0+B_0\\), up to \\(o(1)\\). The sign multiplying the omitted pair is minus, so its interval is \\([-(7/3)I_0, I_0]\\). The three other contributions are bounded in absolute value by \\(D_4,D_t,D_m\\), respectively. It follows that the **complete simultaneous window** is \\(L_0-o(1)\\le(\\mathcal U+T)/S_b\\le U_0+o(1)\\), where\n\n\\[\n\\begin{aligned}\nL_0&=1-\\tfrac{23}9 A_0-\\tfrac73(B_0+I_0)-D_4-D_t-D_m\n =0.99995420040113248509504115422\\ldots,\\\\\nU_0&=1+A_0+B_0+I_0+D_4+D_t+D_m\n =1.00004577048775628226606863364\\ldots .\n\\end{aligned}\n\\]\n\nThe lower and upper use different sides of the same positive-source comparison. The rational check_complete_ledger program carries every term, including the minute rank-five, high-tail and calibrated debits.\n\n## The boxed and outside source on the same window\n\nLet \\(b=\\mathrm{primeBox}(x)/S_b\\), \\(t=T(x)/S_b\\), \\(v=\\mathcal U_{\\mathscr B^c}(x)/S_b\\). The ordinary integral \\(J\\) for the 1,566 native boxes has the rigorous enclosure \\(j_-=.27547734178065116588\\le J\\le j_+=.27560294635735393770\\) in the referee's J4 certificate. The six rough profile upper bounds and positivity give \\(0\\le b\\le (10/3)J+o(1)\\). Native Vaughan calibration gives \\(\\mathcal U_{\\mathscr B}/S_b=b-J+o(1)\\), hence its complete range is \\([-J,(7/3)J]\\) up to \\(o(1)\\). The complete outside source therefore satisfies\n\n\\[\n\\begin{aligned}\nL_0-\\tfrac73j_+-o(1)&\\le v+t\\le U_0+j_++o(1),\\\\\nL_0+j_- -o(1)&\\le v+t+b\\le U_0+j_++o(1).\n\\end{aligned}\n\\]\n\nNumerically the first interval is \\([0.35688065890063996379504\\ldots,\\,1.27564871684511021996607\\ldots]\\). Its upper end bounds \\(v\\) unconditionally by \\(t\\ge0\\). The second interval starts at \\(1.27543154218178365097504\\ldots\\). The sufficient closing condition is a strict improvement on \\(\\limsup v<L_0-(7/3)j_+\\), still unproved. The actual proven upper and the sufficient closing threshold differ by more than \\(0.9187\\). The exact matched interval with \\(b,t\\) retained does not prescribe how much each nonnegative genuine-prime population contributes.\n\nThe Gold 4.66 full proof, §6 (6.1), uses \\(J\\le.28449989344325252602\\) on the same full boxes. Its archived polynomial profile calculation at smaller cost elsewhere is for a further short-pair restriction. The pinned upper ledger \\(1.000107183501\\), when all its analytic inputs are supplied, gave the earlier same-source upper \\(1.28460707694425252602\\) by the identical nonnegativity deduction. The arithmetic above directly proves a smaller complete upper from the audited papers. Any claim that a numeric bound supersedes the entire historical research programme additionally requires checking independent archives and any alternative complete certificates.\n"
+        },
+        "kind": "attempt",
+        "missing": "Bound is too high to imply positive T.",
+        "next": "Attack the full source independently of this positivity bound.",
+        "result": "Two-sided complete native ledger with a stronger rank-four integral, full lower and upper constants.",
+        "stage": "ledger"
+      },
+      "prev": "4ad415732e49808ffac26510c84c3e9f5c5bdbc32c5b8f7bb557ac09ede6f005",
+      "seq": 28,
+      "sha256": "96266a7aedc95492b73bbd45ac809bf806fefd5ac579ef5ed6fe407e4e91f1ed"
+    },
+    {
+      "at": "2026-11-23T15:37:56.075297+00:00",
+      "event": {
+        "actor": "research-coordinator",
+        "event_id": "candidate-scalar-prefix-research-coordinator---wave2",
+        "id": "scalar-prefix",
+        "kind": "candidate",
+        "mechanism": "Mellin at zero plus two- and four-label tests",
+        "next": "Preserve every signed companion on the simultaneous polynomially rough fixed-rank k and k+2 source.",
+        "source": "Full Vaughan principal including the genuine prime boundary",
+        "statement": "Test whether a universal one-variable smooth prefix produces a favorable independent outside certificate."
+      },
+      "prev": "96266a7aedc95492b73bbd45ac809bf806fefd5ac579ef5ed6fe407e4e91f1ed",
+      "seq": 29,
+      "sha256": "14657166f79d00e6d695442c2fb5afe904984b5482b16744c52ed278a1961797"
+    },
+    {
+      "at": "2026-11-23T15:37:56.075391+00:00",
+      "event": {
+        "actor": "research-coordinator",
+        "candidate": "scalar-prefix",
+        "event_id": "attempt-scalar-prefix-research-coordinator---slope",
+        "evidence": {
+          "name": "scalar_prefix_barrier.md",
+          "sha256": "38293dd2e2b56d66af8761144f735f038a656a140640e8e4fbb17739fc31cd99",
+          "text": "# An obstruction for nonpositive owner rows under a scalar smooth prefix\n\nLet v>0, A>0 satisfy A+v<1/2, and let h be smooth from the right at zero, h(0)=1 and h(t)=0 for t≥A. Put B=1−v. In the smoothed Vaughan sum with owner prime ℓ>x^v, the inner tail for a nonunit squarefree cofactor carrying exponents t_i is the negative of its Boolean finite difference\n\n    G_h(t_1,…,t_m) = Σ_{S⊆[m]} (−1)^|S| h(Σ_{i∈S}t_i).\n\nConsider the proposed sufficient pointwise sign G_h≥0 for all such exponent profiles with Σt_i<B. This quantifier is a relaxation independent of the shifted output. Near-coincident exponents may be obtained by continuity from distinct exponents. Ordinary PNT in the individual fixed exponent intervals and one final dyadic prime interval realizes arbitrary interior limits for input rows if desired. It does not control the factorization of the shifted output.\n\n**Slope theorem.** This pointwise condition forces −h′(0)≥3/(2A). The unavoidable comparator charge of this device exceeds 3 units per unit of the ordinary positive profile mass.\n\nIndeed, for w=1−h the two-coordinate differences state w(s+t)≤w(s)+w(t) whenever s,t>0 and s+t<B. Splitting t into m equal pieces and sending m→∞ gives w(t)≤tw′(0+). For four increments just above A/2 their total remains less than B, because 2A<1−v. Every subset of size ≥2 lies outside the support, so G_h=1−Σ_i h(t_i)≥0. Sending all t_i↓A/2 yields w(A/2)≥3/4. The two estimates imply the asserted slope bound. With the genuine prime boundary included, the principal term relating this smoothed sum to the original contains the additional multiple (1−v)(−h′(0)) of the actual comparator. The harmonic Möbius transform and its linear term at zero are derived in the companion Mellin note. In particular (1−v)·3/(2A)>3. The unchanged prime-side upper already costs 7/3 on positive ordinary profile mass. Universal pointwise sign by this mechanism cannot improve that coefficient.\n\n**Quantified failure if a smaller slope is chosen.** If all pair differences are nonnegative and (1−v)(−h′(0))≤7/3, then by the same pair test h(A/2)≥1−7A/(6(1−v)). As 2A<1−v, the four-label G_h near A/2+ is strictly below −2/3 in the limit. By continuity an open four-label region has strictly positive raw owner weight there. This proves a geometric counterexample to the proposed pointwise simplification. It does not assert that any native joint f-positive shifted population has positive lower density. If a proof avoids the four-label deficit by violating the pair condition, its two-label signed deficit must be paid instead.\n\nThe hypothesis is intentionally specific. Signed joint estimates, additional label-dependent annihilators and native output-dependent restrictions can evade it. No bound on the unknown signed remainder is inferred from this theorem.\n"
+        },
+        "kind": "attempt",
+        "missing": "Only a scoped no-go. Source-dependent weighted estimates can evade it.",
+        "next": "Keep label-dependent signed corrections and measure their companion.",
+        "result": "Making every quotient have the favorable sign forces a comparator tax above three.",
+        "stage": "slope"
+      },
+      "prev": "14657166f79d00e6d695442c2fb5afe904984b5482b16744c52ed278a1961797",
+      "seq": 30,
+      "sha256": "50ac3d6c40f49567509b1e349268c25722f4d9ac4c5b30f1e83072f9afed9543"
+    },
+    {
+      "at": "2026-11-23T15:37:56.212782+00:00",
+      "event": {
+        "actor": "alternative",
+        "candidate": "historic-full-outside-cap",
+        "event_id": "review-historic-full-outside-cap-alternative-adverse--wave2",
+        "finding": "Recomputed face moments and enclosure, checked stronger historical alternatives and source distinction. Actual twin lower remains zero.",
+        "kind": "review",
+        "proof_hash": "610c9f4315e56145f9996d9f13652eb6b1316b4194bc2caf3521ce3dd391018b",
+        "role": "adverse",
+        "verdict": "pass"
+      },
+      "prev": "50ac3d6c40f49567509b1e349268c25722f4d9ac4c5b30f1e83072f9afed9543",
+      "seq": 31,
+      "sha256": "863ef805f62d7a312f3ce8854ac12439853c7153dc7718ab2e7b81b6ada07930"
+    },
+    {
+      "at": "2026-11-23T15:37:56.213102+00:00",
+      "event": {
+        "actor": "registry",
+        "candidate": "historic-full-outside-cap",
+        "event_id": "review-historic-full-outside-cap-registry-source--wave2",
+        "finding": "Checked identical native population, 1,566 boxes, signed companions and normalized measure. Historical upper is an explicit reconstruction.",
+        "kind": "review",
+        "proof_hash": "610c9f4315e56145f9996d9f13652eb6b1316b4194bc2caf3521ce3dd391018b",
+        "role": "source",
+        "verdict": "pass"
+      },
+      "prev": "863ef805f62d7a312f3ce8854ac12439853c7153dc7718ab2e7b81b6ada07930",
+      "seq": 32,
+      "sha256": "2487250a3e5eb24fc4cf02605fd4ca7cc2eddfe2d1eee639034ed5fe9d6288fb"
+    },
+    {
+      "at": "2026-11-23T15:37:56.213163+00:00",
+      "event": {
+        "actor": "referee",
+        "candidate": "historic-full-outside-cap",
+        "event_id": "review-historic-full-outside-cap-referee-terminal--wave2",
+        "finding": "Traced upper ledger, subtraction of actual box once and nonnegative T, Apsi, including physical errors. Accept this full paper upper with zero positive twin reserve.",
+        "kind": "review",
+        "proof_hash": "610c9f4315e56145f9996d9f13652eb6b1316b4194bc2caf3521ce3dd391018b",
+        "role": "terminal",
+        "verdict": "pass"
+      },
+      "prev": "2487250a3e5eb24fc4cf02605fd4ca7cc2eddfe2d1eee639034ed5fe9d6288fb",
+      "seq": 33,
+      "sha256": "7214111d24a524947688fb082cd90a0595b3edcaec4184b0374fa9a407e24da3"
+    },
+    {
+      "at": "2026-11-23T15:37:56.213204+00:00",
+      "event": {
+        "actor": "alternative",
+        "candidate": "full-outside-cap",
+        "event_id": "review-full-outside-cap-alternative-adverse--wave2",
+        "finding": "Recomputed face moments and enclosure, checked stronger historical alternatives and source distinction. Actual twin lower remains zero.",
+        "kind": "review",
+        "proof_hash": "2aee978f3918a3f9537da68897395aba69438a67979cb5c428a85b6188586d20",
+        "role": "adverse",
+        "verdict": "pass"
+      },
+      "prev": "7214111d24a524947688fb082cd90a0595b3edcaec4184b0374fa9a407e24da3",
+      "seq": 34,
+      "sha256": "da484de23a7e9490c265dcd0952079ea048664842083c2a4f17592b5a7f7ca73"
+    },
+    {
+      "at": "2026-11-23T15:37:56.213242+00:00",
+      "event": {
+        "actor": "registry",
+        "candidate": "full-outside-cap",
+        "event_id": "review-full-outside-cap-registry-source--wave2",
+        "finding": "Checked identical native population, 1,566 boxes, signed companions and normalized measure. Historical upper is an explicit reconstruction.",
+        "kind": "review",
+        "proof_hash": "2aee978f3918a3f9537da68897395aba69438a67979cb5c428a85b6188586d20",
+        "role": "source",
+        "verdict": "pass"
+      },
+      "prev": "da484de23a7e9490c265dcd0952079ea048664842083c2a4f17592b5a7f7ca73",
+      "seq": 35,
+      "sha256": "c21fea62a1eba55f74ebe2dea28e679660cebb2305d6f9da399c89537b1c3679"
+    },
+    {
+      "at": "2026-11-23T15:37:56.213277+00:00",
+      "event": {
+        "actor": "referee",
+        "candidate": "full-outside-cap",
+        "event_id": "review-full-outside-cap-referee-terminal--wave2",
+        "finding": "Traced upper ledger, subtraction of actual box once and nonnegative T, Apsi, including physical errors. Accept this full paper upper with zero positive twin reserve.",
+        "kind": "review",
+        "proof_hash": "2aee978f3918a3f9537da68897395aba69438a67979cb5c428a85b6188586d20",
+        "role": "terminal",
+        "verdict": "pass"
+      },
+      "prev": "c21fea62a1eba55f74ebe2dea28e679660cebb2305d6f9da399c89537b1c3679",
+      "seq": 36,
+      "sha256": "93ebffc44bbfea176a10b1e2ae10311287e5bcdd8715f4d4311a0e34d35c7ee1"
+    },
+    {
+      "at": "2026-11-23T15:37:56.213312+00:00",
+      "event": {
+        "actor": "analytic",
+        "candidate": "full-outside-cap",
+        "event_id": "accept-full-outside-cap-analytic---wave2",
+        "finding": "Two independently certified complete uppers on identical native outside and normalized scale differ by exactly 0.00889694708589858832. This milestone does not close the campaign.",
+        "goal": "S2",
+        "kind": "accept",
+        "proof_hash": "2aee978f3918a3f9537da68897395aba69438a67979cb5c428a85b6188586d20"
+      },
+      "prev": "93ebffc44bbfea176a10b1e2ae10311287e5bcdd8715f4d4311a0e34d35c7ee1",
+      "seq": 37,
+      "sha256": "a58e7da9f6937d9c8dcae242a5ca98c5e4149d64756e433cda0a35c1714fc24b"
+    }
+  ],
+  "format": "ETH-events-v1"
+}
